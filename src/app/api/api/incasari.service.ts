@@ -6,7 +6,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-
 import { Incasari } from '../model/incasari';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -174,7 +173,6 @@ export class IncasariService {
         if (httpHeaderAcceptSelected != undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
-
         // to determine the Content-Type header
         const consumes: string[] = [
         ];

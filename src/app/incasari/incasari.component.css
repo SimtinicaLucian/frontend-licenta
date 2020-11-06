@@ -1,0 +1,30 @@
+h1
+{
+  text-align: center;
+  color: #555 !important;
+  padding-bottom: 10px;
+}
+h1::after{
+  content: '';
+  background: #007bff;
+  display: block;
+  height: 3px;
+  width: 270px;
+  margin: 20px auto 5px;
+}
+
+
+#alimentari
+{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: #555;
+}
+
+
+#add
+{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: #555;
+}

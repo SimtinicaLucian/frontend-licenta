@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IncasariComponent } from '../app/incasari/incasari.component';
+import { IncasariComponent } from './incasari/incasari.component';
 
 
 const routes: Routes = [
  
+  {path: 'incasari' , component : IncasariComponent },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  {path: 'incasari' , component : IncasariComponent }
+
 ];
 
 @NgModule({

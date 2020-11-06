@@ -1,7 +1,7 @@
 export interface Incasari { 
     data?: string;
     furnizor?: string;
-    number?: number;
+    numar?: number;
     detalii?: string;
     sumaTotala?: number;
     sumaFaraTVA?: number;
