@@ -80,7 +80,7 @@ export class IncasariService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.delete<Incasari>(`${this.basePath}/incasari/delete/${encodeURIComponent(String(number))}`,
+        return this.httpClient.delete<Incasari>(`${this.basePath}/incasari/delete/number/${encodeURIComponent(String(number))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

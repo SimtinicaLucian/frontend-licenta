@@ -1,19 +1,21 @@
-import { NgModule, SkipSelf, Optional } from '@angular/core';
+import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
-import { IncasariService} from './api/incasari.service';
-import { ModuleWithProviders } from '@angular/compiler/src/core';
+
+import { AlimentariService } from './api/alimentari.service';
+import { IncasariService } from './api/incasari.service';
+
 
 @NgModule({
-    imports:      [],
-    declarations: [],
-    exports:      [],
-    providers: [
-      IncasariService
+  imports:      [],
+  declarations: [],
+  exports:      [],
+  providers: [
+    AlimentariService,
+    IncasariService,
  ]
-  })
-
-  export class ApiModule {
+})
+export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {
         return {
             ngModule: ApiModule,

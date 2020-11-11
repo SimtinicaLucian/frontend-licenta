@@ -1,0 +1,177 @@
+@import "bootstrap";
+@import "~bootstrap/scss/bootstrap";
+
+
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
+/*----------Navigation--------*/
+#nav-bar
+{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar-brand img
+{
+  height: 40px;
+  padding-left: 30px;
+}
+.navbar-nav li
+{
+  padding: 0 10 px ;
+}
+
+.navbar-nav li a
+{
+  float: right;
+  text-align: left;
+}
+
+#nav-bar ul li a:hover
+{
+  color: #007bff!important;
+}
+
+.navbar
+{
+  background: #fff;
+}
+
+.navbar-toggler
+{
+  border: none!important;
+}
+
+.nav-link
+{
+  color: #555!important;    
+  font-weight: 600;
+  font-size: 16px;
+}
+
+#service
+{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: #555;
+}
+
+
+
+
+h1
+{
+  text-align: center;
+  color: #555 !important;
+  padding-bottom: 10px;
+}
+h1::after{
+  content: '';
+  background: #007bff;
+  display: block;
+  height: 3px;
+  width: 170px;
+  margin: 20px auto 5px;
+}
+
+// About
+#about
+{
+  
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: #555;
+}
+#about .btn 
+{
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.about-content
+{
+  padding-top: 20px;
+}
+
+
+
+.center {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+#contact
+{
+  background: #efefef;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: #777;
+}
+
+
+.contact-form{
+  padding: 15px;
+}
+
+.form-control
+{
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+
+::placeholder{
+  color: #999 !important;
+}
+
+.follow
+{
+  background: #fff;
+  padding: 10px;
+  margin: 15px;
+}
+
+
+.contact-info .fa{
+  margin: 10px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+// ---------------------------
+  
+#footer
+{
+  background: #333;
+  color: #fff;
+  padding: 1px;
+}
+
+
+agm-map {
+  height: 400px;
+}

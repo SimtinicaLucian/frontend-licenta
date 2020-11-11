@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>Business</title>
+<link rel="stylesheet" href="home.component.scss">
+<link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3
+/css/bootstrap.min.css">
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  </head>
+  <body>
+ 
+
+
+        
+    <div id="slider">
+          <div id="headerSlider" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#headerSlider" data-slide-to="0" class="active"></li>
+              <li data-target="#headerSlider" data-slide-to="1"></li>
+              <li data-target="#headerSlider" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block img-fluid" src="/assets/banner1.jpg">
+              </div>
+              
+            </div>
+           
+</div>
+
+</div>
+
+
+<section id="about">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-6">
+  <h2>About Us</h2>
+  <div class="about-content">
+  AdCost este o aplicație foarte ușor de folosit, prin care poți fi mereu la curent cu cheltuielile tale.
+  Astfel, în funcție de veniturile de care dispui, vei putea să-ți gestionezi mai simplu administrarea bugetului, 
+  fiind mereu la curent cu toate facturile pe care trebuie să le plătești.
+  </div>
+  <button type="button" class="btn btn-primary">Read more>>
+  </button>
+  </div>
+  <div class="col-md-6"></div>
+  </div>
+  </div>
+  </section>
+
+
+
+
+    <!---------Services-------------->
+<!-----Get in Touch---->
+
+<section id="contact">
+  <div class="container">
+    <h1>Contact</h1>
+    <div class="row">
+      <!--  -->
+    <div class="col-md-6">
+      <form action="mailto:simtinica.cosmin@gmailcom" method="post" enctype="text/plain">
+    <form class="contact-form">
+    <div class="form-group">
+    <input type="text" class="form-control" placeholder="Your name">
+    </div>
+
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="Phone no.">
+      </div>
+
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Subject">
+        </div>
+
+        <div class="form-group">
+          <textarea class="form-control" rows="4"
+          placeholder="Your Message"></textarea>
+          </div>
+          <!-- <button type="submit" class="btn btn-primary"> Trimiteti</button> -->
+         
+          <!-- <input type="submit" value="Submit"> -->
+
+          <a href = "mailto: simtinica.cosmin@gmailcom"  class="btn btn-primary"> Trimiteti</a>
+        
+          <button type="reset" class="btn btn-primary">Reset</button>
+    </form>
+  </form>
+    </div>
+
+    <div class="col-md-6 contact-info">
+      <div class="follow"><b>Adress:</b><i class="fa fa-map-marker"></i> Iaz, 77, Rucar, RO</div>
+
+      <div class="follow"><b>Phone:</b><i class="fa fa-phone"></i>+4 0797334197</div>
+
+      <div class="follow"><b>Email:</b><i class="fa fa-envelope-o"></i>simtinica.cosmin@gmail.com</div>
+
+      <div class="follow"><label><b>Get Social:</b></label>
+        <a href="https://www.facebook.com/lucian.simtinica"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.instagram.com/luciansimtinica/?hl=ro"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.youtube.com"><i class="fa fa-youtube-play"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-google-plus"></i></a>
+        </div>
+
+      
+    </div>
+
+
+    </div>
+
+  </div>
+  </section>
+
+  
+    
+  <!-- 1111111111111111111111111111111111111111111111111 -->
+
+    <!-- 1111111111111111111111111111111111111111111111111 -->
+  
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+    <div class="center">
+      <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="#"class="active">1</a>
+      <a href="/alim">2</a>
+      <a href="/service">3</a>
+      <a href="/asigurari">4</a>
+      <a href="/salar">5</a>
+      <a href="/venit">6</a>
+      <a href="#contact">7</a>
+      <a href="/alim">&raquo;</a>
+      </div>
+    </div>
+    
+
+
+    <section id="footer">
+      <div class="container text-center">
+        <p>AdCost <i class="fa fa-money"></i></p>
+      </div>
+
+    </section>
+
+
+
+
+
+
+
+  </body>
+
+</html>
+
+
+<agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
+  <agm-marker
+    [latitude]="latitude"
+    [longitude]="longitude"
+    *ngIf="locationChosen"></agm-marker>
+</agm-map>
