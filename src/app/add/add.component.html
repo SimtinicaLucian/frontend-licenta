@@ -1,3 +1,13 @@
+<div class="center">
+  <div class="col-md-6">
+  <div class="md-form active-purple active-purple-2 mb-3">
+    <input class="form-control" type="text" #myInput [(ngModel)]="furniz" (input)="Search()" placeholder="Search furnizor..." aria-label="Search">
+    {{furniz}}
+    <br/>
+  </div>
+  </div>
+</div>
+
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
   
@@ -51,7 +61,6 @@
   
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
-
 
 
 
