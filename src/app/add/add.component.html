@@ -1,66 +1,158 @@
-<div class="center">
-  <div class="col-md-6">
-  <div class="md-form active-purple active-purple-2 mb-3">
-    <input class="form-control" type="text" #myInput [(ngModel)]="furniz" (input)="Search()" placeholder="Search furnizor..." aria-label="Search">
-    {{furniz}}
-    <br/>
-  </div>
-  </div>
+
+
+<div class="active-pink-3 active-pink-4 mb-4">
+<mat-form-field>
+  <mat-label></mat-label>
+  <input class="form-control" matInput (keyup)="applyFilter($event)" placeholder="Search all" #input>
+</mat-form-field>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+
+  
+    <!-- <table mat-table [dataSource]="dataSource"> -->
+      <table mat-table [dataSource]="dataSource" matSort>
   
         <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id  </th>
             <td mat-cell *matCellDef="let element"> {{element.id}} </td>
           </ng-container>
 
       <!-- Position Column -->
       <ng-container matColumnDef="data">
-        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <th  mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
         <td mat-cell *matCellDef="let element"> {{element.data}} </td>
       </ng-container>
   
       <!-- Name Column -->
       <ng-container matColumnDef="furnizor">
-        <th mat-header-cell *matHeaderCellDef> Furnizor </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Furnizor </th>
         <td mat-cell *matCellDef="let element"> {{element.furnizor}} </td>
       </ng-container>
   
       <!-- Weight Column -->
       <ng-container matColumnDef="number">
-        <th mat-header-cell *matHeaderCellDef> Number </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Number </th>
         <td mat-cell *matCellDef="let element"> {{element.number}} </td>
       </ng-container>
   
       <!-- Symbol Column -->
       <ng-container matColumnDef="detalii">
-        <th mat-header-cell *matHeaderCellDef> Detalii </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalii </th>
         <td mat-cell *matCellDef="let element"> {{element.detalii}} </td>
       </ng-container>
 
       <ng-container matColumnDef="sumaTotala">
-        <th mat-header-cell *matHeaderCellDef> sumaTotala </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTotala </th>
         <td mat-cell *matCellDef="let element"> {{element.sumaTotala}} </td>
       </ng-container>
 
       <ng-container matColumnDef="sumaFaraTVA">
-        <th mat-header-cell *matHeaderCellDef> sumaFaraTVA </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaFaraTVA </th>
         <td mat-cell *matCellDef="let element"> {{element.sumaFaraTVA}} </td>
       </ng-container>
 
       <ng-container matColumnDef="sumaTVA">
-        <th mat-header-cell *matHeaderCellDef> sumaTVA </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTVA </th>
         <td mat-cell *matCellDef="let element"> {{element.sumaTVA}} </td>
       </ng-container>
+
+
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  
+ 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card-body">
+          <form class="form-signin">
+              <div class="register-item">
+               <form #f="ngForm" (ngSubmit)="register(f)" class="form form-register">
+                <div class="form-group">
+                  <input name="data" id="register-data" type="text" class="form-control" placeholder="Data" ngModel required>     
+                </div>
+      
+                <div class="form-group">
+                  <input name="furnizor" id="register-furnizor" type="text" class="form-control" placeholder="Furnizor" ngModel required>       
+                </div>
+      
+                <div class="form-group">
+                  <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
+                </div>
+      
+                <div class="form-group">
+                  <input name="detalii" id="register-detalii" type="text" class="form-control" placeholder="Detalii" ngModel required>
+                </div>
+      
+                <div class="form-group">
+                  <input name="sumaTotala" id="register-sumaTotala" type="text" class="form-control" placeholder="Suma totala" ngModel required>
+                </div>
+  
+                <div class="form-group">
+                  <input name="sumaFaraTVA" id="register-sumaFaraTVA" type="text" class="form-control" placeholder="Suma FaraTVA" ngModel required>
+                </div>
+  
+                <div class="form-group">
+                  <input name="sumaTVA" id="register-sumaTVA" type="text" class="form-control" placeholder="Suma TVA" ngModel required>
+                </div>
+  
+      
+                <!-- <div class="form-group">
+                  <input name="litri" id="register-litri" type="text" class="form-control" placeholder="Litri" ngModel required>
+                </div> -->
+                  <div class="form-field2">
+                    <input type="submit" value="Register">
+                  </div>
+                </form>
+              </div>
+           
+          </form>
+        
+      </div>
+      </div>
+
+
+      <div class="col-8 col-sm-6">
+        <div class="card-body">
+          <form class="form-signin">
+              <div class="register-item">
+               <form #b="ngForm" (ngSubmit)="delete(b.value)" class="form form-register">
+                  <div class="form-field"> 
+                    <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
+                  </div>
+                  <div class="form-field2">
+                    <input type="submit" value="Delete">
+  
+  
+  
+  
+                  </div>
+                </form>
+              </div>
+           
+          </form>
+        </div>
+      </div>
+
+
 
 
 

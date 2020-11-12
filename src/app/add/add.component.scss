@@ -2,8 +2,36 @@ table {
     width: 100%;
   }
   
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+
 
 // .center{
 //   margin-right: 210px;
 // 	margin-top: 50px;
 // }
+
+// .mat-form-field {
+//   font-size: 14px;
+//   width: 100%;
+// }
+
+.active-pink-4 input[type=text]:focus:not([readonly]) {
+  border: 1px solid #f48fb1;
+  box-shadow: 0 0 0 1px #f48fb1;
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+// ---------------------
+
+.center {
+  text-align: center;
+}

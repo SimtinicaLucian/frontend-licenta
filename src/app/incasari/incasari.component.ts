@@ -82,16 +82,16 @@ export class IncasariComponent implements OnInit {
     // location.reload();
   }
 
-  search2(data1) {
-    this.alimService.getPetByFurnizor(data1.furnizor).subscribe((res) => {
-      this.furnizor = res;
-      // this.auto = res.auto;
-      // this.furnizor = res.furnizor;
+  // search2(data1) {
+  //   this.alimService.getPetByFurnizor(data1.furnizor).subscribe((res) => {
+  //     this.furnizor = res;
+  //     // this.auto = res.auto;
+  //     // this.furnizor = res.furnizor;
 
-      console.log(res);
-    })
-    // location.reload();
-  }
+  //     console.log(res);
+  //   })
+  //   // location.reload();
+  // }
 
 
   // --------------------------------
@@ -111,6 +111,12 @@ export class IncasariComponent implements OnInit {
       this.ngOnInit();
     }
   }
+
+
+
+
+
+
 
   // -----------------------------
 
