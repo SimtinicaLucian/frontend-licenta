@@ -1,28 +1,61 @@
-        <div class="add"><a class="button" href="/add" role="button">
-          <span>adaugati</span>
-          <div class="icon">
-            <i class="fa fa-plus"></i>
-            <i class="fa fa-check"></i>
-          </div>
-        </a>
-        </div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="furnizor">
+        <th mat-header-cell *matHeaderCellDef> Furnizor </th>
+        <td mat-cell *matCellDef="let element"> {{element.furnizor}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef> Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="detalii">
+        <th mat-header-cell *matHeaderCellDef> Detalii </th>
+        <td mat-cell *matCellDef="let element"> {{element.detalii}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sumaTotala">
+        <th mat-header-cell *matHeaderCellDef> sumaTotala </th>
+        <td mat-cell *matCellDef="let element"> {{element.sumaTotala}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sumaFaraTVA">
+        <th mat-header-cell *matHeaderCellDef> sumaFaraTVA </th>
+        <td mat-cell *matCellDef="let element"> {{element.sumaFaraTVA}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sumaTVA">
+        <th mat-header-cell *matHeaderCellDef> sumaTVA </th>
+        <td mat-cell *matCellDef="let element"> {{element.sumaTVA}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
 
 
-        <div class="delete"><a class="button" href="/add" role="button">
-          <span>delete</span>
-          <div class="icon">
-            <i class="fa fa-trash-o"></i>
-            <i class="fa fa-check"></i>
-          </div>
-        </a>
-        </div>
 
 
 
 
 
 
-
-
-
-<p>add works!</p>

@@ -21,6 +21,14 @@ import { FilterPipe } from './filter.pipe';
 import { AgmCoreModule } from '@agm/core';
 import { IncasariComponent } from './incasari/incasari.component';
 import { AddComponent } from './add/add.component';
+
+
+
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { multicast } from 'rxjs-compat/operator/multicast';
 // ------------------------------------
 
 
@@ -37,14 +45,14 @@ import { AddComponent } from './add/add.component';
 
 
 
-// ---------------------------------------
+    // ---------------------------------------
 
 
 
 
 
   ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -54,12 +62,15 @@ import { AddComponent } from './add/add.component';
     NgxDatatableModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBo0RCdL-YLBmKPTgxXzYZ0GGTtIljHmlM'
-    })
+    }),
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule
 
 
 
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
