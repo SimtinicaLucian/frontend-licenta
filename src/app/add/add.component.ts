@@ -28,7 +28,7 @@ export class AddComponent implements OnInit  {
 
 
   form: any = {};
-  displayedColumns: string[] = ['id','data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA'];
+  displayedColumns: string[] = ['id','data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'remove'];
   values: PeriodicElement[];
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
@@ -91,7 +91,16 @@ export class AddComponent implements OnInit  {
     // ---------------
   }
 
+  removeAll() {
+    this.dataSource.data = [];
+  }
 
+  removeAt(index: number) {
+    const data = this.dataSource.data;
+    data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
+
+    this.dataSource.data = data;
+  }
 
 
 }
