@@ -10,7 +10,9 @@ import { NgForm } from '@angular/forms';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
-export class AddComponent implements OnInit , AfterViewInit  {
+
+// export class AddComponent implements OnInit , AfterViewInit  {
+export class AddComponent implements OnInit  {
   public columns: any;
   public columns2: any;
   public rows: any;
@@ -33,6 +35,9 @@ export class AddComponent implements OnInit , AfterViewInit  {
 
   data : any;
   private sorted = false;
+  publishDate: any;
+  datePipe: any;
+  resource: any;
   
   constructor(private alimService : IncasariService) { }
   
@@ -47,44 +52,20 @@ export class AddComponent implements OnInit , AfterViewInit  {
       this.rows = res
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 
+   
 
 
     })
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-  
-
-  // sortBy(by: string | any): void {
-
-  //   this.data.sort((a: any, b: any) => {
-  //     if (a[by] < b[by]) {
-  //       return this.sorted ? 1 : -1;
-  //     }
-  //     if (a[by] > b[by]) {
-  //       return this.sorted ? -1 : 1;
-  //     }
-
-  //     return 0;
-  //   });
-
-  //   this.sorted = !this.sorted;
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
   // }
-
   
-  // register() {
-  //   this.alimService.add(this.form).subscribe(
-  //     data => {
-      
-     
-  //     }
-  //   );
-  // }
-
+  
 
   register(f: NgForm) {
     this.alimService.add(f.value).subscribe(() => { })
@@ -109,6 +90,7 @@ export class AddComponent implements OnInit , AfterViewInit  {
     }
     // ---------------
   }
+
 
 
 

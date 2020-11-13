@@ -17,6 +17,12 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 
 
 
+import {MatNativeDateModule} from '@angular/material/core';
+
+
+
+
+
 
 
 
@@ -27,6 +33,8 @@ import { AgmCoreModule } from '@agm/core';
 import { IncasariComponent } from './incasari/incasari.component';
 import { AddComponent } from './add/add.component';
 
+import {MatSortModule} from '@angular/material/sort';
+
 
 
 import { MatTableModule } from '@angular/material/table';
@@ -34,6 +42,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { multicast } from 'rxjs-compat/operator/multicast';
+
+
 
 
 // ------------------------------------
@@ -72,16 +82,18 @@ import { multicast } from 'rxjs-compat/operator/multicast';
     }),
     BrowserAnimationsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule,
+    MatNativeDateModule,
+
 
 
 
   ],
-  entryComponents: [TableSortingExample],
-  declarations: [TableSortingExample],
+  entryComponents: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    
   ]
 })
 export class AppModule { }
