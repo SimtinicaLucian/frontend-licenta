@@ -6,4 +6,5 @@ export interface Incasari {
     sumaTotala?: number;
     sumaFaraTVA?: number;
     sumaTVA?: number;
+    total?: number;
 }

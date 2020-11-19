@@ -14,7 +14,7 @@ import { FilterPipe } from './filter.pipe';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 
 
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import {MatNativeDateModule} from '@angular/material/core';
@@ -42,6 +42,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { multicast } from 'rxjs-compat/operator/multicast';
+
+
 
 
 
@@ -85,6 +87,8 @@ import { multicast } from 'rxjs-compat/operator/multicast';
     MatPaginatorModule,
     MatSortModule,
     MatNativeDateModule,
+    ReactiveFormsModule,
+    MatDatepickerModule
 
 
 

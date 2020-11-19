@@ -48,6 +48,147 @@ export class IncasariService {
 
 ///////////////////////////////////////////////
 
+
+
+    /**
+     * Update an existing pet
+     * 
+     * @param body Pet object that needs to be added to the store
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateIncasari(body: Incasari, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateIncasari(body: Incasari, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateIncasari(body: Incasari, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateIncasari(body: Incasari, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling updatePet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (petstore_auth) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/xml',
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'application/xml'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<any>(`${this.basePath}/incasari/update`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+
+
+    /**
+     * Updates a pet in the store with form data
+     * 
+     * @param number ID of pet that needs to be updated
+     * @param name Updated name of the pet
+     * @param status Updated status of the pet
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateNumber(number: number, name?: string, status?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateNumber(number: number, name?: string, status?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateNumber(number: number, name?: string, status?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateNumber(number: number, name?: string, status?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (number === null || number === undefined) {
+            throw new Error('Required parameter petId was null or undefined when calling updatePetWithForm.');
+        }
+
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (petstore_auth) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/xml',
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/x-www-form-urlencoded'
+        ];
+
+        const canConsumeForm = this.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): void | HttpParams; };
+        let useForm = false;
+        let convertFormParamsToString = false;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        }
+
+        if (name !== undefined) {
+            formParams = formParams.append('name', <any>name) || formParams;
+        }
+        if (status !== undefined) {
+            formParams = formParams.append('status', <any>status) || formParams;
+        }
+
+        return this.httpClient.post<any>(`${this.basePath}/incasari/update/${encodeURIComponent(String(number))}`,
+            convertFormParamsToString ? formParams.toString() : formParams,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+
+
+// --------------------------------------------
+
  
     /**
      * Deletes a pet
@@ -228,6 +369,160 @@ export class IncasariService {
         );
     }
 
+
+
+     /**
+     * F
+     * M
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public searchTotal(observe?: 'body', reportProgress?: boolean): Observable<Number>;
+    public searchTotal(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+    public searchTotal(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+    public searchTotal(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Number>(`${this.basePath}/incasari/searchAllTotal`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+     /**
+     * F
+     * M
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public searchTotalTVA(observe?: 'body', reportProgress?: boolean): Observable<Number>;
+    public searchTotalTVA(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+    public searchTotalTVA(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+    public searchTotalTVA(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Number>(`${this.basePath}/incasari/searchAllTVA`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+
+         /**
+     * F
+     * M
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public searchTotalFaraTVA(observe?: 'body', reportProgress?: boolean): Observable<Number>;
+    public searchTotalFaraTVA(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+    public searchTotalFaraTVA(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+    public searchTotalFaraTVA(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Number>(`${this.basePath}/incasari/searchAllFaraTVA`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+
+
+
+        /**
+     * Find pet by ID
+     * Returns a single pet
+     * @param data ID of pet to return
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getPetByDate(data: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
+    public getPetByDate(data: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getPetByDate(data: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Incasari>>>;
+    public getPetByDate(data: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (data === null || data === undefined) {
+            throw new Error('Required parameter number was null or undefined when calling getPetById.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<Incasari>>(`${this.basePath}/incasari/search/data/${encodeURIComponent(String(DataTransferItem))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
 
        /**
