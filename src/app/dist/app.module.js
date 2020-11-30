@@ -28,6 +28,7 @@ var sort_1 = require("@angular/material/sort");
 var table_1 = require("@angular/material/table");
 var paginator_1 = require("@angular/material/paginator");
 var animations_1 = require("@angular/platform-browser/animations");
+var addincasare_component_1 = require("./addincasare/addincasare.component");
 // ------------------------------------
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -41,6 +42,7 @@ var AppModule = /** @class */ (function () {
                 filter_pipe_1.FilterPipe,
                 incasari_component_1.IncasariComponent,
                 add_component_1.AddComponent,
+                addincasare_component_1.AddincasareComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [
@@ -50,9 +52,7 @@ var AppModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 http_1.HttpClientModule,
                 ngx_datatable_1.NgxDatatableModule,
-                core_3.AgmCoreModule.forRoot({
-                    apiKey: 'AIzaSyBo0RCdL-YLBmKPTgxXzYZ0GGTtIljHmlM'
-                }),
+                core_3.AgmCoreModule.forRoot({}),
                 animations_1.BrowserAnimationsModule,
                 table_1.MatTableModule,
                 paginator_1.MatPaginatorModule,

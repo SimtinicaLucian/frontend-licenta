@@ -170,9 +170,3 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3
 </html>
 
 
-<agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
-  <agm-marker
-    [latitude]="latitude"
-    [longitude]="longitude"
-    *ngIf="locationChosen"></agm-marker>
-</agm-map>

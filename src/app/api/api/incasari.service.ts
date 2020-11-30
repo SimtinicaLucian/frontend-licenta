@@ -481,6 +481,9 @@ export class IncasariService {
 
 
 
+         
+
+
 
 
         /**
@@ -525,7 +528,7 @@ export class IncasariService {
     }
 
 
-       /**
+         /**
      * Find pet by ID
      * Returns a single pet
      * @param furnizor ID of pet to return
@@ -558,6 +561,62 @@ export class IncasariService {
 
         return this.httpClient.get<Array<Incasari>>(`${this.basePath}/incasari/search/furnizor/${encodeURIComponent(String(furnizor))}`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+
+
+/**
+     * Get user by user name
+     * 
+     * @param firstDate The name that needs to be fetched. Use user1 for testing. 
+     * @param secondDate 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getBetweenDate(firstDate: string, secondDate?: string, observe?: 'body', reportProgress?: boolean): Observable<Number>;
+    public getBetweenDate(firstDate: string, secondDate?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+    public getBetweenDate(firstDate: string, secondDate?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+    public getBetweenDate(firstDate: string, secondDate?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (firstDate === null || firstDate === undefined) {
+            throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (firstDate !== undefined && firstDate !== null) {
+            queryParameters = queryParameters.set('firstDate', <any>firstDate);
+        }
+        if (secondDate !== undefined && secondDate !== null) {
+            queryParameters = queryParameters.set('secondDate', <any>secondDate);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/xml',
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Number>(`${this.basePath}/incasari/calculateTotalByDataBetweenData`,
+            {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

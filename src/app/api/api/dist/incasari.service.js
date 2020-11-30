@@ -342,6 +342,39 @@ var IncasariService = /** @class */ (function () {
             reportProgress: reportProgress
         });
     };
+    IncasariService.prototype.getBetweenDate = function (firstDate, secondDate, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        if (firstDate === null || firstDate === undefined) {
+            throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
+        }
+        var queryParameters = new http_1.HttpParams({ encoder: new encoder_1.CustomHttpUrlEncodingCodec() });
+        if (firstDate !== undefined && firstDate !== null) {
+            queryParameters = queryParameters.set('firstDate', firstDate);
+        }
+        if (secondDate !== undefined && secondDate !== null) {
+            queryParameters = queryParameters.set('secondDate', secondDate);
+        }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/xml',
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [];
+        return this.httpClient.get(this.basePath + "/incasari/calculateTotalByDataBetweenData", {
+            params: queryParameters,
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
     IncasariService = __decorate([
         core_1.Injectable(),
         __param(1, core_1.Optional()), __param(1, core_1.Inject(variables_1.BASE_PATH)), __param(2, core_1.Optional())

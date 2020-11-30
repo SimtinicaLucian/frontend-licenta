@@ -42,6 +42,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { multicast } from 'rxjs-compat/operator/multicast';
+import { AddincasareComponent } from './addincasare/addincasare.component';
+
+
+
 
 
 
@@ -60,6 +64,7 @@ import { multicast } from 'rxjs-compat/operator/multicast';
     FilterPipe,
     IncasariComponent,
     AddComponent,
+    AddincasareComponent,
 
 
 
@@ -80,7 +85,6 @@ import { multicast } from 'rxjs-compat/operator/multicast';
     HttpClientModule,
     NgxDatatableModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBo0RCdL-YLBmKPTgxXzYZ0GGTtIljHmlM'
     }),
     BrowserAnimationsModule,
     MatTableModule,

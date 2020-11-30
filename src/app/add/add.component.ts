@@ -1,19 +1,31 @@
-import { Component, OnInit,ViewChild, AfterViewInit, Type} from '@angular/core';
+import { Component, OnInit,ViewChild, AfterViewInit, Type, Input} from '@angular/core';
 import { IncasariService } from '../api/api/incasari.service'
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 import { DatePipe } from '@angular/common';
+import { DashboardService } from '../api/api/dashboard.service';
+
+
+import * as Highcharts from 'highcharts';
+import HC_exporting from 'highcharts/modules/exporting';
+
+
 
 
 
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
+import 'rxjs/Rx';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+
 @Component({
-  selector: 'app-add',
+  selector: 'app-widget-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
@@ -25,7 +37,7 @@ export class AddComponent implements OnInit  {
   public rows: any;
   public variabile: any;
   public auto: any;
-  public furnizor: any;
+  // public furnizor: any;
   number: any;
   // ---------------------------
   furniz: string;
@@ -35,7 +47,11 @@ export class AddComponent implements OnInit  {
   totalSum: any;
   totalSumTVA: any;
   totalSumFaraTVA: any;
+  totalSumTVADay: any;
 
+  furnizor: any;
+  between: any;
+  
 
   form: any = {};
   displayedColumns: string[] = ['id','data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA'];
@@ -52,6 +68,10 @@ export class AddComponent implements OnInit  {
   resource: any;
   dateFromBackend : any;
 
+  data: Date;
+
+  pieChart = [];
+
 //   filterForm = new FormGroup({
 //     fromDate: new FormControl(),
 //     toDate: new FormControl(),
@@ -61,7 +81,18 @@ export class AddComponent implements OnInit  {
 // get fromDate() { return this.filterForm.get('fromDate').value; }
 // get toDate() { return this.filterForm.get('toDate').value; }
 
-  constructor(private alimService : IncasariService) { 
+// ----------chart
+
+
+// ----------chart
+
+
+
+
+
+
+
+  constructor(private formBuilder : FormBuilder, private alimService : IncasariService , public router : Router, public dashboardService: DashboardService) { 
 
   }
   
@@ -73,25 +104,30 @@ export class AddComponent implements OnInit  {
 
 
   
-  filterForm = new FormGroup({
-    fromDate: new FormControl(),
-    toDate: new FormControl(),
-});
+//   filterForm = new FormGroup({
+//     fromDate: new FormControl(),
+//     toDate: new FormControl(),
+// });
 
 
-get fromDate() { return this.filterForm.get('fromDate').value; }
-get toDate() { return this.filterForm.get('toDate').value; }
+// get fromDate() { return this.filterForm.get('fromDate').value; }
+// get toDate() { return this.filterForm.get('toDate').value; }
 dataList = [];
-
+private regForm: any;
   ngOnInit(): void {
 
-    
+    this.regForm = this.formBuilder.group({
+      firstDate:['', Validators.required],
+      secondDate:['', Validators.required]
+
+    })
     this.alimService.incasariSearchAllGet().subscribe((res)=> {
-       this.dateFromBackend = res.map(object => object.data)
+      //  this.dateFromBackend = res.map(object => object.data)
       
 
-      console.log(this.dateFromBackend)
+      // console.log(this.dateFromBackend)
       this.rows = res
+      // console.log(this.rows);
       
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
@@ -99,10 +135,13 @@ dataList = [];
 
 
 
+      this.pieChart = this.dashboardService.pieChart();
+
       // this.pipe = new DatePipe('en');
-      // this.dataSource.filterPredicate = (date, filter) =>{
+      // this.dataSource.filterPredicate = (data, filter) =>{
       //   if (this.fromDate && this.toDate) {
-      //     return date.data >= this.fromDate && date.data <= this.toDate;
+      //     console.log(data.data);
+      //     return data.data >= this.fromDate && data.data <= this.toDate;
       //   }
       //   return true;
       // }
@@ -122,11 +161,25 @@ dataList = [];
     this.alimService.searchTotalFaraTVA().subscribe((res =>
        this.totalSumFaraTVA = res
      ))
+
+
  
 
     
+      // ----------chart
 
-  }
+
+
+      // ----------chart
+
+
+      
+
+    }
+
+    
+
+  
 
 
   // ngAfterViewInit() {
@@ -161,8 +214,7 @@ dataList = [];
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    
-    // --------------
+ 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -190,6 +242,8 @@ dataList = [];
 
 
 
+
+
   search(data){
     // console.log("numar: " + data.number);
     this.alimService.getPetById(data.number).subscribe((res )=>{
@@ -199,6 +253,38 @@ dataList = [];
     
     // location.reload();
   }
+
+
+  search2(data1){
+    // console.log("numar: " + data1.furnizor);
+    this.alimService.getPetByFurnizor(data1.furnizor).subscribe((res )=>{
+      this.rows= res;
+      this.dataSource = new MatTableDataSource(this.rows);
+      // this.auto = res.auto;
+      // this.furnizor = res.furnizor;
+  
+      console.log(res);
+    })
+    // location.reload();
+  }
+
+  search3(f: NgForm){
+    this.alimService.getBetweenDate(f.value.firstDate, f.value.lastDate).subscribe((res )=>{
+      this.between= res;
+      console.log("res: " + res);
+    })
+
+  
+    
+  }
+
+
+  // getTotalCost() {
+  //   return this.rows.map(t => t.sumaTotala).reduce((acc, value) => acc + value, 0);
+  // }
+
+
+
 
   // update(data1){
   //   this.alimService.updateNumber(data1.number).subscribe((res )=>{
@@ -213,14 +299,15 @@ dataList = [];
       this.alimService.updateNumber(f.value)
     // location.reload();
   })
-  
-
 
 }
 
 
 
 
+add(pageName:string):void{
+  this.router.navigate([`${pageName}`]);
+}
 
   
 }
