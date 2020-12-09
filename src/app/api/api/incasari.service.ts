@@ -580,10 +580,10 @@ export class IncasariService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getBetweenDate(firstDate: string, secondDate?: string, observe?: 'body', reportProgress?: boolean): Observable<Number>;
-    public getBetweenDate(firstDate: string, secondDate?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
-    public getBetweenDate(firstDate: string, secondDate?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
-    public getBetweenDate(firstDate: string, secondDate?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getSumaTotalaBetweenDate(firstDate: string, secondDate?: string, observe?: 'body', reportProgress?: boolean): Observable<Number>;
+    public getSumaTotalaBetweenDate(firstDate: string, secondDate?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+    public getSumaTotalaBetweenDate(firstDate: string, secondDate?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+    public getSumaTotalaBetweenDate(firstDate: string, secondDate?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (firstDate === null || firstDate === undefined) {
             throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
@@ -624,6 +624,108 @@ export class IncasariService {
             }
         );
     }
+
+
+
+
+
+    /**
+     * Get user by user name
+     * 
+     * @param firstDate1 The name that needs to be fetched. Use user1 for testing. 
+     * @param secondDate1 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSumaTotalaMonthAndYear(firstDate1: string, secondDate1?: string, observe?: 'body', reportProgress?: boolean): Observable<Number>;
+    public getSumaTotalaMonthAndYear(firstDate1: string, secondDate1?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+    public getSumaTotalaMonthAndYear(firstDate1: string, secondDate1?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+    public getSumaTotalaMonthAndYear(firstDate1: string, secondDate1?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (firstDate1 === null || firstDate1 === undefined) {
+            throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (firstDate1 !== undefined && firstDate1 !== null) {
+            queryParameters = queryParameters.set('firstDate', <any>firstDate1);
+        }
+        if (secondDate1 !== undefined && secondDate1 !== null) {
+            queryParameters = queryParameters.set('secondDate', <any>secondDate1);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/xml',
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Number>(`${this.basePath}/incasari/calculateTotalByMonthAndYear`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+        /**
+     * Find pet by ID
+     * Returns a single pet
+     * @param year ID of pet to return
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSumaTotalaPerYear(year: string, observe?: 'body', reportProgress?: boolean): Observable<Number>;
+    public getSumaTotalaPerYear(year: string, observe?: 'response', reportProgress?: boolean): Observable<Number>;
+    public getSumaTotalaPerYear(year: string, observe?: 'events', reportProgress?: boolean): Observable<Number>;
+    public getSumaTotalaPerYear(year: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (year === null || year === undefined) {
+            throw new Error('Required parameter number was null or undefined when calling getPetById.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Number>(`${this.basePath}/incasari/calculateTotalByYear/${encodeURIComponent(String(year))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+    
+
 
     
 }

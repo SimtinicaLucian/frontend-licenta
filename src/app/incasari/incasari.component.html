@@ -1,454 +1,216 @@
-<html>
-
-  <head>
-    <title>Business</title>
-    <link rel="stylesheet" href="incasari.component.scss">
-    <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3
-    /css/bootstrap.min.css">
-    <link rel="stylesheet"
-     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    
-
-<!-- //////////////////////////////////////////////////////////////////////////////// -->
-
-
-
-
-
-
-<!-- //////////////////////////////////////////////////////////////////////////////// -->
-
-      </head>
-
-
-      <body>
-
-
-        <!-- <div class="small-btn"><a class="button" href="/add" role="button">
-          <span>adaugati</span>
-          <div class="icon">
-            <i class="fa fa-plus"></i>
-            <i class="fa fa-check"></i>
-          </div>
-        </a>
-        </div> -->
-
-
-
-
-
-
- 
-
-
-
-<!-- <section id="alimentari">
-    <div class="container">
-      <h1>Adaugati alimentari</h1>
-      <div class="row">
-      <div class="col-md-6">
-      <form class="alimentari-form">
-      <div class="form-group">
-      <input type="text" class="form-control" placeholder="Data">
-      </div>
-  
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Furnizor">
-        </div>
-  
-        <div class="form-group">
-          <input type="number" class="form-control" placeholder="Number">
-          </div>
-  
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Auto">
-            </div>
-         <div class="form-group">
-                <input type="number" class="form-control" placeholder="SumaTotala">
-                </div>
-         <div class="form-group">
-                    <input type="number" class="form-control" placeholder="Litri">
-                    </div>
-                
-            <button type="submit" class="btn btn-primary">Adaugati</button>
-      </form>
-      </div>
-      </div>
-    </div>
-    </section> -->
-
-<!-- ----------------------1111111-------------------------------- -->
-    <!-- <section id="contact">
-    <div class="container">
-    
-    <div class="row">
-    <div class="col-md-6">
-      
-      <div class="register-item">
-        <form #f="ngForm" (ngSubmit)="register(f)" class="form form-register">
-  
-          <div class="form-group">
-            <input name="data" id="register-data" type="text" class="form-control" placeholder="Data" ngModel required>     
-          </div>
-          <div class="form-group">
-            <input name="furnizor" id="register-furnizor" type="text" class="form-control" placeholder="Furnizor" ngModel required>       
-          </div>
-          <div class="form-group">
-            <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
-          </div>
-          <div class="form-group">
-            <input name="auto" id="register-auto" type="text" class="form-control" placeholder="Auto" ngModel required>
-          </div>
-          <div class="form-group">
-            <input name="sumaTotala" id="register-sumaTotala" type="text" class="form-control" placeholder="Suma totala" ngModel required>
-          </div>
-          <div class="form-group">
-            <input name="litri" id="register-litri" type="text" class="form-control" placeholder="Litri" ngModel required>
-          </div>
-  
-          <div class="form-group">
-            <input type="submit" value="Register">
-          </div>
-        </form>
-      </div>
-    </div>
-    </div>
-    </div>
-    </section> -->
-    
-
-<!-- ----------------------1111111-------------------------------- -->
-
-
-    <!-- <div class="col-md-6 contact-info">   
-      <div class="register-item">
-        <form #f="ngForm" (ngSubmit)="delete(f.value)" class="form form-register">
-          <div class="form-group">
-            <label class="user" ><span class="hidden">Number</span></label>
-            <input name="number" id="number" type="text" class="form-group" placeholder="Number" ngModel required>
-          </div>
-  
-          <div class="form-group">
-            <input type="submit" value="Delete">
-          </div>
-</form>
+<div class="active-pink-3 active-pink-4 mb-4">
+  <mat-form-field>
+    <mat-label></mat-label>
+    <input class="form-control" matInput (keyup)="applyFilter($event)" placeholder="Search all" #input>
+  </mat-form-field>
 </div>
-</div> -->
+
+<!-- 
+  <div class="add"><a class="button" href="/incasari" role="button">
+    <span>adaugati</span>
+    <div class="icon">
+      <i class="fa fa-plus"></i>
+      <i class="fa fa-check"></i>
+    </div>
+  </a>
+  </div> -->
 
 
-<!-- ---------------------------------------------------- -->
+<a class="button" href="/addincasare">
+  <button type="button" class="btn btn-outline-success">Adaugati</button>
+</a>
+<div class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <td mat-footer-cell *matFooterCellDef> Total </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="data">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+      <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="furnizor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Furnizor </th>
+      <td mat-cell *matCellDef="let element"> {{element.furnizor}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="detalii">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalii </th>
+      <td mat-cell *matCellDef="let element"> {{element.detalii}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
 
 
+    <ng-container matColumnDef="sumaTotala">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTotala </th>
+      <td mat-cell *matCellDef="let element"> {{element.sumaTotala}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{totalSum}} </td>
+      <!-- <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td> -->
+    </ng-container>
+
+    <ng-container matColumnDef="sumaFaraTVA">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaFaraTVA </th>
+      <td mat-cell *matCellDef="let element"> {{element.sumaFaraTVA}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{ totalSumFaraTVA }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sumaTVA">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTVA </th>
+      <td mat-cell *matCellDef="let element"> {{element.sumaTVA}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{totalSumTVA}}</td>
+    </ng-container>
 
 
-<!-- -------------------------2------------------------------------ -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+  </table>
 
-<section id="contact">
-  <div class="container">
-    <h1>Alimentari</h1>
-  </div>
-</section>
-
-
-
-
-
-
-
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
 
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
-      <div class="card-body">
-        <form class="form-signin">
-            <div class="register-item">
-             <form #f="ngForm" (ngSubmit)="register(f)" class="form form-register">
-              <div class="form-group">
-                <input name="data" id="register-data" type="text" class="form-control" placeholder="Data" ngModel required>     
-              </div>
-    
-              <div class="form-group">
-                <input name="furnizor" id="register-furnizor" type="text" class="form-control" placeholder="Furnizor" ngModel required>       
-              </div>
-    
-              <div class="form-group">
-                <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
-              </div>
-    
-              <div class="form-group">
-                <input name="auto" id="register-detalii" type="text" class="form-control" placeholder="Detalii" ngModel required>
-              </div>
-    
-              <div class="form-group">
-                <input name="sumaTotala" id="register-sumaTotala" type="text" class="form-control" placeholder="Suma totala" ngModel required>
-              </div>
 
-              <div class="form-group">
-                <input name="sumaFaraTVA" id="register-sumaFaraTVA" type="text" class="form-control" placeholder="Suma FaraTVA" ngModel required>
-              </div>
-
-              <div class="form-group">
-                <input name="litri" id="register-sumaTVA" type="text" class="form-control" placeholder="Suma TVA" ngModel required>
-              </div>
-
-    
-              <!-- <div class="form-group">
-                <input name="litri" id="register-litri" type="text" class="form-control" placeholder="Litri" ngModel required>
-              </div> -->
-                <div class="form-field2">
-                  <input type="submit" value="Register">
-                </div>
-              </form>
-            </div>
-         
-        </form>
-      
-    </div>
-    </div>
 
     <div class="col-8 col-sm-6">
       <div class="card-body">
         <form class="form-signin">
-            <div class="register-item">
-             <form #b="ngForm" (ngSubmit)="delete(b.value)" class="form form-register">
-                <div class="form-field"> 
-                  <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
-                </div>
-                <div class="form-field2">
-                  <input type="submit" value="Delete">
+          <div class="register-item">
+            <form #b="ngForm" (ngSubmit)="delete(b.value)" class="form form-register">
+              <div class="active-pink-3 active-pink-4 mb-4">
+                <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel
+                  required>
+              </div>
+              <!-- <div class="form-field2">
+                <input type="submit" value="Delete">
+              </div> -->
+              <div class="form-group">
+                <button class="btn btn-outline-danger">Delete</button>
+              </div>
+            </form>
+          </div>
 
-
-
-
-                </div>
-              </form>
-            </div>
-         
         </form>
       </div>
     </div>
 
 
-
-    <!-- <div class="col-4 col-sm-6">
+    <div class="col-4 col-sm-6">
       <div class="card-body">
         <form class="form-signin">
-            <div class="register-item">
-             <form #c="ngForm" (ngSubmit)="search(c.value)" class="form form-register">
-                <div class="form-field"> 
-                  <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
-                </div>
-                <div class="form-field2">
-                  <input type="submit" value="Search Number">
-                </div>
-              </form>
-            </div>
-         
+          <div class="register-item">
+            <form #c="ngForm" (ngSubmit)="search(c.value)" class="form form-register">
+              <div class="form-field">
+                <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel
+                  required>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-outline-info">Search number</button>
+              </div>
+            </form>
+          </div>
         </form>
-      </div>
-    </div> -->
-  </div>
-</div>
-
-
-
-
-
-<!-- -------------------------2------------------------------------ -->
-
-
-
-
-<!-- 
---------------------333333333333333------------------------- -->
-
-
-
-  <!--  -->
-
-
-
-  <!-- <input type="text" #myInput [(ngModel)]="furniz" (input)="Search()"   />
-  
-  {{furniz}}
-  <br/> -->
-
- <div class="center">
-  <div class="col-md-6">
-  <div class="md-form active-purple active-purple-2 mb-3">
-    <input class="form-control" type="text" #myInput [(ngModel)]="furniz" (input)="Search()" placeholder="Search furnizor..." aria-label="Search">
-    {{furniz}}
-    <br/>
-  </div>
-  </div>
-</div>
-
-
-
-
-  <div class="center">
-    <div class="col-md-6">
-      <div class="md-form active-purple active-purple-2 mb-3">
-        <input class="form-control" type="text" #myInput [(ngModel)]="num" (input)="SearchNumber()" placeholder="Search number..." aria-label="Search">
-        {{num}}
-        <br/>
-      </div>
       </div>
     </div>
 
 
-    <div class="center">
-      <div class="col-md-6">
-        <div class="md-form active-purple active-purple-2 mb-3">
-          <input class="form-control" type="text" #myInput [(ngModel)]="dat" (input)="SearchData()" placeholder="Search data..." aria-label="Search">
-          {{aut}}
-          <br/>
-        </div>
-        </div>
-      </div>
-
-  
+    <div class="col-4 col-sm-6">
+      <div class="card-body">
+        <form class="form-signin">
+          <div class="register-item">
+            <form #d="ngForm" (ngSubmit)="search2(d.value)" class="form form-register">
 
 
-
-
-<!-- <div class="ion-padding">
-  <ngx-datatable 
-    class="material"
-    [limit]="1" 
-    [rows]="auto" 
-    [rowHeight]="50" 
-    [columns]="columns"
-    [columnMode]="'force'" 
-    [sortType]="'multi'" 
-    [headerHeight]="50" 
-    [footerHeight]="50">
-  </ngx-datatable>
-</div> -->
-   
-
-
-
-<div class="ion-padding">
-  <ngx-datatable 
-    class="material"
-    [limit]="10" 
-    [rows]="rows" 
-    [rowHeight]="auto" 
-    [columns]="columns"
-    [columnMode]="'force'" 
-    [sortType]="'multi'" 
-    [headerHeight]="50" 
-    [footerHeight]="50">
-  </ngx-datatable>
-
-
-  
-</div>
-
-
-
-
-   
-
-
-<!-- ------------------- -->
-
-
-
-      <!-- <input class="form-control" type="text" name="search2" [(ngModel)]="auto" autocomplete="off" placeholder="&#61442;  Start searching for a hero by id or name or country">  -->
-
-    
-      
-      
-      <!-- <section id="search2">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
-              <div class="card card-signin my-5">
-                <div class="card-body">
-                  <form class="form-signin">
-                      <div class="register-item">
-                       <form #d="ngForm" (ngSubmit)="search2(d.value)" class="form form-register">
-                        
-              
-                        <div class="form-group">
-                          <input name="furnizor" id="register-furnizor" type="text" class="form-control"  placeholder="Furnizor" ngModel required>       
-                        </div>
-              
-                       
-               
-                          <div class="form-field2">
-                            <input type="submit" value="Search Furnizor">
-                          </div>
-                        </form>
-                      </div>
-                   
-                  </form>
-                </div>
+              <div class="form-group">
+                <input name="furnizor" id="register-furnizor" type="text" class="form-control" placeholder="Furnizor"
+                  ngModel required>
               </div>
-            </div>
+
+
+              <div class="form-group">
+                <button class="btn btn-outline-info">Search furnizor</button>
+              </div>
+            </form>
           </div>
-        </div>
-        </section>
-      
-      
-      
-      
-      <div class="ion-padding">
-        <ngx-datatable 
-          class="material"
-          [limit]="4" 
-          [rows]="furnizor" 
-          [rowHeight]="50" 
-          [columns]="columns"
-          [columnMode]="'force'" 
-          [sortType]="'multi'" 
-          [headerHeight]="50" 
-          [footerHeight]="50">
-        </ngx-datatable>
+        </form>
       </div>
-      -->
-  
-
-
-
-<!-- ------------------- -->
+    </div>
 
 
 
 
+    <div class="col-sm-3">
+
+      <form f="form" (ngSubmit)="search3(f)" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="firstDate"></label>
+          <input type="text" class="form-control" name="firstDate" [(ngModel)]="form.firstDate" placeholder="firstDate"
+            required #firstDate="ngModel" />
+        </div>
+        <div class="form-group">
+          <label for="furnizor"></label>
+          <input type="text" class="form-control" name="lastDate" [(ngModel)]="form.lastDate" placeholder="lastDate"
+            required #lastate="ngModel" />
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Add</button>
+        </div>
+      </form>
+    </div>
 
 
 
+    <div class="col-sm-3">
+
+      <form g="form" (ngSubmit)="search4(g)" #g="ngForm" novalidate>
+        <div class="form-group">
+          <label for="firstDate"></label>
+          <input type="text" class="form-control" name="firstDate1" [(ngModel)]="form.firstDate1" placeholder="Month"
+            required #firstDate="ngModel" />
+        </div>
+        <div class="form-group">
+          <label for="furnizor"></label>
+          <input type="text" class="form-control" name="lastDate1" [(ngModel)]="form.lastDate1" placeholder="Year"
+            required #lastate="ngModel" />
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Send</button>
+        </div>
+      </form>
+    </div>
 
 
 
+    <div class="col-sm-3">
 
-
-<div class="center">
-  <div class="pagination">
-  <a href="#">&laquo;</a>
-  <a href="#">1</a>
-  <a href="/alim" class="active">2</a>
-  <a href="/service">3</a>
-  <a href="/asigurari">4</a>
-  <a href="/salar">5</a>
-  <a href="/venit">6</a>
-  <a href="#contact">7</a>
-  <a href="/service">&raquo;</a>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-</body>
-</html>
+      <form h="form" (ngSubmit)="search5(h)" #h="ngForm" novalidate>
+        <div class="form-group">
+          <label for="year"></label>
+          <input type="text" class="form-control" name="year" [(ngModel)]="form.year" placeholder="year" required
+            #firstDate="ngModel" />
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Send</button>
+        </div>
+      </form>
+    </div>

@@ -1,78 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AlimComponent } from './alim/alim.component';
 import { HomeComponent } from './home/home.component';
 import { ApiModule } from './api';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
-
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
-
-
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
-
 import {MatNativeDateModule} from '@angular/material/core';
-
-
-
-
-
-
-
-
-
-
-// -----------------------------------
 import { AgmCoreModule } from '@agm/core';
 import { IncasariComponent } from './incasari/incasari.component';
 import { AddComponent } from './add/add.component';
-
 import {MatSortModule} from '@angular/material/sort';
-
-
-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { multicast } from 'rxjs-compat/operator/multicast';
 import { AddincasareComponent } from './addincasare/addincasare.component';
-
-
-
-
-
-
-
-
-
-// ------------------------------------
-
-
+// --------------
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlimComponent,
     HomeComponent,
     FilterPipe,
     IncasariComponent,
     AddComponent,
     AddincasareComponent,
-
-
-
-
-    // ---------------------------------------
-
-
-
 
 
   ],
@@ -92,7 +54,13 @@ import { AddincasareComponent } from './addincasare/addincasare.component';
     MatSortModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatInputModule
+    
 
 
 

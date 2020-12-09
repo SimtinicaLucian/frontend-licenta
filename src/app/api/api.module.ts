@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
-import { AlimentariService } from './api/alimentari.service';
+
 import { IncasariService } from './api/incasari.service';
 
 
@@ -11,7 +11,6 @@ import { IncasariService } from './api/incasari.service';
   declarations: [],
   exports:      [],
   providers: [
-    AlimentariService,
     IncasariService,
  ]
 })

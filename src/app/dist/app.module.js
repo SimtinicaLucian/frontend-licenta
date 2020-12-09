@@ -11,7 +11,6 @@ var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
-var alim_component_1 = require("./alim/alim.component");
 var home_component_1 = require("./home/home.component");
 var api_1 = require("./api");
 var http_1 = require("@angular/common/http");
@@ -20,7 +19,6 @@ var forms_1 = require("@angular/forms");
 var filter_pipe_1 = require("./filter.pipe");
 var datepicker_1 = require("@angular/material/datepicker");
 var core_2 = require("@angular/material/core");
-// -----------------------------------
 var core_3 = require("@agm/core");
 var incasari_component_1 = require("./incasari/incasari.component");
 var add_component_1 = require("./add/add.component");
@@ -29,7 +27,12 @@ var table_1 = require("@angular/material/table");
 var paginator_1 = require("@angular/material/paginator");
 var animations_1 = require("@angular/platform-browser/animations");
 var addincasare_component_1 = require("./addincasare/addincasare.component");
-// ------------------------------------
+// --------------
+var button_1 = require("@angular/material/button");
+var select_1 = require("@angular/material/select");
+var form_field_1 = require("@angular/material/form-field");
+var checkbox_1 = require("@angular/material/checkbox");
+var input_1 = require("@angular/material/input");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -37,7 +40,6 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                alim_component_1.AlimComponent,
                 home_component_1.HomeComponent,
                 filter_pipe_1.FilterPipe,
                 incasari_component_1.IncasariComponent,
@@ -59,7 +61,12 @@ var AppModule = /** @class */ (function () {
                 sort_1.MatSortModule,
                 core_2.MatNativeDateModule,
                 forms_1.ReactiveFormsModule,
-                datepicker_1.MatDatepickerModule
+                datepicker_1.MatDatepickerModule,
+                button_1.MatButtonModule,
+                select_1.MatSelectModule,
+                form_field_1.MatFormFieldModule,
+                checkbox_1.MatCheckboxModule,
+                input_1.MatInputModule
             ],
             entryComponents: [app_component_1.AppComponent],
             bootstrap: [app_component_1.AppComponent],

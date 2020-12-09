@@ -1,1476 +1,233 @@
-@import "bootstrap";
-@import "~bootstrap/scss/bootstrap";
+/* Structure */
 
-
-
-
-
-
-h1
-{
-  text-align: center;
-  color: #555 !important;
-  padding-bottom: 10px;
-}
-h1::after{
-  content: '';
-  background: #007bff;
-  display: block;
-  height: 3px;
-  width: 270px;
-  margin: 20px auto 5px;
-}
-
-
-#alimentari
-{
-  padding-top: 50px;
-  padding-bottom: 50px;
-  color: #555;
-}
-
-
-#add
-{
-  padding-top: 0px;
-  padding-bottom: 0px;
-  color: #555;
-}
-
-
-
-// BUTTOM
-
-
-
-.delete{
-
-
-  // Variables
-  $color: #c0392b;
-  $color-dark: #a53125;
-  $speed: "0.25s";
-  $transition: all #{$speed} cubic-bezier(0.310, -0.105, 0.430, 1.400);
-  
-  
-  
-  /* Main Styles */
-  .button {
-      background-color: $color;
-      width: 180px;
-      height: 50px;
-      line-height: 50px;
-      margin: auto;
-      color: #fff;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      cursor: pointer;
-      overflow: hidden;
-      border-radius: 5px;
-      box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
-      transition: $transition;
-      ///
-      margin-right: 810px;
-      margin-top: 870px;
-      ///
-      
-      span,
-      .icon {
-          display: block;
-          height: 100%;
-          text-align: center;
-          position: absolute;
-          top: 0;
-      }
-      
-      span {
-          width: 72%;
-          line-height: inherit;
-          font-size: 22px;
-          text-transform: uppercase;
-          left: 0;
-          transition: $transition;
-          
-          &:after {
-              content: '';
-              background-color: $color-dark;
-              width: 2px;
-              height: 70%;
-              position: absolute;
-              top: 15%;
-              right: -1px;
-          }
-      }
-      
-      .icon {
-          width: 28%;
-          right: 0;
-          transition: $transition;
-          
-          .fa {
-              font-size: 30px;
-              vertical-align: middle;
-              transition: $transition, height #{$speed} ease;
-          }
-          
-          .fa-trash-o {
-              height: 36px;
-          }
-          
-          
-          .fa-check {
-              display: none;
-          }
-      }
-      
-      &.success,
-      &:hover {
-          
-          span {
-              left: -72%;
-              opacity: 0;
-          }
-          
-          .icon {
-              width: 100%;
-              
-              .fa {
-                  font-size: 45px;
-              }
-          }
-      }
-      
-      &.success {
-          background-color: #27ae60;
-          
-          .icon {
-              
-              .fa-trash-o {
-                  display: none;
-              }
-              
-              .fa-check {
-                  display: inline-block;
-              }
-          }
-      }
-      
-      &:hover {
-          opacity: .9;
-          
-          .icon .fa-trash-o {
-              height: 46px;
-          }
-      }
-      
-      &:active {
-          opacity: 1;
-      }
-  }
-  
-  }
-
-
-
-//BUTTOM
-
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-/*
-bootstrap table theme
-*/
-
-.ngx-datatable.bootstrap {
-  box-shadow: none;
-  font-size: 13px;
-  .datatable-header {
-    height: unset !important;
-    .datatable-header-cell {
-      vertical-align: bottom;
-      padding: 0.75rem;
-      border-bottom: 1px solid #d1d4d7;
-      .datatable-header-cell-label {
-        line-height: 24px;
-      }
-    }
-  }
-  .datatable-body {
-    .datatable-body-row {
-      vertical-align: top;
-      border-top: 1px solid #d1d4d7;
-      &.datatable-row-even {
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-      &.active {
-        background-color: #1483ff;
-        color: #fff;
-      }
-      .datatable-body-cell {
-        padding: 0.75rem;
-        text-align: left;
-        vertical-align: top;
-      }
-    }
-    .empty-row {
-      $alert-padding-y: 0.75rem !default;
-      $alert-padding-x: 1.25rem !default;
-      position: relative;
-      padding: $alert-padding-y $alert-padding-x;
-      margin-bottom: 0;
-    }
-  }
-  .datatable-footer {
-    background: #424242;
-    color: #ededed;
-    margin-top: -1px;
-    .page-count {
-      line-height: 50px;
-      height: 50px;
-      padding: 0 1.2rem;
-    }
-    .datatable-pager {
-      margin: 0 10px;
-      vertical-align: top;
-      ul {
-        li {
-          margin: 10px 0px;
-          &:not(.disabled) {
-            &.active,
-            &:hover {
-              a {
-                background-color: #be0202;
-                font-weight: bold;
-              }
-            }
-          }
-        }
-      }
-      a {
-        height: 22px;
-        min-width: 24px;
-        line-height: 22px;
-        padding: 0;
-        border-radius: 3px;
-        margin: 0 3px;
-        text-align: center;
-        vertical-align: top;
-        text-decoration: none;
-        vertical-align: bottom;
-        color: #ededed;
-      }
-      .datatable-icon-left,
-      .datatable-icon-skip,
-      .datatable-icon-right,
-      .datatable-icon-prev {
-        font-size: 18px;
-        line-height: 27px;
-        padding: 0 3px;
-      }
-    }
-  }
-  // Summary row styles
-  .datatable-summary-row {
-    .datatable-body-row {
-      .datatable-body-cell {
-        font-weight: bold;
-      }
-    }
-  }
-}
-.ngx-datatable.dark {
-  box-shadow: none;
-  background: #1b1e27;
-  border: 1px solid #2f3646;
-  color: #fff;
-  font-size: 13px;
-
-  .datatable-header {
-    background: #181b24;
-    color: #72809b;
-
-    .datatable-header-cell {
-      text-align: left;
-      padding: 0.5rem 1.2rem;
-      font-weight: bold;
-
-      .datatable-header-cell-label {
-        line-height: 24px;
-      }
-    }
-  }
-
-  .datatable-body {
-    background: #1a1e28;
-
-    .datatable-body-row {
-      border-top: 1px solid #2f3646;
-
-      .datatable-body-cell {
-        text-align: left;
-        padding: 0.5rem 1.2rem;
-        vertical-align: top;
-      }
-
-      &:hover {
-        background: #171b24;
-        transition-property: background;
-        transition-duration: 0.3s;
-        transition-timing-function: linear;
-      }
-
-      &:focus {
-        background-color: #232837;
-      }
-
-      &.active {
-        background-color: #1483ff;
-        color: #fff;
-      }
-    }
-  }
-
-  .datatable-footer {
-    background: #232837;
-    color: #72809b;
-    margin-top: -1px;
-
-    .page-count {
-      line-height: 50px;
-      height: 50px;
-      padding: 0 1.2rem;
-    }
-
-    .datatable-pager {
-      margin: 0 10px;
-      vertical-align: top;
-
-      ul {
-        li {
-          margin: 10px 0px;
-
-          &:not(.disabled) {
-            &.active a,
-            &:hover a {
-              background-color: #455066;
-              font-weight: bold;
-            }
-          }
-        }
-      }
-
-      a {
-        height: 22px;
-        min-width: 24px;
-        line-height: 22px;
-        padding: 0;
-        border-radius: 3px;
-        margin: 0 3px;
-        text-align: center;
-        vertical-align: top;
-        text-decoration: none;
-        vertical-align: bottom;
-        color: #72809b;
-      }
-
-      .datatable-icon-left,
-      .datatable-icon-skip,
-      .datatable-icon-right,
-      .datatable-icon-prev {
-        font-size: 18px;
-        line-height: 27px;
-        padding: 0 3px;
-      }
-    }
-  }
-
-  .datatable-summary-row {
-    .datatable-body-row {
-      background-color: #14171f;
-
-      &:hover {
-        background-color: #14171f;
-      }
-
-      .datatable-body-cell {
-        font-weight: bold;
-      }
-    }
-  }
-}
-
-
-
-[data-icon]:before {
-  font-family: 'data-table' !important;
-  content: attr(data-icon);
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-[class^='datatable-icon-']:before,
-[class*=' datatable-icon-']:before {
-  font-family: 'data-table' !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.datatable-icon-filter:before {
-  content: '\62';
-}
-.datatable-icon-collapse:before {
-  content: '\61';
-}
-.datatable-icon-expand:before {
-  content: '\63';
-}
-.datatable-icon-close:before {
-  content: '\64';
-}
-.datatable-icon-up:before {
-  content: '\65';
-}
-.datatable-icon-down:before {
-  content: '\66';
-}
-.datatable-icon-sort:before {
-  content: '\67';
-}
-.datatable-icon-done:before {
-  content: '\68';
-}
-.datatable-icon-done-all:before {
-  content: '\69';
-}
-.datatable-icon-search:before {
-  content: '\6a';
-}
-.datatable-icon-pin:before {
-  content: '\6b';
-}
-.datatable-icon-add:before {
-  content: '\6d';
-}
-.datatable-icon-left:before {
-  content: '\6f';
-}
-.datatable-icon-right:before {
-  content: '\70';
-}
-.datatable-icon-skip:before {
-  content: '\71';
-}
-.datatable-icon-prev:before {
-  content: '\72';
-}
-.ngx-datatable {
-  display: block;
-  overflow: hidden;
-  justify-content: center;
-  position: relative;
-  transform: translate3d(0, 0, 0);
-
-  [hidden] {
-    display: none !important;
-  }
-
-  *,
-  *:before,
-  *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-  /**
-   * Vertical Scrolling Adjustments
-   */
-  &.scroll-vertical {
-    .datatable-body {
-      overflow-y: auto;
-    }
-    &.virtualized {
-      .datatable-body {
-        .datatable-row-wrapper {
-          position: absolute;
-        }
-      }
-    }
-  }
-
-  /**
-   * Horizontal Scrolling Adjustments
-   */
-  &.scroll-horz {
-    .datatable-body {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  }
-
-  /**
-   * Fixed Header Height Adjustments
-   */
-  &.fixed-header {
-    .datatable-header {
-      .datatable-header-inner {
-        white-space: nowrap;
-        .datatable-header-cell {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-    }
-  }
-
-  /**
-   * Fixed row height adjustments
-   */
-  &.fixed-row {
-    .datatable-scroll {
-      white-space: nowrap;
-
-      .datatable-body-row {
-        white-space: nowrap;
-
-        .datatable-body-cell {
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-
-        .datatable-body-group-cell {
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-      }
-    }
-  }
-
-  /**
-   * Shared Styles
-   */
-  .datatable-body-row,
-  .datatable-row-center,
-  .datatable-header-inner {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-
-    flex-direction: row;
-    -webkit-flex-flow: row;
-    -moz-flex-flow: row;
-    -ms-flex-flow: row;
-    -o-flex-flow: row;
-    flex-flow: row;
-  }
-
-  .datatable-body-cell,
-  .datatable-header-cell {
-    overflow-x: hidden;
-    vertical-align: top;
-    display: inline-block;
-    line-height: 1.625;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  .datatable-row-left,
-  .datatable-row-right {
-    z-index: 9;
-  }
-
-  .datatable-row-left,
-  .datatable-row-center,
-  .datatable-row-group,
-  .datatable-row-right {
-    position: relative;
-  }
-
-  /**
-   * Header Styles
-   */
-  .datatable-header {
-    display: block;
+.stats-cards {
+  .mat-card {
     overflow: hidden;
-
-    .datatable-header-inner {
-      align-items: stretch;
-      -webkit-align-items: stretch;
-    }
-
-    .datatable-header-cell {
-      position: relative;
-      display: inline-block;
-
-      &.sortable {
-        .datatable-header-cell-wrapper {
-          cursor: pointer;
-        }
-      }
-
-      &.longpress .datatable-header-cell-wrapper {
-        cursor: move;
-      }
-
-      .sort-btn {
-        line-height: 100%;
-        vertical-align: middle;
-        display: inline-block;
-        cursor: pointer;
-      }
-
-      .resize-handle,
-      .resize-handle--not-resizable {
-        display: inline-block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 5px;
-        padding: 0 4px;
-        visibility: hidden;
-      }
-
-      .resize-handle {
-        cursor: ew-resize;
-      }
-
-      &.resizeable:hover {
-        .resize-handle {
-          visibility: visible;
-        }
-      }
-
-      &:hover {
-        .resize-handle--not-resizable {
-          visibility: visible;
-        }
-      }
-
-      .targetMarker {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-
-        &.dragFromLeft {
-          right: 0;
-        }
-
-        &.dragFromRight {
-          left: 0;
-        }
-      }
-
-      .datatable-header-cell-template-wrap {
-        height: inherit;
-      }
-    }
-  }
-
-  /**
-   * Body Styles
-   */
-  .datatable-body {
-    position: relative;
-    z-index: 10;
-    display: block;
-
-    .datatable-scroll {
-      display: inline-block;
-    }
-
-    .datatable-row-detail {
-      overflow-y: hidden;
-    }
-
-    .datatable-row-wrapper {
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-      -moz-box-orient: vertical;
-      -moz-box-direction: normal;
-      -ms-flex-direction: column;
-      flex-direction: column;
-    }
-
-    .datatable-body-row {
-      outline: none;
-
-      > div {
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-      }
-    }
-  }
-
-  /**
-   * Footer Styles
-   */
-  .datatable-footer {
-    display: block;
-    width: 100%;
-    overflow: auto;
-
-    .datatable-footer-inner {
-      display: flex;
-      align-items: center;
-      width: 100%;
-    }
-
-    .selected-count {
-      .page-count {
-        flex: 1 1 40%;
-      }
-      .datatable-pager {
-        flex: 1 1 60%;
-      }
-    }
-
-    .page-count {
-      flex: 1 1 20%;
-    }
-
-    .datatable-pager {
-      flex: 1 1 80%;
-      text-align: right;
-
-      .pager,
-      .pager li {
-        padding: 0;
-        margin: 0;
-        display: inline-block;
-        list-style: none;
-      }
-
-      .pager {
-        li,
-        li a {
-          outline: none;
-        }
-
-        li {
-          a {
-            cursor: pointer;
-            display: inline-block;
-          }
-
-          &.disabled a {
-            cursor: not-allowed;
-          }
-        }
-      }
-    }
-  }
-}
-/*
-  This stylesheet uses scss valiables for most of the colors / background-colors of the table
-  to enable the customization of the displayed table without cloning the stylesheet into the
-  own application.
-  To modify table colors, add the following lines to the scss file of your application
-  (this example modifies the color of the selected row - selectionType = single, multi or multiClick):
-  $ngx-datatable-selected-active-background: yellow;
-  $ngx-datatable-selected-active-background-hover: rgba(yellow, 0.2);
-  @import '~@swimlane/ngx-datatable/index.css';
-  @import '~@swimlane/ngx-datatable/themes/material.scss';
-  @import '~@swimlane/ngx-datatable/assets/icons.css';
-That's all.
-*/
-
-// common datatable colors
-$ngx-datatable-background: #fff !default;
-$ngx-datatable-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-  0 3px 14px 2px rgba(0, 0, 0, 0.12) !default;
-$ngx-datatable-row-odd-background: #eee !default;
-
-// default row and cell background colors
-$ngx-datatable-default-background: #fff !default;
-$ngx-datatable-default-background-hover: #eee !default;
-$ngx-datatable-default-background-focus: #ddd !default;
-
-// default background colors for cell selection style
-$ngx-datatable-cellselection-background-hover: #eee !default;
-$ngx-datatable-cellselection-background-focus: #ddd !default;
-
-// background and text colors for selected cell / row
-$ngx-datatable-selected-active-background: #304ffe !default;
-$ngx-datatable-selected-active-color: #fff !default;
-$ngx-datatable-selected-active-background-hover: #193ae4 !default;
-$ngx-datatable-selected-active-color-hover: #fff !default;
-$ngx-datatable-selected-active-background-focus: #2041ef !default;
-$ngx-datatable-selected-active-color-focus: #fff !default;
-
-// colors for header elements
-$datatable-header-cell-background: #fff !default;
-$datatable-header-cell-color: rgba(0, 0, 0, 0.54) !default;
-$datatable-header-border-bottom-color: rgba(0, 0, 0, 0.12) !default;
-$datatable-header-resize-handle-color: #eee !default;
-
-// colors for table body elements
-$datatable-row-detail-background: #f5f5f5 !default;
-$datatable-body-cell-color: rgba(0, 0, 0, 0.87) !default;
-$datatable-group-header-background: #f5f5f5 !default;
-$datatable-group-header-border-top-color: #d9d8d9 !default;
-$datatable-group-header-border-bottom-color: #d9d8d9 !default;
-
-// colors for footer elements
-$datatable-footer-cell-color: rgba(0, 0, 0, 0.54) !default;
-$datatable-footer-border-top-color: rgba(0, 0, 0, 0.12) !default;
-$datatable-pager-color: rgba(0, 0, 0, 0.54) !default;
-$datatable-pager-color-hover: rgba(0, 0, 0, 0.75) !default;
-$datatable-pager-background-hover: rgba(158, 158, 158, 0.2) !default;
-$datatable-pager-disabled-color: rgba(0, 0, 0, 0.26) !default;
-$datatable-pager-disabled-background: transparent !default;
-$datatable-pager-active-background: rgba(158, 158, 158, 0.2) !default;
-
-// colors for summary row elements
-$datatable-summary-row-background: #ddd !default;
-$datatable-summary-row-background-hover: #ddd !default;
-
-.ngx-datatable.material {
-  background: $ngx-datatable-background;
-  box-shadow: $ngx-datatable-box-shadow;
-
-  &.striped {
-    .datatable-row-odd {
-      background: $ngx-datatable-row-odd-background;
-    }
-  }
-
-  &.single-selection,
-  &.multi-selection,
-  &.multi-click-selection {
-    .datatable-body-row {
-      &.active,
-      &.active .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background;
-        color: $ngx-datatable-selected-active-color;
-      }
-
-      &.active:hover,
-      &.active:hover .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background-hover;
-        color: $ngx-datatable-selected-active-color-hover;
-      }
-
-      &.active:focus,
-      &.active:focus .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background-focus;
-        color: $ngx-datatable-selected-active-color-focus;
-      }
-    }
-  }
-
-  &:not(.cell-selection) {
-    .datatable-body-row {
-      &:hover,
-      &:hover .datatable-row-group {
-        background-color: $ngx-datatable-default-background-hover;
-        transition-property: background;
-        transition-duration: 0.3s;
-        transition-timing-function: linear;
-      }
-
-      &:focus,
-      &:focus .datatable-row-group {
-        background-color: $ngx-datatable-default-background-focus;
-      }
-    }
-  }
-
-  &.cell-selection {
-    .datatable-body-cell {
-      &:hover,
-      &:hover .datatable-row-group {
-        background-color: $ngx-datatable-cellselection-background-hover;
-        transition-property: background;
-        transition-duration: 0.3s;
-        transition-timing-function: linear;
-      }
-
-      &:focus,
-      &:focus .datatable-row-group {
-        background-color: $ngx-datatable-cellselection-background-focus;
-      }
-
-      &.active,
-      &.active .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background;
-        color: $ngx-datatable-selected-active-color;
-      }
-
-      &.active:hover,
-      &.active:hover .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background-hover;
-        color: $ngx-datatable-selected-active-color-hover;
-      }
-
-      &.active:focus,
-      &.active:focus .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background-focus;
-        color: $ngx-datatable-selected-active-color-focus;
-      }
-    }
-  }
-
-  /**
-	 * Shared Styles
-	 */
-  .empty-row {
-    height: 50px;
-    text-align: left;
-    padding: 0.5rem 1.2rem;
-    vertical-align: top;
-    border-top: 0;
-  }
-
-  .loading-row {
-    text-align: left;
-    padding: 0.5rem 1.2rem;
-    vertical-align: top;
-    border-top: 0;
-  }
-
-  /**
-	 * Global Row Styles
-	 */
-  .datatable-header,
-  .datatable-body {
-    .datatable-row-left {
-      background-color: $ngx-datatable-background;
-      background-position: 100% 0;
-      background-repeat: repeat-y;
-      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQIHWPSkNeSBmJhTQVtbiDNCgASagIIuJX8OgAAAABJRU5ErkJggg==);
-    }
-
-    .datatable-row-right {
-      background-position: 0 0;
-      background-color: $ngx-datatable-background;
-      background-repeat: repeat-y;
-      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQI12PQkNdi1VTQ5gbSwkAsDQARLAIGtOSFUAAAAABJRU5ErkJggg==);
-    }
-  }
-
-  /**
-	 * Header Styles
-	 */
-  .datatable-header {
-    border-bottom: 1px solid $datatable-header-border-bottom-color;
-
-    .datatable-header-cell {
-      text-align: left;
-      padding: 0.9rem 1.2rem;
-      font-weight: 400;
-      background-color: $datatable-header-cell-background;
-      color: $datatable-header-cell-color;
-      vertical-align: bottom;
-      font-size: 12px;
-      font-weight: 500;
-
-      .datatable-header-cell-wrapper {
-        position: relative;
-      }
-
-      &.longpress {
-        .draggable::after {
-          transition: transform 400ms ease, opacity 400ms ease;
-          opacity: 0.5;
-          transform: scale(1);
-        }
-      }
-
-      .draggable::after {
-        content: ' ';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -30px 0 0 -30px;
-        height: 60px;
-        width: 60px;
-        background: #eee;
-        border-radius: 100%;
-        opacity: 1;
-        filter: none;
-        transform: scale(0);
-        z-index: 9999;
-        pointer-events: none;
-      }
-
-      &.dragging {
-        .resize-handle {
-          border-right: none;
-        }
-      }
-    }
-
-    .resize-handle {
-      border-right: solid 1px $datatable-header-resize-handle-color;
-    }
-  }
-
-  /**
-	 * Body Styles
-	 */
-  .datatable-body {
-    position: relative;
-
-    .datatable-row-detail {
-      background: $datatable-row-detail-background;
-      padding: 10px;
-    }
-
-    .datatable-group-header {
-      background: $datatable-group-header-background;
-      border-bottom: solid 1px $datatable-group-header-border-bottom-color;
-      border-top: solid 1px $datatable-group-header-border-top-color;
-    }
-
-    .datatable-body-row {
-      .datatable-body-cell {
-        text-align: left;
-        padding: 0.9rem 1.2rem;
-        vertical-align: top;
-        border-top: 0;
-        color: $datatable-body-cell-color;
-        transition: width 0.3s ease;
-        font-size: 14px;
-        font-weight: 400;
-
-        // cell active class
-        // &.active {
-        //  background: #0829e0
-        // }
-      }
-      .datatable-body-group-cell {
-        text-align: left;
-        padding: 0.9rem 1.2rem;
-        vertical-align: top;
-        border-top: 0;
-        color: $datatable-body-cell-color;
-        transition: width 0.3s ease;
-        font-size: 14px;
-        font-weight: 400;
-      }
-    }
-
-    .progress-linear {
-      display: block;
-      position: sticky;
-      width: 100%;
-      height: 5px;
-      padding: 0;
-      margin: 0;
-      top: 0;
-
-      .container {
-        display: block;
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        height: 5px;
-        -webkit-transform: translate(0, 0) scale(1, 1);
-        transform: translate(0, 0) scale(1, 1);
-        background-color: rgb(170, 209, 249);
-        
-
-        .bar {
-          transition: all 0.2s linear;
-          -webkit-animation: query 0.8s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
-          animation: query 0.8s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
-
-          transition: -webkit-transform 0.2s linear;
-          transition: transform 0.2s linear;
-          background-color: rgb(16, 108, 200);
-
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 100%;
-          height: 5px;
-        }
-      }
-    }
-  }
-
-  /**
-	 * Footer Styles
-	 */
-  .datatable-footer {
-    border-top: 1px solid $datatable-footer-border-top-color;
-    font-size: 12px;
-    font-weight: 400;
-    color: $datatable-footer-cell-color;
-
-    .page-count {
-      line-height: 50px;
-      height: 50px;
-      padding: 0 1.2rem;
-    }
-
-    .datatable-pager {
-      margin: 0 10px;
-
-      li {
-        vertical-align: middle;
-
-        &.disabled a {
-          color: $datatable-pager-disabled-color !important;
-          background-color: $datatable-pager-disabled-background !important;
-        }
-
-        &.active a {
-          background-color: $datatable-pager-active-background;
-          font-weight: bold;
-        }
-      }
-
-      a {
-        height: 22px;
-        min-width: 24px;
-        line-height: 22px;
-        padding: 0 6px;
-        border-radius: 3px;
-        margin: 6px 3px;
-        text-align: center;
-        vertical-align: top;
-        color: $datatable-pager-color;
-        text-decoration: none;
-        vertical-align: bottom;
-
-        &:hover {
-          color: $datatable-pager-color-hover;
-          background-color: $datatable-pager-background-hover;
-        }
-      }
-
-      .datatable-icon-left,
-      .datatable-icon-skip,
-      .datatable-icon-right,
-      .datatable-icon-prev {
-        font-size: 20px;
-        line-height: 20px;
-        padding: 0 3px;
-      }
-    }
-  }
-
-  // Summary row styles
-  .datatable-summary-row {
-    .datatable-body-row {
-      background-color: $datatable-summary-row-background;
-
-      &:hover {
-        background-color: $datatable-summary-row-background-hover;
-      }
-
-      .datatable-body-cell {
-        font-weight: bold;
-      }
-    }
-  }
-}
-
-/**
- * Checkboxes
-**/
-.datatable-checkbox {
-  position: relative;
-  margin: 0;
-  cursor: pointer;
-  vertical-align: middle;
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 0;
-
-  input[type='checkbox'] {
-    position: relative;
-    margin: 0 1rem 0 0;
-    cursor: pointer;
-    outline: none;
-
-    &:before {
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-      content: '';
-      position: absolute;
-      left: 0;
-      z-index: 1;
-      width: 1rem;
-      height: 1rem;
-      border: 2px solid #f2f2f2;
-    }
-
-    &:checked:before {
-      -webkit-transform: rotate(-45deg);
-      -moz-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-      transform: rotate(-45deg);
-      height: 0.5rem;
-      border-color: #009688;
-      border-top-style: none;
-      border-right-style: none;
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 1rem;
-      height: 1rem;
-      background: #fff;
-      cursor: pointer;
-    }
-  }
-}
-
-/**
- * Progress bar animations
- */
-@keyframes query {
-  0% {
-    opacity: 1;
-    transform: translateX(35%) scale(0.3, 1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) scale(0, 1);
   }
 }
 
 
-.logo{
-  font-family: "museo-slab";  
-  font-size:20px;
-  text-align: center;
-  padding: 20px 20px 0;
-  margin:0;
+
+
+// .add{
+
+
+//   // Variables
+//   $color: #c0392b;
+//   $color-dark: #a53125;
+//   $speed: "0.25s";
+//   $transition: all #{$speed} cubic-bezier(0.310, -0.105, 0.430, 1.400);
+  
+  
+  
+//   /* Main Styles */
+//   .button {
+//     background-color: $color;
+//     width: 180px;
+//     height: 50px;
+//     line-height: 50px;
+//     margin: auto;
+//     color: #fff;
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     cursor: pointer;
+//     overflow: hidden;
+//     border-radius: 5px;
+//     box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+//     transition: $transition;
+//     ///
+//     margin-right: 1685px;
+//     margin-top: 203px;
+//     ///
+
+
+  
+  
+//     span,
+//     .icon {
+//       display: block;
+//       height: 100%;
+//       text-align: center;
+//       position: absolute;
+//       top: 0;
+//     }
+  
+//     span {
+//       width: 72%;
+//       line-height: inherit;
+//       font-size: 22px;
+//       text-transform: uppercase;
+//       left: 0;
+//       transition: $transition;
+  
+//       &:after {
+//         content: '';
+//         background-color: $color-dark;
+//         width: 2px;
+//         height: 70%;
+//         position: absolute;
+//         top: 15%;
+//         right: -1px;
+//       }
+//     }
+  
+//     .icon {
+//       width: 28%;
+//       right: 0;
+//       transition: $transition;
+  
+//       .fa {
+//         font-size: 30px;
+//         vertical-align: middle;
+//         transition: $transition, height #{$speed} ease;
+//       }
+  
+//       .fa-plus {
+//         height: 36px;
+//           }
+  
+  
+//       .fa-check {
+//         display: none;
+//       }
+//     }
+  
+//     &.success,
+//     &:hover {
+  
+//       span {
+//         left: -72%;
+//         opacity: 0;
+//       }
+  
+//       .icon {
+//         width: 100%;
+  
+//         .fa {
+//           font-size: 45px;
+//         }
+//       }
+//     }
+  
+//     &.success {
+//       background-color: #27ae60;
+  
+//       .icon {
+  
+//         .fa-plus {
+//           display: none;
+//         }
+  
+//         .fa-check {
+//           display: inline-block;
+//         }
+//       }
+//     }
+  
+//     &:hover {
+//       opacity: .9;
+  
+//       .icon .fa-plus {
+//         height: 46px;
+//       }
+//     }
+  
+//     &:active {
+//       opacity: 1;
+//     }
+//   }
+  
+//   }
+
+  // 
+
+
+.example-container {
+  height: 270px;
+  overflow: auto;
 }
 
-.register-item {
-  color: #ffff;
-  padding:10px 30px 0;
-  margin:10px 80px 0;	
-  border-radius: 3px;
-}
-
-input {
-  border: 0;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-  outline: 0;
-  padding: 0;
-  -webkit-transition: background-color .3s;
-  transition: background-color .3s;
-}
-
-.user:before {
-  content: '\f007';
-  font: 14px fontawesome;
-  color: #5b5b5b;
-}
-
-.lock:before {
-  content: '\f023';
-  font: 14px fontawesome;
-  color: #5b5b5b;
-}
-
-.form input[type="password"], .form input[type="email"], .form input[type="submit"] {
+table {
   width: 100%;
 }
 
-.form-register label,
-.form-register input[type="email"],
-.form-register input[type="password"],
-.form-register input[type="submit"] {
-  border-radius: 1.25rem;
-  padding: 1rem;
-  color: #3A3F44;  
-}
-
-.form-register label {
-  background-color: #222222;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-.form-register input[type="email"], .form-register input[type="password"] {
-  background-color: #ffffff;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-.form-register input[type="text"]:focus, .form-register input[type="email"]:hover, .form-register input[type="password"]:focus, .form-register input[type="password"]:hover {
-   background-color: white;
-}
-.form-register input[type="submit"] {
-   background-color: rgb(86, 69, 238);
-  // background-color: red;
-  color: #eee;
+tr.mat-footer-row {
   font-weight: bold;
-  text-transform: uppercase;
 }
-.form-register input[type="submit"]:focus, .form-register input[type="submit"]:hover {
-  background-color: #120a2e;
+
+.mat-table-sticky {
+  border-top: 1px solid #e0e0e0;
 }
-.form-field {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+form{
+  padding-bottom: 30px;
+}
+.primary{
+  background: orange;
+  color: white;
+}
+
+.date-block{
   display: flex;
-  margin-bottom: 2rem;
+}
+.date-block__list{
+  flex-basis: 150px;
+  margin-right: 15px;
 }
 
 
-.hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
+// 
+.table-container {
+  width: 100%;
 }
 
-.text--center {
+table {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+td.footer {
+  font-style: italic;
   text-align: center;
 }
 
-////////////////////////////////////////////
-
-/* Styles for wrapping the search box */
-
-.main {
-  width: 50%;
-  margin: 50px auto;
-}
-
-/* Bootstrap 4 text input with search icon */
-
-.has-search .form-control {
-  padding-left: 2.375rem;
-}
-
-.has-search .form-control-feedback {
-  position: absolute;
-  z-index: 2;
-  display: block;
-  width: 2.375rem;
-  height: 2.375rem;
-  line-height: 2.375rem;
-  text-align: center;
-  pointer-events: none;
-  color: #aaa;
-}
-
-// 2 SEARCH
-
-
-.register-item{
-  margin-left: 63px;
-  margin-right: 63px;
-  margin-top: 40px;
-  background: white;
-  border-radius: 20px;
-  // border: 4px double gray;
-  border: 4px double gray;
-  box-shadow: 4px 2px 12 px #999;
-  padding: 10px 20 px 10px 20px;
-  background: linear-gradient(#B0E0E6, #F0F8FF);
-  position: right;
-
-}
-
-
-.flex-container {
- 
-  margin-left: 163px;
-  margin-right: 163px;
-  margin-top: 40px;
-  // margin: 10px;
-  padding: 20px;
-  font-size: 15px;
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  height: 1000%;
-
-}
+table {
+    width: 100%;
+  }
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
 
 
 
-
-
-
-// .flex-container > div {
-//   background-color: #f1f1f1;
-//   margin: 10px;
-//   padding: 20px;
-//   font-size: 30px;
+// .center{
+//   margin-right: 210px;
+// 	margin-top: 50px;
 // }
 
+// .mat-form-field {
+//   font-size: 14px;
+//   width: 100%;
+// }
 
-@media(min-width:468px){
-  .container-2{
-    display:flex;  
-    /*
-    justify-content:flex-start;
-    justify-content:flex-end;
-    justify-content:center;
-    justify-content:space-around;
-    */
-    justify-content:space-between;
-  }
-}
-.container-2-box{
-  flex-basis: 27%;  
-}
-
-
-
-.active-pink input.form-control[type=text] {
-  border-bottom: 1px solid #f48fb1;
-  box-shadow: 0 1px 0 0 #f48fb1;
-}
-.active-purple-2 input.form-control[type=text]:focus:not([readonly]) {
-  border-bottom: 1px solid #ce93d8;
-  box-shadow: 0 1px 0 0 #ce93d8;
+.active-pink-4 input[type=text]:focus:not([readonly]) {
+  border: 1px solid #f48fb1;
+  box-shadow: 0 0 0 1px #f48fb1;
 }
 
 .center {
@@ -1484,25 +241,3 @@ input {
 .center {
   text-align: center;
 }
-
-.pagination {
-  display: inline-block;
-}
-
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color .3s;
-  border: 1px solid #ddd;
-  margin: 0 4px;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-  border: 1px solid #4CAF50;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}

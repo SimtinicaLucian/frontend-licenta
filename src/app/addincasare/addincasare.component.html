@@ -2,43 +2,37 @@
 
     <form name="form" (ngSubmit)="register(f)" #f="ngForm" novalidate>
         <div class="form-group">
-            <label for="data">data</label>
-            <input type="text" class="form-control" name="data" [(ngModel)]="form.data" required #user="ngModel" />
+            <input type="text" class="form-control" name="data" [(ngModel)]="form.data" placeholder="Data" required #user="ngModel" />
         </div>
+        
         <div class="form-group">
-            <label for="furnizor">furnizor</label>
-            <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" required #calories="ngModel" />
-        </div>
-
-        <div class="form-group">
-            <label for="number">number</label>
-            <input type="number" class="form-control" name="number" [(ngModel)]="form.proteins" required #proteins="ngModel" />
+            <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" placeholder="furnizor" required #calories="ngModel" />
         </div>
 
         <div class="form-group">
-            <label for="detalii">detalii</label>
-            <input type="text" class="form-control" name="detalii" [(ngModel)]="form.detalii" required #carbohydrates="ngModel" />
+            <input type="number" class="form-control" name="number" [(ngModel)]="form.proteins" placeholder="number" required #proteins="ngModel" />
         </div>
 
         <div class="form-group">
-            <label for="sumaTotala">sumaTotala</label>
-            <input type="number" class="form-control" name="sumaTotala" [(ngModel)]="form.sumaTotala" required #fat="ngModel" />
+            <input type="text" class="form-control" name="detalii" [(ngModel)]="form.detalii" placeholder="detalii" required #carbohydrates="ngModel" />
         </div>
 
         <div class="form-group">
-            <label for="sumaFaraTVA">sumaFaraTVA</label>
-            <input type="number" class="form-control" name="sumaFaraTVA" [(ngModel)]="form.sumaFaraTVA" required #weight="ngModel" />
+            <input type="number" class="form-control" name="sumaTotala" [(ngModel)]="form.sumaTotala" placeholder="sumaTotala" required #fat="ngModel" />
         </div>
 
         <div class="form-group">
-            <label for="sumaTVA">sumaTVA</label>
-            <input type="number" class="form-control" name="sumaTVA" [(ngModel)]="form.sumaTVA" required #price="ngModel" />
+            <input type="number" class="form-control" name="sumaFaraTVA" [(ngModel)]="form.sumaFaraTVA" placeholder="sumaFaraTVA" required #weight="ngModel" />
+        </div>
+
+        <div class="form-group">
+            <input type="number" class="form-control" name="sumaTVA" [(ngModel)]="form.sumaTVA" placeholder="sumaTVA" required #price="ngModel" />
         </div>
 
 
 
         <div class="form-group">  
-            <button class="btn btn-primary btn-block">Add</button>
+            <button class="btn btn-outline-success">Adaugati</button>  
         </div>
     </form>
 
