@@ -30,14 +30,31 @@
 
     <!-- Position Column -->
     <ng-container matColumnDef="data">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+      <th mat-header-cell *matHeaderCellDef> Data
+      <div>
+        <mat-form-field>
+            <input matInput class="form-field" type="text" #myInput [(ngModel)]="dat" (input)="SearchData()"
+              placeholder="Search data...">
+            <br />
+        </mat-form-field>
+      </div>
+    </th>
+
       <td mat-cell *matCellDef="let element"> {{element.data}} </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="furnizor">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Furnizor </th>
+      <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> Furnizor -->
+        <th mat-header-cell *matHeaderCellDef> Furnizor
+        <div>
+          <mat-form-field>
+              <input matInput class="form-field" type="text" #myInput [(ngModel)]="furniz" (input)="SearchFurnizor()"
+                placeholder="Search furnizor..."/>
+          </mat-form-field>
+        </div>
+      </th>
       <td mat-cell *matCellDef="let element"> {{element.furnizor}} </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
@@ -203,6 +220,28 @@
 
     <div class="col-sm-3">
 
+      <form i="form" (ngSubmit)="search6(i)" #i="ngForm" novalidate>
+        <div class="form-group">
+          <label for="firstDate2"></label>
+          <input type="text" class="form-control" name="firstDate2" [(ngModel)]="form.firstDate2"
+            placeholder="firstDate" required #firstDate="ngModel" />
+        </div>
+        <div class="form-group">
+          <label for="lastDate2"></label>
+          <input type="text" class="form-control" name="lastDate2" [(ngModel)]="form.lastDate2" placeholder="lastDate"
+            required #lastate="ngModel" />
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Send Dates</button>
+        </div>
+      </form>
+    </div>
+
+
+
+    <div class="col-sm-3">
+
       <form h="form" (ngSubmit)="search5(h)" #h="ngForm" novalidate>
         <div class="form-group">
           <label for="year"></label>
@@ -216,13 +255,25 @@
     </div>
 
 
-    <div class="center">
-      <div class="col-md-6">
-      <div class="md-form active-purple active-purple-2 mb-3">
-        <input class="form-control" type="text" #myInput [(ngModel)]="furniz" (input)="SearchFurnizor()" placeholder="Search furnizor..." aria-label="Search">
-        {{furniz}}
-        <br/>
-      </div>
+    <div class="col-4 col-sm-6">
+      <div class="card-body">
+        <form class="form-signin">
+          <div class="register-item">
+            <form #m="ngForm" (ngSubmit)="search7(m.value)" class="form form-register">
+
+
+              <div class="form-group">
+                <input name="year" id="register-year" type="text" class="form-control" placeholder="Year" ngModel
+                  required>
+              </div>
+
+
+              <div class="form-group">
+                <button class="btn btn-outline-info">Search year</button>
+              </div>
+            </form>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -230,9 +281,32 @@
     <div class="center">
       <div class="col-md-6">
         <div class="md-form active-purple active-purple-2 mb-3">
-          <input class="form-control" type="text" #myInput [(ngModel)]="num" (input)="SearchNumber()" placeholder="Search number..." aria-label="Search">
-          {{num}}
-          <br/>
-        </div>
+          <input class="form-control" type="text" #myInput [(ngModel)]="furniz" (input)="SearchFurnizor()"
+            placeholder="Search furnizor..." aria-label="Search">
+          {{furniz}}
+          <br />
         </div>
       </div>
+    </div>
+    <!-- 
+    <div class="center">
+      <div class="col-md-6">
+      <div class="md-form active-purple active-purple-2 mb-3">
+        <input class="form-control" type="text" #myInput [(ngModel)]="year1" (input)="SearchYear()" placeholder="Search year..." aria-label="Search">
+        {{year1}}
+        <br/>
+      </div>
+      </div>
+    </div> -->
+
+
+    <div class="center">
+      <div class="col-md-6">
+        <div class="md-form active-purple active-purple-2 mb-3">
+          <input class="form-control" type="text" #myInput [(ngModel)]="num" (input)="SearchNumber()"
+            placeholder="Search number..." aria-label="Search">
+          {{num}}
+          <br />
+        </div>
+      </div>
+    </div>

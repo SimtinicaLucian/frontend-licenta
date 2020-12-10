@@ -28,8 +28,9 @@ export class AddComponent implements OnInit {
   between: any;
   year: any;
 
-
+  year1: string;
   furniz: string;
+  dat: string;
   public columns: any;
   num: any;
 
@@ -145,6 +146,22 @@ export class AddComponent implements OnInit {
     })
   }
 
+  search6(i: NgForm) {
+    this.alimService.getDatesBetweenData(i.value.firstDate2, i.value.lastDate2).subscribe((res) => {
+      this.rows = res;
+      console.log("res: " + res);
+    })
+  }
+
+  search7(data2) {
+    this.alimService.getByYear(data2.year).subscribe((res) => {
+      this.rows = res;
+      // this.dataSource = new MatTableDataSource(this.rows);
+      console.log(res);
+    })
+    // location.reload();
+  }
+
 
 
   SearchFurnizor() {
@@ -161,6 +178,42 @@ export class AddComponent implements OnInit {
       this.ngOnInit();
     }
   }
+
+
+  SearchData() {
+    this.dataSource = new MatTableDataSource(this.rows)
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
+    if (this.dat != "") {
+      this.rows = this.rows.filter(res => {
+        return res.data.toLocaleLowerCase().match(this.dat.toLocaleLowerCase());
+      });
+
+    } else if (this.dat == "") {
+      this.ngOnInit();
+    }
+  }
+
+
+
+
+  // SearchYear() {
+  //   this.dataSource = new MatTableDataSource(this.rows)
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+
+  //   if (this.year1 != "") {
+  //     this.rows = this.rows.filter(res => {
+  //       return res.data.toLocaleLowerCase().match(this.year1.toLocaleLowerCase());
+  //     });
+
+  //   } else if (this.year1 == "") {
+  //     this.ngOnInit();
+  //   }
+  // }
+
+
 
   SearchNumber() {
     this.dataSource = new MatTableDataSource(this.rows)

@@ -100,6 +100,22 @@ var AddComponent = /** @class */ (function () {
             console.log("res: " + res);
         });
     };
+    AddComponent.prototype.search6 = function (i) {
+        var _this = this;
+        this.alimService.getDatesBetweenData(i.value.firstDate2, i.value.lastDate2).subscribe(function (res) {
+            _this.rows = res;
+            console.log("res: " + res);
+        });
+    };
+    AddComponent.prototype.search7 = function (data2) {
+        var _this = this;
+        this.alimService.getByYear(data2.year).subscribe(function (res) {
+            _this.rows = res;
+            // this.dataSource = new MatTableDataSource(this.rows);
+            console.log(res);
+        });
+        // location.reload();
+    };
     AddComponent.prototype.SearchFurnizor = function () {
         var _this = this;
         this.dataSource = new table_1.MatTableDataSource(this.rows);
@@ -114,6 +130,32 @@ var AddComponent = /** @class */ (function () {
             this.ngOnInit();
         }
     };
+    AddComponent.prototype.SearchData = function () {
+        var _this = this;
+        this.dataSource = new table_1.MatTableDataSource(this.rows);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        if (this.dat != "") {
+            this.rows = this.rows.filter(function (res) {
+                return res.data.toLocaleLowerCase().match(_this.dat.toLocaleLowerCase());
+            });
+        }
+        else if (this.dat == "") {
+            this.ngOnInit();
+        }
+    };
+    // SearchYear() {
+    //   this.dataSource = new MatTableDataSource(this.rows)
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
+    //   if (this.year1 != "") {
+    //     this.rows = this.rows.filter(res => {
+    //       return res.data.toLocaleLowerCase().match(this.year1.toLocaleLowerCase());
+    //     });
+    //   } else if (this.year1 == "") {
+    //     this.ngOnInit();
+    //   }
+    // }
     AddComponent.prototype.SearchNumber = function () {
         var _this = this;
         this.dataSource = new table_1.MatTableDataSource(this.rows);

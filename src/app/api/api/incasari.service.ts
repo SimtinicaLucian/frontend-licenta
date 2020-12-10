@@ -724,7 +724,102 @@ export class IncasariService {
     }
 
 
-    
+    /**
+     * Get user by user name
+     * 
+     * @param firstDate2 The name that needs to be fetched. Use user1 for testing. 
+     * @param lastDate2 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getDatesBetweenData(firstDate2: string, lastDate2?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
+    public getDatesBetweenData(firstDate2: string, lastDate2?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getDatesBetweenData(firstDate2: string, lastDate2?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getDatesBetweenData(firstDate2: string, lastDate2?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (firstDate2 === null || firstDate2 === undefined) {
+            throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (firstDate2 !== undefined && firstDate2 !== null) {
+            queryParameters = queryParameters.set('firstDate', <any>firstDate2);
+        }
+        if (lastDate2 !== undefined && lastDate2 !== null) {
+            queryParameters = queryParameters.set('secondDate', <any>lastDate2);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/xml',
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<Incasari>>(`${this.basePath}/incasari/search/betweenData`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+        /**
+     * Find pet by ID
+     * Returns a single pet
+     * @param year ID of pet to return
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getByYear(year: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
+    public getByYear(year: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getByYear(year: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Incasari>>>;
+    public getByYear(year: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (year === null || year === undefined) {
+            throw new Error('Required parameter furnizor was null or undefined when calling getPetByFurnizor.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<Incasari>>(`${this.basePath}/incasari/search/year/${encodeURIComponent(String(year))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
 
 
     
