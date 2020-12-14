@@ -33,6 +33,7 @@ var select_1 = require("@angular/material/select");
 var form_field_1 = require("@angular/material/form-field");
 var checkbox_1 = require("@angular/material/checkbox");
 var input_1 = require("@angular/material/input");
+var excel_service_1 = require("./services/excel.service");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -44,7 +45,7 @@ var AppModule = /** @class */ (function () {
                 filter_pipe_1.FilterPipe,
                 incasari_component_1.IncasariComponent,
                 add_component_1.AddComponent,
-                addincasare_component_1.AddincasareComponent,
+                addincasare_component_1.AddincasareComponent
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [
@@ -70,7 +71,8 @@ var AppModule = /** @class */ (function () {
             ],
             entryComponents: [app_component_1.AppComponent],
             bootstrap: [app_component_1.AppComponent],
-            providers: []
+            providers: [excel_service_1.ExcelService
+            ]
         })
     ], AppModule);
     return AppModule;

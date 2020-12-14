@@ -26,6 +26,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { ExcelService } from './services/excel.service';
+
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { MatInputModule } from '@angular/material/input';
     FilterPipe,
     IncasariComponent,
     AddComponent,
-    AddincasareComponent,
+    AddincasareComponent
 
 
   ],
@@ -68,7 +71,7 @@ import { MatInputModule } from '@angular/material/input';
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [
+  providers: [ExcelService
     
   ]
 })

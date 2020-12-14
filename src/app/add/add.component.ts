@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/Rx';
+import { ExcelService } from '../services/excel.service';
 
 @Component({
   selector: 'app-add',
@@ -33,6 +34,8 @@ export class AddComponent implements OnInit {
   dat: string;
   public columns: any;
   num: any;
+  firstDate2: string;
+  lastDate2: string;
 
 
 
@@ -47,13 +50,17 @@ export class AddComponent implements OnInit {
   publishDate: any;
   datePipe: any;
 
-  constructor(private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router) {
+  constructor(private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService) {
+  }
+
+  exportAsXLSX():void {
+    this.excelService.exportAsExcelFile(this.rows, 'incasari_data');
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
+  
   private regForm: any;
   ngOnInit(): void {
 
@@ -146,12 +153,21 @@ export class AddComponent implements OnInit {
     })
   }
 
-  search6(i: NgForm) {
-    this.alimService.getDatesBetweenData(i.value.firstDate2, i.value.lastDate2).subscribe((res) => {
+  search6(a: NgForm) {
+    this.alimService.getDatesBetweenData(a.value.firstDate2, a.value.lastDate2).subscribe((res) => {
       this.rows = res;
-      console.log("res: " + res);
+      // console.log(res);
+      this.dataSource = new MatTableDataSource(this.rows)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+   if (this.rows == "") {
+      this.ngOnInit();
+    }
     })
-  }
+      }
+    
+  
 
   search7(data2) {
     this.alimService.getByYear(data2.year).subscribe((res) => {
@@ -161,6 +177,21 @@ export class AddComponent implements OnInit {
     })
     // location.reload();
   }
+
+
+  searchByMonthAndYear(e: NgForm) {
+    this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe((res) => {
+      this.rows = res;
+      // console.log(res);
+      this.dataSource = new MatTableDataSource(this.rows)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+   if (this.rows == "") {
+      this.ngOnInit();
+    }
+    })
+      }
 
 
 
@@ -232,9 +263,20 @@ export class AddComponent implements OnInit {
 
 
 
-  // getTotalCost() {
-  //   return this.rows.map(t => t.sumaTotala).reduce((acc, value) => acc + value, 0);
-  // }
+
+  
+
+  getTotalCostTotal() {
+    return this.rows.map(t => t.sumaTotala).reduce((acc, value) => acc + value, 0);
+  }
+
+  getTotalCostFaraTVA() {
+    return this.rows.map(t => t.sumaFaraTVA).reduce((acc, value) => acc + value, 0);
+  }
+
+  getTotalCostTVA() {
+    return this.rows.map(t => t.sumaTVA).reduce((acc, value) => acc + value, 0);
+  }
 
 
   add(pageName: string): void {

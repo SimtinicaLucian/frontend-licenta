@@ -14,14 +14,18 @@ var table_1 = require("@angular/material/table");
 var forms_1 = require("@angular/forms");
 require("rxjs/Rx");
 var AddComponent = /** @class */ (function () {
-    function AddComponent(formBuilder, alimService, router) {
+    function AddComponent(formBuilder, alimService, router, excelService) {
         this.formBuilder = formBuilder;
         this.alimService = alimService;
         this.router = router;
+        this.excelService = excelService;
         this.form = {};
         this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA'];
         this.sorted = false;
     }
+    AddComponent.prototype.exportAsXLSX = function () {
+        this.excelService.exportAsExcelFile(this.rows, 'incasari_data');
+    };
     AddComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.regForm = this.formBuilder.group({
@@ -100,11 +104,17 @@ var AddComponent = /** @class */ (function () {
             console.log("res: " + res);
         });
     };
-    AddComponent.prototype.search6 = function (i) {
+    AddComponent.prototype.search6 = function (a) {
         var _this = this;
-        this.alimService.getDatesBetweenData(i.value.firstDate2, i.value.lastDate2).subscribe(function (res) {
+        this.alimService.getDatesBetweenData(a.value.firstDate2, a.value.lastDate2).subscribe(function (res) {
             _this.rows = res;
-            console.log("res: " + res);
+            // console.log(res);
+            _this.dataSource = new table_1.MatTableDataSource(_this.rows);
+            _this.dataSource.paginator = _this.paginator;
+            _this.dataSource.sort = _this.sort;
+            if (_this.rows == "") {
+                _this.ngOnInit();
+            }
         });
     };
     AddComponent.prototype.search7 = function (data2) {
@@ -115,6 +125,19 @@ var AddComponent = /** @class */ (function () {
             console.log(res);
         });
         // location.reload();
+    };
+    AddComponent.prototype.searchByMonthAndYear = function (e) {
+        var _this = this;
+        this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe(function (res) {
+            _this.rows = res;
+            // console.log(res);
+            _this.dataSource = new table_1.MatTableDataSource(_this.rows);
+            _this.dataSource.paginator = _this.paginator;
+            _this.dataSource.sort = _this.sort;
+            if (_this.rows == "") {
+                _this.ngOnInit();
+            }
+        });
     };
     AddComponent.prototype.SearchFurnizor = function () {
         var _this = this;
@@ -170,9 +193,15 @@ var AddComponent = /** @class */ (function () {
             this.ngOnInit();
         }
     };
-    // getTotalCost() {
-    //   return this.rows.map(t => t.sumaTotala).reduce((acc, value) => acc + value, 0);
-    // }
+    AddComponent.prototype.getTotalCostTotal = function () {
+        return this.rows.map(function (t) { return t.sumaTotala; }).reduce(function (acc, value) { return acc + value; }, 0);
+    };
+    AddComponent.prototype.getTotalCostFaraTVA = function () {
+        return this.rows.map(function (t) { return t.sumaFaraTVA; }).reduce(function (acc, value) { return acc + value; }, 0);
+    };
+    AddComponent.prototype.getTotalCostTVA = function () {
+        return this.rows.map(function (t) { return t.sumaTVA; }).reduce(function (acc, value) { return acc + value; }, 0);
+    };
     AddComponent.prototype.add = function (pageName) {
         this.router.navigate(["" + pageName]);
     };
