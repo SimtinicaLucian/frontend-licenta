@@ -161,9 +161,9 @@ export class AddComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
-   if (this.rows == "") {
-      this.ngOnInit();
-    }
+  //  if (this.rows == "") {
+  //     this.ngOnInit();
+  //   }
     })
       }
     
@@ -179,6 +179,16 @@ export class AddComponent implements OnInit {
   }
 
 
+  reset(){
+    this.alimService.incasariSearchAllGet().subscribe((res: any[]) => {
+      this.rows = res;
+      this.dataSource = new MatTableDataSource(this.rows)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
+
+  }
+
   searchByMonthAndYear(e: NgForm) {
     this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe((res) => {
       this.rows = res;
@@ -187,11 +197,24 @@ export class AddComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
-   if (this.rows == "") {
-      this.ngOnInit();
-    }
+  //  if (this.rows == "") {
+  //     this.ngOnInit();
+  //   }
     })
       }
+
+
+   searchByFurnizorAndDateAndSum(h: NgForm) {
+      this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe((res) => {
+      this.rows = res;
+          // console.log(res);
+      this.dataSource = new MatTableDataSource(this.rows)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    
+
+        })
+          }
 
 
 

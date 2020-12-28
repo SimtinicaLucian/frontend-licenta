@@ -112,9 +112,9 @@ var AddComponent = /** @class */ (function () {
             _this.dataSource = new table_1.MatTableDataSource(_this.rows);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
-            if (_this.rows == "") {
-                _this.ngOnInit();
-            }
+            //  if (this.rows == "") {
+            //     this.ngOnInit();
+            //   }
         });
     };
     AddComponent.prototype.search7 = function (data2) {
@@ -126,6 +126,15 @@ var AddComponent = /** @class */ (function () {
         });
         // location.reload();
     };
+    AddComponent.prototype.reset = function () {
+        var _this = this;
+        this.alimService.incasariSearchAllGet().subscribe(function (res) {
+            _this.rows = res;
+            _this.dataSource = new table_1.MatTableDataSource(_this.rows);
+            _this.dataSource.paginator = _this.paginator;
+            _this.dataSource.sort = _this.sort;
+        });
+    };
     AddComponent.prototype.searchByMonthAndYear = function (e) {
         var _this = this;
         this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe(function (res) {
@@ -134,9 +143,19 @@ var AddComponent = /** @class */ (function () {
             _this.dataSource = new table_1.MatTableDataSource(_this.rows);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
-            if (_this.rows == "") {
-                _this.ngOnInit();
-            }
+            //  if (this.rows == "") {
+            //     this.ngOnInit();
+            //   }
+        });
+    };
+    AddComponent.prototype.searchByFurnizorAndDateAndSum = function (h) {
+        var _this = this;
+        this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe(function (res) {
+            _this.rows = res;
+            // console.log(res);
+            _this.dataSource = new table_1.MatTableDataSource(_this.rows);
+            _this.dataSource.paginator = _this.paginator;
+            _this.dataSource.sort = _this.sort;
         });
     };
     AddComponent.prototype.SearchFurnizor = function () {

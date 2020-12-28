@@ -777,7 +777,6 @@ export class IncasariService {
         );
     }
 
-
     /**
      * Get user by user name
      * 
@@ -875,6 +874,72 @@ export class IncasariService {
 
 
 
+
+
+        /**
+     * Get user by user name
+     * 
+     * @param furnizor The name that needs to be fetched. Use user1 for testing. 
+     * @param data1 
+     * @param data2 
+     * @param sumaTotala1 
+     * @param sumaTotala2 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
+    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (furnizor === null || furnizor === undefined) {
+            throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (furnizor !== undefined && furnizor !== null) {
+            queryParameters = queryParameters.set('furnizor', <any>furnizor);
+        }
+        if (data1 !== undefined && data1 !== null) {
+            queryParameters = queryParameters.set('data1', <any>data1);
+        }
+        if (data2 !== undefined && data2 !== null) {
+            queryParameters = queryParameters.set('data2', <any>data2);
+        }
+        if (sumaTotala1 !== undefined && sumaTotala1 !== null) {
+            queryParameters = queryParameters.set('sumaTotala1', <any>sumaTotala1);
+        }
+        if (sumaTotala2 !== undefined && sumaTotala2 !== null) {
+            queryParameters = queryParameters.set('sumaTotala2', <any>sumaTotala2);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/xml',
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<Incasari>>(`${this.basePath}/incasari/test`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     
 }

@@ -19,29 +19,114 @@
   </a>
   </div> -->
 
-  <form e="form" (ngSubmit)="searchByMonthAndYear(e)" #e="ngForm" novalidate class="form-inline">
+<form e="form" (ngSubmit)="searchByMonthAndYear(e)" #e="ngForm" novalidate class="form-inline">
+  <div class="form-group">
+    <label for="month1"></label>
+    <input type="text" class="form-control" name="month1" [(ngModel)]="form.month1" placeholder="month1" required
+      #month="ngModel" />
+  </div>
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <label for="year1"></label>
+    <input type="text" class="form-control" name="year1" [(ngModel)]="form.year1" placeholder="year1" required
+      #year="ngModel" />
+  </div>
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <button class="btn btn-primary btn-block">Month & year</button>
+  </div>
+</form>
+
+
+
+
+
+<form a="form" (ngSubmit)="search6(a)" #a="ngForm" novalidate class="form-inline">
+  <div class="form-group">
+    <label for="firstDate2"></label>
+    <input type="text" class="form-control" name="firstDate2" [(ngModel)]="form.firstDate1" placeholder="firstDate2"
+      required #firstDate="ngModel" />
+  </div>
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <label for="lastDate2"></label>
+    <input type="text" class="form-control" name="lastDate2" [(ngModel)]="form.lastDate2" placeholder="lastDate2"
+      required #lastDate="ngModel" />
+  </div>
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <button class="btn btn-primary btn-block">Filter data</button>
+  </div>
+</form>
+
+
+<div class="excel">
+  <form #b="ngForm" (ngSubmit)="delete(b.value)" #b="ngForm" novalidate class="form-inline" >
+    <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
+    &nbsp; &nbsp;
     <div class="form-group">
-      <label for="month1"></label>
-      <input type="text" class="form-control" name="month1" [(ngModel)]="form.month1" placeholder="month1"
-        required #month="ngModel" />
-    </div>
-    <div class="form-group">
-      <label for="year1"></label>
-      <input type="text" class="form-control" name="year1" [(ngModel)]="form.year1" placeholder="year1" required
-        #year="ngModel" />
-    </div>
-  
-    <div class="form-group">
-      <button class="btn btn-primary btn-block">Month & year</button>
+      <button style="float: center" class="btn btn-outline-danger">Delete</button>
     </div>
   </form>
-
-
-<div class = "excel">
-<a class="button" href="/addincasare">
-  <button type="button" style="float: left" class="btn btn-outline-success">Adaugati</button>
-</a>
 </div>
+
+
+<form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
+  <div class="form-group">
+    <label for="furnizor"></label>
+    <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" placeholder="furnizor" required
+      #furnizor="ngModel" />
+  </div>
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <label for="data1"></label>
+    <input type="text" class="form-control" name="data1" [(ngModel)]="form.data1" placeholder="data1" required
+      #data1="ngModel" />
+  </div>
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <label for="data2"></label>
+    <input type="text" class="form-control" name="data2" [(ngModel)]="form.data2" placeholder="data2" required
+      #data2="ngModel" />
+  </div>
+
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <label for="sumaTotala1"></label>
+    <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1" placeholder="sumaTotala1" required
+      #sumaTotala1="ngModel" />
+  </div>
+
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <label for="sumaTotala2"></label>
+    <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2" placeholder="sumaTotala2" required
+      #sumaTotala2="ngModel" />
+  </div>
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <button class="btn btn-primary btn-block">Month & year</button>
+  </div>
+</form>
+
+
+
+<form #b="ngForm" (ngSubmit)="reset()" #b="ngForm" novalidate class="form-inline" >
+  <div class="form-group">
+    <button style="float: center" class="btn btn-outline-danger">Reset</button>
+  </div>
+</form>
+
+
+<div class="excel">
+  <a class="button" href="/addincasare">
+    <button type="button" style="float: left" class="btn btn-outline-success">Adaugati</button>
+  </a>
+</div>
+
+
+
+
 
 
 
@@ -145,24 +230,14 @@
   <div class="row">
 
 
-    <div class="col-8 col-sm-6">
-      <div class="card-body">
-        <form class="form-signin">
-          <div class="register-item">
-            <form #b="ngForm" (ngSubmit)="delete(b.value)" class="form form-register">
-              <div class="active-pink-3 active-pink-4 mb-4">
-                <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel
-                  required>
-              </div>
-              <div class="form-group">
-                <button class="btn btn-outline-danger">Delete</button>
-              </div>
-            </form>
-          </div>
 
-        </form>
+    <form #b="ngForm" (ngSubmit)="delete(b.value)" #b="ngForm" novalidate class="form-inline">
+      <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
+      <div class="form-group">
+        <button class="btn btn-outline-danger">Delete</button>
       </div>
-    </div>
+    </form>
+
 
 
     <!-- <div class="col-4 col-sm-6">
@@ -253,25 +328,6 @@
 
 
 
-    <div class="col-sm-3">
-
-      <form a="form" (ngSubmit)="search6(a)" #a="ngForm" novalidate>
-        <div class="form-group">
-          <label for="firstDate2"></label>
-          <input type="text" class="form-control" name="firstDate2" [(ngModel)]="form.firstDate1"
-            placeholder="firstDate2" required #firstDate="ngModel" />
-        </div>
-        <div class="form-group">
-          <label for="lastDate2"></label>
-          <input type="text" class="form-control" name="lastDate2" [(ngModel)]="form.lastDate2" placeholder="lastDate2"
-            required #lastDate="ngModel" />
-        </div>
-
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Filter data</button>
-        </div>
-      </form>
-    </div>
 
 
 
@@ -310,52 +366,3 @@
         </form>
       </div>
     </div>
-
-
-
-
-
-
-      
-        <form e="form" (ngSubmit)="searchByMonthAndYear(e)" #e="ngForm" novalidate class="form-inline">
-          <div class="form-group">
-            <label for="month1"></label>
-            <input type="text" class="form-control" name="month1" [(ngModel)]="form.month1" placeholder="month1"
-              required #month="ngModel" />
-          </div>
-          <div class="form-group">
-            <label for="year1"></label>
-            <input type="text" class="form-control" name="year1" [(ngModel)]="form.year1" placeholder="year1" required
-              #year="ngModel" />
-          </div>
-
-          <div class="form-group">
-            <button class="btn btn-primary btn-block">Month & year</button>
-          </div>
-        </form>
-   
-
-
-    <!-- <div class="center">
-      <div class="col-md-6">
-        <div class="md-form active-purple active-purple-2 mb-3">
-          <input class="form-control" type="text" #myInput [(ngModel)]="furniz" (input)="SearchFurnizor()"
-            placeholder="Search furnizor..." aria-label="Search">
-          {{furniz}}
-          <br />
-        </div>
-      </div>
-    </div> -->
-
-
-
-    <!-- <div class="center">
-      <div class="col-md-6">
-        <div class="md-form active-purple active-purple-2 mb-3">
-          <input class="form-control" type="text" #myInput [(ngModel)]="num" (input)="SearchNumber()"
-            placeholder="Search number..." aria-label="Search">
-          {{num}}
-          <br />
-        </div>
-      </div>
-    </div> -->

@@ -522,6 +522,48 @@ var IncasariService = /** @class */ (function () {
             reportProgress: reportProgress
         });
     };
+    IncasariService.prototype.getData = function (furnizor, data1, data2, sumaTotala1, sumaTotala2, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        if (furnizor === null || furnizor === undefined) {
+            throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
+        }
+        var queryParameters = new http_1.HttpParams({ encoder: new encoder_1.CustomHttpUrlEncodingCodec() });
+        if (furnizor !== undefined && furnizor !== null) {
+            queryParameters = queryParameters.set('furnizor', furnizor);
+        }
+        if (data1 !== undefined && data1 !== null) {
+            queryParameters = queryParameters.set('data1', data1);
+        }
+        if (data2 !== undefined && data2 !== null) {
+            queryParameters = queryParameters.set('data2', data2);
+        }
+        if (sumaTotala1 !== undefined && sumaTotala1 !== null) {
+            queryParameters = queryParameters.set('sumaTotala1', sumaTotala1);
+        }
+        if (sumaTotala2 !== undefined && sumaTotala2 !== null) {
+            queryParameters = queryParameters.set('sumaTotala2', sumaTotala2);
+        }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/xml',
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [];
+        return this.httpClient.get(this.basePath + "/incasari/test", {
+            params: queryParameters,
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
     IncasariService = __decorate([
         core_1.Injectable(),
         __param(1, core_1.Optional()), __param(1, core_1.Inject(variables_1.BASE_PATH)), __param(2, core_1.Optional())
