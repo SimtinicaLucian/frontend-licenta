@@ -525,9 +525,6 @@ var IncasariService = /** @class */ (function () {
     IncasariService.prototype.getData = function (furnizor, data1, data2, sumaTotala1, sumaTotala2, observe, reportProgress) {
         if (observe === void 0) { observe = 'body'; }
         if (reportProgress === void 0) { reportProgress = false; }
-        if (furnizor === null || furnizor === undefined) {
-            throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
-        }
         var queryParameters = new http_1.HttpParams({ encoder: new encoder_1.CustomHttpUrlEncodingCodec() });
         if (furnizor !== undefined && furnizor !== null) {
             queryParameters = queryParameters.set('furnizor', furnizor);

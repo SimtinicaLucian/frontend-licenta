@@ -27,6 +27,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { ExcelService } from './services/excel.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalContentComponent } from './modal-content/modal-content.component';
+
+
+
 
 
 
@@ -37,7 +42,9 @@ import { ExcelService } from './services/excel.service';
     FilterPipe,
     IncasariComponent,
     AddComponent,
-    AddincasareComponent
+    AddincasareComponent,
+    ModalContentComponent
+ 
 
 
   ],
@@ -62,7 +69,8 @@ import { ExcelService } from './services/excel.service';
     MatSelectModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    NgbModule
     
 
 

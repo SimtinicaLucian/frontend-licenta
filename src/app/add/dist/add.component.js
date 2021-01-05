@@ -13,12 +13,23 @@ var sort_1 = require("@angular/material/sort");
 var table_1 = require("@angular/material/table");
 var forms_1 = require("@angular/forms");
 require("rxjs/Rx");
+var modal_content_component_1 = require("../modal-content/modal-content.component");
 var AddComponent = /** @class */ (function () {
-    function AddComponent(formBuilder, alimService, router, excelService) {
+    function AddComponent(modalService, formBuilder, alimService, router, excelService) {
+        this.modalService = modalService;
         this.formBuilder = formBuilder;
         this.alimService = alimService;
         this.router = router;
         this.excelService = excelService;
+        this.user = {
+            data: '',
+            furnizor: '',
+            number: 1,
+            detalii: '',
+            sumaTotala: 1,
+            sumaFaraTVA: 1,
+            sumaTva: 1
+        };
         this.form = {};
         this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA'];
         this.sorted = false;
@@ -223,6 +234,18 @@ var AddComponent = /** @class */ (function () {
     };
     AddComponent.prototype.add = function (pageName) {
         this.router.navigate(["" + pageName]);
+    };
+    AddComponent.prototype.openModal = function () {
+        var modalRef = this.modalService.open(modal_content_component_1.ModalContentComponent);
+        modalRef.componentInstance.user = this.user;
+        modalRef.result.then(function (result) {
+            if (result) {
+                console.log(result);
+            }
+        });
+        // modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+        //   console.log(receivedEntry);
+        // })
     };
     __decorate([
         core_1.ViewChild(paginator_1.MatPaginator)

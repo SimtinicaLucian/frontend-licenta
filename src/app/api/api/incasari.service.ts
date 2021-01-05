@@ -892,9 +892,7 @@ export class IncasariService {
     public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
     public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (furnizor === null || furnizor === undefined) {
-            throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
-        }
+
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});

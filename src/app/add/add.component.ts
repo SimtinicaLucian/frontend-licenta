@@ -9,6 +9,10 @@ import { DatePipe } from '@angular/common';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/Rx';
 import { ExcelService } from '../services/excel.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalContentComponent } from '../modal-content/modal-content.component'
+
+
 
 @Component({
   selector: 'app-add',
@@ -39,6 +43,17 @@ export class AddComponent implements OnInit {
 
 
 
+  public user = {
+    data: '',
+    furnizor: '',
+    number: 1,
+    detalii: '',
+    sumaTotala: 1,
+    sumaFaraTVA: 1,
+    sumaTva: 1,
+
+  }
+
   form: any = {};
   displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA'];
   values: PeriodicElement[];
@@ -50,7 +65,7 @@ export class AddComponent implements OnInit {
   publishDate: any;
   datePipe: any;
 
-  constructor(private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService) {
+  constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService) {
   }
 
   exportAsXLSX():void {
@@ -207,10 +222,14 @@ export class AddComponent implements OnInit {
    searchByFurnizorAndDateAndSum(h: NgForm) {
       this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe((res) => {
       this.rows = res;
+
+
           // console.log(res);
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
+
     
 
         })
@@ -304,6 +323,19 @@ export class AddComponent implements OnInit {
 
   add(pageName: string): void {
     this.router.navigate([`${pageName}`]);
+  }
+
+  openModal() {
+    const modalRef = this.modalService.open(ModalContentComponent);
+    modalRef.componentInstance.user = this.user;
+    modalRef.result.then((result) => {
+      if (result) {
+        console.log(result);
+      }
+    });
+    // modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+    //   console.log(receivedEntry);
+    // })
   }
 }
 
