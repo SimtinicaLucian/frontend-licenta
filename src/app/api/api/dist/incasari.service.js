@@ -82,7 +82,7 @@ var IncasariService = /** @class */ (function () {
             reportProgress: reportProgress
         });
     };
-    IncasariService.prototype.updateNumber = function (number, name, status, observe, reportProgress) {
+    IncasariService.prototype.updateNumber = function (number, observe, reportProgress) {
         if (observe === void 0) { observe = 'body'; }
         if (reportProgress === void 0) { reportProgress = false; }
         if (number === null || number === undefined) {
@@ -119,13 +119,7 @@ var IncasariService = /** @class */ (function () {
         else {
             formParams = new http_1.HttpParams({ encoder: new encoder_1.CustomHttpUrlEncodingCodec() });
         }
-        if (name !== undefined) {
-            formParams = formParams.append('name', name) || formParams;
-        }
-        if (status !== undefined) {
-            formParams = formParams.append('status', status) || formParams;
-        }
-        return this.httpClient.post(this.basePath + "/incasari/update/" + encodeURIComponent(String(number)), convertFormParamsToString ? formParams.toString() : formParams, {
+        return this.httpClient.post(this.basePath + "/incasari/update/number/" + encodeURIComponent(String(number)), convertFormParamsToString ? formParams.toString() : formParams, {
             withCredentials: this.configuration.withCredentials,
             headers: headers,
             observe: observe,
@@ -154,6 +148,15 @@ var IncasariService = /** @class */ (function () {
             headers: headers,
             observe: observe,
             reportProgress: reportProgress
+        });
+    };
+    ///////////////////////////////////////////////
+    // modify here
+    IncasariService.prototype.deleteData = function (number) {
+        var _this = this;
+        return this.httpClient["delete"](this.basePath + "/incasari/delete/number/" + encodeURIComponent(String(number)))
+            .map(function (res) {
+            _this.rows;
         });
     };
     IncasariService.prototype.add = function (body, observe, reportProgress) {

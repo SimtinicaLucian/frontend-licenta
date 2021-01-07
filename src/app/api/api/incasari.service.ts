@@ -14,12 +14,15 @@ import { isNumber } from 'util';
 
 
 
+
+
 @Injectable()
 export class IncasariService {
 
     protected basePath = 'http://localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
+    public rows: any;
 
     constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         if (basePath) {
@@ -119,10 +122,10 @@ export class IncasariService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateNumber(number: number, name?: string, status?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateNumber(number: number, name?: string, status?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateNumber(number: number, name?: string, status?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateNumber(number: number, name?: string, status?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateNumber(number: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateNumber(number: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateNumber(number: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateNumber(number: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (number === null || number === undefined) {
             throw new Error('Required parameter petId was null or undefined when calling updatePetWithForm.');
@@ -166,14 +169,9 @@ export class IncasariService {
             formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
         }
 
-        if (name !== undefined) {
-            formParams = formParams.append('name', <any>name) || formParams;
-        }
-        if (status !== undefined) {
-            formParams = formParams.append('status', <any>status) || formParams;
-        }
 
-        return this.httpClient.post<any>(`${this.basePath}/incasari/update/${encodeURIComponent(String(number))}`,
+
+        return this.httpClient.post<any>(`${this.basePath}/incasari/update/number/${encodeURIComponent(String(number))}`,
             convertFormParamsToString ? formParams.toString() : formParams,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -237,8 +235,15 @@ export class IncasariService {
 
 
 
-
-
+// modify here
+    deleteData(number){
+        return this.httpClient.delete(`${this.basePath}/incasari/delete/number/${encodeURIComponent(String(number))}`)
+        .map(res=>
+            {
+            this.rows;
+            })
+    }
+// modify stop
     
 
 

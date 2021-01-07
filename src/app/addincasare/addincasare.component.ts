@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class AddincasareComponent implements OnInit {
 
   form: any = {};
+  public rows: any;
 
   constructor(private alimService : IncasariService, public router : Router) { }
 
@@ -22,7 +23,11 @@ export class AddincasareComponent implements OnInit {
     this.alimService.add(f.value).subscribe(() => { })
     // location.reload();
     location.href = "\add";
+  }
 
+  update(number){
+    this.alimService.updateNumber(number.number).subscribe((res) => {
+      this.rows = res;})
   }
 
 

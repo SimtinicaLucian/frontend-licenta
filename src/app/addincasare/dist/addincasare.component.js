@@ -21,6 +21,12 @@ var AddincasareComponent = /** @class */ (function () {
         // location.reload();
         location.href = "\add";
     };
+    AddincasareComponent.prototype.update = function (number) {
+        var _this = this;
+        this.alimService.updateNumber(number.number).subscribe(function (res) {
+            _this.rows = res;
+        });
+    };
     // onSubmit() {
     //   this.alimService.add(this.form).subscribe(
     //     data => {

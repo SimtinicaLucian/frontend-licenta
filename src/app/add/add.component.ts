@@ -14,6 +14,7 @@ import { ModalContentComponent } from '../modal-content/modal-content.component'
 
 
 
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -55,7 +56,7 @@ export class AddComponent implements OnInit {
   }
 
   form: any = {};
-  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA'];
+  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA','delete'];
   values: PeriodicElement[];
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
@@ -64,6 +65,7 @@ export class AddComponent implements OnInit {
   private sorted = false;
   publishDate: any;
   datePipe: any;
+
 
   constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService) {
   }
@@ -104,6 +106,8 @@ export class AddComponent implements OnInit {
     this.alimService.searchTotalFaraTVA().subscribe((res =>
       this.totalSumFaraTVA = res
     ))
+
+
   }
 
 
@@ -337,6 +341,25 @@ export class AddComponent implements OnInit {
     //   console.log(receivedEntry);
     // })
   }
+
+
+//incepand de aici
+  getData(){
+      this.alimService.incasariSearchAllGet().subscribe(res=>
+        {
+          this.rows = res;
+        })
+  }
+  delete1(j){
+    this.alimService.deleteData(j).subscribe(res=>
+      {
+        this.getData()
+        console.log("delete");
+        // location.reload();
+      })
+
+  }
+  // ----pana aici
 }
 
 

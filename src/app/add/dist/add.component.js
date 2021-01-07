@@ -31,7 +31,7 @@ var AddComponent = /** @class */ (function () {
             sumaTva: 1
         };
         this.form = {};
-        this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA'];
+        this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete'];
         this.sorted = false;
     }
     AddComponent.prototype.exportAsXLSX = function () {
@@ -246,6 +246,21 @@ var AddComponent = /** @class */ (function () {
         // modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
         //   console.log(receivedEntry);
         // })
+    };
+    //incepand de aici
+    AddComponent.prototype.getData = function () {
+        var _this = this;
+        this.alimService.incasariSearchAllGet().subscribe(function (res) {
+            _this.rows = res;
+        });
+    };
+    AddComponent.prototype.delete1 = function (j) {
+        var _this = this;
+        this.alimService.deleteData(j).subscribe(function (res) {
+            _this.getData();
+            console.log("delete");
+            location.reload();
+        });
     };
     __decorate([
         core_1.ViewChild(paginator_1.MatPaginator)
