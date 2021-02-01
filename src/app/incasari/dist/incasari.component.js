@@ -48,10 +48,6 @@ var IncasariComponent = /** @class */ (function () {
         this.alimService.add(f.value).subscribe(function () { });
         // location.reload();
     };
-    IncasariComponent.prototype["delete"] = function (test) {
-        this.alimService.deleteIncasari(test.number).subscribe(function (res) { });
-        // location.reload();
-    };
     IncasariComponent.prototype.applyFilter = function (event) {
         var filterValue = event.target.value;
         this.dataSource.filter = filterValue.trim().toLowerCase();

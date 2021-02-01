@@ -81,10 +81,7 @@ export class IncasariComponent implements OnInit {
     // location.reload();
   }
 
-  delete(test) {
-    this.alimService.deleteIncasari(test.number).subscribe((res) => { })
-    // location.reload();
-  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

@@ -93,15 +93,15 @@
   &nbsp; &nbsp;
   <div class="form-group">
     <label for="sumaTotala1"></label>
-    <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1" placeholder="sumaTotala1" required
-      #sumaTotala1="ngModel" />
+    <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
+      placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
   </div>
 
   &nbsp; &nbsp;
   <div class="form-group">
     <label for="sumaTotala2"></label>
-    <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2" placeholder="sumaTotala2" required
-      #sumaTotala2="ngModel" />
+    <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
+      placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
   </div>
   &nbsp; &nbsp;
   <div class="form-group">
@@ -111,7 +111,7 @@
 
 
 
-<form #b="ngForm" (ngSubmit)="reset()" #b="ngForm" novalidate class="form-inline" >
+<form #b="ngForm" (ngSubmit)="reset()" #b="ngForm" novalidate class="form-inline">
   <div class="form-group">
     <button style="float: center" class="btn btn-outline-danger">Reset</button>
   </div>
@@ -120,8 +120,8 @@
 
 <div class="excel">
   <!-- <a class="button" href="/addincasare"> -->
-    <!-- <button type="button" style="float: left" class="btn btn-outline-success">Adaugati</button> -->
-    <button type="button" style="float: left" class="btn btn-outline-success" (click)="openModal()">Adaugati</button>
+  <!-- <button type="button" style="float: left" class="btn btn-outline-success">Adaugati</button> -->
+  <button type="button" style="float: left" class="btn btn-outline-success" (click)="openModal()">Adaugati</button>
   <!-- </a> -->
 </div>
 
@@ -181,7 +181,14 @@
 
     <!-- Weight Column -->
     <ng-container matColumnDef="number">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Number </th>
+      <th mat-header-cell *matHeaderCellDef> Number
+        <div>
+          <mat-form-field>
+            <input matInput class="form-field" type="text" #myInput [(ngModel)]="num" (input)="SearchNumber()"
+              placeholder="Search number..." />
+          </mat-form-field>
+        </div>
+      </th>
       <td mat-cell *matCellDef="let element"> {{element.number}} </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
@@ -216,10 +223,18 @@
     </ng-container>
 
 
-  <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> delete </th>
-    <td mat-cell *matCellDef="let element"> <a class="btn btn-sm text-while btn-danger" (click)="deleteModal(element.number)">Delete</a></td>
-    <td mat-footer-cell *matFooterCellDef></td>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> delete </th>
+      <td mat-cell *matCellDef="let element"> <a class="btn btn-sm text-while btn-danger"
+          (click)="deleteModal(element.number)">Delete</a></td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> update </th>
+      <td mat-cell *matCellDef="let element"> <a class="btn btn-sm btn-outline-primary"
+          (click)="updateModal(element)">Update</a></td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -238,12 +253,6 @@
 
 
 
-    <form #b="ngForm" (ngSubmit)="delete(b.value)" #b="ngForm" novalidate class="form-inline">
-      <input name="number" id="register-number" type="text" class="form-control" placeholder="Numar" ngModel required>
-      <div class="form-group">
-        <button class="btn btn-outline-danger">Delete</button>
-      </div>
-    </form>
 
 
 

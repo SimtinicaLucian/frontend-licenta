@@ -12,7 +12,7 @@ import { ExcelService } from '../services/excel.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../modal-content/modal-content.component'
 import { ModalDeleteIncasariComponent } from '../modal-delete-incasari/modal-delete-incasari.component';
-
+import { ModalUpdateIncasariComponent } from '../modal-update-incasari/modal-update-incasari.component';
 
 
 
@@ -57,7 +57,7 @@ export class AddComponent implements OnInit {
   }
 
   form: any = {};
-  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete'];
+  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete', 'update'];
   values: PeriodicElement[];
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
@@ -271,9 +271,6 @@ export class AddComponent implements OnInit {
 
 
 
-
-
-
   SearchNumber() {
     this.dataSource = new MatTableDataSource(this.rows)
     this.dataSource.paginator = this.paginator;
@@ -329,6 +326,25 @@ export class AddComponent implements OnInit {
       console.log(result);
       if (result) {
         console.log(result);
+      }
+    });
+  }
+
+  updateModal(j) {
+    console.log(j);
+    const modalRef = this.modalService.open(ModalUpdateIncasariComponent);
+    modalRef.componentInstance.j = j;
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result) {
+        console.log(result);
+        //   this.doctService.deleteData(j).subscribe(res=>
+        // {
+        //     this.getData()
+        //     console.log("delete");
+        //   // location.reload();
+        // })
+
       }
     });
   }

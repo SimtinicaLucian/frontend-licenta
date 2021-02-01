@@ -155,10 +155,10 @@ export class IncasariService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getPetById(number: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
-    public getPetById(number: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
-    public getPetById(number: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Incasari>>>;
-    public getPetById(number: number, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    public getPetById(number: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
+    public getPetById(number: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getPetById(number: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Incasari>>>;
+    public getPetById(number: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (number === null || number === undefined) {
             throw new Error('Required parameter number was null or undefined when calling getPetById.');
