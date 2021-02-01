@@ -29,6 +29,10 @@ import { MatInputModule } from '@angular/material/input';
 import { ExcelService } from './services/excel.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from './modal-content/modal-content.component';
+import { ModalDeleteIncasariComponent } from './modal-delete-incasari/modal-delete-incasari.component';
+import { ModalUpdateIncasariComponent } from './modal-update-incasari/modal-update-incasari.component';
+
+
 
 
 
@@ -43,7 +47,10 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
     IncasariComponent,
     AddComponent,
     AddincasareComponent,
-    ModalContentComponent
+    ModalContentComponent,
+    ModalDeleteIncasariComponent,
+    ModalUpdateIncasariComponent,
+
  
 
 

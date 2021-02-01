@@ -14,6 +14,7 @@ var table_1 = require("@angular/material/table");
 var forms_1 = require("@angular/forms");
 require("rxjs/Rx");
 var modal_content_component_1 = require("../modal-content/modal-content.component");
+var modal_delete_incasari_component_1 = require("../modal-delete-incasari/modal-delete-incasari.component");
 var AddComponent = /** @class */ (function () {
     function AddComponent(modalService, formBuilder, alimService, router, excelService) {
         this.modalService = modalService;
@@ -61,10 +62,6 @@ var AddComponent = /** @class */ (function () {
     };
     AddComponent.prototype.register = function (f) {
         this.alimService.add(f.value).subscribe(function () { });
-        // location.reload();
-    };
-    AddComponent.prototype["delete"] = function (test) {
-        this.alimService.deleteIncasari(test.number).subscribe(function (res) { });
         // location.reload();
     };
     AddComponent.prototype.applyFilter = function (event) {
@@ -197,18 +194,6 @@ var AddComponent = /** @class */ (function () {
             this.ngOnInit();
         }
     };
-    // SearchYear() {
-    //   this.dataSource = new MatTableDataSource(this.rows)
-    //   this.dataSource.paginator = this.paginator;
-    //   this.dataSource.sort = this.sort;
-    //   if (this.year1 != "") {
-    //     this.rows = this.rows.filter(res => {
-    //       return res.data.toLocaleLowerCase().match(this.year1.toLocaleLowerCase());
-    //     });
-    //   } else if (this.year1 == "") {
-    //     this.ngOnInit();
-    //   }
-    // }
     AddComponent.prototype.SearchNumber = function () {
         var _this = this;
         this.dataSource = new table_1.MatTableDataSource(this.rows);
@@ -243,23 +228,15 @@ var AddComponent = /** @class */ (function () {
                 console.log(result);
             }
         });
-        // modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-        //   console.log(receivedEntry);
-        // })
     };
-    //incepand de aici
-    AddComponent.prototype.getData = function () {
-        var _this = this;
-        this.alimService.incasariSearchAllGet().subscribe(function (res) {
-            _this.rows = res;
-        });
-    };
-    AddComponent.prototype.delete1 = function (j) {
-        var _this = this;
-        this.alimService.deleteData(j).subscribe(function (res) {
-            _this.getData();
-            console.log("delete");
-            location.reload();
+    AddComponent.prototype.deleteModal = function (j) {
+        var modalRef = this.modalService.open(modal_delete_incasari_component_1.ModalDeleteIncasariComponent);
+        modalRef.componentInstance.j = j;
+        modalRef.result.then(function (result) {
+            console.log(result);
+            if (result) {
+                console.log(result);
+            }
         });
     };
     __decorate([

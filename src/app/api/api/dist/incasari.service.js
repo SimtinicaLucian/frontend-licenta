@@ -43,115 +43,6 @@ var IncasariService = /** @class */ (function () {
         }
         return false;
     };
-    IncasariService.prototype.updateIncasari = function (body, observe, reportProgress) {
-        if (observe === void 0) { observe = 'body'; }
-        if (reportProgress === void 0) { reportProgress = false; }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling updatePet.');
-        }
-        var headers = this.defaultHeaders;
-        // authentication (petstore_auth) required
-        if (this.configuration.accessToken) {
-            var accessToken = typeof this.configuration.accessToken === 'function'
-                ? this.configuration.accessToken()
-                : this.configuration.accessToken;
-            headers = headers.set('Authorization', 'Bearer ' + accessToken);
-        }
-        // to determine the Accept header
-        var httpHeaderAccepts = [
-            'application/xml',
-            'application/json'
-        ];
-        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-        // to determine the Content-Type header
-        var consumes = [
-            'application/json',
-            'application/xml'
-        ];
-        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-        return this.httpClient.put(this.basePath + "/incasari/update", body, {
-            withCredentials: this.configuration.withCredentials,
-            headers: headers,
-            observe: observe,
-            reportProgress: reportProgress
-        });
-    };
-    IncasariService.prototype.updateNumber = function (number, observe, reportProgress) {
-        if (observe === void 0) { observe = 'body'; }
-        if (reportProgress === void 0) { reportProgress = false; }
-        if (number === null || number === undefined) {
-            throw new Error('Required parameter petId was null or undefined when calling updatePetWithForm.');
-        }
-        var headers = this.defaultHeaders;
-        // authentication (petstore_auth) required
-        if (this.configuration.accessToken) {
-            var accessToken = typeof this.configuration.accessToken === 'function'
-                ? this.configuration.accessToken()
-                : this.configuration.accessToken;
-            headers = headers.set('Authorization', 'Bearer ' + accessToken);
-        }
-        // to determine the Accept header
-        var httpHeaderAccepts = [
-            'application/xml',
-            'application/json'
-        ];
-        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-        // to determine the Content-Type header
-        var consumes = [
-            'application/x-www-form-urlencoded'
-        ];
-        var canConsumeForm = this.canConsumeForm(consumes);
-        var formParams;
-        var useForm = false;
-        var convertFormParamsToString = false;
-        if (useForm) {
-            formParams = new FormData();
-        }
-        else {
-            formParams = new http_1.HttpParams({ encoder: new encoder_1.CustomHttpUrlEncodingCodec() });
-        }
-        return this.httpClient.post(this.basePath + "/incasari/update/number/" + encodeURIComponent(String(number)), convertFormParamsToString ? formParams.toString() : formParams, {
-            withCredentials: this.configuration.withCredentials,
-            headers: headers,
-            observe: observe,
-            reportProgress: reportProgress
-        });
-    };
-    IncasariService.prototype.deleteIncasari = function (number, observe, reportProgress) {
-        if (observe === void 0) { observe = 'body'; }
-        if (reportProgress === void 0) { reportProgress = false; }
-        if (number === null || number === undefined) {
-            throw new Error('Required parameter number was null or undefined when calling deletePet.');
-        }
-        var headers = this.defaultHeaders;
-        // to determine the Accept header
-        var httpHeaderAccepts = [
-            'application/json'
-        ];
-        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-        // to determine the Content-Type header
-        var consumes = [];
-        return this.httpClient["delete"](this.basePath + "/incasari/delete/number/" + encodeURIComponent(String(number)), {
-            withCredentials: this.configuration.withCredentials,
-            headers: headers,
-            observe: observe,
-            reportProgress: reportProgress
-        });
-    };
-    ///////////////////////////////////////////////
-    // modify here
     IncasariService.prototype.deleteData = function (number) {
         var _this = this;
         return this.httpClient["delete"](this.basePath + "/incasari/delete/number/" + encodeURIComponent(String(number)))
@@ -562,6 +453,56 @@ var IncasariService = /** @class */ (function () {
             headers: headers,
             observe: observe,
             reportProgress: reportProgress
+        });
+    };
+    IncasariService.prototype.updateIncasari = function (number, body, observe, reportProgress) {
+        var _this = this;
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        if (number === null || number === undefined) {
+            throw new Error('Required parameter username was null or undefined when calling updateUser.');
+        }
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter petId was null or undefined when calling updatePetWithForm.');
+        }
+        var headers = this.defaultHeaders;
+        // authentication (petstore_auth) required
+        if (this.configuration.accessToken) {
+            var accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/xml',
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [
+            'application/x-www-form-urlencoded'
+        ];
+        var canConsumeForm = this.canConsumeForm(consumes);
+        var formParams;
+        var useForm = false;
+        var convertFormParamsToString = false;
+        if (useForm) {
+            formParams = new FormData();
+        }
+        else {
+            formParams = new http_1.HttpParams({ encoder: new encoder_1.CustomHttpUrlEncodingCodec() });
+        }
+        return this.httpClient.put(this.basePath + "/incasari/update/number/" + encodeURIComponent(String(number)), body, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        }).map(function (res) {
+            _this.rows;
         });
     };
     IncasariService = __decorate([

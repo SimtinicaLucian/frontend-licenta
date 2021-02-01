@@ -1,4 +1,4 @@
-export interface Incasari { 
+export class Incasari { 
     data?: string;
     furnizor?: string;
     number?: number;

@@ -11,6 +11,7 @@ import 'rxjs/Rx';
 import { ExcelService } from '../services/excel.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../modal-content/modal-content.component'
+import { ModalDeleteIncasariComponent } from '../modal-delete-incasari/modal-delete-incasari.component';
 
 
 
@@ -56,7 +57,7 @@ export class AddComponent implements OnInit {
   }
 
   form: any = {};
-  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA','delete'];
+  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete'];
   values: PeriodicElement[];
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
@@ -67,17 +68,17 @@ export class AddComponent implements OnInit {
   datePipe: any;
 
 
-  constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService) {
+  constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService: ExcelService) {
   }
 
-  exportAsXLSX():void {
+  exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.rows, 'incasari_data');
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  
+
   private regForm: any;
   ngOnInit(): void {
 
@@ -116,10 +117,6 @@ export class AddComponent implements OnInit {
     // location.reload();
   }
 
-  delete(test) {
-    this.alimService.deleteIncasari(test.number).subscribe((res) => { })
-    // location.reload();
-  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -180,13 +177,13 @@ export class AddComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
-  //  if (this.rows == "") {
-  //     this.ngOnInit();
-  //   }
+      //  if (this.rows == "") {
+      //     this.ngOnInit();
+      //   }
     })
-      }
-    
-  
+  }
+
+
 
   search7(data2) {
     this.alimService.getByYear(data2.year).subscribe((res) => {
@@ -198,7 +195,7 @@ export class AddComponent implements OnInit {
   }
 
 
-  reset(){
+  reset() {
     this.alimService.incasariSearchAllGet().subscribe((res: any[]) => {
       this.rows = res;
       this.dataSource = new MatTableDataSource(this.rows)
@@ -216,28 +213,28 @@ export class AddComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
-  //  if (this.rows == "") {
-  //     this.ngOnInit();
-  //   }
+      //  if (this.rows == "") {
+      //     this.ngOnInit();
+      //   }
     })
-      }
+  }
 
 
-   searchByFurnizorAndDateAndSum(h: NgForm) {
-      this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe((res) => {
+  searchByFurnizorAndDateAndSum(h: NgForm) {
+    this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe((res) => {
       this.rows = res;
 
 
-          // console.log(res);
+      // console.log(res);
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
 
-    
 
-        })
-          }
+
+    })
+  }
 
 
 
@@ -275,21 +272,6 @@ export class AddComponent implements OnInit {
 
 
 
-  // SearchYear() {
-  //   this.dataSource = new MatTableDataSource(this.rows)
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-
-  //   if (this.year1 != "") {
-  //     this.rows = this.rows.filter(res => {
-  //       return res.data.toLocaleLowerCase().match(this.year1.toLocaleLowerCase());
-  //     });
-
-  //   } else if (this.year1 == "") {
-  //     this.ngOnInit();
-  //   }
-  // }
-
 
 
   SearchNumber() {
@@ -310,7 +292,7 @@ export class AddComponent implements OnInit {
 
 
 
-  
+
 
   getTotalCostTotal() {
     return this.rows.map(t => t.sumaTotala).reduce((acc, value) => acc + value, 0);
@@ -337,29 +319,22 @@ export class AddComponent implements OnInit {
         console.log(result);
       }
     });
-    // modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-    //   console.log(receivedEntry);
-    // })
   }
 
 
-//incepand de aici
-  getData(){
-      this.alimService.incasariSearchAllGet().subscribe(res=>
-        {
-          this.rows = res;
-        })
+  deleteModal(j) {
+    const modalRef = this.modalService.open(ModalDeleteIncasariComponent);
+    modalRef.componentInstance.j = j;
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result) {
+        console.log(result);
+      }
+    });
   }
-  delete1(j){
-    this.alimService.deleteData(j).subscribe(res=>
-      {
-        this.getData()
-        console.log("delete");
-        // location.reload();
-      })
 
-  }
-  // ----pana aici
+
+
 }
 
 

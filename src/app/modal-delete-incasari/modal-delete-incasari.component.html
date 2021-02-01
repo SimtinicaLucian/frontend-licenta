@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Delete</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form #j="ngForm" (ngSubmit)="deleteIncasari(j)" #j="ngForm" novalidate>
+       
+
+
+
+        <!-- <div class="modal-footer"> -->
+        <div class="form-group"> 
+          &nbsp; &nbsp;
+            <button  class="btn btn-secondary" aria-label="Close" (click)="activeModal.dismiss('Cross click')">Close</button>
+            &nbsp;
+            <button  class="btn btn-primary">Delete</button>
+          </div>
+    </form>
+
+
+
+    <!-- <a class="button" href="/add">
+        <button type="button" class="btn btn-outline-danger">Inapoi</button>
+      </a> -->
+
+</div>
