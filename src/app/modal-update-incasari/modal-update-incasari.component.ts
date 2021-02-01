@@ -29,8 +29,8 @@ export class ModalUpdateIncasariComponent implements OnInit {
   }
 
   updateIncasari(j, f: NgForm) {
-    console.log(this.j.number);
-    this.incasariService.updateIncasari(this.j.number, f.value).subscribe(() => { })
+    console.log(this.j.id);
+    this.incasariService.updateIncasari(this.j.id, f.value).subscribe(() => { })
     // location.reload();
   }
 }

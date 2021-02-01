@@ -455,11 +455,11 @@ var IncasariService = /** @class */ (function () {
             reportProgress: reportProgress
         });
     };
-    IncasariService.prototype.updateIncasari = function (number, body, observe, reportProgress) {
+    IncasariService.prototype.updateIncasari = function (id, body, observe, reportProgress) {
         var _this = this;
         if (observe === void 0) { observe = 'body'; }
         if (reportProgress === void 0) { reportProgress = false; }
-        if (number === null || number === undefined) {
+        if (id === null || id === undefined) {
             throw new Error('Required parameter username was null or undefined when calling updateUser.');
         }
         if (body === null || body === undefined) {
@@ -496,7 +496,7 @@ var IncasariService = /** @class */ (function () {
         else {
             formParams = new http_1.HttpParams({ encoder: new encoder_1.CustomHttpUrlEncodingCodec() });
         }
-        return this.httpClient.put(this.basePath + "/incasari/update/number/" + encodeURIComponent(String(number)), body, {
+        return this.httpClient.put(this.basePath + "/incasari/update/" + encodeURIComponent(String(id)), body, {
             withCredentials: this.configuration.withCredentials,
             headers: headers,
             observe: observe,

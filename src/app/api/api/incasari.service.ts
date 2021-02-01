@@ -761,18 +761,18 @@ export class IncasariService {
 
 
     /**
- * Updates a pet in the store with form data
- * @param number id that need to be updated
+     * Updates a pet in the store with form data
+     * @param id id that need to be updated
 *      @param body Pet object that needs to be added to the store
- * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
- * @param reportProgress flag to report request and response progress.
- */
-    public updateIncasari(number: string, body: Incasari, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateIncasari(number: string, body: Incasari, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateIncasari(number: string, body: Incasari, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateIncasari(number: string, body: Incasari, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateIncasari(id: string, body: Incasari, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateIncasari(id: string, body: Incasari, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateIncasari(id: string, body: Incasari, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateIncasari(id: string, body: Incasari, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (number === null || number === undefined) {
+        if (id === null || id === undefined) {
             throw new Error('Required parameter username was null or undefined when calling updateUser.');
         }
 
@@ -815,22 +815,23 @@ export class IncasariService {
         if (useForm) {
             formParams = new FormData();
         } else {
-            formParams = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
+            formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
         }
 
 
 
-        return this.httpClient.put<any>(`${this.basePath}/incasari/update/number/${encodeURIComponent(String(number))}`,
-            body,
+        return this.httpClient.put<any>(`${this.basePath}/incasari/update/${encodeURIComponent(String(id))}`,
+        body,
+        {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        }
+        ).map(res=>
             {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        ).map(res => {
-            this.rows;
-        })
+                this.rows;
+            })
     }
 
 
