@@ -22,13 +22,13 @@
 <form e="form" (ngSubmit)="searchByMonthAndYear(e)" #e="ngForm" novalidate class="form-inline">
   <div class="form-group">
     <label for="month1"></label>
-    <input type="text" class="form-control" name="month1" [(ngModel)]="form.month1" placeholder="month1" required
+    <input type="text" class="form-control" name="month1" [(ngModel)]="form.month1" placeholder="ll" required
       #month="ngModel" />
   </div>
   &nbsp; &nbsp;
   <div class="form-group">
     <label for="year1"></label>
-    <input type="text" class="form-control" name="year1" [(ngModel)]="form.year1" placeholder="year1" required
+    <input type="text" class="form-control" name="year1" [(ngModel)]="form.year1" placeholder="yyyy" required
       #year="ngModel" />
   </div>
   &nbsp; &nbsp;
@@ -74,19 +74,19 @@
 <form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
   <div class="form-group">
     <label for="furnizor"></label>
-    <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" placeholder="furnizor" required
+    <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" placeholder="Furnizor" required
       #furnizor="ngModel" />
   </div>
   &nbsp; &nbsp;
   <div class="form-group">
     <label for="data1"></label>
-    <input type="text" class="form-control" name="data1" [(ngModel)]="form.data1" placeholder="data1" required
+    <input type="text" class="form-control" name="data1" [(ngModel)]="form.data1" placeholder="yyyy/ll/dd" required
       #data1="ngModel" />
   </div>
   &nbsp; &nbsp;
   <div class="form-group">
     <label for="data2"></label>
-    <input type="text" class="form-control" name="data2" [(ngModel)]="form.data2" placeholder="data2" required
+    <input type="text" class="form-control" name="data2" [(ngModel)]="form.data2" placeholder="yyyy/ll/dd" required
       #data2="ngModel" />
   </div>
 
@@ -105,41 +105,64 @@
   </div>
   &nbsp; &nbsp;
   <div class="form-group">
-    <button class="btn btn-primary btn-block">Month & year</button>
+    <button class="btn btn-primary btn-block">Cauta</button>
   </div>
-</form>
+  &nbsp; &nbsp;
 
-
-
-<form #b="ngForm" (ngSubmit)="reset()" #b="ngForm" novalidate class="form-inline">
   <div class="form-group">
-    <button style="float: center" class="btn btn-outline-danger">Reset</button>
+    <button type = "reset" class="btn btn-primary btn-block">Reset</button>
+  </div>
+
+  &nbsp; &nbsp;
+  <div class="form-group">
+    <input type="image" (click)="exportAsXLSX()" title="Export to XLS" src="/assets/images/excel.PNG"
+      style="border-width:0px;">
   </div>
 </form>
 
 
-<div class="excel">
-  <!-- <a class="button" href="/addincasare"> -->
-  <!-- <button type="button" style="float: left" class="btn btn-outline-success">Adaugati</button> -->
+
+
+
+
+<!-- <div class="excel">
+  <input type="button" value="Reset table" class="btn btn-success" (click)="reset()" style="float: right;">
+</div> -->
+
+
+
+
+<!-- <div class="excel">
   <button type="button" style="float: left" class="btn btn-outline-success" (click)="openModal()">Adaugati</button>
-  <!-- </a> -->
-</div>
+</div> -->
 
 
 
 
-
-
-
-
-<!-- <button (click)="exportAsXLSX()">
-  <i class="fa fa-file-excel-o fa-2x" aria-hidden="true" style="font-size:30px;color:blue"></i></button> -->
-<div class="excel">
+<!-- <div class="excel">
   <input type="button" value="Download Excel" class="btn btn-success" (click)="exportAsXLSX()" style="float: right;">
+</div> -->
+
+
+
+
+<div class="excel">
+<button mat-raised-button style="float: left" (click)="openModal()">
+  <mat-icon>add</mat-icon>Create
+</button>
 </div>
+
+<div class="excel">
+  <button mat-raised-button style="float: right" (click)="reset()">
+    <mat-icon>refresh</mat-icon>Refresh
+  </button>
+  </div>
+
+
+
+
 
 <div class="mat-elevation-z8">
-  <!-- <div class= "example-container mat-elevation-z8"> -->
 
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="id">
@@ -382,6 +405,10 @@
         </form>
       </div>
     </div>
+
+
+
+
 
 
     <!-- <button (click)="openModal()">open the modal</button> -->

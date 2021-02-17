@@ -202,7 +202,14 @@ export class AddComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
+  }
 
+  resetRefresh(){
+    this.alimService.incasariSearchAllGet().subscribe((res: any[]) => {
+      this.rows = res;
+    })
+    
+    location.reload();
   }
 
   searchByMonthAndYear(e: NgForm) {

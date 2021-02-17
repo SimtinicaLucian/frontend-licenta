@@ -36,6 +36,10 @@ var input_1 = require("@angular/material/input");
 var excel_service_1 = require("./services/excel.service");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var modal_content_component_1 = require("./modal-content/modal-content.component");
+var modal_delete_incasari_component_1 = require("./modal-delete-incasari/modal-delete-incasari.component");
+var modal_update_incasari_component_1 = require("./modal-update-incasari/modal-update-incasari.component");
+var ng2_charts_1 = require("ng2-charts");
+var icon_1 = require("@angular/material/icon");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -49,6 +53,8 @@ var AppModule = /** @class */ (function () {
                 add_component_1.AddComponent,
                 addincasare_component_1.AddincasareComponent,
                 modal_content_component_1.ModalContentComponent,
+                modal_delete_incasari_component_1.ModalDeleteIncasariComponent,
+                modal_update_incasari_component_1.ModalUpdateIncasariComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [
@@ -71,7 +77,9 @@ var AppModule = /** @class */ (function () {
                 form_field_1.MatFormFieldModule,
                 checkbox_1.MatCheckboxModule,
                 input_1.MatInputModule,
-                ng_bootstrap_1.NgbModule
+                ng_bootstrap_1.NgbModule,
+                ng2_charts_1.ChartsModule,
+                icon_1.MatIconModule,
             ],
             entryComponents: [app_component_1.AppComponent],
             bootstrap: [app_component_1.AppComponent],

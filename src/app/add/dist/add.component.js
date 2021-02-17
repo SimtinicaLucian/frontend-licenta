@@ -144,6 +144,13 @@ var AddComponent = /** @class */ (function () {
             _this.dataSource.sort = _this.sort;
         });
     };
+    AddComponent.prototype.resetRefresh = function () {
+        var _this = this;
+        this.alimService.incasariSearchAllGet().subscribe(function (res) {
+            _this.rows = res;
+        });
+        location.reload();
+    };
     AddComponent.prototype.searchByMonthAndYear = function (e) {
         var _this = this;
         this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe(function (res) {

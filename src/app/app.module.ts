@@ -31,6 +31,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { ModalDeleteIncasariComponent } from './modal-delete-incasari/modal-delete-incasari.component';
 import { ModalUpdateIncasariComponent } from './modal-update-incasari/modal-update-incasari.component';
+import { ChartsModule } from 'ng2-charts';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 
@@ -51,11 +54,14 @@ import { ModalUpdateIncasariComponent } from './modal-update-incasari/modal-upda
     ModalDeleteIncasariComponent,
     ModalUpdateIncasariComponent,
 
+  ],
+
  
 
 
-  ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -77,7 +83,12 @@ import { ModalUpdateIncasariComponent } from './modal-update-incasari/modal-upda
     MatFormFieldModule,
     MatCheckboxModule,
     MatInputModule,
-    NgbModule
+    NgbModule,
+    ChartsModule,
+    MatIconModule,
+    
+   
+
     
 
 
