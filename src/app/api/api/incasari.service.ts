@@ -52,7 +52,7 @@ export class IncasariService {
         return false;
     }
 
-
+    
     deleteData(number) {
         return this.httpClient.delete(`${this.basePath}/incasari/delete/number/${encodeURIComponent(String(number))}`)
             .map(res => {

@@ -29,7 +29,7 @@ var ModalUpdateIncasariComponent = /** @class */ (function () {
     ModalUpdateIncasariComponent.prototype.updateIncasari = function (j, f) {
         console.log(this.j.id);
         this.incasariService.updateIncasari(this.j.id, f.value).subscribe(function () { });
-        // location.reload();
+        location.reload();
     };
     ModalUpdateIncasariComponent = __decorate([
         core_1.Component({

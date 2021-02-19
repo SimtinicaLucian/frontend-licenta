@@ -12,6 +12,8 @@ export class ModalDeleteIncasariComponent implements OnInit {
   j: string;
 
 
+
+
   constructor(public activeModal: NgbActiveModal, public incasariService: IncasariService) { }
 
   ngOnInit(): void {
@@ -23,12 +25,11 @@ export class ModalDeleteIncasariComponent implements OnInit {
     })
   }
 
-  deleteIncasari(number){
+  deleteIncasari(number) {
     console.log(this.j);
-  this.incasariService.deleteData(this.j).subscribe(res=>
-    {
+    this.incasariService.deleteData(this.j).subscribe(res => {
       this.getData()
-     
+
       console.log("delete");
       location.reload();
     })

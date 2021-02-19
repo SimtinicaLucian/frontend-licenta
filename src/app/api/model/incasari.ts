@@ -1,4 +1,5 @@
 export class Incasari { 
+    id?: string;
     data?: string;
     furnizor?: string;
     number?: number;

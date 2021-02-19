@@ -45,6 +45,7 @@ export class AddComponent implements OnInit {
 
 
 
+
   public user = {
     data: '',
     furnizor: '',
@@ -55,6 +56,8 @@ export class AddComponent implements OnInit {
     sumaTva: 1,
 
   }
+
+  id: string;
 
   form: any = {};
   displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete', 'update'];
@@ -362,7 +365,7 @@ export class AddComponent implements OnInit {
 
 
 export interface PeriodicElement {
-  id: number;
+  id: string;
   data: string;
   furnizor: string;
   number: number;
