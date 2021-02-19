@@ -14,13 +14,39 @@ var ModalContentComponent = /** @class */ (function () {
         this.alimService = alimService;
         this.passEntry = new core_1.EventEmitter();
         this.form = {};
+        this.isSuccessful = false;
+        this.isaddFailed = false;
+        this.errorMessage = '';
     }
     ModalContentComponent.prototype.ngOnInit = function () {
         console.log(this.user);
     };
+    // register(f: NgForm) {
+    //   this.alimService.add(f.value).subscribe(() => { })
+    //   location.reload();
+    // }
     ModalContentComponent.prototype.register = function (f) {
-        this.alimService.add(f.value).subscribe(function () { });
-        location.reload();
+        var _this = this;
+        this.alimService.add(f.value).subscribe(function (data) {
+            console.log(data);
+            if (data) {
+                _this.isSuccessful = true;
+                _this.isaddFailed = false;
+                console.log("Succesful?: " + _this.isSuccessful);
+                console.log("Failed?: " + _this.isaddFailed);
+                // window.alert("You was successfully log-in!");
+                window.location.reload();
+            }
+            else {
+                _this.isSuccessful = false;
+                _this.isaddFailed = true;
+            }
+        }, function (err) {
+            _this.errorMessage = err.error.message;
+            _this.isaddFailed = true;
+            console.log("Succesful?: " + _this.errorMessage);
+            console.log("Failed?: " + _this.isaddFailed);
+        });
     };
     __decorate([
         core_1.Input()
