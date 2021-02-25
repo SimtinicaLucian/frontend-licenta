@@ -352,7 +352,7 @@ export class AddincasareComponent implements OnInit {
   }
   delete1(j){
 
-        this.alimService.deleteData(j).subscribe(res=>
+        this.alimService.deleteId(j).subscribe(res=>
       {
           this.getData()
           console.log("delete");

@@ -33,6 +33,9 @@ import { ModalDeleteIncasariComponent } from './modal-delete-incasari/modal-dele
 import { ModalUpdateIncasariComponent } from './modal-update-incasari/modal-update-incasari.component';
 import { ChartsModule } from 'ng2-charts';
 import {MatIconModule} from '@angular/material/icon';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -86,7 +89,7 @@ import {MatIconModule} from '@angular/material/icon';
     NgbModule,
     ChartsModule,
     MatIconModule,
-    
+    MatMomentDateModule
    
 
     
@@ -97,7 +100,7 @@ import {MatIconModule} from '@angular/material/icon';
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [ExcelService
+  providers: [ExcelService, MatDatepickerModule, DatePipe 
     
   ]
 })

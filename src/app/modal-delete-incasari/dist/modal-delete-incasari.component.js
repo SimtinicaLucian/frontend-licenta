@@ -21,10 +21,10 @@ var ModalDeleteIncasariComponent = /** @class */ (function () {
             _this.rows = res;
         });
     };
-    ModalDeleteIncasariComponent.prototype.deleteIncasari = function (number) {
+    ModalDeleteIncasariComponent.prototype.deleteIncasari = function (id) {
         var _this = this;
         console.log(this.j);
-        this.incasariService.deleteData(this.j).subscribe(function (res) {
+        this.incasariService.deleteId(this.j).subscribe(function (res) {
             _this.getData();
             console.log("delete");
             location.reload();

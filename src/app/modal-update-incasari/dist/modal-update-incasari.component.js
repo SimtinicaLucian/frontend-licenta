@@ -13,6 +13,9 @@ var ModalUpdateIncasariComponent = /** @class */ (function () {
         this.activeModal = activeModal;
         this.incasariService = incasariService;
         this.form = {};
+        this.isSuccessful = false;
+        this.isaddFailed = false;
+        this.errorMessage = '';
     }
     ModalUpdateIncasariComponent.prototype.ngOnInit = function () {
     };
@@ -26,10 +29,34 @@ var ModalUpdateIncasariComponent = /** @class */ (function () {
         this.activeModal.dismiss('Cross click');
         location.reload();
     };
+    // updateIncasari(j, f: NgForm) {
+    //   console.log(this.j.id);
+    //   this.incasariService.updateIncasari(this.j.id, f.value).subscribe(() => { })
+    //   location.reload();
+    // }
     ModalUpdateIncasariComponent.prototype.updateIncasari = function (j, f) {
+        var _this = this;
         console.log(this.j.id);
-        this.incasariService.updateIncasari(this.j.id, f.value).subscribe(function () { });
-        location.reload();
+        this.incasariService.updateIncasari(this.j.id, f.value).subscribe(function (value) {
+            console.log(f.value);
+            if (f.value) {
+                _this.isSuccessful = true;
+                _this.isaddFailed = false;
+                console.log("Succesful?: " + _this.isSuccessful);
+                console.log("Failed?: " + _this.isaddFailed);
+                // window.alert("You was successfully log-in!");
+                window.location.reload();
+            }
+            else {
+                _this.isSuccessful = false;
+                _this.isaddFailed = true;
+            }
+        }, function (err) {
+            _this.errorMessage = err.error.message;
+            _this.isaddFailed = true;
+            console.log("Succesful?: " + _this.errorMessage);
+            console.log("Failed?: " + _this.isaddFailed);
+        });
     };
     ModalUpdateIncasariComponent = __decorate([
         core_1.Component({

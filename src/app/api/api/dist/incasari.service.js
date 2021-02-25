@@ -43,13 +43,6 @@ var IncasariService = /** @class */ (function () {
         }
         return false;
     };
-    IncasariService.prototype.deleteData = function (number) {
-        var _this = this;
-        return this.httpClient["delete"](this.basePath + "/incasari/delete/number/" + encodeURIComponent(String(number)))
-            .map(function (res) {
-            _this.rows;
-        });
-    };
     IncasariService.prototype.add = function (body, observe, reportProgress) {
         if (observe === void 0) { observe = 'body'; }
         if (reportProgress === void 0) { reportProgress = false; }
@@ -502,6 +495,13 @@ var IncasariService = /** @class */ (function () {
             observe: observe,
             reportProgress: reportProgress
         }).map(function (res) {
+            _this.rows;
+        });
+    };
+    IncasariService.prototype.deleteId = function (id) {
+        var _this = this;
+        return this.httpClient["delete"](this.basePath + "/incasari/delete/" + encodeURIComponent(String(id)))
+            .map(function (res) {
             _this.rows;
         });
     };

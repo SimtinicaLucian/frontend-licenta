@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/Rx';
 import { ExcelService } from '../services/excel.service';
@@ -13,13 +13,42 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../modal-content/modal-content.component'
 import { ModalDeleteIncasariComponent } from '../modal-delete-incasari/modal-delete-incasari.component';
 import { ModalUpdateIncasariComponent } from '../modal-update-incasari/modal-update-incasari.component';
+import * as _moment from 'moment';
 
+import {default as _rollupMoment} from 'moment'; 
+
+import { MAT_DATE_FORMATS, DateAdapter,MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
+
+
+
+
+
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'YYYY.MM.DD',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
 
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -71,7 +100,7 @@ export class AddComponent implements OnInit {
   datePipe: any;
 
 
-  constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService: ExcelService) {
+  constructor(public datePip: DatePipe, public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService: ExcelService) {
   }
 
   exportAsXLSX(): void {
@@ -360,12 +389,21 @@ export class AddComponent implements OnInit {
   }
 
 
+  date = {
+    first: this.datePip.transform(new Date(), 'yyyy.MM.dd'),
+    second: this.datePip.transform(new Date(), 'yyyy.MM.dd')
+  }
+
+
+
+
+
 
 }
 
 
 export interface PeriodicElement {
-  id: string;
+  id: number;
   data: string;
   furnizor: string;
   number: number;

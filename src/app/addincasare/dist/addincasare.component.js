@@ -257,7 +257,7 @@ var AddincasareComponent = /** @class */ (function () {
     };
     AddincasareComponent.prototype.delete1 = function (j) {
         var _this = this;
-        this.alimService.deleteData(j).subscribe(function (res) {
+        this.alimService.deleteId(j).subscribe(function (res) {
             _this.getData();
             console.log("delete");
             // location.reload();

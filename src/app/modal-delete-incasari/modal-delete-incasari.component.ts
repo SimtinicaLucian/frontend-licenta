@@ -9,7 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalDeleteIncasariComponent implements OnInit {
   rows: any;
-  j: string;
+  j: any;
 
 
 
@@ -25,9 +25,9 @@ export class ModalDeleteIncasariComponent implements OnInit {
     })
   }
 
-  deleteIncasari(number) {
+  deleteIncasari(id) {
     console.log(this.j);
-    this.incasariService.deleteData(this.j).subscribe(res => {
+    this.incasariService.deleteId(this.j).subscribe(res => {
       this.getData()
 
       console.log("delete");

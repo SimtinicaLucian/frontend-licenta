@@ -53,13 +53,6 @@ export class IncasariService {
     }
 
     
-    deleteData(number) {
-        return this.httpClient.delete(`${this.basePath}/incasari/delete/number/${encodeURIComponent(String(number))}`)
-            .map(res => {
-                this.rows;
-            })
-    }
-
 
 
     /**
@@ -767,10 +760,10 @@ export class IncasariService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateIncasari(id: string, body: Incasari, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateIncasari(id: string, body: Incasari, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateIncasari(id: string, body: Incasari, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateIncasari(id: string, body: Incasari, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateIncasari(id: number, body: Incasari, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateIncasari(id: number, body: Incasari, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateIncasari(id: number, body: Incasari, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateIncasari(id: number, body: Incasari, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
             throw new Error('Required parameter username was null or undefined when calling updateUser.');
@@ -830,6 +823,14 @@ export class IncasariService {
         }
         ).map(res=>
             {
+                this.rows;
+            })
+    }
+
+
+    deleteId(id) {
+        return this.httpClient.delete(`${this.basePath}/incasari/delete/${encodeURIComponent(String(id))}`)
+            .map(res => {
                 this.rows;
             })
     }

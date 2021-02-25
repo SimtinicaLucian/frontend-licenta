@@ -93,3 +93,24 @@ table {
 .center {
   text-align: center;
 }
+
+span > i {
+  color: white;
+}
+
+span > input {
+  background: none;
+  color: white;
+  padding: 0;
+  border: 0;
+}
+
+label {
+  display: block;
+  font: 1rem "Fira Sans", sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}

@@ -40,6 +40,8 @@ var modal_delete_incasari_component_1 = require("./modal-delete-incasari/modal-d
 var modal_update_incasari_component_1 = require("./modal-update-incasari/modal-update-incasari.component");
 var ng2_charts_1 = require("ng2-charts");
 var icon_1 = require("@angular/material/icon");
+var material_moment_adapter_1 = require("@angular/material-moment-adapter");
+var common_1 = require("@angular/common");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -80,10 +82,11 @@ var AppModule = /** @class */ (function () {
                 ng_bootstrap_1.NgbModule,
                 ng2_charts_1.ChartsModule,
                 icon_1.MatIconModule,
+                material_moment_adapter_1.MatMomentDateModule
             ],
             entryComponents: [app_component_1.AppComponent],
             bootstrap: [app_component_1.AppComponent],
-            providers: [excel_service_1.ExcelService
+            providers: [excel_service_1.ExcelService, datepicker_1.MatDatepickerModule, common_1.DatePipe
             ]
         })
     ], AppModule);

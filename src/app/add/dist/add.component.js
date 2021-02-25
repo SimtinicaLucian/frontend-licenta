@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.AddComponent = void 0;
+exports.AddComponent = exports.MY_FORMATS = void 0;
 var core_1 = require("@angular/core");
 var paginator_1 = require("@angular/material/paginator");
 var sort_1 = require("@angular/material/sort");
@@ -16,8 +16,25 @@ require("rxjs/Rx");
 var modal_content_component_1 = require("../modal-content/modal-content.component");
 var modal_delete_incasari_component_1 = require("../modal-delete-incasari/modal-delete-incasari.component");
 var modal_update_incasari_component_1 = require("../modal-update-incasari/modal-update-incasari.component");
+var _moment = require("moment");
+var moment_1 = require("moment");
+var core_2 = require("@angular/material/core");
+var material_moment_adapter_1 = require("@angular/material-moment-adapter");
+var moment = moment_1["default"] || _moment;
+exports.MY_FORMATS = {
+    parse: {
+        dateInput: 'LL'
+    },
+    display: {
+        dateInput: 'YYYY.MM.DD',
+        monthYearLabel: 'YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'YYYY'
+    }
+};
 var AddComponent = /** @class */ (function () {
-    function AddComponent(modalService, formBuilder, alimService, router, excelService) {
+    function AddComponent(datePip, modalService, formBuilder, alimService, router, excelService) {
+        this.datePip = datePip;
         this.modalService = modalService;
         this.formBuilder = formBuilder;
         this.alimService = alimService;
@@ -35,6 +52,10 @@ var AddComponent = /** @class */ (function () {
         this.form = {};
         this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete', 'update'];
         this.sorted = false;
+        this.date = {
+            first: this.datePip.transform(new Date(), 'yyyy.MM.dd'),
+            second: this.datePip.transform(new Date(), 'yyyy.MM.dd')
+        };
     }
     AddComponent.prototype.exportAsXLSX = function () {
         this.excelService.exportAsExcelFile(this.rows, 'incasari_data');
@@ -275,6 +296,10 @@ var AddComponent = /** @class */ (function () {
             selector: 'app-add',
             templateUrl: './add.component.html',
             styleUrls: ['./add.component.scss'],
+            providers: [
+                { provide: core_2.DateAdapter, useClass: material_moment_adapter_1.MomentDateAdapter, deps: [core_2.MAT_DATE_LOCALE] },
+                { provide: core_2.MAT_DATE_FORMATS, useValue: exports.MY_FORMATS },
+            ],
             encapsulation: core_1.ViewEncapsulation.None
         })
     ], AddComponent);
