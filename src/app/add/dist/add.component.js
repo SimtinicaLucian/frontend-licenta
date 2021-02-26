@@ -33,6 +33,7 @@ exports.MY_FORMATS = {
     }
 };
 var AddComponent = /** @class */ (function () {
+    //
     function AddComponent(datePip, modalService, formBuilder, alimService, router, excelService) {
         this.datePip = datePip;
         this.modalService = modalService;
@@ -52,6 +53,7 @@ var AddComponent = /** @class */ (function () {
         this.form = {};
         this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete', 'update'];
         this.sorted = false;
+        this.toppings = new forms_1.FormControl();
         this.date = {
             first: this.datePip.transform(new Date(), 'yyyy.MM.dd'),
             second: this.datePip.transform(new Date(), 'yyyy.MM.dd')

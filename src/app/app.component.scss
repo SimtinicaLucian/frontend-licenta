@@ -60,3 +60,13 @@
   color: #555;
 }
 
+.custom {
+    color: #D3D3D3 !important;
+    position: relative;
+    align-self: start;
+}
+
+.custom:hover {
+    color: white !important;
+}
+

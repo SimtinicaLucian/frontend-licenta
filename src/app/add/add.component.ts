@@ -26,6 +26,8 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 
 
+
+
 const moment = _rollupMoment || _moment;
 
 export const MY_FORMATS = {
@@ -39,6 +41,8 @@ export const MY_FORMATS = {
     monthYearA11yLabel: 'YYYY',
   },
 };
+
+
 
 
 @Component({
@@ -99,6 +103,14 @@ export class AddComponent implements OnInit {
   publishDate: any;
   datePipe: any;
 
+
+  selectedValue : string;
+  toppings = new FormControl();
+
+
+//
+
+  
 
   constructor(public datePip: DatePipe, public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService: ExcelService) {
   }
@@ -393,11 +405,6 @@ export class AddComponent implements OnInit {
     first: this.datePip.transform(new Date(), 'yyyy.MM.dd'),
     second: this.datePip.transform(new Date(), 'yyyy.MM.dd')
   }
-
-
-
-
-
 
 }
 

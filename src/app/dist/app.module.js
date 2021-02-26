@@ -42,6 +42,7 @@ var ng2_charts_1 = require("ng2-charts");
 var icon_1 = require("@angular/material/icon");
 var material_moment_adapter_1 = require("@angular/material-moment-adapter");
 var common_1 = require("@angular/common");
+var list_1 = require("@angular/material/list");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -82,7 +83,8 @@ var AppModule = /** @class */ (function () {
                 ng_bootstrap_1.NgbModule,
                 ng2_charts_1.ChartsModule,
                 icon_1.MatIconModule,
-                material_moment_adapter_1.MatMomentDateModule
+                material_moment_adapter_1.MatMomentDateModule,
+                list_1.MatListModule
             ],
             entryComponents: [app_component_1.AppComponent],
             bootstrap: [app_component_1.AppComponent],

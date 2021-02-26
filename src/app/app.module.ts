@@ -35,6 +35,9 @@ import { ChartsModule } from 'ng2-charts';
 import {MatIconModule} from '@angular/material/icon';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { DatePipe } from '@angular/common';
+import { MatListModule } from '@angular/material/list';
+
+
 
 
 
@@ -89,7 +92,8 @@ import { DatePipe } from '@angular/common';
     NgbModule,
     ChartsModule,
     MatIconModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatListModule
    
 
     
@@ -100,7 +104,7 @@ import { DatePipe } from '@angular/common';
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [ExcelService, MatDatepickerModule, DatePipe 
+  providers: [ExcelService, MatDatepickerModule, DatePipe
     
   ]
 })

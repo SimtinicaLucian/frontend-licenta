@@ -26,6 +26,7 @@
     "@angular/platform-browser": "~9.1.0",
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
+    "@material/select": "^10.0.0",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
     "@swimlane/ngx-datatable": "^16.1.0",
     "bootstrap": "^5.0.0-beta1",
