@@ -105,6 +105,7 @@ export class AddComponent implements OnInit {
 
 
   selectedValue : string;
+  selectedFurnizor: string;
   toppings = new FormControl();
 
 

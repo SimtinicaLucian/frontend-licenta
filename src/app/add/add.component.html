@@ -450,40 +450,36 @@
     </div>
 
 
-<form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
-    <div class="form-group">
-      <label for="college">Select:</label>
-      <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" name="college_name"
-        [formControl]="toppings" required multiple>
-        <mat-option value="furnizor">Furnizor</mat-option>
-        <mat-option value="data1">Data1</mat-option>
-        <mat-option value="data2">Data2</mat-option>
-        <mat-option value="sumaTotala1">sumaTotala1</mat-option>
-        <mat-option value="sumaTotala2">sumaTotala2</mat-option>
-      </mat-select>
-    </div>
-    <div class="form-group" *ngIf="selectedValue">
-      
-        <div class="form-group" *ngIf="selectedValue == 'sumaTotala1'">
-          <label for="sumaTotala1"></label>
-          <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
-            placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
+    <!-- <form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
+      <div class="form-group">
+        <label for="college">Select:</label>
+        <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" 
+          name="college_name" required multiple>
+          <mat-option value="furnizor">Furnizor</mat-option>
+          <mat-option value="data1">Data1</mat-option>
+          <mat-option value="data2">Data2</mat-option>
+          <mat-option value="sumaTotala1">sumaTotala1</mat-option>
+          <mat-option value="sumaTotala2">sumaTotala2</mat-option>
+        </mat-select>
+      </div>
+      <div class="form-group" *ngIf="selectedValue">
+        <div class="form-group" *ngIf="selectedFurnizor">
+
+
+
+          <div class="form-group" *ngIf="selectedValue == 'sumaTotala1' && selectedFurnizor == 'sumaTotala2'">
+            <label for="sumaTotala1"></label>
+            <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
+              placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
+          </div>
+          <div class="form-group">
+            <label for="sumaTotala1"></label>
+            <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
+              placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
+          </div>
         </div>
-
-        <div class="form-group" *ngIf= "selectedValue == 'sumaTotala2' || selectedValue ==  'sumaTotala1'">
-          <label for="sumaTotala1"></label>
-          <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
-            placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
-
-          <label for="sumaTotala2"></label>
-          <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
-            placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
-        </div>
-    
-    </div>
-
-
-    </form>
+      </div>
+    </form> -->
 
 
 
