@@ -1,0 +1,64 @@
+  <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="card card0 border-0">
+      <div class="row d-flex">
+        
+        <div class="col-lg-6">
+          <div class="card2 card border-0 px-4 py-5">
+            <div class="row mb-4 px-3">
+              <h6 class="mb-0 mr-4 mt-2">Sign in with</h6>
+              <div class="facebook text-center mr-3">
+                <div class="fa fa-facebook"></div>
+              </div>
+              <div class="twitter text-center mr-3">
+                <div class="fa fa-twitter"></div>
+              </div>
+              <div class="linkedin text-center mr-3">
+                <div class="fa fa-linkedin"></div>
+              </div>
+            </div>
+            <div class="row px-3 mb-4">
+              <div class="line"></div> <small class="or text-center">Or</small>
+              <div class="line"></div>
+            </div>
+            <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <div class="row px-3"> <label class="mb-1">
+                  <h6 class="mb-0 text-sm">Username</h6>
+                </label> <input class="mb-4" type="text" name="username" [(ngModel)]="form.username" required
+                  #username="ngModel" placeholder="Enter your username" />
+                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && username.invalid">
+                  Username is required!
+                </div>
+              </div>
+              <div class="row px-3"> <label class="mb-1">
+                  <h6 class="mb-0 text-sm">Password</h6>
+                </label> <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
+                  minlength="6" #password="ngModel" />
+                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
+                  <div *ngIf="password.errors.required">Password is required</div>
+                  <div *ngIf="password.errors.minlength">
+                    Password must be at least 6 characters
+                  </div>
+                </div>
+              </div>
+              <div class="row px-3 mb-4">
+                <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox"
+                    name="chk" class="custom-control-input"> <label for="chk1"
+                    class="custom-control-label text-sm">Remember me</label> </div> <a href="#"
+                  class="ml-auto mb-0 text-sm">Forgot Password?</a>
+              </div>
+              <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">Login</button> </div>
+              <div class="form-group">
+                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+                  Login failed: {{ errorMessage }}
+                </div>
+              </div>
+            </form>
+            <div *ngIf="!isLoggedIn" class="row mb-4 px-3"> <small class="font-weight-bold" >Don't have an account? <a
+              href="/register" class="text-danger ">Register</a></small> </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>

@@ -34,7 +34,9 @@ exports.MY_FORMATS = {
 };
 var AddComponent = /** @class */ (function () {
     //
-    function AddComponent(datePip, modalService, formBuilder, alimService, router, excelService) {
+    function AddComponent(userService, token, datePip, modalService, formBuilder, alimService, router, excelService) {
+        this.userService = userService;
+        this.token = token;
         this.datePip = datePip;
         this.modalService = modalService;
         this.formBuilder = formBuilder;
@@ -51,7 +53,7 @@ var AddComponent = /** @class */ (function () {
             sumaTva: 1
         };
         this.form = {};
-        this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete', 'update'];
+        this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'by_added', 'delete', 'update'];
         this.sorted = false;
         this.toppings = new forms_1.FormControl();
         this.date = {
@@ -64,10 +66,7 @@ var AddComponent = /** @class */ (function () {
     };
     AddComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.regForm = this.formBuilder.group({
-            firstDate: ['', forms_1.Validators.required],
-            secondDate: ['', forms_1.Validators.required]
-        });
+        this.currentUser = this.token.getUser();
         this.alimService.incasariSearchAllGet().subscribe(function (res) {
             _this.rows = res;
             _this.dataSource = new table_1.MatTableDataSource(_this.rows);
@@ -85,7 +84,8 @@ var AddComponent = /** @class */ (function () {
         }));
     };
     AddComponent.prototype.register = function (f) {
-        this.alimService.add(f.value).subscribe(function () { });
+        this.userService.add(f.value).subscribe(function (data) {
+        });
         // location.reload();
     };
     AddComponent.prototype.applyFilter = function (event) {

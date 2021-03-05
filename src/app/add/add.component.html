@@ -1,15 +1,16 @@
-<div class="active-pink-3 active-pink-4 mb-4">
-  <mat-form-field>
-    <mat-label></mat-label>
-    <input class="form-control" matInput (keyup)="applyFilter($event)" placeholder="Search all" #input>
-  </mat-form-field>
-</div>
+<div  *ngIf="currentUser; else loggedOut">
+  <div class="active-pink-3 active-pink-4 mb-4">
+    <mat-form-field>
+      <mat-label></mat-label>
+      <input class="form-control" matInput (keyup)="applyFilter($event)" placeholder="Search all" #input>
+    </mat-form-field>
+  </div>
 
 
 
 
 
-<!-- 
+  <!-- 
   <div class="add"><a class="button" href="/incasari" role="button">
     <span>adaugati</span>
     <div class="icon">
@@ -19,29 +20,29 @@
   </a>
   </div> -->
 
-<form e="form" (ngSubmit)="searchByMonthAndYear(e)" #e="ngForm" novalidate class="form-inline">
-  <div class="form-group">
-    <label for="month1"></label>
-    <input type="text" class="form-control" name="month1" [(ngModel)]="form.month1" placeholder="ll" required
-      #month="ngModel" />
-  </div>
-  &nbsp; &nbsp;
-  <div class="form-group">
-    <label for="year1"></label>
-    <input type="text" class="form-control" name="year1" [(ngModel)]="form.year1" placeholder="yyyy" required
-      #year="ngModel" />
-  </div>
-  &nbsp; &nbsp;
-  <div class="form-group">
-    <button class="btn btn-primary btn-block">Month & year</button>
-  </div>
-</form>
+  <form e="form" (ngSubmit)="searchByMonthAndYear(e)" #e="ngForm" novalidate class="form-inline">
+    <div class="form-group">
+      <label for="month1"></label>
+      <input type="text" class="form-control" name="month1" [(ngModel)]="form.month1" placeholder="ll" required
+        #month="ngModel" />
+    </div>
+    &nbsp; &nbsp;
+    <div class="form-group">
+      <label for="year1"></label>
+      <input type="text" class="form-control" name="year1" [(ngModel)]="form.year1" placeholder="yyyy" required
+        #year="ngModel" />
+    </div>
+    &nbsp; &nbsp;
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Month & year</button>
+    </div>
+  </form>
 
 
 
 
 
-<!-- <form a="form" (ngSubmit)="search6(a)" #a="ngForm" novalidate class="form-inline">
+  <!-- <form a="form" (ngSubmit)="search6(a)" #a="ngForm" novalidate class="form-inline">
   <div class="form-group">
     <label for="firstDate2"></label>
     <input type="text" class="form-control" name="firstDate2" [(ngModel)]="form.firstDate1" placeholder="firstDate2"
@@ -71,19 +72,19 @@
 </div> -->
 
 
-<form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
-  <div class="form-group">
-    <label for="furnizor"></label>
-    <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" placeholder="Furnizor" required
-      #furnizor="ngModel" />
-  </div>
+  <form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
+    <div class="form-group">
+      <label for="furnizor"></label>
+      <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" placeholder="Furnizor"
+        required #furnizor="ngModel" />
+    </div>
 
 
 
 
 
-  &nbsp; &nbsp;
-  <!-- <div class="form-group">
+    &nbsp; &nbsp;
+    <!-- <div class="form-group">
     <label for="data1"></label>
     <input type="date" class="form-control" value="DOMString" name="data1"  [(ngModel)]="form.data1"  min="2021.01.01" max="2025.12.31" required
       #data1="ngModel" />
@@ -98,8 +99,8 @@
 
 
 
-  &nbsp; &nbsp;
-  <!-- <div class="form-group">
+    &nbsp; &nbsp;
+    <!-- <div class="form-group">
     <label for="data1"></label>
     <input type="text" class="form-control" name="data1" [(ngModel)]="form.data1" placeholder="yyyy/ll/dd" required
       #data1="ngModel" />
@@ -116,236 +117,245 @@
 
 
 
-  <div class="form-group">
-    <label for="data1"></label>
-    <input required matInput [matDatepicker]="dp1" name="data1" placeholder="Date" class="form-control"
-      [(ngModel)]="form.data1" required #data1="ngModel" />
-    <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-    <mat-datepicker #dp1></mat-datepicker>
-  </div>
+    <div class="form-group">
+      <label for="data1"></label>
+      <input required matInput [matDatepicker]="dp1" name="data1" placeholder="Date" class="form-control"
+        [(ngModel)]="form.data1" required #data1="ngModel" />
+      <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+      <mat-datepicker #dp1></mat-datepicker>
+    </div>
 
-  <div class="form-group">
-    <label for="data2"></label>
-    <input required matInput [matDatepicker]="dp2" name="data2" placeholder="Date2" class="form-control"
-      [(ngModel)]="form.data2" required #data2="ngModel" />
-    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
-    <mat-datepicker #dp2></mat-datepicker>
+    <div class="form-group">
+      <label for="data2"></label>
+      <input required matInput [matDatepicker]="dp2" name="data2" placeholder="Date2" class="form-control"
+        [(ngModel)]="form.data2" required #data2="ngModel" />
+      <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+      <mat-datepicker #dp2></mat-datepicker>
 
-  </div>
-
-
-
-  &nbsp; &nbsp;
-  <div class="form-group">
-    <label for="sumaTotala1"></label>
-    <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
-      placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
-  </div>
-
-  &nbsp; &nbsp;
-  <div class="form-group">
-    <label for="sumaTotala2"></label>
-    <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
-      placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
-  </div>
-  &nbsp; &nbsp;
-  <div class="form-group">
-    <button class="btn btn-primary btn-block">Cauta</button>
-  </div>
-  &nbsp; &nbsp;
-
-  <div class="form-group">
-    <button type="reset" class="btn btn-primary btn-block">Reset</button>
-  </div>
-
-  &nbsp; &nbsp;
-  <div class="form-group">
-    <input type="image" (click)="exportAsXLSX()" title="Export to XLS" src="/assets/images/excel.PNG"
-      style="border-width:0px;">
-  </div>
-</form>
+    </div>
 
 
+
+    &nbsp; &nbsp;
+    <div class="form-group">
+      <label for="sumaTotala1"></label>
+      <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
+        placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
+    </div>
+
+    &nbsp; &nbsp;
+    <div class="form-group">
+      <label for="sumaTotala2"></label>
+      <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
+        placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
+    </div>
+    &nbsp; &nbsp;
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Cauta</button>
+    </div>
+    &nbsp; &nbsp;
+
+    <div class="form-group">
+      <button type="reset" class="btn btn-primary btn-block">Reset</button>
+    </div>
+
+    &nbsp; &nbsp;
+    <div class="form-group">
+      <input type="image" (click)="exportAsXLSX()" title="Export to XLS" src="/assets/images/excel.PNG"
+        style="border-width:0px;">
+    </div>
+  </form>
 
 
 
 
-<!-- <div class="excel">
+
+
+  <!-- <div class="excel">
   <input type="button" value="Reset table" class="btn btn-success" (click)="reset()" style="float: right;">
 </div> -->
 
 
 
 
-<!-- <div class="excel">
+  <!-- <div class="excel">
   <button type="button" style="float: left" class="btn btn-outline-success" (click)="openModal()">Adaugati</button>
 </div> -->
 
 
 
 
-<!-- <div class="excel">
+  <!-- <div class="excel">
   <input type="button" value="Download Excel" class="btn btn-success" (click)="exportAsXLSX()" style="float: right;">
 </div> -->
 
 
 
 
-<div class="excel">
-  <button mat-raised-button style="float: left" (click)="openModal()">
-    <mat-icon>add</mat-icon>Create
-  </button>
-</div>
+  <div class="excel">
+    <button mat-raised-button style="float: left" (click)="openModal()">
+      <mat-icon>add</mat-icon>Create
+    </button>
+  </div>
 
-<div class="excel">
-  <button tye="reset" mat-raised-button style="float: right" (click)="reset()">
-    <mat-icon>refresh</mat-icon>Refresh
-  </button>
-</div>
-
-
+  <div class="excel">
+    <button tye="reset" mat-raised-button style="float: right" (click)="reset()">
+      <mat-icon>refresh</mat-icon>Refresh
+    </button>
+  </div>
 
 
 
-<div class="mat-elevation-z8">
-
-  <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      <td mat-footer-cell *matFooterCellDef> Total </td>
-    </ng-container>
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="data">
-      <th mat-header-cell *matHeaderCellDef> Data
-        <div>
-          <mat-form-field>
-            <input matInput class="form-field" type="text" #myInput [(ngModel)]="dat" (input)="SearchData()"
-              placeholder="Search data...">
-            <br />
-          </mat-form-field>
-        </div>
-      </th>
-
-      <td mat-cell *matCellDef="let element"> {{element.data}} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="furnizor">
-      <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> Furnizor -->
-      <th mat-header-cell *matHeaderCellDef> Furnizor
-        <div>
-          <mat-form-field>
-            <input matInput class="form-field" type="text" #myInput [(ngModel)]="furniz" (input)="SearchFurnizor()"
-              placeholder="Search furnizor..." />
-          </mat-form-field>
-        </div>
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.furnizor}} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="number">
-      <th mat-header-cell *matHeaderCellDef> Number
-        <div>
-          <mat-form-field>
-            <input matInput class="form-field" type="text" #myInput [(ngModel)]="num" (input)="SearchNumber()"
-              placeholder="Search number..." />
-          </mat-form-field>
-        </div>
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.number}} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="detalii">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalii </th>
-      <td mat-cell *matCellDef="let element"> {{element.detalii}} </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
 
 
-    <ng-container matColumnDef="sumaTotala">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTotala </th>
-      <td mat-cell *matCellDef="let element"> {{element.sumaTotala}} </td>
-      <!-- <td mat-footer-cell *matFooterCellDef> {{totalSum}} </td> -->
-      <td mat-footer-cell *matFooterCellDef> {{getTotalCostTotal()}} </td>
-    </ng-container>
+  <div class="mat-elevation-z8">
 
-    <ng-container matColumnDef="sumaFaraTVA">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaFaraTVA </th>
-      <td mat-cell *matCellDef="let element"> {{element.sumaFaraTVA}} </td>
-      <!-- <td mat-footer-cell *matFooterCellDef> {{totalSumFaraTVA}} </td> -->
-      <td mat-footer-cell *matFooterCellDef> {{getTotalCostFaraTVA()}} </td>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        <td mat-footer-cell *matFooterCellDef> Total </td>
+      </ng-container>
 
-    <ng-container matColumnDef="sumaTVA">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTVA </th>
-      <td mat-cell *matCellDef="let element"> {{element.sumaTVA}} </td>
-      <!-- <td mat-footer-cell *matFooterCellDef> {{totalSumTVA}} </td> -->
-      <td mat-footer-cell *matFooterCellDef> {{getTotalCostTVA()}} </td>
-    </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef> Data
+          <div>
+            <mat-form-field>
+              <input matInput class="form-field" type="text" #myInput [(ngModel)]="dat" (input)="SearchData()"
+                placeholder="Search data...">
+              <br />
+            </mat-form-field>
+          </div>
+        </th>
+
+        <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="furnizor">
+        <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> Furnizor -->
+        <th mat-header-cell *matHeaderCellDef> Furnizor
+          <div>
+            <mat-form-field>
+              <input matInput class="form-field" type="text" #myInput [(ngModel)]="furniz" (input)="SearchFurnizor()"
+                placeholder="Search furnizor..." />
+            </mat-form-field>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.furnizor}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef> Number
+          <div>
+            <mat-form-field>
+              <input matInput class="form-field" type="text" #myInput [(ngModel)]="num" (input)="SearchNumber()"
+                placeholder="Search number..." />
+            </mat-form-field>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="detalii">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalii </th>
+        <td mat-cell *matCellDef="let element"> {{element.detalii}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
 
 
-    <!-- <ng-container matColumnDef="delete">
+      <ng-container matColumnDef="sumaTotala">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTotala </th>
+        <td mat-cell *matCellDef="let element"> {{element.sumaTotala}} </td>
+        <!-- <td mat-footer-cell *matFooterCellDef> {{totalSum}} </td> -->
+        <td mat-footer-cell *matFooterCellDef> {{getTotalCostTotal()}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sumaFaraTVA">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaFaraTVA </th>
+        <td mat-cell *matCellDef="let element"> {{element.sumaFaraTVA}} </td>
+        <!-- <td mat-footer-cell *matFooterCellDef> {{totalSumFaraTVA}} </td> -->
+        <td mat-footer-cell *matFooterCellDef> {{getTotalCostFaraTVA()}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sumaTVA">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTVA </th>
+        <td mat-cell *matCellDef="let element"> {{element.sumaTVA}} </td>
+        <!-- <td mat-footer-cell *matFooterCellDef> {{totalSumTVA}} </td> -->
+        <td mat-footer-cell *matFooterCellDef> {{getTotalCostTVA()}} </td>
+      </ng-container>
+
+
+      <!-- <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> delete </th>
       <td mat-cell *matCellDef="let element"> <a class="btn btn-sm text-while btn-danger"
           (click)="deleteModal(element.number)">Delete</a></td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container> -->
-    <!--  -->
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> delete </th>
-      <td mat-cell *matCellDef="let element">
-        <button class="btn btn-sm btn-outline-danger" mat-raised-button (click)="deleteModal(element.id)">
-          <mat-icon>delete</mat-icon>Delete
-        </button>
-      </td>
-      <td mat-footer-cell *matFooterCellDef></td>
+      <!--  -->
+
+      
+      <ng-container matColumnDef="by_added">
+        <th mat-header-cell *matHeaderCellDef>Adaugat de</th>
+        <td mat-cell *matCellDef="let element"> {{element.by_added}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
 
-    <!-- <ng-container matColumnDef="update">
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> delete </th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-sm btn-outline-danger" mat-raised-button (click)="deleteModal(element.id)">
+            <mat-icon>delete</mat-icon>Delete
+          </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+
+      <!-- <ng-container matColumnDef="update">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> update </th>
       <td mat-cell *matCellDef="let element"> <a class="btn btn-sm btn-outline-primary"
           (click)="updateModal(element)">Update</a></td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container> -->
 
-    <ng-container matColumnDef="update">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> update </th>
-      <td mat-cell *matCellDef="let element">
-        <button class="btn btn-sm btn-outline-primary" mat-raised-button (click)="updateModal(element)">
-          <mat-icon>update</mat-icon>Update
-        </button>
-      </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> update </th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-sm btn-outline-primary" mat-raised-button (click)="updateModal(element)">
+            <mat-icon>update</mat-icon>Update
+          </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
-  </table>
-
-
-</div>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+    </table>
 
 
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
-<div class="container">
-  <div class="row">
 
 
+  <div class="container">
+    <div class="row">
 
 
 
 
-    <!-- <div class="col-4 col-sm-6">
+
+
+      <!-- <div class="col-4 col-sm-6">
       <div class="card-body">
         <form class="form-signin">
           <div class="register-item">
@@ -364,7 +374,7 @@
     </div> -->
 
 
-    <!-- <div class="col-4 col-sm-6">
+      <!-- <div class="col-4 col-sm-6">
       <div class="card-body">
         <form class="form-signin">
           <div class="register-item">
@@ -389,68 +399,68 @@
 
 
 
-    <div class="col-sm-3">
+      <div class="col-sm-3">
 
-      <form f="form" (ngSubmit)="search3(f)" #f="ngForm" novalidate>
-        <div class="form-group">
-          <label for="firstDate"></label>
-          <input type="text" class="form-control" name="firstDate" [(ngModel)]="form.firstDate" placeholder="firstDate"
-            required #firstDate="ngModel" />
-        </div>
-        <div class="form-group">
-          <label for="furnizor"></label>
-          <input type="text" class="form-control" name="lastDate" [(ngModel)]="form.lastDate" placeholder="lastDate"
-            required #lastate="ngModel" />
-        </div>
+        <form f="form" (ngSubmit)="search3(f)" #f="ngForm" novalidate>
+          <div class="form-group">
+            <label for="firstDate"></label>
+            <input type="text" class="form-control" name="firstDate" [(ngModel)]="form.firstDate"
+              placeholder="firstDate" required #firstDate="ngModel" />
+          </div>
+          <div class="form-group">
+            <label for="furnizor"></label>
+            <input type="text" class="form-control" name="lastDate" [(ngModel)]="form.lastDate" placeholder="lastDate"
+              required #lastate="ngModel" />
+          </div>
 
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Add</button>
-        </div>
-      </form>
-    </div>
-
-
-
-    <div class="col-sm-3">
-
-      <form g="form" (ngSubmit)="search4(g)" #g="ngForm" novalidate>
-        <div class="form-group">
-          <label for="firstDate"></label>
-          <input type="text" class="form-control" name="firstDate1" [(ngModel)]="form.firstDate1" placeholder="Month"
-            required #firstDate="ngModel" />
-        </div>
-        <div class="form-group">
-          <label for="furnizor"></label>
-          <input type="text" class="form-control" name="lastDate1" [(ngModel)]="form.lastDate1" placeholder="Year"
-            required #lastate="ngModel" />
-        </div>
-
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Send</button>
-        </div>
-      </form>
-    </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-block">Add</button>
+          </div>
+        </form>
+      </div>
 
 
+
+      <div class="col-sm-3">
+
+        <form g="form" (ngSubmit)="search4(g)" #g="ngForm" novalidate>
+          <div class="form-group">
+            <label for="firstDate"></label>
+            <input type="text" class="form-control" name="firstDate1" [(ngModel)]="form.firstDate1" placeholder="Month"
+              required #firstDate="ngModel" />
+          </div>
+          <div class="form-group">
+            <label for="furnizor"></label>
+            <input type="text" class="form-control" name="lastDate1" [(ngModel)]="form.lastDate1" placeholder="Year"
+              required #lastate="ngModel" />
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary btn-block">Send</button>
+          </div>
+        </form>
+      </div>
 
 
 
 
-    <div class="col-sm-3">
-      <form h="form" (ngSubmit)="search5(h)" #h="ngForm" novalidate>
-        <div class="form-group">
-          <label for="year"></label>
-          <input type="text" class="form-control" name="year" [(ngModel)]="form.year" placeholder="year" required
-            #firstDate="ngModel" />
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Send</button>
-        </div>
-      </form>
-    </div>
 
 
-    <!-- <form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
+      <div class="col-sm-3">
+        <form h="form" (ngSubmit)="search5(h)" #h="ngForm" novalidate>
+          <div class="form-group">
+            <label for="year"></label>
+            <input type="text" class="form-control" name="year" [(ngModel)]="form.year" placeholder="year" required
+              #firstDate="ngModel" />
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-block">Send</button>
+          </div>
+        </form>
+      </div>
+
+
+      <!-- <form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
       <div class="form-group">
         <label for="college">Select:</label>
         <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" 
@@ -487,34 +497,36 @@
 
 
 
-    <div class="col-4 col-sm-6">
-      <div class="card-body">
-        <form class="form-signin">
-          <div class="register-item">
-            <form #m="ngForm" (ngSubmit)="search7(m.value)" class="form form-register">
+      <div class="col-4 col-sm-6">
+        <div class="card-body">
+          <form class="form-signin">
+            <div class="register-item">
+              <form #m="ngForm" (ngSubmit)="search7(m.value)" class="form form-register">
 
 
-              <div class="form-group">
-                <input name="year" id="register-year" type="text" class="form-control" placeholder="Year" ngModel
-                  required>
-              </div>
+                <div class="form-group">
+                  <input name="year" id="register-year" type="text" class="form-control" placeholder="Year" ngModel
+                    required>
+                </div>
 
 
-              <div class="form-group">
-                <button class="btn btn-outline-info">Search year</button>
-              </div>
-            </form>
-          </div>
-        </form>
+                <div class="form-group">
+                  <button class="btn btn-outline-info">Search year</button>
+                </div>
+              </form>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
+</div>
+</div>
 
 
-
-
-
-
+    <ng-template #loggedOut>
+      Please login.
+  </ng-template>
 
 
 

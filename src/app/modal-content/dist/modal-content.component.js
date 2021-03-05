@@ -9,9 +9,11 @@ exports.__esModule = true;
 exports.ModalContentComponent = void 0;
 var core_1 = require("@angular/core");
 var ModalContentComponent = /** @class */ (function () {
-    function ModalContentComponent(activeModal, alimService) {
+    function ModalContentComponent(activeModal, alimService, token, userService) {
         this.activeModal = activeModal;
         this.alimService = alimService;
+        this.token = token;
+        this.userService = userService;
         this.passEntry = new core_1.EventEmitter();
         this.form = {};
         this.isSuccessful = false;
@@ -19,7 +21,7 @@ var ModalContentComponent = /** @class */ (function () {
         this.errorMessage = '';
     }
     ModalContentComponent.prototype.ngOnInit = function () {
-        console.log(this.user);
+        this.currentUser = this.token.getUser();
     };
     // register(f: NgForm) {
     //   this.alimService.add(f.value).subscribe(() => { })

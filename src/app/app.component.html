@@ -28,12 +28,33 @@
               <a class="nav-link " href="#">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/incasari">INCASARI </a>
+              <a class="nav-link" href="/add" *ngIf="isLoggedIn" >INCASARI </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">CONTACT </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile" *ngIf="isLoggedIn" >PROFILE </a>
+            </li>
           </ul>
+
+          <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+            <li class="nav-item">
+              <a class="nav-link custom" href="/login">Log-in </a>
+            </li>
+          
+
+            <li class="nav-item">
+              <a class="nav-link custom" href="/register">Register </a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+            <li class="nav-item">
+              <a href class="nav-link custom" (click)="logout()">Log Out</a>
+            </li>
+          </ul>
+
         </div>
       </nav>
 

@@ -12,8 +12,7 @@ var core_1 = require("@angular/core");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var home_component_1 = require("./home/home.component");
-var api_1 = require("./api");
-var http_1 = require("@angular/common/http");
+var api_1 = require("../app/services/api");
 var ngx_datatable_1 = require("@swimlane/ngx-datatable");
 var forms_1 = require("@angular/forms");
 var filter_pipe_1 = require("./filter.pipe");
@@ -43,6 +42,11 @@ var icon_1 = require("@angular/material/icon");
 var material_moment_adapter_1 = require("@angular/material-moment-adapter");
 var common_1 = require("@angular/common");
 var list_1 = require("@angular/material/list");
+var login_component_1 = require("./login/login.component");
+var register_component_1 = require("./register/register.component");
+var profile_component_1 = require("./profile/profile.component");
+var http_1 = require("@angular/common/http");
+var auth_interceptor_1 = require("../app/helpers/auth.interceptor");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -58,6 +62,9 @@ var AppModule = /** @class */ (function () {
                 modal_content_component_1.ModalContentComponent,
                 modal_delete_incasari_component_1.ModalDeleteIncasariComponent,
                 modal_update_incasari_component_1.ModalUpdateIncasariComponent,
+                login_component_1.LoginComponent,
+                register_component_1.RegisterComponent,
+                profile_component_1.ProfileComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [
@@ -84,12 +91,18 @@ var AppModule = /** @class */ (function () {
                 ng2_charts_1.ChartsModule,
                 icon_1.MatIconModule,
                 material_moment_adapter_1.MatMomentDateModule,
-                list_1.MatListModule
+                list_1.MatListModule,
             ],
             entryComponents: [app_component_1.AppComponent],
-            bootstrap: [app_component_1.AppComponent],
-            providers: [excel_service_1.ExcelService, datepicker_1.MatDatepickerModule, common_1.DatePipe
-            ]
+            // providers: [ExcelService, MatDatepickerModule, DatePipe,
+            // ]
+            // })
+            providers: [{
+                    provide: http_1.HTTP_INTERCEPTORS,
+                    useClass: auth_interceptor_1.AuthInterceptor,
+                    multi: true
+                }, excel_service_1.ExcelService, datepicker_1.MatDatepickerModule, common_1.DatePipe,],
+            bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
     return AppModule;

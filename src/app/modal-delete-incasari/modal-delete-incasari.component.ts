@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IncasariService } from '../api/api/incasari.service';
+// import { IncasariService } from '../api/api/incasari.service';
+import { IncasariService } from '../services/api/incasari.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

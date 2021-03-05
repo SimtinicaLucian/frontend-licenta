@@ -52,7 +52,8 @@
     <!-- </form> -->
 
 
-
+    
+<div  *ngIf="currentUser; else loggedOut">
 
     <form *ngIf="!isSuccessful" name="form" (ngSubmit)="register(f)" #f="ngForm" novalidate>
 
@@ -182,3 +183,8 @@
         </div>
 
 </div>
+</div>
+
+<ng-template #loggedOut>
+    Please login.
+</ng-template>

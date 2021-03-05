@@ -3,8 +3,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ApiModule } from './api';
-import { HttpClientModule } from '@angular/common/http';
+import { ApiModule } from '../app/services/api';
+
+
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
@@ -36,6 +37,12 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { DatePipe } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from '../app/helpers/auth.interceptor';
 
 
 
@@ -59,6 +66,9 @@ import { MatListModule } from '@angular/material/list';
     ModalContentComponent,
     ModalDeleteIncasariComponent,
     ModalUpdateIncasariComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
 
   ],
 
@@ -93,7 +103,8 @@ import { MatListModule } from '@angular/material/list';
     ChartsModule,
     MatIconModule,
     MatMomentDateModule,
-    MatListModule
+    MatListModule,
+    
    
 
     
@@ -103,9 +114,17 @@ import { MatListModule } from '@angular/material/list';
 
   ],
   entryComponents: [AppComponent],
-  bootstrap: [AppComponent],
-  providers: [ExcelService, MatDatepickerModule, DatePipe
-    
-  ]
+
+  // providers: [ExcelService, MatDatepickerModule, DatePipe,
+  // ]
+// })
+
+providers: [{
+  provide : HTTP_INTERCEPTORS,
+  useClass: AuthInterceptor,
+  multi   : true,
+},ExcelService, MatDatepickerModule, DatePipe,],
+bootstrap: [AppComponent]
 })
+
 export class AppModule { }

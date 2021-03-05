@@ -14,12 +14,18 @@ var ngx_datatable_1 = require("@swimlane/ngx-datatable");
 var incasari_component_1 = require("./incasari/incasari.component");
 var add_component_1 = require("./add/add.component");
 var addincasare_component_1 = require("./addincasare/addincasare.component");
+var login_component_1 = require("./login/login.component");
+var register_component_1 = require("./register/register.component");
+var profile_component_1 = require("./profile/profile.component");
 var routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: home_component_1.HomeComponent },
+    { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'register', component: register_component_1.RegisterComponent },
     { path: 'incasari', component: incasari_component_1.IncasariComponent },
     { path: 'add', component: add_component_1.AddComponent },
-    { path: 'addincasare', component: addincasare_component_1.AddincasareComponent }
+    { path: 'addincasare', component: addincasare_component_1.AddincasareComponent },
+    { path: 'profile', component: profile_component_1.ProfileComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Type, Input, ViewEncapsulation } from '@angular/core';
-import { IncasariService } from '../api/api/incasari.service'
+// import { IncasariService } from '../api/api/incasari.service'
+import { IncasariService } from '../services/api/incasari.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -19,7 +20,8 @@ import {default as _rollupMoment} from 'moment';
 
 import { MAT_DATE_FORMATS, DateAdapter,MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-
+import { TokenStorageService } from '../services/token-storage.service';
+import { UserService } from '../services/user.service';
 
 
 
@@ -93,7 +95,7 @@ export class AddComponent implements OnInit {
   id: string;
 
   form: any = {};
-  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete', 'update'];
+  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'by_added', 'delete', 'update'];
   values: PeriodicElement[];
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
@@ -113,7 +115,7 @@ export class AddComponent implements OnInit {
 
   
 
-  constructor(public datePip: DatePipe, public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService: ExcelService) {
+  constructor(private userService: UserService, private token: TokenStorageService, public datePip: DatePipe, public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService: ExcelService) {
   }
 
   exportAsXLSX(): void {
@@ -126,12 +128,7 @@ export class AddComponent implements OnInit {
 
   private regForm: any;
   ngOnInit(): void {
-
-    this.regForm = this.formBuilder.group({
-      firstDate: ['', Validators.required],
-      secondDate: ['', Validators.required]
-
-    })
+    this.currentUser = this.token.getUser();
     this.alimService.incasariSearchAllGet().subscribe((res: any[]) => {
       this.rows = res
 
@@ -158,7 +155,10 @@ export class AddComponent implements OnInit {
 
 
   register(f: NgForm) {
-    this.alimService.add(f.value).subscribe(() => { })
+    this.userService.add(f.value).subscribe( 
+      data => { 
+
+      });
     // location.reload();
   }
 
@@ -419,4 +419,5 @@ export interface PeriodicElement {
   sumaTotala: number;
   sumaFaraTVA: number;
   sumaTVA: number;
+  by_added: string;
 }

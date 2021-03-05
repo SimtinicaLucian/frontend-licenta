@@ -1,4 +1,4 @@
-import { IncasariService } from '../api/api/incasari.service'
+import { IncasariService } from '../services/api/incasari.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';

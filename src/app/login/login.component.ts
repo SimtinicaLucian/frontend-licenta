@@ -1,31 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service'
+import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Router, CanActivate, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
-import {UserService} from '../services/user.service';
+
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  currentUser : any;
 
+  constructor(private route: ActivatedRoute,private router: Router, private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
-  constructor(private route: ActivatedRoute,private router: Router, private authService: AuthService, private tokenStorage: TokenStorageService, private userService:UserService) { }
-
-  ngOnInit() {
+  ngOnInit(){
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.currentUser = this.tokenStorage.getUser();
       this.roles = this.tokenStorage.getUser().roles;
-      
     }
   }
 
@@ -38,8 +34,15 @@ export class HomeComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      
+        
+        if(this.isLoggedIn){
+          
+          // this.router.navigate(['/home'])
+          // window.location.reload();
+          window.alert("You was successfully log-in!");
+          window.location.reload();
+          
+        }
       
       },
       err => {
@@ -48,10 +51,9 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  
 
-  reloadPage() {
-    window.location.reload();
-  }
+  // reloadPage() {
+  //   window.location.reload();
+  // }
+
 }
-
