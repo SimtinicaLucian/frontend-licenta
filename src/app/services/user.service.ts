@@ -6,7 +6,7 @@ import { TokenStorageService } from './token-storage.service';
 
 const API_URL = 'http://localhost:8080/api/';
 const API_URL_INC = 'http://localhost:8080/incasari/';
-
+const API_URL_PASSWORD = 'http://localhost:8080/password/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -64,6 +64,9 @@ export class UserService {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
 
+  sendEmail(contact): Observable<any> {
+    return this.http.post(API_URL_PASSWORD + 'forgot/' + contact.email, httpOptions);
+  }
 
 }
 

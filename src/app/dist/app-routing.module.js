@@ -17,6 +17,7 @@ var addincasare_component_1 = require("./addincasare/addincasare.component");
 var login_component_1 = require("./login/login.component");
 var register_component_1 = require("./register/register.component");
 var profile_component_1 = require("./profile/profile.component");
+var password_forgot_component_1 = require("./password-forgot/password-forgot.component");
 var routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: home_component_1.HomeComponent },
@@ -26,6 +27,7 @@ var routes = [
     { path: 'add', component: add_component_1.AddComponent },
     { path: 'addincasare', component: addincasare_component_1.AddincasareComponent },
     { path: 'profile', component: profile_component_1.ProfileComponent },
+    { path: 'forgot', component: password_forgot_component_1.PasswordForgotComponent }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

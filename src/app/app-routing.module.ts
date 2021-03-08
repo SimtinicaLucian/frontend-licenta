@@ -8,6 +8,8 @@ import { AddincasareComponent } from './addincasare/addincasare.component';
 import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
+
 
 
 const routes: Routes = [
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'add', component: AddComponent },
   { path: 'addincasare', component: AddincasareComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'forgot', component: PasswordForgotComponent}
 ];
 
 @NgModule({

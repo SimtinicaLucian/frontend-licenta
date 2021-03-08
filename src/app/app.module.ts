@@ -43,6 +43,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '../app/helpers/auth.interceptor';
+import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
 
 
 
@@ -69,6 +70,7 @@ import { AuthInterceptor } from '../app/helpers/auth.interceptor';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    PasswordForgotComponent,
 
   ],
 
