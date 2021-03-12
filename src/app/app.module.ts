@@ -12,7 +12,7 @@ import { FilterPipe } from './filter.pipe';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule} from '@agm/core';
 import { IncasariComponent } from './incasari/incasari.component';
 import { AddComponent } from './add/add.component';
 import {MatSortModule} from '@angular/material/sort';
@@ -44,6 +44,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '../app/helpers/auth.interceptor';
 import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+﻿import {APP_INITIALIZER } from '@angular/core';
 
 
 
@@ -71,6 +73,7 @@ import { PasswordForgotComponent } from './password-forgot/password-forgot.compo
     RegisterComponent,
     ProfileComponent,
     PasswordForgotComponent,
+    PasswordResetComponent,
 
   ],
 
@@ -125,7 +128,8 @@ providers: [{
   provide : HTTP_INTERCEPTORS,
   useClass: AuthInterceptor,
   multi   : true,
-},ExcelService, MatDatepickerModule, DatePipe,],
+},
+ExcelService, MatDatepickerModule, DatePipe,],
 bootstrap: [AppComponent]
 })
 

@@ -47,6 +47,8 @@ var register_component_1 = require("./register/register.component");
 var profile_component_1 = require("./profile/profile.component");
 var http_1 = require("@angular/common/http");
 var auth_interceptor_1 = require("../app/helpers/auth.interceptor");
+var password_forgot_component_1 = require("./password-forgot/password-forgot.component");
+var password_reset_component_1 = require("./password-reset/password-reset.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -65,6 +67,8 @@ var AppModule = /** @class */ (function () {
                 login_component_1.LoginComponent,
                 register_component_1.RegisterComponent,
                 profile_component_1.ProfileComponent,
+                password_forgot_component_1.PasswordForgotComponent,
+                password_reset_component_1.PasswordResetComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [
@@ -101,7 +105,8 @@ var AppModule = /** @class */ (function () {
                     provide: http_1.HTTP_INTERCEPTORS,
                     useClass: auth_interceptor_1.AuthInterceptor,
                     multi: true
-                }, excel_service_1.ExcelService, datepicker_1.MatDatepickerModule, common_1.DatePipe,],
+                },
+                excel_service_1.ExcelService, datepicker_1.MatDatepickerModule, common_1.DatePipe,],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

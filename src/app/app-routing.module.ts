@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 
@@ -21,7 +22,11 @@ const routes: Routes = [
   { path: 'add', component: AddComponent },
   { path: 'addincasare', component: AddincasareComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'forgot', component: PasswordForgotComponent}
+  { path: 'forgot', component: PasswordForgotComponent},
+  { path: 'reset', component: PasswordResetComponent},
+  { path: '**', redirectTo: '' }
+  
+
 ];
 
 @NgModule({
