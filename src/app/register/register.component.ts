@@ -10,7 +10,11 @@ export class RegisterComponent implements OnInit {
   form: any = {};
   isSuccessful = false;
   isSignUpFailed = false;
-  errorMessage = '';
+  errorMessage = ''
+  currentUser: any;
+  isLoggedIn = false;
+
+;
 
   constructor(private authService: AuthService) { }
 

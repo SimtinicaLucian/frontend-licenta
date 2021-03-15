@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { TokenStorageService } from './services/token-storage.service';
+import { NgProgress } from "@ngx-progressbar/core";
+import { ProgressBarService } from "./services/progress-bar.service";
+import { AuthService } from "./services/auth.service";
+import { Alert, AlertService } from "ngx-alerts";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+
 
 
 @Component({
@@ -15,9 +21,17 @@ export class AppComponent {
   username: string;
   title = 'AdCost';
 
-  constructor(private tokenStorageService: TokenStorageService){}
+  constructor(private tokenStorageService: TokenStorageService, private progress: NgProgress,
+    public progressBar: ProgressBarService,
+    public authService: AuthService,
+    public alertService: AlertService
+     ){}
 
   ngOnInit() {
+
+    this.progressBar.progressRef = this.progress.ref("progressBar");
+
+    
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {

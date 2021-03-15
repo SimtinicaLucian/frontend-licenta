@@ -23,18 +23,7 @@ export class PasswordResetComponent implements OnInit {
 
   ngOnInit() {
     this.model.token = this.route.snapshot.queryParamMap.get('token');
-    // console.log(this.model.token);
 
-    // this.tokenStorage.saveToken(this.route.snapshot.queryParamMap.get('token'))
-    // console.log(this.tokenStorage.saveToken(this.model.token));
-
-    
-    // this.route.queryParams
-    // .filter(params => params.token)
-    // .subscribe(params => {
-    //   console.log(params);
-    //   this.tokenValue = params.token;
-    // });
   }
 
 
@@ -44,42 +33,17 @@ export class PasswordResetComponent implements OnInit {
     console.log(this.model);
     this.userService.changePassword(this.model).subscribe(() => {
       console.log("success");
+      window.location.reload();
     },
     error => {
       console.log("error");
     })
       
     }
-    // window.location.reload();
+    
   }
 
 
-  // onSubmit() {
-  //   this.authService.login(this.form).subscribe(
-  //     data => {
-  //       this.tokenStorage.saveToken(data.accessToken);
-  //       this.tokenStorage.saveUser(data);
-
-  //       this.isLoginFailed = false;
-  //       this.isLoggedIn = true;
-  //       this.roles = this.tokenStorage.getUser().roles;
-        
-  //       if(this.isLoggedIn){
-          
-  //         // this.router.navigate(['/home'])
-  //         // window.location.reload();
-  //         window.alert("You was successfully log-in!");
-  //         window.location.reload();
-          
-  //       }
-      
-  //     },
-  //     err => {
-  //       this.errorMessage = err.error.message;
-  //       this.isLoginFailed = true;
-  //     }
-  //   );
-  // }
 
 
 

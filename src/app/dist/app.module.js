@@ -49,6 +49,11 @@ var http_1 = require("@angular/common/http");
 var auth_interceptor_1 = require("../app/helpers/auth.interceptor");
 var password_forgot_component_1 = require("./password-forgot/password-forgot.component");
 var password_reset_component_1 = require("./password-reset/password-reset.component");
+var router_1 = require("@angular/router");
+var core_4 = require("@ngx-progressbar/core");
+var ngx_alerts_1 = require("ngx-alerts");
+var ngx_bootstrap_1 = require("ngx-bootstrap");
+var common_2 = require("@angular/common");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -96,6 +101,14 @@ var AppModule = /** @class */ (function () {
                 icon_1.MatIconModule,
                 material_moment_adapter_1.MatMomentDateModule,
                 list_1.MatListModule,
+                common_2.CommonModule,
+                router_1.RouterModule,
+                core_4.NgProgressModule,
+                animations_1.BrowserAnimationsModule,
+                platform_browser_1.BrowserModule,
+                ngx_bootstrap_1.BsDropdownModule.forRoot(),
+                // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
+                ngx_alerts_1.AlertModule.forRoot({ maxMessages: 5, timeout: 5000 })
             ],
             entryComponents: [app_component_1.AppComponent],
             // providers: [ExcelService, MatDatepickerModule, DatePipe,

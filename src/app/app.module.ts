@@ -47,6 +47,14 @@ import { PasswordForgotComponent } from './password-forgot/password-forgot.compo
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 ﻿import {APP_INITIALIZER } from '@angular/core';
 
+import { RouterModule } from '@angular/router';
+import { NgProgressModule } from '@ngx-progressbar/core';
+
+import { AlertModule } from 'ngx-alerts';
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { CommonModule } from '@angular/common';
+
+
 
 
 
@@ -109,7 +117,15 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     MatIconModule,
     MatMomentDateModule,
     MatListModule,
-    
+    CommonModule,
+    RouterModule,
+    NgProgressModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    BsDropdownModule.forRoot(),
+
+    // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
+    AlertModule.forRoot({ maxMessages: 5, timeout: 5000 })
    
 
     
