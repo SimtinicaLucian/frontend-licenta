@@ -1,4 +1,9 @@
 
+<ng-progress id="progressBar"
+[color]="progressBar.currentColor"
+[thick]="true"></ng-progress>
+<ngx-alerts></ngx-alerts>
+
 <div *ngIf="!isLoggedIn">
   <div class="container">
     <div class="row">
@@ -53,9 +58,9 @@
         <div class="row mb-4 px-3"> <small class="font-weight-bold">Back to login! <a href="/login"
               class="text-success ">Login</a></small> </div>
 
-        <div class="alert alert-success" *ngIf="isSuccessful">
+        <!-- <div class="alert alert-success" *ngIf="isSuccessful">
           Your registration is successful!
-        </div>
+        </div> -->
 
 
       </div>

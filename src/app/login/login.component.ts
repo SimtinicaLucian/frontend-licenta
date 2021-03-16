@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
           this.progressBar.completeLoading();
 
           // this.router.navigate(['/home'])
-          // window.location.reload();
+          // location.reload();
+  
 
           
         }
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit {
       err => {
         this.progressBar.setError();
         console.log(err);
-        this.alertService.danger('Unable to Login');
+        this.alertService.danger('Incorrect Data');
         this.progressBar.completeLoading();
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
