@@ -9,9 +9,12 @@ exports.__esModule = true;
 exports.ModalDeleteIncasariComponent = void 0;
 var core_1 = require("@angular/core");
 var ModalDeleteIncasariComponent = /** @class */ (function () {
-    function ModalDeleteIncasariComponent(activeModal, incasariService) {
+    function ModalDeleteIncasariComponent(activeModal, incasariService, progressBar, alertService) {
         this.activeModal = activeModal;
         this.incasariService = incasariService;
+        this.progressBar = progressBar;
+        this.alertService = alertService;
+        this.isSuccessful = false;
     }
     ModalDeleteIncasariComponent.prototype.ngOnInit = function () {
     };
@@ -23,11 +26,20 @@ var ModalDeleteIncasariComponent = /** @class */ (function () {
     };
     ModalDeleteIncasariComponent.prototype.deleteIncasari = function (id) {
         var _this = this;
+        this.alertService.info('Checking delete invoice');
+        this.progressBar.startLoading();
         console.log(this.j);
         this.incasariService.deleteId(this.j).subscribe(function (res) {
+            _this.progressBar.setSuccess();
+            _this.progressBar.completeLoading();
             _this.getData();
-            console.log("delete");
-            location.reload();
+            _this.isSuccessful = true;
+            window.location.reload();
+        }, function (err) {
+            _this.progressBar.setError();
+            console.log(err);
+            _this.alertService.danger(err.error.message);
+            _this.progressBar.completeLoading();
         });
     };
     ModalDeleteIncasariComponent = __decorate([

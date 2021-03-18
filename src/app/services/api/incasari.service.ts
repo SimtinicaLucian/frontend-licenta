@@ -10,11 +10,15 @@ import { Observable } from 'rxjs';
 
 import { Incasari } from '../api/model/incasari';
 
+import { Mail } from '../api/model/mail';
+
 import { BASE_PATH, COLLECTION_FORMATS } from '../api/variables';
 import { Configuration } from '../api/configuration';
 import { isNumber } from 'util';
 import { TokenStorageService } from '../token-storage.service';
 
+
+const API_URL = 'http://localhost:8080/api/user/mail/';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -846,67 +850,55 @@ export class IncasariService {
 
 
 
+ /**
+     * Add a new coast
+     * 
+     * @param body Pet object that needs to be added to the store
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+  public send(body: Mail, observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public send(body: Mail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+  public send(body: Mail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+  public send(body: Mail, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
+      if (body === null || body === undefined) {
+          throw new Error('Required parameter body was null or undefined when calling add.');
+      }
 
+      let headers = this.defaultHeaders;
 
+      // to determine the Accept header
+      let httpHeaderAccepts: string[] = [
+          'application/json'
+      ];
+      const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+      if (httpHeaderAcceptSelected != undefined) {
+          headers = headers.set('Accept', httpHeaderAcceptSelected);
+      }
 
+      // to determine the Content-Type header
+      const consumes: string[] = [
+          'application/json'
+      ];
+      const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+      if (httpContentTypeSelected != undefined) {
+          headers = headers.set('Content-Type', httpContentTypeSelected);
+      }
 
+      const user = this.tokenStorageService.getUser();
+      this.username = user.username;
 
-
-
-    
-
-        /**
- * Get user by user name
- * 
- * @param password 
- * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
- * @param reportProgress flag to report request and response progress.
- */
-public resetPassword( token?: string, password?: string,  observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
-public resetPassword( token?: string, password?: string,  observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
-public resetPassword( token?: string, password?: string,  observe?: 'events', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
-public resetPassword( token?: string, password?: string,  observe: any = 'body', reportProgress: boolean = false): Observable<any> {
-
-
-
-
-    let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
-    if (token !== undefined && token !== null) {
-        queryParameters = queryParameters.set('token', <any>token);
-    }
-
-    if (password !== undefined && password !== null) {
-        queryParameters = queryParameters.set('password', <any>password);
-    }
-
-
-    let headers = this.defaultHeaders;
-
-    // to determine the Accept header
-    let httpHeaderAccepts: string[] = [
-        'application/xml',
-        'application/json'
-    ];
-    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected != undefined) {
-        headers = headers.set('Accept', httpHeaderAcceptSelected);
-    }
-
-    // to determine the Content-Type header
-    const consumes: string[] = [
-    ];
-
-    return this.httpClient.post<Array<Incasari>>(`${this.basePath}/password/change`,
-        {
-            params: queryParameters,
-            withCredentials: this.configuration.withCredentials,
-            headers: headers,
-            observe: observe,
-            reportProgress: reportProgress
-        }
-    );
-}
+      return this.httpClient.post<any>(`${this.basePath}/api/user/mail/test`,
+          body,
+          {
+              withCredentials: this.configuration.withCredentials,
+              headers: headers,
+              observe: observe,
+              reportProgress: reportProgress
+          }
+      );
+  }
 
 
 }

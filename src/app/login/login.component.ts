@@ -46,13 +46,11 @@ export class LoginComponent implements OnInit {
           // window.alert("You was successfully log-in!");
           // window.location.reload();
 
+          // this.router.navigate(['/home'])
+          window.location.reload();
           this.progressBar.setSuccess();
-          console.log('User logged in');
           this.alertService.success('Logged In');
           this.progressBar.completeLoading();
-
-          // this.router.navigate(['/home'])
-          // location.reload();
   
 
           

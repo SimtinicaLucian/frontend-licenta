@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
+import { Mail } from './api/model/mail'; 
 
 
 const API_URL = 'http://localhost:8080/api/';
 const API_URL_INC = 'http://localhost:8080/incasari/';
 const API_URL_PASSWORD = 'http://localhost:8080/password/';
 const changePasswordUrl = "http://localhost:4200/password/reset/";
+
+const API_URL_contact = 'http://localhost:8080/api/user/mail/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -79,9 +82,6 @@ export class UserService {
   changePassword(model: any) {
     return this.http.post(API_URL_PASSWORD + "change", model);
   }
-
-  
-
   
 
 }

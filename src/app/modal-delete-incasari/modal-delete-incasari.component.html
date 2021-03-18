@@ -1,3 +1,5 @@
+
+
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Delete</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -20,7 +22,9 @@
           </div>
     </form>
 
-
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your invoice has been successfully deleted! 
+  </div>
 
     <!-- <a class="button" href="/add">
         <button type="button" class="btn btn-outline-danger">Inapoi</button>

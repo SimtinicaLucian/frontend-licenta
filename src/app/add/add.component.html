@@ -29,7 +29,7 @@
     &nbsp; &nbsp;
     <div class="form-group">
       <label for="year1"></label>
-      <input type="text" class="form-control" name="year1" [(ngModel)]="form.year1" placeholder="yyyy" required
+      <input type="text" class="form-control" name="year1"  [(ngModel)]="form.year1" placeholder="yyyy" required
         #year="ngModel" />
     </div>
     &nbsp; &nbsp;
@@ -207,10 +207,9 @@
 
 
 
-
   <div class="mat-elevation-z8">
 
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" matSort >
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -548,3 +547,7 @@
         </mat-option>
       </select>
     </mat-form-field> -->
+
+
+
+    

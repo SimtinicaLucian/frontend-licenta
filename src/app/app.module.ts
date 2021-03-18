@@ -51,8 +51,12 @@ import { RouterModule } from '@angular/router';
 import { NgProgressModule } from '@ngx-progressbar/core';
 
 import { AlertModule } from 'ngx-alerts';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
+
 
 
 
@@ -82,6 +86,7 @@ import { CommonModule } from '@angular/common';
     ProfileComponent,
     PasswordForgotComponent,
     PasswordResetComponent,
+
 
   ],
 
@@ -122,6 +127,7 @@ import { CommonModule } from '@angular/common';
     NgProgressModule,
     BrowserAnimationsModule,
     BrowserModule,
+    FontAwesomeModule,
     BsDropdownModule.forRoot(),
 
     // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)

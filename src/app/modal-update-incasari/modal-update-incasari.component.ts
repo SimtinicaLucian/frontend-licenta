@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { IncasariService } from '../services/api/incasari.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
+import { AlertService } from "ngx-alerts";
+import { ProgressBarService } from '../services/progress-bar.service';
 
 @Component({
   selector: 'app-modal-update-incasari',
@@ -18,7 +20,9 @@ export class ModalUpdateIncasariComponent implements OnInit {
   isaddFailed = false;
   errorMessage = '';
 
-  constructor(public activeModal: NgbActiveModal, private incasariService: IncasariService) { }
+  constructor(public activeModal: NgbActiveModal, private incasariService: IncasariService,
+    public progressBar: ProgressBarService,
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
   }
@@ -44,16 +48,23 @@ export class ModalUpdateIncasariComponent implements OnInit {
 
   updateIncasari(j, f: NgForm) {
     console.log(this.j.id);
+    this.alertService.info('Checking update invoice');
+    this.progressBar.startLoading();
     this.incasariService.updateIncasari(this.j.id, f.value).subscribe(
       value => {
         console.log(f.value);
         if(f.value){
+          this.progressBar.setSuccess();
+          this.progressBar.completeLoading();
+
         this.isSuccessful = true;
         this.isaddFailed = false;
         console.log("Succesful?: " +  this.isSuccessful);
         console.log("Failed?: " +  this.isaddFailed );
         // window.alert("You was successfully log-in!");
-        window.location.reload();
+        this.progressBar.completeLoading();
+
+        location.reload();
         }
         else
         {
@@ -62,7 +73,13 @@ export class ModalUpdateIncasariComponent implements OnInit {
         }
       },
       err => {
-        this.errorMessage = err.error.message;
+
+        this.progressBar.setError();
+        console.log(err);
+        this.alertService.danger(err.error.message);
+        this.progressBar.completeLoading();
+
+        // this.errorMessage = err.error.message;
         this.isaddFailed = true;
         console.log("Succesful?: " +  this.errorMessage);
         console.log("Failed?: " +  this.isaddFailed );

@@ -8,6 +8,9 @@ import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 
 
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,6 +23,8 @@ export class AppComponent {
   showModeratorBoard = false;
   username: string;
   title = 'AdCost';
+  currentUser: any;
+
 
   constructor(private tokenStorageService: TokenStorageService, private progress: NgProgress,
     public progressBar: ProgressBarService,
@@ -28,6 +33,8 @@ export class AppComponent {
      ){}
 
   ngOnInit() {
+
+    this.currentUser = this.tokenStorageService.getUser();
 
     this.progressBar.progressRef = this.progress.ref("progressBar");
 

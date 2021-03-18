@@ -3,6 +3,10 @@ import { AuthService } from '../services/auth.service'
 import { TokenStorageService } from '../services/token-storage.service';
 import { Router, CanActivate, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import {UserService} from '../services/user.service';
+import { NgForm } from '@angular/forms';
+import { IncasariService } from '../services/api/incasari.service';
+import { AlertService } from "ngx-alerts";
+import { ProgressBarService } from '../services/progress-bar.service';
 
 @Component({
   selector: 'app-home',
@@ -16,42 +20,42 @@ export class HomeComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   currentUser : any;
+  public rows: any;
 
 
-  constructor(private route: ActivatedRoute,private router: Router, private authService: AuthService, private tokenStorage: TokenStorageService, private userService:UserService) { }
+  constructor(private route: ActivatedRoute,private router: Router, private incasariService : IncasariService, private userService: UserService, public progressBar: ProgressBarService,
+    private alertService: AlertService ) { }
 
   ngOnInit() {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.currentUser = this.tokenStorage.getUser();
-      this.roles = this.tokenStorage.getUser().roles;
-      
-    }
+
   }
 
-  onSubmit() {
-    this.authService.login(this.form).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
+  
+  onSubmit(f:NgForm) {
+    this.alertService.info('Working on sending email');
+    this.progressBar.startLoading();
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      
-      
+    this.incasariService.send(f.value).subscribe(
+      data => {
+        this.progressBar.setSuccess();
+        this.alertService.success('Your message has been send');
+        console.log('Check email to change password');
+        this.progressBar.completeLoading();
+        location.reload();
       },
+
       err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
+        this.progressBar.setError();
+        console.log(err);
+        this.alertService.danger(err.error.message);
+        this.progressBar.completeLoading();
+
       }
     );
-  }
-  
 
-  reloadPage() {
-    window.location.reload();
+
   }
+
+
 }
 

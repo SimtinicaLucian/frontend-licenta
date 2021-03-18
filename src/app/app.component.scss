@@ -1,6 +1,19 @@
+
 @import "bootstrap";
 @import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/cyborg/variables";
 
+
+
+
+  
+
+
+*
+{
+  margin: 0;
+  padding: 0;
+}
 
 .headerNav li {
   cursor: pointer;
@@ -20,23 +33,57 @@
   height: 35px;
 }
 
-*
-{
-  margin: 0;
-  padding: 0;
+/*----------Navigation--------*/
+
+.headerNav li {
+  cursor: pointer;
+}
+.profile-dropdown-container {
+  display: flex;
+}
+.profile-dropdown-container span {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  overflow: hidden;
+  cursor: default;
+  border: solid danger;
+}
+.profile-dropdown-container span img {
+  height: 35px;
 }
 
-/*----------Navigation--------*/
+.headerNav li {
+  cursor: pointer;
+}
+.profile-dropdown-container {
+  display: flex;
+}
+.profile-dropdown-container span {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  overflow: hidden;
+  cursor: default;
+  border: solid $danger;
+}
+.profile-dropdown-container span img {
+  height: 35px;
+}
+
+
+
 #nav-bar
 {
   position: sticky;
   top: 0;
   z-index: 10;
 }
+
 .navbar-brand img
 {
   height: 40px;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 .navbar-nav li
 {
@@ -52,6 +99,7 @@
 #nav-bar ul li a:hover
 {
   color: #007bff!important;
+  // color: white!important;
 }
 
 .navbar
@@ -66,8 +114,9 @@
 
 .nav-link
 {
-  color: #555!important;    
-  font-weight: 600;
+  // color: #555!important;    
+  color: black!important;
+  font-weight: 500;
   font-size: 16px;
 }
 

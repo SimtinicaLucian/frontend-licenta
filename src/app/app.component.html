@@ -7,11 +7,19 @@
   <html>
 
   <head>
+
+
     <link rel="stylesheet" href="app.component.scss">
+    
+
+    
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3
 /css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 
 
   </head>
@@ -19,31 +27,131 @@
   <body>
     <!----NavigationBar---->
     <section id="nav-bar">
-
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- <a class="navbar-brand" href="#"><i class="fa fa-money"></i></a> -->
-        <a class="navbar-brand" href="#"> <img src="/assets/images/money.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- <a class="navbar-brand" href="#">
+          <img src="https://www.flaticon.com/authors/eucalyp" height="30" alt="">
+      </a> -->
+        <a class="navbar-brand" href="#"> <img src="/assets/images/accounting.png"></a>
+        <button class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto headerNav">
             <li class="nav-item">
-              <a class="nav-link " href="#">HOME</a>
+              <a class="nav-link" href="#" routerLinkActive="active">Home</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/add" *ngIf="isLoggedIn" >Incasari </a>
+            </li> -->
+            <li class="nav-item" 
+            *ngIf="isLoggedIn" 
+            dropdown>
+                  <a class="nav-link dropdown-toggle"
+                     dropdownToggle>
+                     Incasari si plati
+                  </a>
+                  <div class="row">
+                    <div class="col-md-12 school-options-dropdown text-center">
+                  <div class="dropdown-menu"
+                       *dropdownMenu>
+                      <a class="dropdown-item"
+                         [routerLink]="['add']"
+                         routerLinkActive="active"> Incasari</a>
+                      <a class="dropdown-item"
+                         [routerLink]="['forgot']"
+                         routerLinkActive="active"> Cheltuieli</a>
+                      
+                      <a class="dropdown-item"
+                         [routerLink]="['home']"
+                         routerLinkActive="active"> Salarii</a>
+                  </div>
+                    </div>
+                    </div>
+
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/add" *ngIf="isLoggedIn" >INCASARI </a>
+              <a class="nav-link" href="#contact">Contact </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">CONTACT </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/profile" *ngIf="isLoggedIn" >PROFILE </a>
-            </li>
+            <li class="divider menu-divider"></li>
+          </ul>
+          
+
+
+
+
+            <!-- <li class="nav-item dropdown" dropdpwn>
+              <a class = "nav-link dropdown-toggle" dropdownToggle
+              href= "#" 
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+              Dropdown
+              </a>
+      
+              <div class="dropdown-menu" 
+                
+                  aria-labelledby="navbarDropdown">
+                  <a class = "dropdown-item"
+                      href = "#" >Action</a>
+                  <a class = "dropdown-item"
+                      href = "#" >Another action</a>
+                  <div class = "dropdown-divider"></div>
+                  <a class = "dropdown-item"
+                      href = "#" >Something else here</a>
+              </div>
+      
+            </li> -->
+
+
+            
+            <ul class="navbar-nav ml-auto headerNav">
+              <li class="nav-item"
+              *ngIf="!isLoggedIn">
+                  <a class="nav-link"
+                     [routerLink]="['register']"
+                     routerLinkActive="active">Register</a>
+              </li>
+              <li class="nav-item"
+              *ngIf="!isLoggedIn">
+                  <a class="nav-link"
+                     [routerLink]="['login']"
+                     routerLinkActive="active">Login</a>
+              </li>
+              <li class="nav-item dropdown profile-dropdown-container"
+              *ngIf="isLoggedIn"
+                  dropdown>
+                  <a class="nav-link dropdown-toggle"
+                     dropdownToggle>
+                     <i class="fa fa-user"></i> Welcome {{ currentUser.username }}
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right"
+                       *dropdownMenu>
+                      <a class="dropdown-item"
+                         [routerLink]="['profile']"
+                         routerLinkActive="active"><i class="fa fa-key"></i> My account</a>
+                      <a class="dropdown-item"
+                         [routerLink]="['forgot']"
+                         routerLinkActive="active"><i class="fa fa-envelope"></i> Forgot password</a>
+                      <a class="dropdown-item"
+                         (click)="logout();"><i class="fa fa-sign-out"></i> Logout</a>
+                  </div>
+              </li>
+  
           </ul>
 
-          <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+
+          
+
+          <!-- <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
             <li class="nav-item">
               <a class="nav-link custom" href="/login">Log-in </a>
             </li>
@@ -52,16 +160,19 @@
             <li class="nav-item">
               <a class="nav-link custom" href="/register">Register </a>
             </li>
-          </ul>
+          </ul> -->
 
-          <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+          <!-- <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
             <li class="nav-item">
               <a href class="nav-link custom" (click)="logout()">Log Out</a>
             </li>
-          </ul>
+          </ul> -->
+
+          
 
         </div>
       </nav>
+
 
 
 
@@ -69,4 +180,6 @@
   </body>
 
   </html>
+
+
 </router-outlet>

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap";
 @import "~bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 @import './assets/database/bootstrap.scss';
 @import './assets/database/material.scss';
@@ -10,6 +11,20 @@
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+@import "~bootswatch/dist/cyborg/variables";
+@import "~bootswatch/dist/cyborg/bootswatch";
+
+
+
+
+
+// .ng-valid[required], .ng-valid.required  {
+//   border-left: 5px solid $success; /* green */
+// }
+
+// .ng-invalid:not(form)  {
+//   border-left: 5px solid $danger; /* red */
+// }
 
 
 body {
@@ -30,5 +45,4 @@ body {
 
 
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+

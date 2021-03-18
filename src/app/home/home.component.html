@@ -1,63 +1,100 @@
-<html>
+<!-- <html>
 
-<body>
-    <section id="contact">
-        <div class="container">
-            <h1>Contact</h1>
-            <div class="row">
-                <!--  -->
-                <div class="col-md-6">
-                    <form action="mailto:simtinica.cosmin@gmailcom" method="post" enctype="text/plain">
-                        <form class="contact-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your name">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="number" class="form-control" placeholder="Phone no.">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email id">
-                            </div>
-
-                            <div class="form-group">
-                                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
-                            </div>
-                            <!-- <button type="submit" class="btn btn-primary"> Trimiteti</button> -->
+<head>
+  <link rel="stylesheet" href="home.component.scss"> -->
 
 
-                            <a href="mailto: simtinica.cosmin@gmailcom" class="btn btn-primary"> Trimiteti</a>
-
-                            <button type="reset" class="btn btn-primary">Reset</button>
-                        </form>
-                    </form>
-                </div>
-
-                <div class="col-md-6 contact-info">
-                    <div class="follow"><b>Adress:</b><i class="fa fa-map-marker"></i> Strada Politehnicii 1, Brașov 500024</div>
-
-                    <div class="follow"><b>Phone:</b><i class="fa fa-phone"></i>0268 474 718</div>
-
-                    <div class="follow"><b>Email:</b><i class="fa fa-envelope-o"></i>f-iesc@unitbv.ro</div>
-
-                    <div class="follow"><label><b>Get Social:</b></label>
-                        <a href="https://https://www.facebook.com/IESCBrasov"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                    </div>
+<!-- <link rel="stylesheet" type ="text/css" href="https://bootswatch.com/3/cyborg/bootstrap.min.css">
+      <link rel="stylesheet" type ="text/css" href="https://bootswatch.com/3/cyborg/bootstrap.css">
+      <link rel="stylesheet" type ="text/css" href="https://bootswatch.com/3/cyborg/variables.less">
+      <link rel="stylesheet" type ="text/css" href="https://bootswatch.com/3/cyborg/bootswatch.less">
+    
+      <link rel="stylesheet" type ="text/css" href="https://bootswatch.com/3/cyborg/_variables.scss">
+      <link rel="stylesheet" type ="text/css" href="https://bootswatch.com/3/cyborg/_bootswatch.scss"> -->
 
 
-                </div>
+<!-- </head> -->
 
 
+<ng-progress id="progressBar" [color]="progressBar.currentColor" [thick]="true"></ng-progress>
+<ngx-alerts></ngx-alerts>
+
+
+<div class="row home-main-row">
+  <div class="col-md-6 mt-4 pt-5 pl-5">
+    <h3>Time Tracker</h3>
+    <p>Our money tracking app will save you time and money</p>
+    <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="btn btn-info">Create Free Employer
+      Account <i class="fa fa-user-plus"></i></a>
+  </div>
+  <div class="col-md-6 mt-4 home-image-wrapper">
+    <img src="assets/images/computer.png" alt="">
+  </div>
+</div>
+
+
+
+
+<div id="contact">
+  <div class="container">
+    <h1>Contact</h1>
+    <div class="row">
+      <!--  -->
+      <div class="col-md-6">
+        <form f="form" class="contact-form" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>
+         
+            <div class="form-group">
+              <input type="text" class="form-control" name="mailSubject" [(ngModel)]="form.mailSubject" placeholder="Subject" required
+            #mailSubject="ngModel" />
             </div>
 
+            <div class="form-group">
+              <input type="email" class="form-control" name="from" [(ngModel)]="form.from" placeholder="Email" required
+              #from="ngModel" />
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="mailContent" rows="4" [(ngModel)]="form.mailContent" placeholder="Message" required
+              #mailContent="ngModel" />
+            </div>
+
+            <!-- <div class="form-group">
+              <textarea class="form-control" rows="4" placeholder="Your Message" [(ngModel)]="form.mailContent" placeholder="Message" required
+              #mailContent="ngModel"></textarea>
+            </div> -->
+            <!-- <button type="submit" class="btn btn-primary"> Trimiteti</button> -->
+
+            <button type="submit" class="btn btn-primary"> Send </button>
+
+            <button type="reset" class="btn btn-primary">Reset</button>
+          </form>
+      </div>
+
+      <div class="col-md-6 contact-info">
+        <div class="follow"><b>Adress:</b><i class="fa fa-map-marker"></i> Iaz, 77, Rucar, RO</div>
+
+        <div class="follow"><b>Phone:</b><i class="fa fa-phone"></i>+4 0797334197</div>
+
+        <div class="follow"><b>Email:</b><i class="fa fa-envelope-o"></i>simtinica.cosmin@gmail.com</div>
+
+        <div class="follow"><label><b>Get Social:</b></label>
+          <a href="https://www.facebook.com/lucian.simtinica"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.facebook.com/lucian.simtinica"><i class="fa fa-instagram"></i></a>
+          <a href="#"><i class="fa fa-youtube-play"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-google-plus"></i></a>
         </div>
-    </section>
 
-</body>
 
-</html>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!-- </html> -->
