@@ -1,4 +1,4 @@
-<div  *ngIf="currentUser; else loggedOut">
+<div *ngIf="currentUser; else loggedOut">
   <div class="active-pink-3 active-pink-4 mb-4">
     <mat-form-field>
       <mat-label></mat-label>
@@ -23,18 +23,18 @@
   <form e="form" (ngSubmit)="searchByMonthAndYear(e)" #e="ngForm" novalidate class="form-inline">
     <div class="form-group">
       <label for="month1"></label>
-      <input type="text" class="form-control" name="month1" [(ngModel)]="form.month1" placeholder="ll" required
-        #month="ngModel" />
+      <input type="text" class="form-control control-sm" name="month1" style="width: 130px; height: 33px;"
+        [(ngModel)]="form.month1" placeholder="ll" required #month="ngModel" />
     </div>
     &nbsp; &nbsp;
     <div class="form-group">
       <label for="year1"></label>
-      <input type="text" class="form-control" name="year1"  [(ngModel)]="form.year1" placeholder="yyyy" required
-        #year="ngModel" />
+      <input type="text" class="form-control" name="year1" style="width: 130px; height: 33px;" [(ngModel)]="form.year1"
+        placeholder="yyyy" required #year="ngModel" />
     </div>
     &nbsp; &nbsp;
     <div class="form-group">
-      <button class="btn btn-primary btn-block">Month & year</button>
+      <button class="btn-sm" mat-raised-button color="primary">Month & year</button>
     </div>
   </form>
 
@@ -76,7 +76,7 @@
     <div class="form-group">
       <label for="furnizor"></label>
       <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" placeholder="Furnizor"
-        required #furnizor="ngModel" />
+        required #furnizor="ngModel" style="width: 130px; height: 33px;" />
     </div>
 
 
@@ -99,7 +99,6 @@
 
 
 
-    &nbsp; &nbsp;
     <!-- <div class="form-group">
     <label for="data1"></label>
     <input type="text" class="form-control" name="data1" [(ngModel)]="form.data1" placeholder="yyyy/ll/dd" required
@@ -120,7 +119,7 @@
     <div class="form-group">
       <label for="data1"></label>
       <input required matInput [matDatepicker]="dp1" name="data1" placeholder="Date" class="form-control"
-        [(ngModel)]="form.data1" required #data1="ngModel" />
+        [(ngModel)]="form.data1" required #data1="ngModel" style="width: 130px; height: 33px;" />
       <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
       <mat-datepicker #dp1></mat-datepicker>
     </div>
@@ -128,7 +127,7 @@
     <div class="form-group">
       <label for="data2"></label>
       <input required matInput [matDatepicker]="dp2" name="data2" placeholder="Date2" class="form-control"
-        [(ngModel)]="form.data2" required #data2="ngModel" />
+        [(ngModel)]="form.data2" required #data2="ngModel" style="width: 130px; height: 33px;" />
       <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
       <mat-datepicker #dp2></mat-datepicker>
 
@@ -140,23 +139,23 @@
     <div class="form-group">
       <label for="sumaTotala1"></label>
       <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
-        placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
+        placeholder="sumaTotala1" required #sumaTotala1="ngModel" style="width: 130px; height: 33px;" />
     </div>
 
     &nbsp; &nbsp;
     <div class="form-group">
       <label for="sumaTotala2"></label>
       <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
-        placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
+        placeholder="sumaTotala2" required #sumaTotala2="ngModel" style="width: 130px; height: 33px;" />
     </div>
     &nbsp; &nbsp;
     <div class="form-group">
-      <button class="btn btn-primary btn-block">Cauta</button>
+      <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
     </div>
     &nbsp; &nbsp;
 
     <div class="form-group">
-      <button type="reset" class="btn btn-primary btn-block">Reset</button>
+      <button type="reset" class="btn-sm" mat-raised-button>Reset</button>
     </div>
 
     &nbsp; &nbsp;
@@ -209,7 +208,7 @@
 
   <div class="mat-elevation-z8">
 
-    <table mat-table [dataSource]="dataSource" matSort >
+    <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
@@ -299,12 +298,12 @@
     </ng-container> -->
       <!--  -->
 
-      
+
       <ng-container matColumnDef="by_added">
         <th mat-header-cell *matHeaderCellDef>Adaugat de</th>
         <td mat-cell *matCellDef="let element"> {{element.by_added}} </td>
         <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
+      </ng-container>
 
 
       <ng-container matColumnDef="delete">
@@ -459,36 +458,63 @@
       </div>
 
 
+
       <!-- <form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
-      <div class="form-group">
-        <label for="college">Select:</label>
-        <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" 
-          name="college_name" required multiple>
-          <mat-option value="furnizor">Furnizor</mat-option>
-          <mat-option value="data1">Data1</mat-option>
-          <mat-option value="data2">Data2</mat-option>
-          <mat-option value="sumaTotala1">sumaTotala1</mat-option>
-          <mat-option value="sumaTotala2">sumaTotala2</mat-option>
-        </mat-select>
-      </div>
-      <div class="form-group" *ngIf="selectedValue">
-        <div class="form-group" *ngIf="selectedFurnizor">
-
-
-
-          <div class="form-group" *ngIf="selectedValue == 'sumaTotala1' && selectedFurnizor == 'sumaTotala2'">
-            <label for="sumaTotala1"></label>
-            <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
-              placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
-          </div>
-          <div class="form-group">
+        <div class="form-group">
+          <label for="college">Select:</label>
+          <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" name="college_name" required
+            multiple>
+            <mat-option value="furnizor">Furnizor</mat-option>
+            <mat-option value="data1">Data1</mat-option>
+            <mat-option value="data2">Data2</mat-option>
+            <mat-option value="sumaTotala1">sumaTotala1</mat-option>
+            <mat-option value="sumaTotala2">sumaTotala2</mat-option>
+          </mat-select>
+        </div>
+        <div class="form-group" *ngIf="selectedValue">
+          <div class="form-group" *ngIf="selectedValue == 'sumaTotala1'">
             <label for="sumaTotala1"></label>
             <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
               placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
           </div>
+
+
+          <div class="form-group" *ngIf="selectedValue == 'sumaTotala2'">
+            <label for="sumaTotala2"></label>
+            <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
+              placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
+          </div>
+
+          <div class="form-group" *ngIf="selectedValue == 'sumaTotala1' && selectedValue == 'sumaTotala2'">
+            <label for="sumaTotala1"></label>
+            <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
+              placeholder="sumaTotala1" required #sumaTotala1="ngModel" />
+
+            <label for="sumaTotala2"></label>
+            <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
+              placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
+          </div>
         </div>
-      </div>
-    </form> -->
+      </form> -->
+
+      <form h="form" (ngSubmit)="searchByFurnizorAndDateAndSum(h)" #h="ngForm" novalidate class="form-inline">
+        <div class="form-group">
+          <label for="college">Select:</label>
+          <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" name="college_name" required
+            multiple>
+            <mat-option value="furnizor">Furnizor</mat-option>
+            <mat-option value="data1">Data1</mat-option>
+            <mat-option value="data2">Data2</mat-option>
+            <mat-option value="sumaTotala1">sumaTotala1</mat-option>
+            <mat-option value="sumaTotala2">sumaTotala2</mat-option>
+          </mat-select>
+        </div>
+            <div *ngIf="selectedValue == 'sumaTotala1'">
+              <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
+                placeholder="sumaTotala2" required #sumaTotala2="ngModel" />
+            </div>
+      </form>
+
 
 
 
@@ -519,18 +545,18 @@
       </div>
     </div>
 
+  </div>
 </div>
-</div>
 
 
-    <ng-template #loggedOut>
-      Please login.
-  </ng-template>
+<ng-template #loggedOut>
+  Please login.
+</ng-template>
 
 
 
 
-    <!-- <div class="form-group">
+<!-- <div class="form-group">
       <label for="furnizor"></label>
       <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" placeholder="Furnizor" required
         #furnizor="ngModel" />
@@ -538,7 +564,7 @@
 
 
 
-    <!-- <mat-form-field>
+<!-- <mat-form-field>
       <select id="college" [(ngModel)]="selectedValue == form.furnizor" name="furnizor" required>
         <mat-option>
             <label for="furnizor"></label>
@@ -547,7 +573,3 @@
         </mat-option>
       </select>
     </mat-form-field> -->
-
-
-
-    

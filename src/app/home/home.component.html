@@ -42,32 +42,80 @@
       <!--  -->
       <div class="col-md-6">
         <form f="form" class="contact-form" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>
-         
-            <div class="form-group">
-              <input type="text" class="form-control" name="mailSubject" [(ngModel)]="form.mailSubject" placeholder="Subject" required
-            #mailSubject="ngModel" />
-            </div>
 
-            <div class="form-group">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" name="mailSubject" [(ngModel)]="form.mailSubject"
+                placeholder="Subject" required #mailSubject="ngModel" />
+              <div class="alert-danger" *ngIf="f.submitted && mailSubject.invalid">
+                <div *ngIf="mailSubject.errors.required">Subject is required</div>
+                <div *ngIf="mailSubject.errors.minlength">
+                  Subject must be at least 1 characters
+                </div>
+                <div *ngIf="mailSubject.errors.maxlength">
+                  Subject must be at most 50 characters
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                </span>
+              </div>
               <input type="email" class="form-control" name="from" [(ngModel)]="form.from" placeholder="Email" required
-              #from="ngModel" />
+                #from="ngModel" />
+              <div class="alert-danger" *ngIf="f.submitted && from.invalid">
+                <div *ngIf="from.errors.required">Mail is required</div>
+                <div *ngIf="from.errors.minlength">
+                  Mail must be at least 1 characters
+                </div>
+                <div *ngIf="from.errors.maxlength">
+                  Mail must be at most 50 characters
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="form-group">
-              <input type="text" class="form-control" name="mailContent" rows="4" [(ngModel)]="form.mailContent" placeholder="Message" required
-              #mailContent="ngModel" />
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" name="mailContent" rows="4" [(ngModel)]="form.mailContent"
+                placeholder="Message" required #mailContent="ngModel" />
+              <div class="alert-danger" *ngIf="f.submitted && mailContent.invalid">
+                <div *ngIf="mailContent.errors.required">Message is required</div>
+                <div *ngIf="mailContent.errors.minlength">
+                  Message must be at least 1 characters
+                </div>
+                <div *ngIf="mailContent.errors.maxlength">
+                  Message must be at most 50 characters
+                </div>
+              </div>
             </div>
+          </div>
 
-            <!-- <div class="form-group">
+          <!-- <div class="form-group">
               <textarea class="form-control" rows="4" placeholder="Your Message" [(ngModel)]="form.mailContent" placeholder="Message" required
               #mailContent="ngModel"></textarea>
             </div> -->
-            <!-- <button type="submit" class="btn btn-primary"> Trimiteti</button> -->
+          <!-- <button type="submit" class="btn btn-primary"> Trimiteti</button> -->
 
-            <button type="submit" class="btn btn-primary"> Send </button>
+          <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid"> Send </button>
 
-            <button type="reset" class="btn btn-primary">Reset</button>
-          </form>
+          <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
+        </form>
       </div>
 
       <div class="col-md-6 contact-info">

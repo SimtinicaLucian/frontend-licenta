@@ -12,6 +12,8 @@ const changePasswordUrl = "http://localhost:4200/password/reset/";
 
 const API_URL_contact = 'http://localhost:8080/api/user/mail/';
 
+const API_URL_Users = 'http://localhost:8080/api/user/';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -33,10 +35,6 @@ export class UserService {
   }
 
 
-  viewAll(): Observable<any> {
-    return this.http.get(API_URL_INC + 'searchAll', { responseType: 'text' });
-  }
-
   add(incasari): Observable<any> {
     const user = this.tokenStorageService.getUser();
     this.username = user.username;
@@ -52,36 +50,19 @@ export class UserService {
     }, httpOptions);
   }
 
-  searchNumber(): Observable<any>{
-    return this.http.get(API_URL_INC + 'search' + 'number', { responseType: 'text' });
-  }
 
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
-  }
-
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
-  }
-
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
-  }
 
   sendEmail(contact): Observable<any> {
     return this.http.post(API_URL_PASSWORD + 'forgot/' + contact.email, httpOptions);
   }
 
-  resetPassowrd(incasari): Observable<any> {
-    return this.http.post(API_URL_PASSWORD + 'change', {
-      token : incasari.token,
-      password: incasari.password,
-    }, httpOptions);
-  }
 
   changePassword(model: any) {
     return this.http.post(API_URL_PASSWORD + "change", model);
   }
+  
+
+
   
 
 }

@@ -54,6 +54,12 @@ import { AlertModule } from 'ngx-alerts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { TestComponent } from './test/test.component';
+import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.component';
+import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.component';
+
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 
@@ -86,6 +92,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProfileComponent,
     PasswordForgotComponent,
     PasswordResetComponent,
+    BoardAdminComponent,
+    TestComponent,
+    ModalDeleteUserComponent,
+    ModalUpdateUserComponent,
 
 
   ],
@@ -131,7 +141,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BsDropdownModule.forRoot(),
 
     // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
-    AlertModule.forRoot({ maxMessages: 5, timeout: 5000 })
+    AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
+    NgApexchartsModule,
    
 
     

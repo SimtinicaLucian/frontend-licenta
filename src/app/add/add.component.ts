@@ -108,6 +108,8 @@ export class AddComponent implements OnInit {
 
   selectedValue : string;
   selectedFurnizor: string;
+  selectedSum1: string;
+  selectedSum2: string;
   toppings = new FormControl();
 
 

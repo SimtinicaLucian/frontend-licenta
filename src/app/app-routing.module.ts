@@ -10,6 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { TestComponent } from './test/test.component';
 
 
 
@@ -20,13 +22,13 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'incasari', component: IncasariComponent },
   { path: 'add', component: AddComponent },
+  { path: 'admin', component: BoardAdminComponent },
   { path: 'addincasare', component: AddincasareComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'forgot', component: PasswordForgotComponent},
   { path: 'reset', component: PasswordResetComponent},
+  { path: 'test', component: TestComponent},
   { path: '**', redirectTo: '' }
-  
-
 ];
 
 @NgModule({

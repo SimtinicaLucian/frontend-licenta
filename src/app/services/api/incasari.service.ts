@@ -12,6 +12,8 @@ import { Incasari } from '../api/model/incasari';
 
 import { Mail } from '../api/model/mail';
 
+import { User } from '../api/model/user';
+
 import { BASE_PATH, COLLECTION_FORMATS } from '../api/variables';
 import { Configuration } from '../api/configuration';
 import { isNumber } from 'util';
@@ -152,6 +154,9 @@ export class IncasariService {
             }
         );
     }
+
+
+
 
     /**
      * Find pet by ID

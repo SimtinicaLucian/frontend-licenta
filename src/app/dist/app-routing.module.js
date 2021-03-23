@@ -19,6 +19,8 @@ var register_component_1 = require("./register/register.component");
 var profile_component_1 = require("./profile/profile.component");
 var password_forgot_component_1 = require("./password-forgot/password-forgot.component");
 var password_reset_component_1 = require("./password-reset/password-reset.component");
+var board_admin_component_1 = require("./board-admin/board-admin.component");
+var test_component_1 = require("./test/test.component");
 var routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: home_component_1.HomeComponent },
@@ -26,10 +28,12 @@ var routes = [
     { path: 'register', component: register_component_1.RegisterComponent },
     { path: 'incasari', component: incasari_component_1.IncasariComponent },
     { path: 'add', component: add_component_1.AddComponent },
+    { path: 'admin', component: board_admin_component_1.BoardAdminComponent },
     { path: 'addincasare', component: addincasare_component_1.AddincasareComponent },
     { path: 'profile', component: profile_component_1.ProfileComponent },
     { path: 'forgot', component: password_forgot_component_1.PasswordForgotComponent },
     { path: 'reset', component: password_reset_component_1.PasswordResetComponent },
+    { path: 'test', component: test_component_1.TestComponent },
     { path: '**', redirectTo: '' }
 ];
 var AppRoutingModule = /** @class */ (function () {

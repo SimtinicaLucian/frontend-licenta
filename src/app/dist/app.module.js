@@ -55,6 +55,11 @@ var ngx_alerts_1 = require("ngx-alerts");
 var dropdown_1 = require("ngx-bootstrap/dropdown");
 var common_2 = require("@angular/common");
 var angular_fontawesome_1 = require("@fortawesome/angular-fontawesome");
+var board_admin_component_1 = require("./board-admin/board-admin.component");
+var test_component_1 = require("./test/test.component");
+var modal_delete_user_component_1 = require("./modal-delete-user/modal-delete-user.component");
+var modal_update_user_component_1 = require("./modal-update-user/modal-update-user.component");
+var ng_apexcharts_1 = require("ng-apexcharts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -75,6 +80,10 @@ var AppModule = /** @class */ (function () {
                 profile_component_1.ProfileComponent,
                 password_forgot_component_1.PasswordForgotComponent,
                 password_reset_component_1.PasswordResetComponent,
+                board_admin_component_1.BoardAdminComponent,
+                test_component_1.TestComponent,
+                modal_delete_user_component_1.ModalDeleteUserComponent,
+                modal_update_user_component_1.ModalUpdateUserComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [
@@ -110,7 +119,8 @@ var AppModule = /** @class */ (function () {
                 angular_fontawesome_1.FontAwesomeModule,
                 dropdown_1.BsDropdownModule.forRoot(),
                 // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
-                ngx_alerts_1.AlertModule.forRoot({ maxMessages: 5, timeout: 5000 })
+                ngx_alerts_1.AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
+                ng_apexcharts_1.NgApexchartsModule,
             ],
             entryComponents: [app_component_1.AppComponent],
             // providers: [ExcelService, MatDatepickerModule, DatePipe,

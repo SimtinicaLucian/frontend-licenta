@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  fieldTextType: boolean;
 
   constructor(private route: ActivatedRoute,private router: Router, private authService: AuthService, private tokenStorage: TokenStorageService, public progressBar: ProgressBarService,
     private alertService: AlertService) { }
@@ -29,6 +30,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
 
   onSubmit() {
     this.alertService.info('Checking User login');
