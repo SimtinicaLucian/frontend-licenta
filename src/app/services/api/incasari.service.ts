@@ -462,27 +462,27 @@ export class IncasariService {
     /**
      * Get user by user name
      * 
-     * @param firstDate1 The name that needs to be fetched. Use user1 for testing. 
-     * @param secondDate1 
+     * @param month The name that needs to be fetched. Use user1 for testing. 
+     * @param year 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSumaTotalaMonthAndYear(firstDate1: string, secondDate1?: string, observe?: 'body', reportProgress?: boolean): Observable<Number>;
-    public getSumaTotalaMonthAndYear(firstDate1: string, secondDate1?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
-    public getSumaTotalaMonthAndYear(firstDate1: string, secondDate1?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
-    public getSumaTotalaMonthAndYear(firstDate1: string, secondDate1?: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    public getSumaTotalaMonthAndYear(month: string, year?: string, observe?: 'body', reportProgress?: boolean): Observable<Number>;
+    public getSumaTotalaMonthAndYear(month: string, year?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+    public getSumaTotalaMonthAndYear(month: string, year?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+    public getSumaTotalaMonthAndYear(month: string, year?: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
-        if (firstDate1 === null || firstDate1 === undefined) {
+        if (month === null || month === undefined) {
             throw new Error('Required parameter firstDate was null or undefined when calling getUserByName.');
         }
 
 
         let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
-        if (firstDate1 !== undefined && firstDate1 !== null) {
-            queryParameters = queryParameters.set('firstDate', <any>firstDate1);
+        if (month !== undefined && month !== null) {
+            queryParameters = queryParameters.set('month', <any>month);
         }
-        if (secondDate1 !== undefined && secondDate1 !== null) {
-            queryParameters = queryParameters.set('secondDate', <any>secondDate1);
+        if (year !== undefined && year !== null) {
+            queryParameters = queryParameters.set('year', <any>year);
         }
 
         let headers = this.defaultHeaders;

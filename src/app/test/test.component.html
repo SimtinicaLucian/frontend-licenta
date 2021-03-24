@@ -1,13 +1,66 @@
-
 <div id="chart">
-  <apx-chart
-    [series]="chartOptions.series"
-    [chart]="chartOptions.chart"
-    [labels]="chartOptions.labels"
-    [responsive]="chartOptions.responsive"
-  ></apx-chart>
+  <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+    [responsive]="chartOptions.responsive"></apx-chart>
 </div>
 
-<!-- <div *ngIf="chart">
-  <canvas id="canvas">{{ chart }}</canvas>
-</div> -->
+
+
+<div id="chart">
+  <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [labels]="chartOptions1.labels"
+    [responsive]="chartOptions1.responsive"></apx-chart>
+</div>
+
+
+
+
+
+<div class="col-sm-3">
+
+  <form g="form" (ngSubmit)="calculareSumaTotalaCuTVAMonthYear(g)" #g="ngForm" novalidate>
+    <div class="form-group">
+      <label for="month"></label>
+      <input type="text" class="form-control" name="month" [(ngModel)]="form.month" placeholder="Month"
+        required #month="ngModel" />
+    </div>
+    <div class="form-group">
+      <label for="year"></label>
+      <input type="text" class="form-control" name="year" [(ngModel)]="form.year" placeholder="Year"
+        required #year="ngModel" />
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Add </button>
+      <div id="chart">
+        <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart" [labels]="chartOptions3.labels"
+          [responsive]="chartOptions3.responsive"></apx-chart>
+      </div>
+
+    </div>
+  </form>
+
+
+
+
+
+  <form f="form" (ngSubmit)="culculareSumaTotalaCuTVAData1Data2(f)" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="data1"></label>
+      <input type="text" class="form-control" name="data1" [(ngModel)]="form.data1" placeholder="data1" required
+        #data1="ngModel" />
+    </div>
+    <div class="form-group">
+      <label for="data2"></label>
+      <input type="text" class="form-control" name="data2" [(ngModel)]="form.data2" placeholder="data2" required
+        #data2="ngModel" />
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Add </button>
+      <div id="chart">
+        <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart" [labels]="chartOptions2.labels"
+          [responsive]="chartOptions2.responsive"></apx-chart>
+      </div>
+
+    </div>
+  </form>
+</div>

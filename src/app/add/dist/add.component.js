@@ -124,7 +124,7 @@ var AddComponent = /** @class */ (function () {
     };
     AddComponent.prototype.search4 = function (g) {
         var _this = this;
-        this.alimService.getSumaTotalaMonthAndYear(g.value.firstDate1, g.value.lastDate1).subscribe(function (res) {
+        this.alimService.getSumaTotalaMonthAndYear(g.value.month, g.value.year).subscribe(function (res) {
             _this.between = res;
             console.log("res: " + res);
         });

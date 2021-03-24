@@ -423,14 +423,14 @@
 
         <form g="form" (ngSubmit)="search4(g)" #g="ngForm" novalidate>
           <div class="form-group">
-            <label for="firstDate"></label>
-            <input type="text" class="form-control" name="firstDate1" [(ngModel)]="form.firstDate1" placeholder="Month"
-              required #firstDate="ngModel" />
+            <label for="month"></label>
+            <input type="text" class="form-control" name="month" [(ngModel)]="form.month" placeholder="Month"
+              required #month="ngModel" />
           </div>
           <div class="form-group">
-            <label for="furnizor"></label>
-            <input type="text" class="form-control" name="lastDate1" [(ngModel)]="form.lastDate1" placeholder="Year"
-              required #lastate="ngModel" />
+            <label for="year"></label>
+            <input type="text" class="form-control" name="year" [(ngModel)]="form.year" placeholder="Year"
+              required #year="ngModel" />
           </div>
 
           <div class="form-group">
@@ -548,8 +548,6 @@
   </div>
 </div>
 
-
-{{totalSum}}
 
 <ng-template #loggedOut>
   Please login.

@@ -203,7 +203,7 @@ export class AddComponent implements OnInit {
   }
 
   search4(g: NgForm) {
-    this.alimService.getSumaTotalaMonthAndYear(g.value.firstDate1, g.value.lastDate1).subscribe((res) => {
+    this.alimService.getSumaTotalaMonthAndYear(g.value.month, g.value.year).subscribe((res) => {
       this.between = res;
       console.log("res: " + res);
     })
