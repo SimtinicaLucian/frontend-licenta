@@ -33,8 +33,8 @@ exports.MY_FORMATS = {
     }
 };
 var AddComponent = /** @class */ (function () {
-    //
-    function AddComponent(userService, token, datePip, modalService, formBuilder, alimService, router, excelService) {
+    // years: number[] =[2020,2021]
+    function AddComponent(userService, token, datePip, modalService, formBuilder, alimService, router, excelService, statisticsService) {
         this.userService = userService;
         this.token = token;
         this.datePip = datePip;
@@ -43,6 +43,7 @@ var AddComponent = /** @class */ (function () {
         this.alimService = alimService;
         this.router = router;
         this.excelService = excelService;
+        this.statisticsService = statisticsService;
         this.user = {
             data: '',
             furnizor: '',
@@ -56,10 +57,13 @@ var AddComponent = /** @class */ (function () {
         this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'by_added', 'delete', 'update'];
         this.sorted = false;
         this.toppings = new forms_1.FormControl();
-        this.date = {
-            first: this.datePip.transform(new Date(), 'yyyy.MM.dd'),
-            second: this.datePip.transform(new Date(), 'yyyy.MM.dd')
-        };
+        this.months = [
+            { value: '01', viewValue: '01' }
+        ];
+        this.years = [
+            { value: '2021', viewValue: '2021' },
+            { value: '2020', viewValue: '2020' }
+        ];
     }
     AddComponent.prototype.exportAsXLSX = function () {
         this.excelService.exportAsExcelFile(this.rows, 'incasari_data');
@@ -73,20 +77,6 @@ var AddComponent = /** @class */ (function () {
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
         });
-        this.alimService.searchTotal().subscribe((function (res) {
-            return _this.totalSum = res;
-        }));
-        this.alimService.searchTotalTVA().subscribe((function (res) {
-            return _this.totalSumTVA = res;
-        }));
-        this.alimService.searchTotalFaraTVA().subscribe((function (res) {
-            return _this.totalSumFaraTVA = res;
-        }));
-    };
-    AddComponent.prototype.register = function (f) {
-        this.userService.add(f.value).subscribe(function (data) {
-        });
-        // location.reload();
     };
     AddComponent.prototype.applyFilter = function (event) {
         var filterValue = event.target.value;
@@ -97,66 +87,6 @@ var AddComponent = /** @class */ (function () {
     };
     AddComponent.prototype.applyFilters = function () {
         this.dataSource.filter = '' + Math.random();
-    };
-    AddComponent.prototype.search = function (data) {
-        var _this = this;
-        this.alimService.getPetById(data.number).subscribe(function (res) {
-            _this.rows = res;
-            console.log(res);
-        });
-        // location.reload();
-    };
-    AddComponent.prototype.search2 = function (data1) {
-        var _this = this;
-        this.alimService.getPetByFurnizor(data1.furnizor).subscribe(function (res) {
-            _this.rows = res;
-            // this.dataSource = new MatTableDataSource(this.rows);
-            console.log(res);
-        });
-        // location.reload();
-    };
-    AddComponent.prototype.search3 = function (f) {
-        var _this = this;
-        this.alimService.getSumaTotalaBetweenDate(f.value.firstDate, f.value.lastDate).subscribe(function (res) {
-            _this.between = res;
-            console.log("res: " + res);
-        });
-    };
-    AddComponent.prototype.search4 = function (g) {
-        var _this = this;
-        this.alimService.getSumaTotalaMonthAndYear(g.value.month, g.value.year).subscribe(function (res) {
-            _this.between = res;
-            console.log("res: " + res);
-        });
-    };
-    AddComponent.prototype.search5 = function (h) {
-        var _this = this;
-        this.alimService.getSumaTotalaPerYear(h.value.year).subscribe(function (res) {
-            _this.year = res;
-            console.log("res: " + res);
-        });
-    };
-    AddComponent.prototype.search6 = function (a) {
-        var _this = this;
-        this.alimService.getDatesBetweenData(a.value.firstDate2, a.value.lastDate2).subscribe(function (res) {
-            _this.rows = res;
-            // console.log(res);
-            _this.dataSource = new table_1.MatTableDataSource(_this.rows);
-            _this.dataSource.paginator = _this.paginator;
-            _this.dataSource.sort = _this.sort;
-            //  if (this.rows == "") {
-            //     this.ngOnInit();
-            //   }
-        });
-    };
-    AddComponent.prototype.search7 = function (data2) {
-        var _this = this;
-        this.alimService.getByYear(data2.year).subscribe(function (res) {
-            _this.rows = res;
-            // this.dataSource = new MatTableDataSource(this.rows);
-            console.log(res);
-        });
-        // location.reload();
     };
     AddComponent.prototype.reset = function () {
         var _this = this;
@@ -178,20 +108,15 @@ var AddComponent = /** @class */ (function () {
         var _this = this;
         this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe(function (res) {
             _this.rows = res;
-            // console.log(res);
             _this.dataSource = new table_1.MatTableDataSource(_this.rows);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
-            //  if (this.rows == "") {
-            //     this.ngOnInit();
-            //   }
         });
     };
     AddComponent.prototype.searchByFurnizorAndDateAndSum = function (h) {
         var _this = this;
         this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe(function (res) {
             _this.rows = res;
-            // console.log(res);
             _this.dataSource = new table_1.MatTableDataSource(_this.rows);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
@@ -239,6 +164,77 @@ var AddComponent = /** @class */ (function () {
             this.ngOnInit();
         }
     };
+    AddComponent.prototype.calculareSumaTotalaCuTVAPerYear = function (f) {
+        var _this = this;
+        this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe(function (res) {
+            _this.totalSumCuTVA_MonthAndYear_Incasari = res;
+            console.log("res: " + res);
+            _this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(f.value.year).subscribe(function (res) {
+                _this.totalSumCuTVA_MonthAndYear_Cheltuieli = res;
+                console.log("res: " + res);
+                _this.chartOptions = {
+                    series: [_this.totalSumCuTVA_MonthAndYear_Incasari, _this.totalSumCuTVA_MonthAndYear_Cheltuieli],
+                    chart: {
+                        width: 380,
+                        type: "pie"
+                    },
+                    labels: ["Total Incasari Per Year", "Total Cheltuieli Per Year"],
+                    responsive: [
+                        {
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: "bottom"
+                                }
+                            }
+                        }
+                    ]
+                };
+            });
+        });
+    };
+    // calculareSumaTotalaCuTVAPerYear(f: NgForm) {
+    //   console.log("f: " + f.value.year);
+    //   this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe(res => {
+    //     this.totalSumCuTVA_MonthAndYear_Incasari = res;
+    //     console.log("res: " + res);
+    //   })
+    // }
+    AddComponent.prototype.calculareSumaTotalaCuTVAMonthYear = function (g) {
+        var _this = this;
+        this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(g.value.month, g.value.year).subscribe(function (res) {
+            _this.totalSumCuTVA_MonthAndYear_Incasari = res;
+            console.log("res: " + res);
+            _this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Cheltuieli(g.value.month, g.value.year).subscribe(function (res) {
+                _this.totalSumCuTVA_MonthAndYear_Cheltuieli = res;
+                console.log("res: " + res);
+                _this.chartOptions2 = {
+                    series: [_this.totalSumCuTVA_MonthAndYear_Incasari, _this.totalSumCuTVA_MonthAndYear_Cheltuieli],
+                    chart: {
+                        width: 380,
+                        type: "pie"
+                    },
+                    labels: ["Total Incasari Month Year", "Total Cheltuieli Month Year"],
+                    responsive: [
+                        {
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: "bottom"
+                                }
+                            }
+                        }
+                    ]
+                };
+            });
+        });
+    };
     AddComponent.prototype.getTotalCostTotal = function () {
         return this.rows.map(function (t) { return t.sumaTotala; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
@@ -278,15 +274,12 @@ var AddComponent = /** @class */ (function () {
             console.log(result);
             if (result) {
                 console.log(result);
-                //   this.doctService.deleteData(j).subscribe(res=>
-                // {
-                //     this.getData()
-                //     console.log("delete");
-                //   // location.reload();
-                // })
             }
         });
     };
+    __decorate([
+        core_1.ViewChild("chart")
+    ], AddComponent.prototype, "chart");
     __decorate([
         core_1.ViewChild(paginator_1.MatPaginator)
     ], AddComponent.prototype, "paginator");

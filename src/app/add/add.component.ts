@@ -22,6 +22,16 @@ import { MAT_DATE_FORMATS, DateAdapter,MAT_DATE_LOCALE } from '@angular/material
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { TokenStorageService } from '../services/token-storage.service';
 import { UserService } from '../services/user.service';
+import { StatisticsService } from '../services/api/statistics.service';
+
+import { ChartComponent } from "ng-apexcharts";
+import {
+  ApexNonAxisChartSeries,
+  ApexResponsive,
+  ApexChart
+} from "ng-apexcharts";
+
+
 
 
 
@@ -44,6 +54,30 @@ export const MY_FORMATS = {
   },
 };
 
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+};
+
+export type ChartOptions2 = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+};
+
+interface Month {
+  value: string;
+  viewValue: string;
+}
+
+interface Year {
+  value: string;
+  viewValue: string;
+}
 
 
 
@@ -78,6 +112,11 @@ export class AddComponent implements OnInit {
   firstDate2: string;
   lastDate2: string;
 
+  totalSumCuTVA_MonthAndYear_Incasari: any;
+  totalSumCuTVA_MonthAndYear_Cheltuieli: any;
+
+
+
 
 
 
@@ -107,6 +146,7 @@ export class AddComponent implements OnInit {
 
 
   selectedValue : string;
+  selectedYear: string;
   selectedFurnizor: string;
   selectedSum1: string;
   selectedSum2: string;
@@ -114,11 +154,31 @@ export class AddComponent implements OnInit {
 
 
 //
+// @Input() chart: ApexChart;
+@ViewChild("chart") chart: ChartComponent;
+public chartOptions: Partial<ChartOptions>;
+public chartOptions2: Partial<ChartOptions2>;
+
+
+  months: Month[] = [
+    {value: '01', viewValue: '01'}
+  ];
+
+  years: Year[] = [
+    {value: '2021', viewValue: '2021'},
+    {value: '2020', viewValue: '2020'}
+  ];
+
+  // years: number[] =[2020,2021]
 
   
 
-  constructor(private userService: UserService, private token: TokenStorageService, public datePip: DatePipe, public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService: ExcelService) {
+  constructor(private userService: UserService, private token: TokenStorageService, public datePip: DatePipe, public modalService: NgbModal,
+     private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService: ExcelService,
+     private statisticsService: StatisticsService) {
   }
+
+
 
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.rows, 'incasari_data');
@@ -138,30 +198,6 @@ export class AddComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
-
-
-    this.alimService.searchTotal().subscribe((res =>
-      this.totalSum = res
-    ))
-
-    this.alimService.searchTotalTVA().subscribe((res =>
-      this.totalSumTVA = res
-    ))
-
-    this.alimService.searchTotalFaraTVA().subscribe((res =>
-      this.totalSumFaraTVA = res
-    ))
-
-
-  }
-
-
-  register(f: NgForm) {
-    this.userService.add(f.value).subscribe( 
-      data => { 
-
-      });
-    // location.reload();
   }
 
 
@@ -178,68 +214,9 @@ export class AddComponent implements OnInit {
     this.dataSource.filter = '' + Math.random();
   }
 
-  search(data) {
-    this.alimService.getPetById(data.number).subscribe((res) => {
-      this.rows = res;
-      console.log(res);
-    })
-    // location.reload();
-  }
-
-  search2(data1) {
-    this.alimService.getPetByFurnizor(data1.furnizor).subscribe((res) => {
-      this.rows = res;
-      // this.dataSource = new MatTableDataSource(this.rows);
-      console.log(res);
-    })
-    // location.reload();
-  }
-
-  search3(f: NgForm) {
-    this.alimService.getSumaTotalaBetweenDate(f.value.firstDate, f.value.lastDate).subscribe((res) => {
-      this.between = res;
-      console.log("res: " + res);
-    })
-  }
-
-  search4(g: NgForm) {
-    this.alimService.getSumaTotalaMonthAndYear(g.value.month, g.value.year).subscribe((res) => {
-      this.between = res;
-      console.log("res: " + res);
-    })
-  }
-
-  search5(h) {
-    this.alimService.getSumaTotalaPerYear(h.value.year).subscribe((res) => {
-      this.year = res;
-      console.log("res: " + res);
-    })
-  }
-
-  search6(a: NgForm) {
-    this.alimService.getDatesBetweenData(a.value.firstDate2, a.value.lastDate2).subscribe((res) => {
-      this.rows = res;
-      // console.log(res);
-      this.dataSource = new MatTableDataSource(this.rows)
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-
-      //  if (this.rows == "") {
-      //     this.ngOnInit();
-      //   }
-    })
-  }
 
 
 
-  search7(data2) {
-    this.alimService.getByYear(data2.year).subscribe((res) => {
-      this.rows = res;
-      // this.dataSource = new MatTableDataSource(this.rows);
-      console.log(res);
-    })
-    // location.reload();
-  }
 
 
   reset() {
@@ -262,14 +239,9 @@ export class AddComponent implements OnInit {
   searchByMonthAndYear(e: NgForm) {
     this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe((res) => {
       this.rows = res;
-      // console.log(res);
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
-      //  if (this.rows == "") {
-      //     this.ngOnInit();
-      //   }
     })
   }
 
@@ -277,9 +249,6 @@ export class AddComponent implements OnInit {
   searchByFurnizorAndDateAndSum(h: NgForm) {
     this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe((res) => {
       this.rows = res;
-
-
-      // console.log(res);
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -338,6 +307,87 @@ export class AddComponent implements OnInit {
   }
 
 
+  calculareSumaTotalaCuTVAPerYear(f: NgForm) {
+    this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe((res) => {
+      this.totalSumCuTVA_MonthAndYear_Incasari = res;
+      console.log("res: " + res);
+
+      this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(f.value.year).subscribe((res) => {
+        this.totalSumCuTVA_MonthAndYear_Cheltuieli = res;
+        console.log("res: " + res);
+     
+      
+      this.chartOptions = {
+        series: [this.totalSumCuTVA_MonthAndYear_Incasari, this.totalSumCuTVA_MonthAndYear_Cheltuieli],
+        chart: {
+          width: 380,
+          type: "pie"
+        },
+        labels: ["Total Incasari Per Year", "Total Cheltuieli Per Year"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+              legend: {
+                position: "bottom"
+              }
+            }
+          }
+        ]
+      };
+    })
+  })
+  }
+  
+
+  // calculareSumaTotalaCuTVAPerYear(f: NgForm) {
+  //   console.log("f: " + f.value.year);
+  //   this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe(res => {
+  //     this.totalSumCuTVA_MonthAndYear_Incasari = res;
+  //     console.log("res: " + res);
+  //   })
+  // }
+
+
+  calculareSumaTotalaCuTVAMonthYear(g: NgForm) {
+
+    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(g.value.month, g.value.year).subscribe((res) => {
+      this.totalSumCuTVA_MonthAndYear_Incasari = res;
+      console.log("res: " + res);
+
+      this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Cheltuieli(g.value.month, g.value.year).subscribe((res) => {
+        this.totalSumCuTVA_MonthAndYear_Cheltuieli = res;
+        console.log("res: " + res);
+     
+      
+      this.chartOptions2 = {
+        series: [this.totalSumCuTVA_MonthAndYear_Incasari, this.totalSumCuTVA_MonthAndYear_Cheltuieli],
+        chart: {
+          width: 380,
+          type: "pie"
+        },
+        labels: ["Total Incasari Month Year", "Total Cheltuieli Month Year"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+              legend: {
+                position: "bottom"
+              }
+            }
+          }
+        ]
+      };
+    })
+  })
+  }
+
 
 
 
@@ -389,22 +439,10 @@ export class AddComponent implements OnInit {
       console.log(result);
       if (result) {
         console.log(result);
-        //   this.doctService.deleteData(j).subscribe(res=>
-        // {
-        //     this.getData()
-        //     console.log("delete");
-        //   // location.reload();
-        // })
-
       }
     });
   }
 
-
-  date = {
-    first: this.datePip.transform(new Date(), 'yyyy.MM.dd'),
-    second: this.datePip.transform(new Date(), 'yyyy.MM.dd')
-  }
 
 }
 

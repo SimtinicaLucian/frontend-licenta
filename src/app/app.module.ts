@@ -60,6 +60,7 @@ import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.
 import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.component';
 
 import { NgApexchartsModule } from "ng-apexcharts";
+import { HighchartsChartModule } from "highcharts-angular";
 
 
 
@@ -143,6 +144,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
     // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
     AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
     NgApexchartsModule,
+    HighchartsChartModule
    
 
     

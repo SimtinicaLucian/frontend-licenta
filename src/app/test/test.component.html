@@ -1,47 +1,69 @@
-<div id="chart">
+<!-- <div id="chart">
   <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
     [responsive]="chartOptions.responsive"></apx-chart>
+</div> -->
+
+
+
+
+<div class="form-group">
+  <label for="college">Select:</label>
+  <div *ngIf="'year.value'">
+    <form f="form" (ngSubmit)="calculareSumaTotalaCuTVAPerYear(f)" #f="ngForm" novalidate class="form-inline">
+      <mat-select class="form-control" id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
+        <mat-option *ngFor="let year of years" [value]="year.value">
+          {{year.viewValue}}
+        </mat-option>
+      </mat-select>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Add </button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="'year.value' && 'month.value'">
+    <form f="form" (ngSubmit)="calculareSumaTotalaCuTVAMonthYear(f)" #f="ngForm" novalidate class="form-inline">
+      <mat-select class="form-control" id="year" name="year1" [(ngModel)]="form.year1" required #year="ngModel">
+        <mat-option *ngFor="let year1 of years" [value]="year1.value">
+          {{year1.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-select class="form-control" id="month" name="month" [(ngModel)]="form.month" required #month="ngModel">
+        <mat-option *ngFor="let month of months" [value]="month.value">
+          {{month.viewValue}}
+        </mat-option>
+      </mat-select>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Add </button>
+      </div>
+      <div id="chart">
+        <apx-chart [series]="chartOptions.series" 
+        [chart]="chartOptions.chart"
+        [labels]="chartOptions.labels"
+        [responsive]="chartOptions.responsive"></apx-chart>
+      </div>
+    </form>
+  </div>
+
 </div>
 
+<!-- <div id="chart">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [labels]="chartOptions.labels"
+    [responsive]="chartOptions.responsive"
+  ></apx-chart>
+</div> -->
 
 
-<div id="chart">
+<!-- <div id="chart">
   <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [labels]="chartOptions1.labels"
     [responsive]="chartOptions1.responsive"></apx-chart>
-</div>
+</div> -->
 
 
 
-
-
-<div class="col-sm-3">
-
-  <form g="form" (ngSubmit)="calculareSumaTotalaCuTVAMonthYear(g)" #g="ngForm" novalidate>
-    <div class="form-group">
-      <label for="month"></label>
-      <input type="text" class="form-control" name="month" [(ngModel)]="form.month" placeholder="Month"
-        required #month="ngModel" />
-    </div>
-    <div class="form-group">
-      <label for="year"></label>
-      <input type="text" class="form-control" name="year" [(ngModel)]="form.year" placeholder="Year"
-        required #year="ngModel" />
-    </div>
-
-    <div class="form-group">
-      <button class="btn btn-primary btn-block">Add </button>
-      <div id="chart">
-        <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart" [labels]="chartOptions3.labels"
-          [responsive]="chartOptions3.responsive"></apx-chart>
-      </div>
-
-    </div>
-  </form>
-
-
-
-
-
+<!-- <div class="col-sm-3">
   <form f="form" (ngSubmit)="culculareSumaTotalaCuTVAData1Data2(f)" #f="ngForm" novalidate>
     <div class="form-group">
       <label for="data1"></label>
@@ -60,7 +82,52 @@
         <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart" [labels]="chartOptions2.labels"
           [responsive]="chartOptions2.responsive"></apx-chart>
       </div>
-
     </div>
   </form>
+</div> -->
+
+
+
+<!-- <div class="col-sm-3">
+  <form g="form" (ngSubmit)="calculareSumaTotalaCuTVAMonthYear(g)" #g="ngForm" novalidate>
+    <div class="form-group">
+      <label for="month"></label>
+      <input type="text" class="form-control" name="month" [(ngModel)]="form.month" placeholder="Month" required
+        #month="ngModel" />
+    </div>
+    <div class="form-group">
+      <label for="year"></label>
+      <input type="text" class="form-control" name="year" [(ngModel)]="form.year" placeholder="Year" required
+        #year="ngModel" />
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Add </button>
+      <div id="chart">
+        <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart" [labels]="chartOptions3.labels"
+          [responsive]="chartOptions3.responsive"></apx-chart>
+      </div>
+    </div>
+</form>
 </div>
+
+
+
+<div class="col-sm-3">
+  <form f="form" (ngSubmit)="calculareSumaTotalaCuTVAPerYear(f)" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="year"></label>
+      <input type="text" class="form-control" name="year" [(ngModel)]="form.year" placeholder="Year" required
+        #year="ngModel" />
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Add </button>
+      <div id="chart">
+        <apx-chart [series]="chartOptions4.series" [chart]="chartOptions4.chart" [labels]="chartOptions4.labels"
+          [responsive]="chartOptions4.responsive"></apx-chart>
+      </div>
+
+    </div>
+</form>
+</div> -->

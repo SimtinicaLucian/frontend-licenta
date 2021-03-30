@@ -60,6 +60,7 @@ var test_component_1 = require("./test/test.component");
 var modal_delete_user_component_1 = require("./modal-delete-user/modal-delete-user.component");
 var modal_update_user_component_1 = require("./modal-update-user/modal-update-user.component");
 var ng_apexcharts_1 = require("ng-apexcharts");
+var highcharts_angular_1 = require("highcharts-angular");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -121,6 +122,7 @@ var AppModule = /** @class */ (function () {
                 // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
                 ngx_alerts_1.AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
                 ng_apexcharts_1.NgApexchartsModule,
+                highcharts_angular_1.HighchartsChartModule
             ],
             entryComponents: [app_component_1.AppComponent],
             // providers: [ExcelService, MatDatepickerModule, DatePipe,
