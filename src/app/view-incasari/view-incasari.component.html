@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">View data</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form name="form" (ngSubmit)="searchID(j)" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="data"><b>Data: </b> </label>
+            {{j.data}}
+        </div>
+
+
+        <div class="form-group">
+            <label for="furnizor"><b>Furnizor: </b> </label>
+            {{j.furnizor}}
+        </div>
+
+        <div class="form-group">
+            <label for="number"><b>Numar: </b> </label>
+            {{j.number}}
+        </div>
+
+
+        <div class="form-group">
+            <label for="detalii"><b>Detalii: </b> </label>
+            {{j.detalii}}
+        </div>
+
+        <div class="form-group">
+            <label for="sumaTotala"><b>sumaTotala: </b> </label>
+            {{j.sumaTotala}}
+        </div>
+
+        <div class="form-group">
+            <label for="sumaTotala_Incasata"><b>sumaTotala_Incasata: </b> </label>
+            {{j.sumaTotala_Incasata}}
+        </div>
+
+        <div class="form-group">
+            <label for="sumaFaraTVA"><b>sumaFaraTVA: </b> </label>
+            {{j.sumaFaraTVA}}
+        </div>
+
+        <div class="form-group">
+            <label for="sumaFaraTVA_Incasata"><b>sumaFaraTVA_Incasata: </b> </label>
+            {{j.sumaFaraTVA_Incasata}}
+
+        </div>
+
+        <div class="form-group">
+            <label for="sumaTVA"><b>sumaTVA: </b> </label>
+            {{j.sumaTVA}}
+
+        </div>
+
+        <div class="form-group">
+            <label for="sumaTVA_Incasata"><b>sumaTVA_Incasata: </b> </label>
+            {{j.sumaTVA_Incasata}}
+
+        </div>
+
+
+</form>
+</div>
+

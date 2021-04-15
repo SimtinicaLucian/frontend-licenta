@@ -135,6 +135,33 @@
         </div>
 
         <div class="form-group">
+            <label for="sumaTotala_Incasata">sumaTotala_Incasata</label>
+            <input type="number" class="form-control" name="sumaTotala_Incasata" [(ngModel)]="form.sumaTotala_Incasata" required
+                minlength="0" maxlength="50" #sumaTotala_Incasata="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && sumaTotala_Incasata.invalid">
+                <div *ngIf="sumaTotala_Incasata.errors.required">sumaTotala_Incasata is required</div>
+                <div *ngIf="sumaTotala_Incasata.errors.minlength">
+                    sumaTotala_Incasata must be at least 1 characters
+                </div>
+                <div *ngIf="sumaTotala_Incasata.errors.maxlength">
+                    sumaTotala_Incasata must be at most 50 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="data_Plata">data_Plata</label>
+            <input type="text" class="form-control" name="data_Plata" [(ngModel)]="form.data_Plata" required
+                 #data_Plata="ngModel" />
+        </div>
+
+        <div class="form-group">
+            <label for="data_Scadenta">data_Scadenta</label>
+            <input type="text" class="form-control" name="data_Scadenta" [(ngModel)]="form.data_Scadenta" required
+                 #data_Scadenta="ngModel" />
+        </div>
+
+        <!-- <div class="form-group">
             <label for="sumaFaraTVA">sumaFaraTVA</label>
             <input type="number" class="form-control" name="sumaFaraTVA" [(ngModel)]="form.sumaFaraTVA" required
                 minlength="2" maxlength="50" #sumaFaraTVA="ngModel" />
@@ -147,9 +174,9 @@
                     sumaFaraTVA must be at most 50 characters
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="sumaTVA">sumaTVA</label>
             <input type="number" class="form-control" name="sumaTVA" [(ngModel)]="form.sumaTVA" required minlength="2"
                 maxlength="50" #sumaTVA="ngModel" />
@@ -162,7 +189,23 @@
                     sumaTVA must be at most 50 characters
                 </div>
             </div>
-        </div>
+        </div> -->
+
+
+        <!-- <div class="form-group">
+            <label for="stare">stare</label>
+            <input type="text" class="form-control" name="stare" [(ngModel)]="form.stare" required minlength="2"
+                maxlength="50" #stare="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && stare.invalid">
+                <div *ngIf="stare.errors.required">stare is required</div>
+                <div *ngIf="stare.errors.minlength">
+                    stare must be at least 1 characters
+                </div>
+                <div *ngIf="stare.errors.maxlength">
+                    stare must be at most 50 characters
+                </div>
+            </div>
+        </div> -->
 
 
 

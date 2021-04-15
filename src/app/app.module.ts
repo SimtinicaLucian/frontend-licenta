@@ -61,6 +61,7 @@ import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.
 
 import { NgApexchartsModule } from "ng-apexcharts";
 import { HighchartsChartModule } from "highcharts-angular";
+import { ViewIncasariComponent } from './view-incasari/view-incasari.component';
 
 
 
@@ -97,6 +98,7 @@ import { HighchartsChartModule } from "highcharts-angular";
     TestComponent,
     ModalDeleteUserComponent,
     ModalUpdateUserComponent,
+    ViewIncasariComponent,
 
 
   ],

@@ -109,3 +109,9 @@ input,
 label {
   margin: 0.4rem 0;
 }
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

@@ -16,6 +16,7 @@ require("rxjs/Rx");
 var modal_content_component_1 = require("../modal-content/modal-content.component");
 var modal_delete_incasari_component_1 = require("../modal-delete-incasari/modal-delete-incasari.component");
 var modal_update_incasari_component_1 = require("../modal-update-incasari/modal-update-incasari.component");
+var view_incasari_component_1 = require("../view-incasari/view-incasari.component");
 var _moment = require("moment");
 var moment_1 = require("moment");
 var core_2 = require("@angular/material/core");
@@ -44,6 +45,7 @@ var AddComponent = /** @class */ (function () {
         this.router = router;
         this.excelService = excelService;
         this.statisticsService = statisticsService;
+        this.hide = true;
         this.user = {
             data: '',
             furnizor: '',
@@ -54,7 +56,8 @@ var AddComponent = /** @class */ (function () {
             sumaTva: 1
         };
         this.form = {};
-        this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'by_added', 'delete', 'update'];
+        // displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'rest', 'sumaFaraTVA', 'sumaFaraTVA_Incasata' , 'sumaTVA', 'sumaTVA_Incasata', 'by_added', 'stare', 'delete', 'update'];
+        this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'rest', 'by_added', 'stare', 'action'];
         this.sorted = false;
         this.toppings = new forms_1.FormControl();
         this.months = [
@@ -63,6 +66,12 @@ var AddComponent = /** @class */ (function () {
         this.years = [
             { value: '2021', viewValue: '2021' },
             { value: '2020', viewValue: '2020' }
+        ];
+        this.stares = [
+            { value: 'achitata', viewValue: 'achitata' },
+            { value: 'neachitata', viewValue: 'neachitata' },
+            { value: 'partial achitata', viewValue: 'partial achitata' },
+            { value: 'intarziata', viewValue: 'intarziata' }
         ];
     }
     AddComponent.prototype.exportAsXLSX = function () {
@@ -115,7 +124,7 @@ var AddComponent = /** @class */ (function () {
     };
     AddComponent.prototype.searchByFurnizorAndDateAndSum = function (h) {
         var _this = this;
-        this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe(function (res) {
+        this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2, h.value.stare).subscribe(function (res) {
             _this.rows = res;
             _this.dataSource = new table_1.MatTableDataSource(_this.rows);
             _this.dataSource.paginator = _this.paginator;
@@ -244,6 +253,18 @@ var AddComponent = /** @class */ (function () {
     AddComponent.prototype.getTotalCostTVA = function () {
         return this.rows.map(function (t) { return t.sumaTVA; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
+    AddComponent.prototype.getTotalCostTotal_Incasata = function () {
+        return this.rows.map(function (t) { return t.sumaTotala_Incasata; }).reduce(function (acc, value) { return acc + value; }, 0);
+    };
+    AddComponent.prototype.getTotalCostFaraTVA_Incasata = function () {
+        return this.rows.map(function (t) { return t.sumaFaraTVA_Incasata; }).reduce(function (acc, value) { return acc + value; }, 0);
+    };
+    AddComponent.prototype.getTotalCostTVA_Incasata = function () {
+        return this.rows.map(function (t) { return t.sumaTVA_Incasata; }).reduce(function (acc, value) { return acc + value; }, 0);
+    };
+    AddComponent.prototype.getRest = function () {
+        return this.rows.map(function (t) { return t.rest; }).reduce(function (acc, value) { return acc + value; }, 0);
+    };
     AddComponent.prototype.add = function (pageName) {
         this.router.navigate(["" + pageName]);
     };
@@ -269,6 +290,18 @@ var AddComponent = /** @class */ (function () {
     AddComponent.prototype.updateModal = function (j) {
         console.log(j);
         var modalRef = this.modalService.open(modal_update_incasari_component_1.ModalUpdateIncasariComponent);
+        modalRef.componentInstance.j = j;
+        modalRef.result.then(function (result) {
+            console.log(result);
+            if (result) {
+                console.log(result);
+            }
+        });
+    };
+    AddComponent.prototype.view = function (j) {
+        console.log(j);
+        var modalRef = this.modalService.open(view_incasari_component_1.ViewIncasariComponent);
+        // const modalRef = this.view.call(ViewIncasariComponent);
         modalRef.componentInstance.j = j;
         modalRef.result.then(function (result) {
             console.log(result);

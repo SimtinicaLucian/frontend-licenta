@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   fieldTextType: boolean;
 
+
   constructor(private route: ActivatedRoute,private router: Router, private authService: AuthService, private tokenStorage: TokenStorageService, public progressBar: ProgressBarService,
     private alertService: AlertService) { }
 

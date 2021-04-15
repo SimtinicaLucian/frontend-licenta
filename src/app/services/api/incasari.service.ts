@@ -714,13 +714,14 @@ export class IncasariService {
  * @param data2 
  * @param sumaTotala1 
  * @param sumaTotala2 
+ * @param stare
  * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
  * @param reportProgress flag to report request and response progress.
  */
-    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
-    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
-    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
-    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, stare?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Incasari>>;
+    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, stare?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, stare?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpResponse<Array<Incasari>>>;
+    public getData(furnizor: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, stare?: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
 
@@ -740,6 +741,9 @@ export class IncasariService {
         }
         if (sumaTotala2 !== undefined && sumaTotala2 !== null) {
             queryParameters = queryParameters.set('sumaTotala2', <any>sumaTotala2);
+        }
+        if (stare !== undefined && stare !== null) {
+            queryParameters = queryParameters.set('stare', <any>stare);
         }
 
         let headers = this.defaultHeaders;
@@ -850,6 +854,13 @@ export class IncasariService {
             .map(res => {
                 this.rows;
             })
+    }
+
+    searchId(id){
+        return this.httpClient.get(`${this.basePath}/incasari/search/id/${encodeURIComponent(String(id))}`)
+        .map(res => {
+            this.rows;
+        })
     }
 
 

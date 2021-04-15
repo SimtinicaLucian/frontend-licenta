@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ChartComponent } from "ng-apexcharts";
 import {
   ApexNonAxisChartSeries,
@@ -13,11 +13,34 @@ import { NgForm } from '@angular/forms';
 import { SelectorMatcher } from '@angular/compiler';
 import { StatisticsService } from '../services/api/statistics.service';
 
+import * as _moment from 'moment';
+
+import {default as _rollupMoment} from 'moment'; 
+
+import { MAT_DATE_FORMATS, DateAdapter,MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
 import {
   ApexFill,
   ApexDataLabels,
   ApexLegend
 } from "ng-apexcharts";
+
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'YYYY.MM.DD',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
+
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -78,7 +101,12 @@ interface Month {
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  styleUrls: ['./test.component.scss'],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class TestComponent {
   // chart: any;
@@ -88,7 +116,7 @@ export class TestComponent {
   public totalSumTVA: any;
   public rows: any;
   public rowss: any;
-
+  public soldm: any;
 
 
 
@@ -124,6 +152,10 @@ export class TestComponent {
 
   public totalSumPerYear_Incasari: any;
   public totalSumPerYear_Cheltuieli: any;
+  
+
+  public totalSumDataMinDatax_Incasari: any;
+  public totalSumDataMinDatax_Cheltuieli: any;
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
@@ -402,6 +434,13 @@ export class TestComponent {
     
   }
 
+  sold(){
+    this.statisticsService.sold().subscribe((res) => {
+      this.soldm = res;
+      console.log(this.soldm);
+    })
+  }
+
 
   calculareSumaTotalaCuTVAMonthYear(f: NgForm) {
     this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(f.value.month, f.value.year1).subscribe((res) => {
@@ -418,6 +457,21 @@ export class TestComponent {
     // this.chartOptions.series = [this.totalSumPerYear_Incasari, this.totalSumPerYear_Cheltuieli] 
     console.log("hai sus 2" , this.chartOptions.series);
   }
+
+
+  calculareSumaTotalaCuTVADataMinDataMax(f: NgForm){
+    this.statisticsService.calculareSumaTotalaCuTVADataMinDataMax_Incasari(f.value.data1, f.value.data2).subscribe((res) => {
+      this.totalSumDataMinDatax_Incasari = res;
+      console.log("Total incasari dataMin-dataMax:" + res);
+    })
+    this.statisticsService.calculareSumaTotalaCuTVADataMinDataMax_Cheltuieli(f.value.data1, f.value.data2).subscribe((res) => {
+      this.totalSumDataMinDatax_Cheltuieli = res;
+      console.log("Total cheltuieli dataMin-dataMax:" + res);
+      this.chartOptions.series = [this.totalSumDataMinDatax_Incasari, this.totalSumDataMinDatax_Cheltuieli] 
+      this.chartOptions.labels = ["Total incasari/dataMindataMax", "Total cheltuieli/dataMindataMax"]
+    })
+  }
+
 
 }
 

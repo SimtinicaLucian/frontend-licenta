@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../modal-content/modal-content.component'
 import { ModalDeleteIncasariComponent } from '../modal-delete-incasari/modal-delete-incasari.component';
 import { ModalUpdateIncasariComponent } from '../modal-update-incasari/modal-update-incasari.component';
+import { ViewIncasariComponent } from '../view-incasari/view-incasari.component';
 import * as _moment from 'moment';
 
 import {default as _rollupMoment} from 'moment'; 
@@ -79,6 +80,11 @@ interface Year {
   viewValue: string;
 }
 
+interface Stare {
+  value: string;
+  viewValue: string;
+}
+
 
 
 @Component({
@@ -115,7 +121,7 @@ export class AddComponent implements OnInit {
   totalSumCuTVA_MonthAndYear_Incasari: any;
   totalSumCuTVA_MonthAndYear_Cheltuieli: any;
 
-
+  hide = true;
 
 
 
@@ -134,7 +140,8 @@ export class AddComponent implements OnInit {
   id: string;
 
   form: any = {};
-  displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'by_added', 'delete', 'update'];
+  // displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'rest', 'sumaFaraTVA', 'sumaFaraTVA_Incasata' , 'sumaTVA', 'sumaTVA_Incasata', 'by_added', 'stare', 'delete', 'update'];
+   displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'rest', 'by_added', 'stare', 'action'];
   values: PeriodicElement[];
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
@@ -167,6 +174,14 @@ public chartOptions2: Partial<ChartOptions2>;
   years: Year[] = [
     {value: '2021', viewValue: '2021'},
     {value: '2020', viewValue: '2020'}
+  ];
+
+  stares: Stare[] = [
+    {value: 'achitata', viewValue: 'achitata'},
+    {value: 'neachitata', viewValue: 'neachitata'},
+    {value: 'partial achitata' , viewValue: 'partial achitata'},
+    {value: 'intarziata' , viewValue: 'intarziata'}
+
   ];
 
   // years: number[] =[2020,2021]
@@ -247,7 +262,7 @@ public chartOptions2: Partial<ChartOptions2>;
 
 
   searchByFurnizorAndDateAndSum(h: NgForm) {
-    this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2).subscribe((res) => {
+    this.alimService.getData(h.value.furnizor, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2, h.value.stare).subscribe((res) => {
       this.rows = res;
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
@@ -404,6 +419,23 @@ public chartOptions2: Partial<ChartOptions2>;
     return this.rows.map(t => t.sumaTVA).reduce((acc, value) => acc + value, 0);
   }
 
+  
+  getTotalCostTotal_Incasata() {
+    return this.rows.map(t => t.sumaTotala_Incasata).reduce((acc, value) => acc + value, 0);
+  }
+
+  getTotalCostFaraTVA_Incasata() {
+    return this.rows.map(t => t.sumaFaraTVA_Incasata).reduce((acc, value) => acc + value, 0);
+  }
+
+  getTotalCostTVA_Incasata() {
+    return this.rows.map(t => t.sumaTVA_Incasata).reduce((acc, value) => acc + value, 0);
+  }
+
+  getRest() {
+    return this.rows.map(t => t.rest).reduce((acc, value) => acc + value, 0);
+  }
+
 
   add(pageName: string): void {
     this.router.navigate([`${pageName}`]);
@@ -443,6 +475,21 @@ public chartOptions2: Partial<ChartOptions2>;
     });
   }
 
+  view(j) {
+    console.log(j);
+    const modalRef = this.modalService.open(ViewIncasariComponent);
+    // const modalRef = this.view.call(ViewIncasariComponent);
+    modalRef.componentInstance.j = j;
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+
+
+
 
 }
 
@@ -456,5 +503,11 @@ export interface PeriodicElement {
   sumaTotala: number;
   sumaFaraTVA: number;
   sumaTVA: number;
+  sumaTotala_Incasata: number;
+  sumaFaraTVA_Incasata: number;
+  sumaTVA_Incasata: number;
+  rest: number;
   by_added: string;
+  stare: string;
+  action: any;
 }
