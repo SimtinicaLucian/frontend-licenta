@@ -12,6 +12,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, ViewChild, AfterViewInit, Type, Input, ViewEncapsulation } from '@angular/core';
 import { ModalContentComponent } from '../modal-content/modal-content.component'
 import { Incasari } from '../api/model/incasari';
+import {CheltuieliService} from '../services/api/cheltuieli.service';
 
 
 @Component({
@@ -69,9 +70,15 @@ export class AddincasareComponent implements OnInit {
   private sorted = false;
   publishDate: any;
   datePipe: any;
+  solds: any;
+
+  SoldTotal:any;
+  Count_Incasari_Intarziate: any;
+  Count_Cheltuieli_Intarziate: any;
 
 
-  constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService) {
+
+  constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService, private cheltuieliService : CheltuieliService) {
   }
 
   exportAsXLSX():void {
@@ -99,16 +106,17 @@ export class AddincasareComponent implements OnInit {
     })
 
 
-    this.alimService.searchTotal().subscribe((res =>
-      this.totalSum = res
+
+    this.alimService.sold().subscribe((res =>
+      this.SoldTotal = res
     ))
 
-    this.alimService.searchTotalTVA().subscribe((res =>
-      this.totalSumTVA = res
+    this.alimService.Incasari_CountIntarziate().subscribe((res =>
+      this.Count_Incasari_Intarziate = res
     ))
 
-    this.alimService.searchTotalFaraTVA().subscribe((res =>
-      this.totalSumFaraTVA = res
+    this.cheltuieliService.Cheltuieli_CountIntarziate().subscribe((res =>
+      this.Count_Cheltuieli_Intarziate = res
     ))
 
 
@@ -118,6 +126,11 @@ export class AddincasareComponent implements OnInit {
   register(f: NgForm) {
     this.alimService.add(f.value).subscribe(() => { })
     // location.reload();
+  }
+
+  sold(){
+    return this.alimService.sold().subscribe(() => { })
+
   }
 
 

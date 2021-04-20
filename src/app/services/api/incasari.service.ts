@@ -24,12 +24,12 @@ const API_URL = 'http://localhost:8080/api/user/mail/';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+};
 
 
-  @Injectable({
+@Injectable({
     providedIn: 'root'
-  })
+})
 export class IncasariService {
 
     protected basePath = 'http://localhost:8080';
@@ -63,7 +63,7 @@ export class IncasariService {
         return false;
     }
 
-    
+
 
 
     /**
@@ -784,7 +784,7 @@ export class IncasariService {
     public updateIncasari(id: number, body: Incasari, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public updateIncasari(id: number, body: Incasari, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public updateIncasari(id: number, body: Incasari, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateIncasari(id: number, body: Incasari, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateIncasari(id: number, body: Incasari, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (id === null || id === undefined) {
             throw new Error('Required parameter username was null or undefined when calling updateUser.');
@@ -829,23 +829,22 @@ export class IncasariService {
         if (useForm) {
             formParams = new FormData();
         } else {
-            formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+            formParams = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
         }
 
 
 
         return this.httpClient.put<any>(`${this.basePath}/incasari/update/${encodeURIComponent(String(id))}`,
-        body,
-        {
-            withCredentials: this.configuration.withCredentials,
-            headers: headers,
-            observe: observe,
-            reportProgress: reportProgress
-        }
-        ).map(res=>
+            body,
             {
-                this.rows;
-            })
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        ).map(res => {
+            this.rows;
+        })
     }
 
 
@@ -856,101 +855,172 @@ export class IncasariService {
             })
     }
 
-    searchId(id){
+    searchId(id) {
         return this.httpClient.get(`${this.basePath}/incasari/search/id/${encodeURIComponent(String(id))}`)
-        .map(res => {
-            this.rows;
-        })
+            .map(res => {
+                this.rows;
+            })
     }
 
 
 
 
- /**
-     * Add a new coast
-     * 
-     * @param body Pet object that needs to be added to the store
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-  public send(body: Mail, observe?: 'body', reportProgress?: boolean): Observable<any>;
-  public send(body: Mail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-  public send(body: Mail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-  public send(body: Mail, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    /**
+        * Add a new coast
+        * 
+        * @param body Pet object that needs to be added to the store
+        * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+        * @param reportProgress flag to report request and response progress.
+        */
+    public send(body: Mail, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public send(body: Mail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public send(body: Mail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public send(body: Mail, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
-      if (body === null || body === undefined) {
-          throw new Error('Required parameter body was null or undefined when calling add.');
-      }
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling add.');
+        }
 
-      let headers = this.defaultHeaders;
+        let headers = this.defaultHeaders;
 
-      // to determine the Accept header
-      let httpHeaderAccepts: string[] = [
-          'application/json'
-      ];
-      const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-      if (httpHeaderAcceptSelected != undefined) {
-          headers = headers.set('Accept', httpHeaderAcceptSelected);
-      }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
 
-      // to determine the Content-Type header
-      const consumes: string[] = [
-          'application/json'
-      ];
-      const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-      if (httpContentTypeSelected != undefined) {
-          headers = headers.set('Content-Type', httpContentTypeSelected);
-      }
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
+        const user = this.tokenStorageService.getUser();
+        this.username = user.username;
 
-      return this.httpClient.post<any>(`${this.basePath}/api/user/mail/test`,
-          body,
-          {
-              withCredentials: this.configuration.withCredentials,
-              headers: headers,
-              observe: observe,
-              reportProgress: reportProgress
-          }
-      );
-  }
+        return this.httpClient.post<any>(`${this.basePath}/api/user/mail/test`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
 
-     /**
-     * F
-     * M
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-      public count(observe?: 'body', reportProgress?: boolean): Observable<any>;
-      public count(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-      public count(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-      public count(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
-  
-          let headers = this.defaultHeaders;
-  
-          // to determine the Accept header
-          let httpHeaderAccepts: string[] = [
-              'application/json'
-          ];
-          const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-          if (httpHeaderAcceptSelected != undefined) {
-              headers = headers.set('Accept', httpHeaderAcceptSelected);
-          }
-          // to determine the Content-Type header
-          const consumes: string[] = [
-          ];
-  
-          return this.httpClient.get<any>(`${this.basePath}/incasari/countAll`,
-              {
-                  withCredentials: this.configuration.withCredentials,
-                  headers: headers,
-                  observe: observe,
-                  reportProgress: reportProgress
-              }
-          );
-      }
+    /**
+    * F
+    * M
+    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+    * @param reportProgress flag to report request and response progress.
+    */
+    public count(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public count(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public count(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public count(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/incasari/countAll`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+* F
+* M
+* @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+* @param reportProgress flag to report request and response progress.
+*/
+    public sold(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public sold(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public sold(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public sold(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/statistics/sold`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+        /**
+* F
+* M
+* @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+* @param reportProgress flag to report request and response progress.
+*/
+public Incasari_CountIntarziate(observe?: 'body', reportProgress?: boolean): Observable<any>;
+public Incasari_CountIntarziate(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+public Incasari_CountIntarziate(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+public Incasari_CountIntarziate(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+        'application/json'
+    ];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+        headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+    // to determine the Content-Type header
+    const consumes: string[] = [
+    ];
+
+    return this.httpClient.get<any>(`${this.basePath}/statistics/incasari/intarziate`,
+        {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        }
+    );
+}
 
 
 }

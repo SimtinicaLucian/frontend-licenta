@@ -213,7 +213,18 @@ public chartOptions2: Partial<ChartOptions2>;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
+
+
+    this.alimService.sold().subscribe((res =>
+      this.totalSum = res
+    ))
   }
+
+
+  // sold(){
+  //   return this.alimService.sold().subscribe(() => { })
+
+  // }
 
 
   applyFilter(event: Event) {

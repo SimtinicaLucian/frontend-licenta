@@ -16,12 +16,13 @@ var core_1 = require("@angular/core");
 var modal_content_component_1 = require("../modal-content/modal-content.component");
 var incasari_1 = require("../api/model/incasari");
 var AddincasareComponent = /** @class */ (function () {
-    function AddincasareComponent(modalService, formBuilder, alimService, router, excelService) {
+    function AddincasareComponent(modalService, formBuilder, alimService, router, excelService, cheltuieliService) {
         this.modalService = modalService;
         this.formBuilder = formBuilder;
         this.alimService = alimService;
         this.router = router;
         this.excelService = excelService;
+        this.cheltuieliService = cheltuieliService;
         this.incasari = new incasari_1.Incasari();
         this.homearray = [];
         this.activeindex = -1;
@@ -54,19 +55,22 @@ var AddincasareComponent = /** @class */ (function () {
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
         });
-        this.alimService.searchTotal().subscribe((function (res) {
-            return _this.totalSum = res;
+        this.alimService.sold().subscribe((function (res) {
+            return _this.SoldTotal = res;
         }));
-        this.alimService.searchTotalTVA().subscribe((function (res) {
-            return _this.totalSumTVA = res;
+        this.alimService.Incasari_CountIntarziate().subscribe((function (res) {
+            return _this.Count_Incasari_Intarziate = res;
         }));
-        this.alimService.searchTotalFaraTVA().subscribe((function (res) {
-            return _this.totalSumFaraTVA = res;
+        this.cheltuieliService.Cheltuieli_CountIntarziate().subscribe((function (res) {
+            return _this.Count_Cheltuieli_Intarziate = res;
         }));
     };
     AddincasareComponent.prototype.register = function (f) {
         this.alimService.add(f.value).subscribe(function () { });
         // location.reload();
+    };
+    AddincasareComponent.prototype.sold = function () {
+        return this.alimService.sold().subscribe(function () { });
     };
     AddincasareComponent.prototype.applyFilter = function (event) {
         var filterValue = event.target.value;

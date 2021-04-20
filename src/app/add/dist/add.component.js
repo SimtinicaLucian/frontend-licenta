@@ -86,7 +86,13 @@ var AddComponent = /** @class */ (function () {
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
         });
+        this.alimService.sold().subscribe((function (res) {
+            return _this.totalSum = res;
+        }));
     };
+    // sold(){
+    //   return this.alimService.sold().subscribe(() => { })
+    // }
     AddComponent.prototype.applyFilter = function (event) {
         var filterValue = event.target.value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
