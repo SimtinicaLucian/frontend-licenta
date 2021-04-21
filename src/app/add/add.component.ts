@@ -215,9 +215,6 @@ public chartOptions2: Partial<ChartOptions2>;
     })
 
 
-    this.alimService.sold().subscribe((res =>
-      this.totalSum = res
-    ))
   }
 
 

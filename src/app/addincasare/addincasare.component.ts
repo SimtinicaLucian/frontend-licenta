@@ -13,6 +13,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, Type, Input, ViewEncapsula
 import { ModalContentComponent } from '../modal-content/modal-content.component'
 import { Incasari } from '../api/model/incasari';
 import {CheltuieliService} from '../services/api/cheltuieli.service';
+import { StatisticsService } from '../services/api/statistics.service';
 
 
 @Component({
@@ -75,10 +76,13 @@ export class AddincasareComponent implements OnInit {
   SoldTotal:any;
   Count_Incasari_Intarziate: any;
   Count_Cheltuieli_Intarziate: any;
+  Incasari_Intarziate_RestDeIncasat: any;
+  Cheltuieli_Intarziate_RestDeAchitat: any;
 
 
 
-  constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService, private cheltuieliService : CheltuieliService) {
+  constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService, private cheltuieliService : CheltuieliService,
+          private statisticsService : StatisticsService) {
   }
 
   exportAsXLSX():void {
@@ -107,16 +111,24 @@ export class AddincasareComponent implements OnInit {
 
 
 
-    this.alimService.sold().subscribe((res =>
+    this.statisticsService.sold().subscribe((res =>
       this.SoldTotal = res
     ))
 
-    this.alimService.Incasari_CountIntarziate().subscribe((res =>
+    this.statisticsService.Incasari_CountIntarziate().subscribe((res =>
       this.Count_Incasari_Intarziate = res
     ))
 
-    this.cheltuieliService.Cheltuieli_CountIntarziate().subscribe((res =>
+    this.statisticsService.Cheltuieli_CountIntarziate().subscribe((res =>
       this.Count_Cheltuieli_Intarziate = res
+    ))
+
+    this.statisticsService.Incasari_Intarziate_Rest_DeIncasat().subscribe((res =>
+      this.Incasari_Intarziate_RestDeIncasat = res
+    ))
+
+    this.statisticsService.Cheltuieli_Intarziate_Rest_DeAchitat().subscribe((res =>
+      this.Cheltuieli_Intarziate_RestDeAchitat = res
     ))
 
 
@@ -128,10 +140,7 @@ export class AddincasareComponent implements OnInit {
     // location.reload();
   }
 
-  sold(){
-    return this.alimService.sold().subscribe(() => { })
 
-  }
 
 
   applyFilter(event: Event) {
