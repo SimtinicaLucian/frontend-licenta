@@ -1,0 +1,143 @@
+/* Structure */
+
+
+
+
+
+
+.stats-cards {
+    .mat-card {
+      overflow: hidden;
+    }
+  }
+  
+  
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 50%;
+  }
+  
+  
+  
+  .example-container {
+    height: 270px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
+  
+  .mat-table-sticky {
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  
+  table {
+    width: 100%;
+  }
+  
+  
+  form{
+    padding-bottom: 30px;
+  }
+  .primary{
+    background: orange;
+    color: white;
+  }
+  
+  .date-block{
+    display: flex;
+  }
+  .date-block__list{
+    flex-basis: 150px;
+    margin-right: 15px;
+  }
+  
+  
+  // 
+  .table-container {
+    width: 100%;
+  }
+  
+  table {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  
+  td.footer {
+    font-style: italic;
+    text-align: center;
+  }
+  
+  table {
+      width: 100%;
+    }
+    
+  .mat-form-field {
+      font-size: 14px;
+      width: 100%;
+    }
+  
+  .excel{
+    position: relative;
+  }
+  
+  
+  // .center{
+  //   margin-right: 210px;
+  // 	margin-top: 50px;
+  // }
+  
+  // .mat-form-field {
+  //   font-size: 14px;
+  //   width: 100%;
+  // }
+  
+  .active-pink-4 input[type=text]:focus:not([readonly]) {
+    border: 1px solid #f48fb1;
+    box-shadow: 0 0 0 1px #f48fb1;
+  }
+  
+  .center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+  }
+  
+  // ---------------------
+  
+  .center {
+    text-align: center;
+  }
+  
+  span > i {
+      color: white;
+  }
+  span > input {
+      background: none;
+      color: white;
+      padding: 0;
+      border: 0;
+  }
+  
+  label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+  }
+  
+  input,
+  label {
+    margin: .4rem 0;
+  }
+  
+  .excel{
+  position: relative;
+}
+  
+  

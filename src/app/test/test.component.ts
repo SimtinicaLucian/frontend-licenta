@@ -434,12 +434,12 @@ export class TestComponent {
     
   }
 
-  sold(){
-    this.statisticsService.sold().subscribe((res) => {
-      this.soldm = res;
-      console.log(this.soldm);
-    })
-  }
+  // sold(){
+  //   this.statisticsService.sold().subscribe((res) => {
+  //     this.soldm = res;
+  //     console.log(this.soldm);
+  //   })
+  // }
 
 
   calculareSumaTotalaCuTVAMonthYear(f: NgForm) {

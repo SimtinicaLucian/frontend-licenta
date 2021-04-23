@@ -13,6 +13,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { TestComponent } from './test/test.component';
 import { ViewIncasariComponent } from './view-incasari/view-incasari.component';
+import { CheltuieliComponent } from './cheltuieli/cheltuieli.component';
 
 
 
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'reset', component: PasswordResetComponent},
   { path: 'test', component: TestComponent},
   { path: 'view', component: ViewIncasariComponent},
+  { path: 'cheltuieli', component: CheltuieliComponent},
   { path: '**', redirectTo: '' }
 ];
 

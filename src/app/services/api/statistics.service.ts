@@ -1414,6 +1414,106 @@ public Cheltuieli_Intarziate_Rest_DeAchitat(observe: any = 'body', reportProgres
 }
 
 
+        /**
+* Get user by user name
+* 
+* @param year 
+* @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+* @param reportProgress flag to report request and response progress.
+*/
+public CifraAfaceriPerYear(year?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+public CifraAfaceriPerYear(year?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+public CifraAfaceriPerYear(year?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+public CifraAfaceriPerYear(year?: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+
+
+    let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
+    if (year !== undefined && year !== null) {
+        queryParameters = queryParameters.set('year', <any>year);
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+        'application/xml',
+        'application/json'
+    ];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+        headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [
+    ];
+
+    return this.httpClient.get<any>(`${this.basePath}/cifraAfaceri`,
+        {
+            params: queryParameters,
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        }
+    );
+}
+
+
+        /**
+* Get user by user name
+* 
+* @param month 
+* @param year 
+* @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+* @param reportProgress flag to report request and response progress.
+*/
+public Profit_Lunar(month?: string, year?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+public Profit_Lunar(month?: string, year?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+public Profit_Lunar(month?: string, year?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+public Profit_Lunar(month?: string, year?: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+
+
+    let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
+
+    if (month !== undefined && month !== null) {
+        queryParameters = queryParameters.set('month', <any>month);
+    }
+
+    if (year !== undefined && year !== null) {
+        queryParameters = queryParameters.set('year', <any>year);
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+        'application/xml',
+        'application/json'
+    ];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+        headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [
+    ];
+
+    return this.httpClient.get<any>(`${this.basePath}/profit_Lunar`,
+        {
+            params: queryParameters,
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        }
+    );
+}
+
+
 
 
 

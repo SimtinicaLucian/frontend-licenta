@@ -15,6 +15,16 @@ import { Incasari } from '../api/model/incasari';
 import {CheltuieliService} from '../services/api/cheltuieli.service';
 import { StatisticsService } from '../services/api/statistics.service';
 
+interface year {
+  value: string;
+  viewValue: string;
+}
+
+interface month{
+  value: string;
+  viewValue: string;
+}
+
 
 @Component({
   selector: 'app-addincasare',
@@ -61,6 +71,29 @@ export class AddincasareComponent implements OnInit {
 
   }
 
+  years: year[] = [
+    {value: '2021', viewValue: '2021'},
+    {value: '2020', viewValue: '2020'}
+  ];
+
+  months: month[] = [
+    {value: '01', viewValue: 'Ianuarie'},
+    {value: '02', viewValue: 'Februarie'},
+    {value: '03', viewValue: 'Martie'},
+    {value: '04', viewValue: 'Aprilie'},
+    {value: '05', viewValue: 'Mai'},
+    {value: '06', viewValue: 'Iunie'},
+    {value: '07', viewValue: 'Iulie'},
+    {value: '08', viewValue: 'August'},
+    {value: '09', viewValue: 'Septembrie'},
+    {value: '10', viewValue: 'Octombrie'},
+    {value: '11', viewValue: 'Noiembrie'},
+    {value: '12', viewValue: 'Decembrie'}
+    
+  ];
+
+
+
   form: any = {};
   displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA','delete', 'edit'];
   values: PeriodicElement[];
@@ -73,11 +106,20 @@ export class AddincasareComponent implements OnInit {
   datePipe: any;
   solds: any;
 
+
   SoldTotal:any;
   Count_Incasari_Intarziate: any;
   Count_Cheltuieli_Intarziate: any;
   Incasari_Intarziate_RestDeIncasat: any;
   Cheltuieli_Intarziate_RestDeAchitat: any;
+
+
+  cifra_Afaceri: any;
+  profit_Lunar: any;
+
+  selectedValue: any;
+
+
 
 
 
@@ -138,6 +180,19 @@ export class AddincasareComponent implements OnInit {
   register(f: NgForm) {
     this.alimService.add(f.value).subscribe(() => { })
     // location.reload();
+  }
+
+  cifraAfaceri(g:NgForm){
+    this.statisticsService.CifraAfaceriPerYear(g.value.year).subscribe((res) => {
+      this.cifra_Afaceri = res;
+      console.log(this.cifra_Afaceri);
+    })
+  }
+
+  Profit_lunar(f:NgForm){
+    this.statisticsService.Profit_Lunar(f.value.month, f.value.year).subscribe((res) => {
+      this.profit_Lunar = res;
+    })
   }
 
 

@@ -62,6 +62,10 @@ import { ModalUpdateUserComponent } from './modal-update-user/modal-update-user.
 import { NgApexchartsModule } from "ng-apexcharts";
 import { HighchartsChartModule } from "highcharts-angular";
 import { ViewIncasariComponent } from './view-incasari/view-incasari.component';
+import { CheltuieliComponent } from './cheltuieli/cheltuieli.component';
+import { ModalDeleteCheltuieliComponent } from './modal-delete-cheltuieli/modal-delete-cheltuieli.component';
+import { ModalUpdateCheltuieliComponent } from './modal-update-cheltuieli/modal-update-cheltuieli.component';
+import { ModalAddCheltuieliComponent } from './modal-add-cheltuieli/modal-add-cheltuieli.component';
 
 
 
@@ -99,6 +103,10 @@ import { ViewIncasariComponent } from './view-incasari/view-incasari.component';
     ModalDeleteUserComponent,
     ModalUpdateUserComponent,
     ViewIncasariComponent,
+    CheltuieliComponent,
+    ModalDeleteCheltuieliComponent,
+    ModalUpdateCheltuieliComponent,
+    ModalAddCheltuieliComponent,
 
 
   ],

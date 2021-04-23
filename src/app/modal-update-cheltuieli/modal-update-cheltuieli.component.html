@@ -1,0 +1,120 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update data</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="updateCheltuieli(j, f)" #f="ngForm" novalidate>
+
+
+
+        <div class="form-group">
+            <label for="data">Data</label>
+            <input type="text" class="form-control" name="data" [(ngModel)]="j.data" required minlength="1"
+                maxlength="50" #data="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && data.invalid">
+                <div *ngIf="data.errors.required">Data is required</div>
+                <div *ngIf="data.errors.minlength">
+                    Data must be at least 1 characters
+                </div>
+                <div *ngIf="data.errors.maxlength">
+                    Data must be at most 50 characters
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="beneficiar">Beneficiar</label>
+            <input type="text" class="form-control" name="beneficiar" [(ngModel)]="j.beneficiar" required minlength="1"
+                maxlength="50" #beneficiar="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && beneficiar.invalid">
+                <div *ngIf="beneficiar.errors.required">Beneficiar is required</div>
+                <div *ngIf="beneficiar.errors.minlength">
+                    Beneficiar must be at least 1 characters
+                </div>
+                <div *ngIf="beneficiar.errors.maxlength">
+                    Beneficiar must be at most 50 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="number">Number</label>
+            <input type="text" class="form-control" name="number" [(ngModel)]="j.number" required minlength="1"
+                maxlength="50" #number="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && number.invalid">
+                <div *ngIf="number.errors.required">Number is required</div>
+                <div *ngIf="number.errors.minlength">
+                    Number must be at least 1 characters
+                </div>
+                <div *ngIf="number.errors.maxlength">
+                    Number must be at most 50 characters
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="detalii">Detalii</label>
+            <input type="text" class="form-control" name="detalii" [(ngModel)]="j.detalii" required minlength="1"
+                maxlength="50" #detalii="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && detalii.invalid">
+                <div *ngIf="detalii.errors.required">Detalii is required</div>
+                <div *ngIf="detalii.errors.minlength">
+                    Detalii must be at least 1 characters
+                </div>
+                <div *ngIf="detalii.errors.maxlength">
+                    Detalii must be at most 50 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="sumaTotala">sumaTotala</label>
+            <input type="number" class="form-control" name="sumaTotala" [(ngModel)]="j.sumaTotala" required
+                minlength="2" maxlength="50" #sumaTotala="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && sumaTotala.invalid">
+                <div *ngIf="sumaTotala.errors.required">sumaTotala is required</div>
+                <div *ngIf="sumaTotala.errors.minlength">
+                    sumaTotala must be at least 1 characters
+                </div>
+                <div *ngIf="sumaTotala.errors.maxlength">
+                    sumaTotala must be at most 50 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="sumaTotala_Achitata">sumaTotala_Achitata</label>
+            <input type="number" class="form-control" name="sumaTotala_Achitata" [(ngModel)]="j.sumaTotala_Achitata" required
+                #sumaTotala_Achitata="ngModel" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="data_Scadenta">data_Scadenta</label>
+            <input type="text" class="form-control" name="data_Scadenta" [(ngModel)]="j.data_Scadenta" required
+                 #data_Scadenta="ngModel" />
+        </div>
+
+
+
+
+        <div class="form-group"> 
+            <button  class="btn btn-secondary" aria-label="Close"  (click)="close()">Close</button>
+            &nbsp;
+            <button  class="btn btn-primary">Update data</button>
+        </div> 
+
+        <div class="alert alert-warning" *ngIf="f.submitted && isaddFailed">
+            Update failed!<br />{{ errorMessage }}
+        </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+        Your invoice has been successfully updated!
+    </div>
+</div>

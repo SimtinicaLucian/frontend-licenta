@@ -37,6 +37,24 @@ var AddincasareComponent = /** @class */ (function () {
             sumaFaraTVA: 1,
             sumaTva: 1
         };
+        this.years = [
+            { value: '2021', viewValue: '2021' },
+            { value: '2020', viewValue: '2020' }
+        ];
+        this.months = [
+            { value: '01', viewValue: 'Ianuarie' },
+            { value: '02', viewValue: 'Februarie' },
+            { value: '03', viewValue: 'Martie' },
+            { value: '04', viewValue: 'Aprilie' },
+            { value: '05', viewValue: 'Mai' },
+            { value: '06', viewValue: 'Iunie' },
+            { value: '07', viewValue: 'Iulie' },
+            { value: '08', viewValue: 'August' },
+            { value: '09', viewValue: 'Septembrie' },
+            { value: '10', viewValue: 'Octombrie' },
+            { value: '11', viewValue: 'Noiembrie' },
+            { value: '12', viewValue: 'Decembrie' }
+        ];
         this.form = {};
         this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA', 'delete', 'edit'];
         this.sorted = false;
@@ -75,6 +93,19 @@ var AddincasareComponent = /** @class */ (function () {
     AddincasareComponent.prototype.register = function (f) {
         this.alimService.add(f.value).subscribe(function () { });
         // location.reload();
+    };
+    AddincasareComponent.prototype.cifraAfaceri = function (g) {
+        var _this = this;
+        this.statisticsService.CifraAfaceriPerYear(g.value.year).subscribe(function (res) {
+            _this.cifra_Afaceri = res;
+            console.log(_this.cifra_Afaceri);
+        });
+    };
+    AddincasareComponent.prototype.Profit_lunar = function (f) {
+        var _this = this;
+        this.statisticsService.Profit_Lunar(f.value.month, f.value.year).subscribe(function (res) {
+            _this.profit_Lunar = res;
+        });
     };
     AddincasareComponent.prototype.applyFilter = function (event) {
         var filterValue = event.target.value;
