@@ -14,13 +14,22 @@ var table_1 = require("@angular/material/table");
 var forms_1 = require("@angular/forms");
 require("rxjs/Rx");
 var IncasariComponent = /** @class */ (function () {
-    function IncasariComponent(formBuilder, alimService, router) {
+    function IncasariComponent(formBuilder, alimService, router, authService, progressBar, alertService) {
         this.formBuilder = formBuilder;
         this.alimService = alimService;
         this.router = router;
+        this.authService = authService;
+        this.progressBar = progressBar;
+        this.alertService = alertService;
         this.form = {};
         this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaFaraTVA', 'sumaTVA'];
         this.sorted = false;
+        this.isLoginFailed = false;
+        this.roles = [];
+        this.isSuccessful = false;
+        this.isSignUpFailed = false;
+        this.errorMessage = '';
+        this.isLoggedIn = false;
     }
     IncasariComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -101,6 +110,27 @@ var IncasariComponent = /** @class */ (function () {
     // }
     IncasariComponent.prototype.add = function (pageName) {
         this.router.navigate(["" + pageName]);
+    };
+    IncasariComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.alertService.info('Working on creating new account');
+        this.progressBar.startLoading();
+        this.authService.register(this.form).subscribe(function (data) {
+            _this.isSuccessful = true;
+            _this.isSignUpFailed = false;
+            _this.progressBar.setSuccess();
+            console.log('User created');
+            _this.alertService.success('Account Created');
+            _this.progressBar.completeLoading();
+            // window.location.reload();
+        }, function (err) {
+            _this.progressBar.setError();
+            console.log(err);
+            _this.alertService.danger(err.error.message);
+            _this.progressBar.completeLoading();
+            // this.errorMessage = err.error.message;
+            _this.isSignUpFailed = true;
+        });
     };
     __decorate([
         core_1.ViewChild(paginator_1.MatPaginator)

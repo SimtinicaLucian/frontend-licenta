@@ -116,8 +116,11 @@ export class AddincasareComponent implements OnInit {
 
   cifra_Afaceri: any;
   profit_Lunar: any;
+  profit_Anual: any;
+  Bugetul_DeStat_TVA: any;
 
   selectedValue: any;
+  selectedValue1: any;
 
 
 
@@ -192,6 +195,19 @@ export class AddincasareComponent implements OnInit {
   Profit_lunar(f:NgForm){
     this.statisticsService.Profit_Lunar(f.value.month, f.value.year).subscribe((res) => {
       this.profit_Lunar = res;
+    })
+  }
+
+  Profit_anual(f : NgForm){
+    this.statisticsService.Profit_Anual(f.value.year).subscribe((res) => {
+      this.profit_Anual = res;
+    })
+  }
+
+  BugetulDeStat_TVA(f:NgForm){
+    this.statisticsService.BugetulDeStat_TVA(f.value.month, f.value.year)
+    .subscribe((res) => {
+      this.Bugetul_DeStat_TVA = res;
     })
   }
 

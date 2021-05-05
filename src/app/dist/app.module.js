@@ -61,6 +61,11 @@ var modal_delete_user_component_1 = require("./modal-delete-user/modal-delete-us
 var modal_update_user_component_1 = require("./modal-update-user/modal-update-user.component");
 var ng_apexcharts_1 = require("ng-apexcharts");
 var highcharts_angular_1 = require("highcharts-angular");
+var view_incasari_component_1 = require("./view-incasari/view-incasari.component");
+var cheltuieli_component_1 = require("./cheltuieli/cheltuieli.component");
+var modal_delete_cheltuieli_component_1 = require("./modal-delete-cheltuieli/modal-delete-cheltuieli.component");
+var modal_update_cheltuieli_component_1 = require("./modal-update-cheltuieli/modal-update-cheltuieli.component");
+var modal_add_cheltuieli_component_1 = require("./modal-add-cheltuieli/modal-add-cheltuieli.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -85,6 +90,11 @@ var AppModule = /** @class */ (function () {
                 test_component_1.TestComponent,
                 modal_delete_user_component_1.ModalDeleteUserComponent,
                 modal_update_user_component_1.ModalUpdateUserComponent,
+                view_incasari_component_1.ViewIncasariComponent,
+                cheltuieli_component_1.CheltuieliComponent,
+                modal_delete_cheltuieli_component_1.ModalDeleteCheltuieliComponent,
+                modal_update_cheltuieli_component_1.ModalUpdateCheltuieliComponent,
+                modal_add_cheltuieli_component_1.ModalAddCheltuieliComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [

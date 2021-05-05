@@ -107,6 +107,19 @@ var AddincasareComponent = /** @class */ (function () {
             _this.profit_Lunar = res;
         });
     };
+    AddincasareComponent.prototype.Profit_anual = function (f) {
+        var _this = this;
+        this.statisticsService.Profit_Anual(f.value.year).subscribe(function (res) {
+            _this.profit_Anual = res;
+        });
+    };
+    AddincasareComponent.prototype.BugetulDeStat_TVA = function (f) {
+        var _this = this;
+        this.statisticsService.BugetulDeStat_TVA(f.value.month, f.value.year)
+            .subscribe(function (res) {
+            _this.Bugetul_DeStat_TVA = res;
+        });
+    };
     AddincasareComponent.prototype.applyFilter = function (event) {
         var filterValue = event.target.value;
         this.dataSource.filter = filterValue.trim().toLowerCase();

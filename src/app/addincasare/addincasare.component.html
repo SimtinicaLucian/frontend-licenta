@@ -1,150 +1,203 @@
-&nbsp; &nbsp;
-<div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">content_copy</i>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+
+
+    <div class="main-content">
+
+            
+            <div class="container">
+                <div class="header-body">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card card-signup">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Sold</h5>
+                                            <span class="h2 font-weight-bold mb-0">{{SoldTotal}}</span><small>
+                                                RON</small>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                                <i class="fas fa-chart-bar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div *ngIf= "SoldTotal < 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+
+                                    <div *ngIf= "SoldTotal == 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-right"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+
+                                    <div *ngIf= "SoldTotal > 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-up"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+                               
+                                </div>
+                            </div>
                         </div>
-                        <p class="card-category">Sold</p>
-                        <h3 class="card-title">{{SoldTotal}}
-                            <small>RON</small>
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <!-- <i class="material-icons text-danger">warning</i> -->
-                            <i class="material-icons">date_range</i> Curent
+               
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card card-signup">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Incasari</h5>
+                                            <span
+                                                class="h2 font-weight-bold mb-0">{{Count_Incasari_Intarziate}}</span><small>
+                                                Facturi intarziate</small>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                                <i class="fas fa-chart-pie"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf= "Count_Incasari_Intarziate == 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-right"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+
+                                    <div *ngIf= "Count_Incasari_Intarziate > 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">info_outline</i>
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card card-signup">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Cheltuieli</h5>
+                                            <span
+                                                class="h2 font-weight-bold mb-0">{{Count_Cheltuieli_Intarziate}}</span>
+                                            <small> Facturi intarziate</small>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+      
+
+                                    <div *ngIf= "Count_Cheltuieli_Intarziate == 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-right"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+
+                                    <div *ngIf= "Count_Cheltuieli_Intarziate > 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="card-category">Incasari</p>
-                        <h3 class="card-title">{{Count_Incasari_Intarziate}}
-                            <small>Facturi intarziate</small>
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card card-stats">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Incasari intarziate
+                                            </h5>
+                                            <span
+                                                class="h2 font-weight-bold mb-0">{{Incasari_Intarziate_RestDeIncasat}}</span><small>
+                                                RON</small>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                                <i class="fas fa-percent"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf= "Incasari_Intarziate_RestDeIncasat == 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-right"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+
+                                    <div *ngIf= "Incasari_Intarziate_RestDeIncasat > 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">info_outline</i>
-                        </div>
-                        <p class="card-category">Cheltuieli</p>
-                        <h3 class="card-title">{{Count_Cheltuieli_Intarziate}}
-                            <small>Facturi intarziate</small>
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <i class="material-icons">date_range</i> Last 24 Hours
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">info_outline</i>
-                        </div>
-                        <p class="card-category">Incasari intarziate</p>
-                        <h3 class="card-title">{{Incasari_Intarziate_RestDeIncasat}}
-                            <small>RON</small>
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <i class="material-icons">date_range</i> Last 24 Hours
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">info_outline</i>
-                        </div>
-                        <p class="card-category"> Cheltuieli intarziate</p>
-                        <h3 class="card-title">{{Cheltuieli_Intarziate_RestDeAchitat}}
-                            <small>RON</small>
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                        
+                      <div class="col-xl-3 col-lg-6">
+                            <div class="card card-stats">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Cheltuieli intarziate
+                                            </h5>
+                                            <span
+                                                class="h2 font-weight-bold mb-0">{{Cheltuieli_Intarziate_RestDeAchitat}}</span><small>
+                                                RON</small>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                                <i class="fas fa-percent"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf= "Cheltuieli_Intarziate_RestDeAchitat == 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-right"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+
+                                    <div *ngIf= "Cheltuieli_Intarziate_RestDeAchitat > 0">
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i></span>
+                                            <span class="text-nowrap">In prezent</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Page content -->
 
 
-        <!-- <form g="form" (ngSubmit)="cifraAfaceri(g)" #g="ngForm" novalidate class="form-inline">
-            <div class="form-group">
-                <label for="year"></label>
-                <div class="form-group" style="width: 130px; height: 33px;">
-                    <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
-                        <mat-label>year</mat-label>
-                        <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
-                            <mat-option>year</mat-option>
-                            <mat-option *ngFor="let year of years" [value]="year.value">
-                                {{year.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
 
 
-            &nbsp; &nbsp;
 
-            <div class="form-group">
-                <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
-            </div>
 
- 
 
-                <div class="col-lg-2 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">info_outline</i>
-                            </div>
-                            <p class="card-category"> rows</p>
-                            <h3 class="card-title">{{rows}}
-                                <small>RON</small>
-                            </h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons text-danger">warning</i>
-                                <i class="material-icons">date_range</i> Last 24 Hours
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </form> -->
+
+<!-- ------------------------------ -->
 
 
 
@@ -152,11 +205,16 @@
             <label for="college">Select: </label>
             <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" name="college_name" required >
                 <mat-option value="Profit_lunar">Profit_lunar</mat-option>
+                <mat-option value="Profit_anual">Profit_anual</mat-option>
                 <mat-option value="Profit_Total">Profit_Total</mat-option>
                 <mat-option value="cifraAfaceri">cifraAfaceri_Anual</mat-option>
+                <mat-option value="BugetulDeStat_TVA">Bugetul de stat TVA</mat-option>
+
 
             </mat-select>
         </div>
+
+
         <div class="form-group" *ngIf="selectedValue">
             <div class="form-group" *ngIf="selectedValue == 'cifraAfaceri'">
 
@@ -179,27 +237,27 @@
 
                     &nbsp; &nbsp;
 
+
                     <div class="form-group">
                         <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
                     </div>
 
-
-
-                    <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="col-auto">
                         <div class="card card-stats">
-                            <div class="card-header card-header-success card-header-icon">
-                                <div class="card-icon">
-                                    <i class="material-icons">info_outline</i>
-                                </div>
-                                <p class="card-category"> cifra_Afaceri</p>
-                                <h3 class="card-title">{{cifra_Afaceri}}
-                                    <small>RON</small>
-                                </h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-danger">warning</i>
-                                    <i class="material-icons">date_range</i> Last 24 Hours
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">cifra_Afaceri
+                                        </h5>
+                                        <span
+                                            class="h2 font-weight-bold mb-0">{{cifra_Afaceri}}</span><small>
+                                            RON</small>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                            <i class="fas fa-percent"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -215,10 +273,154 @@
 
         </div>
 
+
+
         <div class="form-group" *ngIf="selectedValue">
             <div class="form-group" *ngIf="selectedValue == 'Profit_lunar'">
 
                 <form f="form" (ngSubmit)="Profit_lunar(f)" #f="ngForm" novalidate class="form-inline">
+                    <div class="form-group">
+                        <label for="year"></label>
+                        <div class="form-group" style="width: 130px; height: 33px;">
+                        <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+                            <mat-label>month</mat-label>
+                            <mat-select id="month" name="month" [(ngModel)]="form.month" required #month="ngModel">
+                                <mat-option>month</mat-option>
+                                <mat-option *ngFor="let month of months" [value]="month.value">
+                                    {{month.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        </div>
+
+                        <label for="year"></label>
+                        <div class="form-group" style="width: 130px; height: 33px;">
+                            <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+                                <mat-label>year</mat-label>
+                                <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
+                                    <mat-option>year</mat-option>
+                                    <mat-option *ngFor="let year of years" [value]="year.value">
+                                        {{year.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+
+
+                    &nbsp; &nbsp;
+
+                    <div class="form-group">
+                        <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
+                    </div>
+
+
+
+                    <div class="col-auto">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Profit_lunar
+                                        </h5>
+                                        <span
+                                            class="h2 font-weight-bold mb-0">{{profit_Lunar}}</span><small>
+                                            RON</small>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                            <i class="fas fa-percent"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="form-group" *ngIf="selectedValue">
+            <div class="form-group" *ngIf="selectedValue == 'Profit_anual'">
+
+                <form f="form" (ngSubmit)="Profit_anual(f)" #f="ngForm" novalidate class="form-inline">
+                    <div class="form-group">
+                        <label for="year"></label>
+                        <div class="form-group" style="width: 130px; height: 33px;">
+                            <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+                                <mat-label>year</mat-label>
+                                <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
+                                    <mat-option>year</mat-option>
+                                    <mat-option *ngFor="let year of years" [value]="year.value">
+                                        {{year.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+
+
+                    &nbsp; &nbsp;
+
+                    <div class="form-group">
+                        <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
+                    </div>
+
+
+
+                    <div class="col-auto">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">profit_Anual
+                                        </h5>
+                                        <span
+                                            class="h2 font-weight-bold mb-0">{{profit_Anual}}</span><small>
+                                            RON</small>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                            <i class="fas fa-percent"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+
+        
+        <div class="form-group" *ngIf="selectedValue">
+            <div class="form-group" *ngIf="selectedValue == 'BugetulDeStat_TVA'">
+
+        <div class="form-group" style="width: 130px; height: 33px;">
+            <label for="college">Select: </label>
+            <mat-select class="form-control" id="college" [(ngModel)]="selectedValue1" name="college_name" required >
+                <mat-option value="TVA la factura">TVA la factura</mat-option>
+
+
+
+            </mat-select>
+        </div>
+
+        <div class="form-group" *ngIf="selectedValue1">
+            <div class="form-group" *ngIf="selectedValue1 == 'TVA la factura'">
+
+                <form f="form" (ngSubmit)="BugetulDeStat_TVA(f)" #f="ngForm" novalidate class="form-inline">
                     <div class="form-group">
                         <label for="year"></label>
                         <div class="form-group" style="width: 130px; height: 33px;">
@@ -263,8 +465,8 @@
                                 <div class="card-icon">
                                     <i class="material-icons">info_outline</i>
                                 </div>
-                                <p class="card-category"> profit_Lunar</p>
-                                <h3 class="card-title">{{profit_Lunar}}
+                                <p class="card-category"> Bugetul_DeStat_TVA</p>
+                                <h3 class="card-title">{{Bugetul_DeStat_TVA}}
                                     <small>RON</small>
                                 </h3>
                             </div>
@@ -281,8 +483,11 @@
 
 
 
-
+                </div>
+                </div>
             </div>
 
 
         </div>
+
+        <!-- ------------------------- -->

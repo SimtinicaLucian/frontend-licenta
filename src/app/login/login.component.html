@@ -1,51 +1,74 @@
-<ng-progress id="progressBar"
-             [color]="progressBar.currentColor"
-             [thick]="true"></ng-progress>
-<ngx-alerts></ngx-alerts>
+<body class="signup-page">
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3 mt-4">
-      <div class="col-md-6 offset-md-3">
-        <h1>Login</h1>
-      </div>
-      <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-        <div class="row px-3"> <label class="mb-1">
-            <h6 class="mb-0 text-sm">Username</h6>
-          </label> <input class="mb-4" type="text" name="username" [(ngModel)]="form.username" required
-            #username="ngModel" placeholder="Enter your username" />
-          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && username.invalid">
-            Username is required!
-          </div>
-        </div>
-        <div class="row px-3"> <label class="mb-1">
-            <h6 class="mb-0 text-sm">Password</h6>
-          </label> <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
-            minlength="6" #password="ngModel" placeholder="Enter your password" />
-          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">
-              Password must be at least 6 characters
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-7 ml-auto mr-auto">
+        <div class="card card-signup">
+          <h2 class="card-title text-center">Login</h2>
+          
+          <div class="card-body">
+            <div class="row">
+
+
+              <div class="col-md-11 mr-auto">
+
+
+                <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                  <div class="form-group bmd-form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="material-icons">face</i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3"
+                      maxlength="20" #username="ngModel" placeholder="Introduceți numele de utilizator" />
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group bmd-form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="material-icons">lock_outline</i>
+                        </span>
+                      </div>
+                      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
+                      minlength="6" #password="ngModel" placeholder="Introduceți parola" />
+                    </div>
+                  </div>
+
+
+
+                  <div class="text-center">
+                    <button type = "submit" class="btn btn-blue text-center" [disabled]="f.invalid">Conectează-te</button>
+                  </div>
+                  <div class = "text-center">
+                  <div class="row px-3 mb-4">
+                    <div class="custom-control custom-checkbox custom-control-inline"> 
+                    </div> <a href="/forgot" class="ml-auto mb-0 text-sm">Ai uitat parola?</a>
+                  </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+                      Login failed: {{ errorMessage }}
+                    </div>
+                  </div>
+
+
+                </form>
+                <div *ngIf="!isLoggedIn" class="row mb-4 px-3"> <small class="font-weight-bold">Nu aveți un cont? <a
+                  href="/register" class="text-danger ">Înregistrați-vă</a></small> </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="row px-3 mb-4">
-          <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk"
-              class="custom-control-input"> <label for="chk1" class="custom-control-label text-sm">Remember me</label>
-          </div> <a href="/forgot" class="ml-auto mb-0 text-sm">Forgot Password?</a>
-        </div>
-        <div class="row mb-3 px-3"> <button type="submit" [disabled]="f.invalid"
-            class="btn btn-blue text-center">Login</button> </div>
-        <div class="form-group">
-          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-            Login failed: {{ errorMessage }}
-          </div>
-        </div>
-      </form>
-      <div *ngIf="!isLoggedIn" class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account? <a
-            href="/register" class="text-danger ">Register</a></small> </div>
-
-
+      </div>
     </div>
   </div>
-</div>
+
+
+</body>

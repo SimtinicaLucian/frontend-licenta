@@ -150,6 +150,8 @@ export class TestComponent {
 
   form: any = {};
 
+  selectedValue: any;
+
   public totalSumPerYear_Incasari: any;
   public totalSumPerYear_Cheltuieli: any;
   
@@ -159,6 +161,7 @@ export class TestComponent {
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+  public chartOptions1: Partial<ChartOptions>;
   // public chartOptions1: Partial<ChartOptions1>;
   // public chartOptions2: Partial<ChartOptions2>;
   // public chartOptions3: Partial<ChartOptions3>;
@@ -192,9 +195,53 @@ export class TestComponent {
         }
       ]
     }
+
+    this.chartOptions1 = {
+      series: [],
+      chart: {
+        width: 380,
+        type: "pie"
+      },
+      labels: [],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    }
   }
 
   ngOnInit() {
+
+    this.chartOptions = {
+      series: [],
+      chart: {
+        width: 380,
+        type: "pie"
+      },
+      labels: [],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    }
 
     // this.statisticsService.calculareSumaTotalaCuTVA_Incasari().subscribe(res => {
     //   this.totalSumCuTVA_Incasari = res;
@@ -443,15 +490,15 @@ export class TestComponent {
 
 
   calculareSumaTotalaCuTVAMonthYear(f: NgForm) {
-    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(f.value.month, f.value.year1).subscribe((res) => {
+    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(f.value.month, f.value.year).subscribe((res) => {
       this.totalSumCuTVA_MonthAndYear_Incasari = res;
       console.log("Total incasari pe luna si an: " + res);
     })
-    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Cheltuieli(f.value.month, f.value.year1).subscribe((res) => {
+    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Cheltuieli(f.value.month, f.value.year).subscribe((res) => {
       this.totalSumCuTVA_MonthAndYear_Cheltuieli = res;
       console.log("Total cheltuieli pe luna si an: " + res);
-      this.chartOptions.series = [this.totalSumCuTVA_MonthAndYear_Incasari, this.totalSumCuTVA_MonthAndYear_Cheltuieli] 
-      this.chartOptions.labels = ["Total incasari/luna si an", "Total cheltuieli/luna si an"]
+      this.chartOptions1.series = [this.totalSumCuTVA_MonthAndYear_Incasari, this.totalSumCuTVA_MonthAndYear_Cheltuieli] 
+      this.chartOptions1.labels = ["Total incasari/luna si an", "Total cheltuieli/luna si an"]
     })
     console.log("hai sus 1" , this.chartOptions.series);
     // this.chartOptions.series = [this.totalSumPerYear_Incasari, this.totalSumPerYear_Cheltuieli] 

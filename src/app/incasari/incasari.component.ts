@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/Rx';
+import { AuthService } from '../services/auth.service';
+import { ProgressBarService } from '../services/progress-bar.service';
+import { AlertService } from 'ngx-alerts';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-incasari',
@@ -39,7 +43,24 @@ export class IncasariComponent implements OnInit {
   publishDate: any;
   datePipe: any;
 
-  constructor(private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router) {
+
+  isLoginFailed = false;
+
+  roles: string[] = [];
+  fieldTextType: boolean;
+
+
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = ''
+
+  isLoggedIn = false;
+
+  constructor( 
+    private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router,
+    private authService: AuthService, public progressBar: ProgressBarService,
+    private alertService: AlertService,
+  ) {
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -144,6 +165,35 @@ export class IncasariComponent implements OnInit {
   add(pageName: string): void {
     this.router.navigate([`${pageName}`]);
   }
+
+
+  onSubmit() {
+    this.alertService.info('Working on creating new account');
+    this.progressBar.startLoading();
+    this.authService.register(this.form).subscribe(
+      data => {
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+        this.progressBar.setSuccess();
+        console.log('User created');
+        this.alertService.success('Account Created');
+        this.progressBar.completeLoading();
+        // window.location.reload();
+        
+      },
+      err => {
+        this.progressBar.setError();
+        console.log(err);
+        this.alertService.danger(err.error.message);
+        this.progressBar.completeLoading();
+
+        // this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+
+      }
+    );
+  }
+
 }
 
 

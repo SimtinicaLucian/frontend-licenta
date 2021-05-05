@@ -30,15 +30,17 @@
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/demo.css"
             ],
+            
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js",
 
-
-
               
+              "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js"
             ]
+
             
           },
           "configurations": {
