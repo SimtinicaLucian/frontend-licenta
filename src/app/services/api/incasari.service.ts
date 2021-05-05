@@ -18,6 +18,7 @@ import { BASE_PATH, COLLECTION_FORMATS } from '../api/variables';
 import { Configuration } from '../api/configuration';
 import { isNumber } from 'util';
 import { TokenStorageService } from '../token-storage.service';
+import {environment} from '../../../environments/environment';
 
 
 const API_URL = 'http://localhost:8080/api/user/mail/';
@@ -32,6 +33,7 @@ const httpOptions = {
 })
 export class IncasariService {
 
+    
     protected basePath = 'http://localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();

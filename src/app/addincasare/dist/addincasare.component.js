@@ -77,6 +77,9 @@ var AddincasareComponent = /** @class */ (function () {
         this.statisticsService.sold().subscribe((function (res) {
             return _this.SoldTotal = res;
         }));
+        this.statisticsService.Profit_Total().subscribe((function (res) {
+            return _this.profit_Total = res;
+        }));
         this.statisticsService.Incasari_CountIntarziate().subscribe((function (res) {
             return _this.Count_Incasari_Intarziate = res;
         }));
@@ -113,6 +116,11 @@ var AddincasareComponent = /** @class */ (function () {
             _this.profit_Anual = res;
         });
     };
+    // Profit_total(){
+    //   this.statisticsService.Profit_Total().subscribe((res) => {
+    //     this.profit_Total1 =res
+    //   })
+    // }
     AddincasareComponent.prototype.BugetulDeStat_TVA = function (f) {
         var _this = this;
         this.statisticsService.BugetulDeStat_TVA(f.value.month, f.value.year)

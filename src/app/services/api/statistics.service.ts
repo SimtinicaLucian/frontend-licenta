@@ -16,6 +16,7 @@ import { BASE_PATH, COLLECTION_FORMATS } from '../api/variables';
 import { Configuration } from '../api/configuration';
 import { isNumber } from 'util';
 import { TokenStorageService } from '../token-storage.service';
+import {environment} from '../../../environments/environment';
 
 
 const httpOptions = {
@@ -28,7 +29,7 @@ const httpOptions = {
 })
 export class StatisticsService {
 
-    protected basePath = 'http://localhost:8080/statistics';
+    protected basePath = environment.api + '/statistics';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public rows: any;
@@ -1558,6 +1559,42 @@ public Profit_Anual(year?: string, observe: any = 'body', reportProgress: boolea
     return this.httpClient.get<any>(`${this.basePath}/profit_Anual`,
         {
             params: queryParameters,
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        }
+    );
+}
+
+
+     /**
+* F
+* M
+* @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+* @param reportProgress flag to report request and response progress.
+*/
+public Profit_Total(observe?: 'body', reportProgress?: boolean): Observable<any>;
+public Profit_Total(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+public Profit_Total(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+public Profit_Total(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+        'application/json'
+    ];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+        headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+    // to determine the Content-Type header
+    const consumes: string[] = [
+    ];
+
+    return this.httpClient.get<any>(`${this.basePath}/profit_Total`,
+        {
             withCredentials: this.configuration.withCredentials,
             headers: headers,
             observe: observe,
