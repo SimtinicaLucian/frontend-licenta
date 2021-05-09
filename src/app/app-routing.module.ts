@@ -37,7 +37,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,
-    { preloadingStrategy: PreloadAllModules }), NgxDatatableModule],
+    { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' }), NgxDatatableModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

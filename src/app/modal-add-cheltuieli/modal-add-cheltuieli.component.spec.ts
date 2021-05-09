@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ModalAddCheltuieliComponent } from './modal-add-cheltuieli.component';
 
@@ -6,7 +6,7 @@ describe('ModalAddCheltuieliComponent', () => {
   let component: ModalAddCheltuieliComponent;
   let fixture: ComponentFixture<ModalAddCheltuieliComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ModalAddCheltuieliComponent ]
     })
