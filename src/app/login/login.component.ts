@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   fieldTextType: boolean;
+  model: any = {};
 
 
   constructor(private route: ActivatedRoute,private router: Router, private authService: AuthService, private tokenStorage: TokenStorageService, public progressBar: ProgressBarService,

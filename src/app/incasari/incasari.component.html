@@ -4,15 +4,15 @@
       <div class="row">
         <div class="col-lg-6 col-md-4 ml-auto mr-auto">
           <div class="card card-signup">
-            <h2 class="card-title text-center">Găseşte-ţi contul</h2>
+            <h2 class="card-title text-center">Alege o parolă nouă</h2>
             
             <div class="card-body">
               <div class="row">
 
                
-                <p class="mb-4"><i>  &nbsp; &nbsp; &nbsp; Ați uitat parola contului? 
+                <p class="mb-4"><i>  &nbsp; &nbsp; &nbsp; Creează o parolă nouă care să conţină cel puţin 6 caractere.
                   
-                  Nicio problemă, trebuie doar să completați adresa de e-mail și vă vom trimite detaliile privind schimbarea parolei.</i> </p>
+                  O parolă complexă este o combinaţie de litere, cifre şi semne de punctuaţie.</i> </p>
               
                 <div class="col-md-11 mr-auto">
 
@@ -22,11 +22,13 @@
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text">
-                            <i class="material-icons">mail</i>
+                            <i class="material-icons">lock_outline</i>
                           </span>
                         </div>
-                        <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
-              #email="ngModel" placeholder="Introduceți adresa de email" />
+                        <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+                        <input type="password" name="password" [(ngModel)]="model.password" required
+                        minlength="6" #password="ngModel" class="form-control" id="changePassword" placeholder="Introduceți parola nouă" />
+                        </show-hide-password>
                       </div>
                     </div>
 
@@ -38,7 +40,7 @@
 
 
                     <div class="text-center">
-                      <button type = "submit" class="btn btn-blue text-center" [disabled]="f.invalid">Trimite</button>
+                      <button type = "submit" class="btn btn-blue text-center" [disabled]="f.invalid">Continuă</button>
                     </div>
 
 

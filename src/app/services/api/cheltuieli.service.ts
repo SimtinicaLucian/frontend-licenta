@@ -15,6 +15,7 @@ import { BASE_PATH, COLLECTION_FORMATS } from '../api/variables';
 import { Configuration } from '../api/configuration';
 import { isNumber } from 'util';
 import { TokenStorageService } from '../token-storage.service';
+import {environment} from '../../../environments/environment';
 
 
 const httpOptions = {
@@ -26,8 +27,9 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class CheltuieliService {
+ 
+    protected basePath = environment.api;
 
-    protected basePath = 'http://localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public rows: any;

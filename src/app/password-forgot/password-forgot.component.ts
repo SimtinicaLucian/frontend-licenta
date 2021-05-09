@@ -11,6 +11,15 @@ import { ProgressBarService } from '../services/progress-bar.service';
 export class PasswordForgotComponent implements OnInit {
   form: any = {};
 
+  
+  isLoginFailed = false;
+
+
+
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = ''
+
   constructor(private userService : UserService, 
     public progressBar: ProgressBarService,
     private alertService: AlertService) { }
