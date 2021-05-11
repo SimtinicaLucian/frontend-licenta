@@ -48,7 +48,7 @@ export class ModalUpdateIncasariComponent implements OnInit {
 
   updateIncasari(j, f: NgForm) {
     console.log(this.j.id);
-    this.alertService.info('Checking update invoice');
+    this.alertService.info('Se verifica actualizarea facturii');
     this.progressBar.startLoading();
     this.incasariService.updateIncasari(this.j.id, f.value).subscribe(
       value => {

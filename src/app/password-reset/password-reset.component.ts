@@ -22,6 +22,17 @@ export class PasswordResetComponent implements OnInit {
   public rows: any;
   token: string;
 
+
+  isLoginFailed = false;
+
+  roles: string[] = [];
+  fieldTextType: boolean;
+
+
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = ''
+
   
   
   constructor(private userService: UserService, private incasariService: IncasariService, private route: ActivatedRoute, private tokenStorage: TokenStorageService,
@@ -39,12 +50,12 @@ export class PasswordResetComponent implements OnInit {
 
 
   changePassword() {
-    this.alertService.info('Working on changing password');
+    this.alertService.info('Se lucreaza la schimbarea parolei ');
     this.progressBar.startLoading();
     this.userService.changePassword(this.model).subscribe(() => {
       this.progressBar.setSuccess();
       console.log("success");
-      this.alertService.success('Password Changed');
+      this.alertService.success('Parola schimbata');
       this.progressBar.completeLoading();
       this.router.navigate(['/login'])
     }, error => {

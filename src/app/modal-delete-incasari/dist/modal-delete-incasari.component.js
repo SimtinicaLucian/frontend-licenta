@@ -26,7 +26,7 @@ var ModalDeleteIncasariComponent = /** @class */ (function () {
     };
     ModalDeleteIncasariComponent.prototype.deleteIncasari = function (id) {
         var _this = this;
-        this.alertService.info('Checking delete invoice');
+        this.alertService.info('Se verifica stergerea facturii');
         this.progressBar.startLoading();
         console.log(this.j);
         this.incasariService.deleteId(this.j).subscribe(function (res) {

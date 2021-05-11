@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.alertService.info('Working on creating new account');
+    this.alertService.info('Se lucreaza la crearea unui cont nou ');
     this.progressBar.startLoading();
     this.authService.register(this.form).subscribe(
       data => {
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = false;
         this.progressBar.setSuccess();
         console.log('User created');
-        this.alertService.success('Account Created');
+        this.alertService.success('Cont creat');
         this.progressBar.completeLoading();
         // window.location.reload();
         

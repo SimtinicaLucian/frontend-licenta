@@ -53,7 +53,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { AlertModule } from 'ngx-alerts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CommonModule } from '@angular/common';
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { TestComponent } from './test/test.component';
 import { ModalDeleteUserComponent } from './modal-delete-user/modal-delete-user.component';
@@ -66,6 +66,7 @@ import { CheltuieliComponent } from './cheltuieli/cheltuieli.component';
 import { ModalDeleteCheltuieliComponent } from './modal-delete-cheltuieli/modal-delete-cheltuieli.component';
 import { ModalUpdateCheltuieliComponent } from './modal-update-cheltuieli/modal-update-cheltuieli.component';
 import { ModalAddCheltuieliComponent } from './modal-add-cheltuieli/modal-add-cheltuieli.component';
+import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 
 
 
@@ -109,6 +110,7 @@ import { ModalAddCheltuieliComponent } from './modal-add-cheltuieli/modal-add-ch
     ModalDeleteCheltuieliComponent,
     ModalUpdateCheltuieliComponent,
     ModalAddCheltuieliComponent,
+    PasswordRecoveryComponent,
 
 
   ],
@@ -150,7 +152,7 @@ import { ModalAddCheltuieliComponent } from './modal-add-cheltuieli/modal-add-ch
     NgProgressModule,
     BrowserAnimationsModule,
     BrowserModule,
-    //  FontAwesomeModule,
+     FontAwesomeModule,
     BsDropdownModule.forRoot(),
 
     // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)

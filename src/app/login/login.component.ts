@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.alertService.info('Checking User login');
+    this.alertService.info('Se verifica autentificarea utilizatorului');
     this.progressBar.startLoading();
     this.authService.login(this.form).subscribe(
       data => {
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           // this.router.navigate(['/home'])
           window.location.reload();
           this.progressBar.setSuccess();
-          this.alertService.success('Logged In');
+          this.alertService.success('Conectat');
           this.progressBar.completeLoading();
   
 
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
       err => {
         this.progressBar.setError();
         console.log(err);
-        this.alertService.danger('Incorrect Data');
+        this.alertService.danger('Nume sau parola incorecta');
         this.progressBar.completeLoading();
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;

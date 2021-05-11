@@ -33,7 +33,7 @@ export class ModalDeleteIncasariComponent implements OnInit {
   }
 
   deleteIncasari(id) {
-    this.alertService.info('Checking delete invoice');
+    this.alertService.info('Se verifica stergerea facturii');
     this.progressBar.startLoading();
     console.log(this.j);
     this.incasariService.deleteId(this.j).subscribe(res => {

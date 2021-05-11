@@ -30,6 +30,7 @@ var IncasariComponent = /** @class */ (function () {
         this.isSignUpFailed = false;
         this.errorMessage = '';
         this.isLoggedIn = false;
+        this.model = {};
     }
     IncasariComponent.prototype.ngOnInit = function () {
         var _this = this;

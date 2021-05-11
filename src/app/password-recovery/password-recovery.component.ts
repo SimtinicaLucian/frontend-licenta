@@ -4,11 +4,11 @@ import { AlertService } from "ngx-alerts";
 import { ProgressBarService } from '../services/progress-bar.service';
 
 @Component({
-  selector: 'app-password-forgot',
-  templateUrl: './password-forgot.component.html',
-  styleUrls: ['./password-forgot.component.scss']
+  selector: 'app-password-recovery',
+  templateUrl: './password-recovery.component.html',
+  styleUrls: ['./password-recovery.component.scss']
 })
-export class PasswordForgotComponent implements OnInit {
+export class PasswordRecoveryComponent implements OnInit {
   form: any = {};
 
   
@@ -34,7 +34,7 @@ export class PasswordForgotComponent implements OnInit {
     this.userService.sendEmail(this.form).subscribe(
       data => {
         this.progressBar.setSuccess();
-        this.alertService.success('Verificati adresa de email pentru a schimba parola');
+        this.alertService.success('Verificati adresa de e-mail pentru a schimba parola ');
         console.log('Check email to change password');
         this.progressBar.completeLoading();
       },

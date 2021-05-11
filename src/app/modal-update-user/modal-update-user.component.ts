@@ -39,7 +39,7 @@ export class ModalUpdateUserComponent implements OnInit {
 
 
   updateUser(j, ) {
-    this.alertService.info('Checking update user');
+    this.alertService.info('Se verifica actualizarea user-ului');
     this.progressBar.startLoading();
     console.log(this.j.id);
     this.adminService.updateUser(this.j.role_id, this.j.id).subscribe(() => { 

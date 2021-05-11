@@ -55,6 +55,7 @@ export class IncasariComponent implements OnInit {
   errorMessage = ''
 
   isLoggedIn = false;
+  model: any = {};
 
   constructor( 
     private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router,

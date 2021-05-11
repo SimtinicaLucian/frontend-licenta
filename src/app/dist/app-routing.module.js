@@ -23,6 +23,7 @@ var board_admin_component_1 = require("./board-admin/board-admin.component");
 var test_component_1 = require("./test/test.component");
 var view_incasari_component_1 = require("./view-incasari/view-incasari.component");
 var cheltuieli_component_1 = require("./cheltuieli/cheltuieli.component");
+var password_recovery_component_1 = require("./password-recovery/password-recovery.component");
 var routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: home_component_1.HomeComponent },
@@ -38,6 +39,7 @@ var routes = [
     { path: 'test', component: test_component_1.TestComponent },
     { path: 'view', component: view_incasari_component_1.ViewIncasariComponent },
     { path: 'cheltuieli', component: cheltuieli_component_1.CheltuieliComponent },
+    { path: 'schimbare', component: password_recovery_component_1.PasswordRecoveryComponent },
     { path: '**', redirectTo: '' }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -45,7 +47,7 @@ var AppRoutingModule = /** @class */ (function () {
     }
     AppRoutingModule = __decorate([
         core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes, { preloadingStrategy: router_1.PreloadAllModules }), ngx_datatable_1.NgxDatatableModule],
+            imports: [router_1.RouterModule.forRoot(routes, { preloadingStrategy: router_1.PreloadAllModules, relativeLinkResolution: 'legacy' }), ngx_datatable_1.NgxDatatableModule],
             exports: [router_1.RouterModule]
         })
     ], AppRoutingModule);

@@ -24,8 +24,7 @@
   <div class="col-md-6 mt-4 pt-5 pl-5">
     <h3>Time Tracker</h3>
     <p>Our money tracking app will save you time and money</p>
-    <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="btn btn-info">Create Free Employer
-      Account <i class="fa fa-user-plus"></i></a>
+    <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="btn btn-info">Creați cont <i class="fa fa-user-plus"></i></a>
   </div>
   <div class="col-md-6 mt-4 home-image-wrapper">
     <img src="assets/images/computer.png" alt="">
@@ -51,7 +50,7 @@
                 </span>
               </div>
               <input type="text" class="form-control" name="mailSubject" [(ngModel)]="form.mailSubject"
-                placeholder="Subject" required #mailSubject="ngModel" />
+                placeholder="Subiect" required #mailSubject="ngModel" />
               <div class="alert-danger" *ngIf="f.submitted && mailSubject.invalid">
                 <div *ngIf="mailSubject.errors.required">Subject is required</div>
                 <div *ngIf="mailSubject.errors.minlength">
@@ -93,7 +92,7 @@
                 </span>
               </div>
               <input type="text" class="form-control" name="mailContent" rows="4" [(ngModel)]="form.mailContent"
-                placeholder="Message" required #mailContent="ngModel" />
+                placeholder="Mesaj" required #mailContent="ngModel" />
               <div class="alert-danger" *ngIf="f.submitted && mailContent.invalid">
                 <div *ngIf="mailContent.errors.required">Message is required</div>
                 <div *ngIf="mailContent.errors.minlength">
@@ -112,16 +111,16 @@
             </div> -->
           <!-- <button type="submit" class="btn btn-primary"> Trimiteti</button> -->
 
-          <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid"> Send </button>
+          <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid"> Trimiteti </button>
 
           <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
         </form>
       </div>
 
       <div class="col-md-6 contact-info">
-        <div class="follow"><b>Adress:</b><i class="fa fa-map-marker"></i> Iaz, 77, Rucar, RO</div>
+        <div class="follow"><b>Adresa:</b><i class="fa fa-map-marker"></i> Iaz, 77, Rucar, RO</div>
 
-        <div class="follow"><b>Phone:</b><i class="fa fa-phone"></i>+4 0797334197</div>
+        <div class="follow"><b>Telefon:</b><i class="fa fa-phone"></i>+4 0797334197</div>
 
         <div class="follow"><b>Email:</b><i class="fa fa-envelope-o"></i>simtinica.cosmin@gmail.com</div>
 

@@ -39,7 +39,7 @@ export class ModalContentComponent implements OnInit {
 
 
   register(f: NgForm) {
-    this.alertService.info('Checking add increase');
+    this.alertService.info('Se verifica adaugarea facturii');
     this.progressBar.startLoading();
     this.alimService.add(f.value).subscribe(
       data => {

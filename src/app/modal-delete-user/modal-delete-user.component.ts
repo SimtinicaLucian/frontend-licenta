@@ -30,7 +30,7 @@ export class ModalDeleteUserComponent implements OnInit {
 
 
   deleteUser(id) {
-    this.alertService.info('Checking delete invoice');
+    this.alertService.info('Se verifica stergerea user-ului');
     this.progressBar.startLoading();
     console.log(this.j);
     this.adminService.deleteUserId(this.j).subscribe(res => {

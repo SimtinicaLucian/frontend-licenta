@@ -31,7 +31,7 @@ var ModalContentComponent = /** @class */ (function () {
     // }
     ModalContentComponent.prototype.register = function (f) {
         var _this = this;
-        this.alertService.info('Checking add increase');
+        this.alertService.info('Se verifica adaugarea facturii');
         this.progressBar.startLoading();
         this.alimService.add(f.value).subscribe(function (data) {
             console.log(data);

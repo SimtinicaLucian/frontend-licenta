@@ -46,7 +46,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto headerNav">
             <li class="nav-item">
-              <a class="nav-link" href="#" routerLinkActive="active">Home</a>
+              <a class="nav-link" href="#" routerLinkActive="active">Acasa</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link" href="/add" *ngIf="isLoggedIn" >Incasari </a>
@@ -71,7 +71,7 @@
                       
                       <a class="dropdown-item"
                          [routerLink]="['addincasare']"
-                         routerLinkActive="active"> Salarii</a>
+                         routerLinkActive="active"> Dashboard</a>
                   </div>
                     </div>
                     </div>
@@ -119,31 +119,31 @@
               *ngIf="!isLoggedIn">
                   <a class="nav-link"
                      [routerLink]="['register']"
-                     routerLinkActive="active">Register</a>
+                     routerLinkActive="active">Înscrie-te</a>
               </li>
               <li class="nav-item"
               *ngIf="!isLoggedIn">
                   <a class="nav-link"
                      [routerLink]="['login']"
-                     routerLinkActive="active">Login</a>
+                     routerLinkActive="active">Conectează-te</a>
               </li>
               <li class="nav-item dropdown profile-dropdown-container"
               *ngIf="isLoggedIn"
                   dropdown>
                   <a class="nav-link dropdown-toggle"
                      dropdownToggle>
-                     <i class="fa fa-user"></i> Welcome {{ currentUser.username }}
+                     <i class="fa fa-user"></i> Bun venit {{ currentUser.username }}
                   </a>
                   <div class="dropdown-menu dropdown-menu-right"
                        *dropdownMenu>
                       <a class="dropdown-item"
                          [routerLink]="['profile']"
-                         routerLinkActive="active"><i class="fa fa-key"></i> My account</a>
+                         routerLinkActive="active"><i class="fa fa-key"></i> Contul meu</a>
                       <a class="dropdown-item"
-                         [routerLink]="['forgot']"
-                         routerLinkActive="active"><i class="fa fa-envelope"></i> Forgot password</a>
+                         [routerLink]="['schimbare']"
+                         routerLinkActive="active"><i class="fa fa-envelope"></i> Schimbare parolă</a>
                       <a class="dropdown-item"
-                         (click)="logout();"><i class="fa fa-sign-out"></i> Logout</a>
+                         (click)="logout();"><i class="fa fa-sign-out"></i> Deloghează-te</a>
                   </div>
               </li>
   
