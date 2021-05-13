@@ -1,5 +1,87 @@
 
 
+    <form f="form" (ngSubmit)="filtrare(f)" #f="ngForm" novalidate class="form-inline">
+        <div class="form-group">
+          <label for="beneficiar"></label>
+          <input type="text" class="form-control" name="beneficiar" [(ngModel)]="form.beneficiar" placeholder="beneficiar"
+            required #beneficiar="ngModel" style="width: 130px; height: 33px;" />
+        </div>
+    
+        &nbsp; &nbsp;
+    
+        <div class="form-group">
+          <label for="data1"></label>
+          <input required matInput [matDatepicker]="dp1" name="data1" placeholder="Date" class="form-control"
+            [(ngModel)]="form.data1" required #data1="ngModel" style="width: 130px; height: 33px;" />
+          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+          <mat-datepicker #dp1></mat-datepicker>
+        </div>
+        <div class="form-group">
+          <label for="data2"></label>
+          <input required matInput [matDatepicker]="dp2" name="data2" placeholder="Date2" class="form-control"
+            [(ngModel)]="form.data2" required #data2="ngModel" style="width: 130px; height: 33px;" />
+          <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+          <mat-datepicker #dp2></mat-datepicker>
+        </div>
+    
+        &nbsp; &nbsp;
+    
+        <div class="form-group">
+          <label for="sumaTotala1"></label>
+          <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
+            placeholder="sumaTotala1" required #sumaTotala1="ngModel" style="width: 130px; height: 33px;" />
+        </div>
+    
+        &nbsp; &nbsp;
+    
+        <div class="form-group">
+          <label for="sumaTotala2"></label>
+          <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
+            placeholder="sumaTotala2" required #sumaTotala2="ngModel" style="width: 130px; height: 33px;" />
+        </div>
+    
+        &nbsp; &nbsp;
+    
+        <div class="form-group">
+          <label for="stare"></label>
+          <!-- <input type="text" class="form-control" name="stare" [(ngModel)]="form.stare"
+            placeholder="stare" required #stare="ngModel" style="width: 130px; height: 33px;" /> -->
+            <div class="form-group" style="width: 130px; height: 33px;">
+              <mat-form-field appearance="fill"  style="width: 130px; height: 33px;">
+                <mat-label>stare</mat-label>
+              <mat-select  id="stare" name="stare" [(ngModel)]="form.stare" required #stare="ngModel" >
+                <mat-option>Stare</mat-option>
+                <mat-option *ngFor="let stare of stares" [value]="stare.value">
+                  {{stare.viewValue}}
+                </mat-option>
+              </mat-select>
+              </mat-form-field>
+              </div>
+        </div>
+    
+        &nbsp; &nbsp;
+    
+        <div class="form-group">
+          <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
+        </div>
+    
+        &nbsp; &nbsp;
+    
+        <div class="form-group">
+          <button type="reset" class="btn-sm" mat-raised-button>Reset</button>
+        </div>
+    
+        &nbsp; &nbsp;
+    
+        <!-- <div class="form-group">
+          <input type="image" (click)="exportAsXLSX()" title="Export to XLS" src="/assets/images/excel.PNG"
+            style="border-width:0px;">
+        </div> -->
+      </form>
+    
+    
+    
+    
     <div class="excel">
         <button mat-raised-button style="float: left" (click)="addModal()">
           <mat-icon>add</mat-icon>Create
@@ -150,6 +232,24 @@
 
     </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+    <div class="form-group">
+      <label for="data">Data</label>
+      <input required matInput [matDatepicker]="dp3" name="data" [(ngModel)]="form.data" required minlength="1" class = "form-control" 
+          maxlength="50" #data="ngModel" />
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3></mat-datepicker>
+      <div class="alert-danger" *ngIf="f.submitted && data.invalid">
+          <div *ngIf="data.errors.required">Data is required</div>
+          <div *ngIf="data.errors.minlength">
+              Data must be at least 1 characters
+          </div>
+          <div *ngIf="data.errors.maxlength">
+              Data must be at most 50 characters
+          </div>
+      </div>
+  </div>
 
 
 

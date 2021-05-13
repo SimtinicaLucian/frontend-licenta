@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { CheltuieliService} from '../services/api/cheltuieli.service'
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -11,11 +11,44 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDeleteCheltuieliComponent } from '../modal-delete-cheltuieli/modal-delete-cheltuieli.component';
 import { ModalUpdateCheltuieliComponent } from '../modal-update-cheltuieli/modal-update-cheltuieli.component';
 import { ModalAddCheltuieliComponent } from '../modal-add-cheltuieli/modal-add-cheltuieli.component';
+import { MAT_DATE_FORMATS, DateAdapter,MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import * as _moment from 'moment';
+
+import {default as _rollupMoment} from 'moment'; 
+
+
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'YYYY.MM.DD',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
+
+
+
+interface Stare {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-cheltuieli',
   templateUrl: './cheltuieli.component.html',
-  styleUrls: ['./cheltuieli.component.scss']
+  styleUrls: ['./cheltuieli.component.scss'],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class CheltuieliComponent implements OnInit {
 
@@ -36,6 +69,18 @@ export class CheltuieliComponent implements OnInit {
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
   rows: any;
+
+
+
+    stares: Stare[] = [
+    {value: 'achitata', viewValue: 'achitata'},
+    {value: 'neachitata', viewValue: 'neachitata'},
+    {value: 'partial achitata' , viewValue: 'partial achitata'},
+    {value: 'intarziata' , viewValue: 'intarziata'}
+
+  ];
+
+
   constructor(private cheltuieliService : CheltuieliService, private token: TokenStorageService, private router: ActivatedRoute, public modalService: NgbModal) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -104,6 +149,17 @@ export class CheltuieliComponent implements OnInit {
         console.log(result);
       }
     });
+  }
+
+
+    filtrare(f: NgForm) {
+    this.cheltuieliService.Filtrare(f.value.beneficiar, f.value.data1, f.value.data2, f.value.sumaTotala1, f.value.sumaTotala2, f.value.stare).subscribe((res) => {
+      this.rows = res;
+      this.dataSource = new MatTableDataSource(this.rows)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+    })
   }
 
 }

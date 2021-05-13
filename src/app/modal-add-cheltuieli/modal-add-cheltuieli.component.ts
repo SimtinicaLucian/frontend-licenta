@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../services/user.service';
@@ -8,11 +8,40 @@ import { ProgressBarService } from '../services/progress-bar.service';
 import { CheltuieliService } from '../services/api/cheltuieli.service';
 import { NgForm } from '@angular/forms';
 
+import * as _moment from 'moment';
+
+import {default as _rollupMoment} from 'moment'; 
+
+import { MAT_DATE_FORMATS, DateAdapter,MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'YYYY.MM.DD',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
+
 @Component({
   selector: 'app-modal-add-cheltuieli',
   templateUrl: './modal-add-cheltuieli.component.html',
-  styleUrls: ['./modal-add-cheltuieli.component.scss']
+  styleUrls: ['./modal-add-cheltuieli.component.scss'],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
+  encapsulation: ViewEncapsulation.None
 })
+
+
+
 export class ModalAddCheltuieliComponent implements OnInit {
   form: any = {};
   currentUser: any;

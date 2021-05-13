@@ -364,6 +364,73 @@ export class CheltuieliService {
         })
     }
 
+        /**
+ * Get user by user name
+ * 
+ * @param beneficiar The name that needs to be fetched. Use user1 for testing. 
+ * @param data1 
+ * @param data2 
+ * @param sumaTotala1 
+ * @param sumaTotala2 
+ * @param stare
+ * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+ * @param reportProgress flag to report request and response progress.
+ */
+    public Filtrare(beneficiar: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, stare?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<Cheltuieli>>;
+    public Filtrare(beneficiar: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, stare?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Cheltuieli>>>;
+    public Filtrare(beneficiar: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, stare?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpResponse<Array<Cheltuieli>>>;
+    public Filtrare(beneficiar: string, data1?: string, data2?: string, sumaTotala1?: number, sumaTotala2?: number, stare?: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+
+
+
+        let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
+        if (beneficiar !== undefined && beneficiar !== null) {
+            queryParameters = queryParameters.set('beneficiar', <any>beneficiar);
+        }
+        if (data1 !== undefined && data1 !== null) {
+            queryParameters = queryParameters.set('data1', <any>data1);
+        }
+        if (data2 !== undefined && data2 !== null) {
+            queryParameters = queryParameters.set('data2', <any>data2);
+        }
+        if (sumaTotala1 !== undefined && sumaTotala1 !== null) {
+            queryParameters = queryParameters.set('sumaTotala1', <any>sumaTotala1);
+        }
+        if (sumaTotala2 !== undefined && sumaTotala2 !== null) {
+            queryParameters = queryParameters.set('sumaTotala2', <any>sumaTotala2);
+        }
+        if (stare !== undefined && stare !== null) {
+            queryParameters = queryParameters.set('stare', <any>stare);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/xml',
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<Cheltuieli>>(`${this.basePath}/cheltuieli/filtrare`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
 
     deleteId(id) {
         return this.httpClient.delete(`${this.basePath}/cheltuieli/delete/${encodeURIComponent(String(id))}`)

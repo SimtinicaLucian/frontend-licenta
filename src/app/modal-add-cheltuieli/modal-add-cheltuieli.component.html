@@ -51,8 +51,10 @@
 
         <div class="form-group">
             <label for="data">Data</label>
-            <input type="text" class="form-control" name="data" [(ngModel)]="form.data" required minlength="1"
+            <input required matInput [matDatepicker]="dp3" name="data" [(ngModel)]="form.data" required minlength="1" class = "form-control" 
                 maxlength="50" #data="ngModel" />
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3></mat-datepicker>
             <div class="alert-danger" *ngIf="f.submitted && data.invalid">
                 <div *ngIf="data.errors.required">Data is required</div>
                 <div *ngIf="data.errors.minlength">
