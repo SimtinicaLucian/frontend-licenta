@@ -50,11 +50,13 @@
     <form *ngIf="!isSuccessful" name="form" (ngSubmit)="register(f)" #f="ngForm" novalidate>
 
         <div class="form-group">
-            <label for="data">Data</label>
-            <input required matInput [matDatepicker]="dp3" name="data" [(ngModel)]="form.data" required minlength="1" class = "form-control" 
+            
+            <label for="data">Dată</label>
+            <input required matInput [matDatepicker]="dp1" name="data" [(ngModel)]="form.data" required minlength="1" class = "form-control" 
                 maxlength="50" #data="ngModel" />
-                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-                <mat-datepicker #dp3></mat-datepicker>
+        
+                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1></mat-datepicker>
             <div class="alert-danger" *ngIf="f.submitted && data.invalid">
                 <div *ngIf="data.errors.required">Data is required</div>
                 <div *ngIf="data.errors.minlength">
@@ -65,6 +67,7 @@
                 </div>
             </div>
         </div>
+
 
 
         <div class="form-group">
@@ -83,7 +86,7 @@
         </div>
 
         <div class="form-group">
-            <label for="number">Number</label>
+            <label for="number">Număr</label>
             <input type="text" class="form-control" name="number" [(ngModel)]="form.number" required minlength="1"
                 maxlength="50" #number="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && number.invalid">
@@ -114,7 +117,7 @@
         </div>
 
         <div class="form-group">
-            <label for="sumaTotala">sumaTotala</label>
+            <label for="sumaTotala">Sumă totală</label>
             <input type="number" class="form-control" name="sumaTotala" [(ngModel)]="form.sumaTotala" required
                 minlength="2" maxlength="50" #sumaTotala="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && sumaTotala.invalid">
@@ -129,14 +132,14 @@
         </div>
 
         <div class="form-group">
-            <label for="sumaTotala_Achitata">sumaTotala_Achitata</label>
+            <label for="sumaTotala_Achitata">Sumă totală achitată</label>
             <input type="number" class="form-control" name="sumaTotala_Achitata" [(ngModel)]="form.sumaTotala_Achitata" required
              #sumaTotala_Achitata="ngModel" />
 
         </div>
 
         <div class="form-group">
-            <label for="data_Scadenta">data_Scadenta</label>
+            <label for="data_Scadenta">Dată data_Scadență</label>
             <input type="text" class="form-control" name="data_Scadenta" [(ngModel)]="form.data_Scadenta" required
                  #data_Scadenta="ngModel" />
         </div>
@@ -148,18 +151,16 @@
             <button class="btn btn btn-outline-secondary" aria-label="Close"
                 (click)="activeModal.dismiss('Cross click')">Close</button>
             &nbsp;
-            <button class="btn btn btn-outline-success">Adaugati</button>
+            <button class="btn btn btn-outline-success">Adăugați</button>
         </div> 
 
         <div class="alert alert-warning" *ngIf="f.submitted && isaddFailed">
-            Add failed!<br />{{ errorMessage }}
+           Adăugare eșuată!<br />{{ errorMessage }}
           </div>
         </form>
     
         <div class="alert alert-success" *ngIf="isSuccessful">
-            Your invoice has been successfully added! 
+            Factura dumneavoastră a fost adăugată cu succes! 
         </div>
 
 </div>
-
-

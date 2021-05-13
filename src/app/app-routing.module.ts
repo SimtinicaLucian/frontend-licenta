@@ -15,6 +15,7 @@ import { TestComponent } from './test/test.component';
 import { ViewIncasariComponent } from './view-incasari/view-incasari.component';
 import { CheltuieliComponent } from './cheltuieli/cheltuieli.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
+import { ViewCheltuieliComponent } from './view-cheltuieli/view-cheltuieli.component';
 
 
 
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'reset', component: PasswordResetComponent},
   { path: 'test', component: TestComponent},
   { path: 'view', component: ViewIncasariComponent},
+  { path: 'view_cheltuieli', component: ViewCheltuieliComponent},
   { path: 'cheltuieli', component: CheltuieliComponent},
   { path: 'schimbare', component: PasswordRecoveryComponent},
   { path: '**', redirectTo: '' }

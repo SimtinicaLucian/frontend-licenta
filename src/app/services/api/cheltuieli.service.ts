@@ -364,6 +364,14 @@ export class CheltuieliService {
         })
     }
 
+
+    searchId(id) {
+        return this.httpClient.get(`${this.basePath}/cheltuieli/search/id/${encodeURIComponent(String(id))}`)
+            .map(res => {
+                this.rows;
+            })
+    }
+
         /**
  * Get user by user name
  * 

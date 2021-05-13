@@ -61,7 +61,18 @@ var AddComponent = /** @class */ (function () {
         this.sorted = false;
         this.toppings = new forms_1.FormControl();
         this.months = [
-            { value: '01', viewValue: '01' }
+            { value: '01', viewValue: 'Ianuarie' },
+            { value: '02', viewValue: 'Februarie' },
+            { value: '03', viewValue: 'Martie' },
+            { value: '04', viewValue: 'Aprilie' },
+            { value: '05', viewValue: 'Mai' },
+            { value: '06', viewValue: 'Iunie' },
+            { value: '07', viewValue: 'Iulie' },
+            { value: '08', viewValue: 'August' },
+            { value: '09', viewValue: 'Septembrie' },
+            { value: '10', viewValue: 'Octombrie' },
+            { value: '11', viewValue: 'Noiembrie' },
+            { value: '12', viewValue: 'Decembrie' }
         ];
         this.years = [
             { value: '2021', viewValue: '2021' },
@@ -118,7 +129,7 @@ var AddComponent = /** @class */ (function () {
     };
     AddComponent.prototype.searchByMonthAndYear = function (e) {
         var _this = this;
-        this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe(function (res) {
+        this.alimService.getDatesAfterMonthAndYear(e.value.month, e.value.year).subscribe(function (res) {
             _this.rows = res;
             _this.dataSource = new table_1.MatTableDataSource(_this.rows);
             _this.dataSource.paginator = _this.paginator;

@@ -1,6 +1,4 @@
-<ng-progress id="progressBar"
-             [color]="progressBar.currentColor"
-             [thick]="true"></ng-progress>
+<ng-progress id="progressBar" [color]="progressBar.currentColor" [thick]="true"></ng-progress>
 <ngx-alerts></ngx-alerts>
 
 <router-outlet>
@@ -11,9 +9,9 @@
 
     <link rel="stylesheet" href="app.component.scss">
     <!-- <link rel="stylesheet" href="../../src/styles.scss"> -->
-    
 
-    
+
+
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3
 /css/bootstrap.min.css">
@@ -33,16 +31,11 @@
           <img src="https://www.flaticon.com/authors/eucalyp" height="30" alt="">
       </a> -->
         <a class="navbar-brand" href="#"> <img src="/assets/images/accounting.png"></a>
-        <button class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto headerNav">
             <li class="nav-item">
@@ -51,30 +44,25 @@
             <!-- <li class="nav-item">
               <a class="nav-link" href="/add" *ngIf="isLoggedIn" >Incasari </a>
             </li> -->
-            <li class="nav-item" 
-            *ngIf="isLoggedIn" 
-            dropdown>
-                  <a class="nav-link dropdown-toggle"
-                     dropdownToggle>
-                     Incasari si plati
-                  </a>
-                  <div class="row">
-                    <div class="col-md-12 school-options-dropdown text-center">
-                  <div class="dropdown-menu"
-                       *dropdownMenu>
-                      <a class="dropdown-item"
-                         [routerLink]="['add']"
-                         routerLinkActive="active"> Incasari</a>
-                      <a class="dropdown-item"
-                         [routerLink]="['cheltuieli']"
-                         routerLinkActive="active"> Cheltuieli</a>
-                      
-                      <a class="dropdown-item"
-                         [routerLink]="['addincasare']"
-                         routerLinkActive="active"> Dashboard</a>
+            <li class="nav-item" *ngIf="isLoggedIn" dropdown>
+              <a class="nav-link dropdown-toggle" dropdownToggle>
+                Incasari si plati
+              </a>
+
+
+
+              <div class="row">
+                <div class="col-md-12 school-options-dropdown text-center">
+                  <div class="dropdown-menu" *dropdownMenu>
+                    <a class="dropdown-item" [routerLink]="['add']" routerLinkActive="active"> Incasari</a>
+                    <a class="dropdown-item" [routerLink]="['cheltuieli']" routerLinkActive="active"> Cheltuieli</a>
+
+                    <a class="dropdown-item" [routerLink]="['addincasare']" routerLinkActive="active"> Dashboard</a>
                   </div>
-                    </div>
-                    </div>
+                </div>
+              </div>
+
+
 
             </li>
             <li class="nav-item">
@@ -82,12 +70,12 @@
             </li>
             <li class="divider menu-divider"></li>
           </ul>
-          
 
 
 
 
-            <!-- <li class="nav-item dropdown" dropdpwn>
+
+          <!-- <li class="nav-item dropdown" dropdpwn>
               <a class = "nav-link dropdown-toggle" dropdownToggle
               href= "#" 
               id="navbarDropdown"
@@ -113,9 +101,9 @@
             </li> -->
 
 
-            
-            <ul class="navbar-nav ml-auto headerNav">
-              <!-- <li class="nav-item"
+
+          <ul class="navbar-nav ml-auto headerNav">
+            <!-- <li class="nav-item"
               *ngIf="!isLoggedIn">
                   <a class="nav-link"
                      [routerLink]="['register']"
@@ -128,49 +116,36 @@
                      routerLinkActive="active">Conectează-te</a>
               </li> -->
 
-              <li class="nav-item dropdown profile-dropdown-container"
-              *ngIf="!isLoggedIn"
-                  dropdown>
-                  <a class="nav-link dropdown-toggle"
-                     dropdownToggle>
-                     <i class="fa fa-user"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right"
-                       *dropdownMenu>
-                      <a class="dropdown-item"
-                         [routerLink]="['login']"
-                         routerLinkActive="active"><i class="fa fa-sign-in"></i> Conectează-te</a>
-                      <a class="dropdown-item"
-                         [routerLink]="['register']"
-                         routerLinkActive="active"><i class="fa fa-user-plus"></i> Înscrie-te</a>
-                  </div>
-              </li>
+            <li class="nav-item dropdown profile-dropdown-container" *ngIf="!isLoggedIn" dropdown>
+              <a class="nav-link dropdown-toggle" dropdownToggle>
+                <i class="fa fa-user"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a class="dropdown-item" [routerLink]="['login']" routerLinkActive="active"><i
+                    class="fa fa-sign-in"></i> Conectează-te</a>
+                <a class="dropdown-item" [routerLink]="['register']" routerLinkActive="active"><i
+                    class="fa fa-user-plus"></i> Înscrie-te</a>
+              </div>
+            </li>
 
 
-              <li class="nav-item dropdown profile-dropdown-container"
-              *ngIf="isLoggedIn"
-                  dropdown>
-                  <a class="nav-link dropdown-toggle"
-                     dropdownToggle>
-                     <i class="fa fa-user"></i> Bun venit {{ currentUser.username }}
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right"
-                       *dropdownMenu>
-                      <a class="dropdown-item"
-                         [routerLink]="['profile']"
-                         routerLinkActive="active"><i class="fa fa-key"></i> Contul meu</a>
-                      <a class="dropdown-item"
-                         [routerLink]="['schimbare']"
-                         routerLinkActive="active"><i class="fa fa-envelope"></i> Schimbare parolă</a>
-                      <a class="dropdown-item"
-                         (click)="logout();"><i class="fa fa-sign-out"></i> Deloghează-te</a>
-                  </div>
-              </li>
-  
+            <li class="nav-item dropdown profile-dropdown-container" *ngIf="isLoggedIn" dropdown>
+              <a class="nav-link dropdown-toggle" dropdownToggle>
+                <i class="fa fa-user"></i> Bun venit {{ currentUser.username }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a class="dropdown-item" [routerLink]="['profile']" routerLinkActive="active"><i class="fa fa-key"></i>
+                  Contul meu</a>
+                <a class="dropdown-item" [routerLink]="['schimbare']" routerLinkActive="active"><i
+                    class="fa fa-envelope"></i> Schimbare parolă</a>
+                <a class="dropdown-item" (click)="logout();"><i class="fa fa-sign-out"></i> Deloghează-te</a>
+              </div>
+            </li>
+
           </ul>
 
 
-          
+
 
           <!-- <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
             <li class="nav-item">
@@ -189,7 +164,7 @@
             </li>
           </ul> -->
 
-          
+
 
         </div>
       </nav>

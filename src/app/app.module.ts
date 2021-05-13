@@ -67,6 +67,7 @@ import { ModalDeleteCheltuieliComponent } from './modal-delete-cheltuieli/modal-
 import { ModalUpdateCheltuieliComponent } from './modal-update-cheltuieli/modal-update-cheltuieli.component';
 import { ModalAddCheltuieliComponent } from './modal-add-cheltuieli/modal-add-cheltuieli.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
+import { ViewCheltuieliComponent } from './view-cheltuieli/view-cheltuieli.component';
 
 
 
@@ -111,6 +112,7 @@ import { PasswordRecoveryComponent } from './password-recovery/password-recovery
     ModalUpdateCheltuieliComponent,
     ModalAddCheltuieliComponent,
     PasswordRecoveryComponent,
+    ViewCheltuieliComponent,
 
 
   ],

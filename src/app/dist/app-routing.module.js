@@ -24,6 +24,7 @@ var test_component_1 = require("./test/test.component");
 var view_incasari_component_1 = require("./view-incasari/view-incasari.component");
 var cheltuieli_component_1 = require("./cheltuieli/cheltuieli.component");
 var password_recovery_component_1 = require("./password-recovery/password-recovery.component");
+var view_cheltuieli_component_1 = require("./view-cheltuieli/view-cheltuieli.component");
 var routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: home_component_1.HomeComponent },
@@ -38,6 +39,7 @@ var routes = [
     { path: 'reset', component: password_reset_component_1.PasswordResetComponent },
     { path: 'test', component: test_component_1.TestComponent },
     { path: 'view', component: view_incasari_component_1.ViewIncasariComponent },
+    { path: 'view_cheltuieli', component: view_cheltuieli_component_1.ViewCheltuieliComponent },
     { path: 'cheltuieli', component: cheltuieli_component_1.CheltuieliComponent },
     { path: 'schimbare', component: password_recovery_component_1.PasswordRecoveryComponent },
     { path: '**', redirectTo: '' }

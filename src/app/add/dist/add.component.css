@@ -1,6 +1,8 @@
 /* Structure */
-.stats-cards .mat-card {
-  overflow: hidden;
+.center {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
 }
 
 .mat-form-field {

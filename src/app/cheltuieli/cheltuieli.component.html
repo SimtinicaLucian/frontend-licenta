@@ -2,7 +2,7 @@
 
     <form f="form" (ngSubmit)="filtrare(f)" #f="ngForm" novalidate class="form-inline">
         <div class="form-group">
-          <label for="beneficiar"></label>
+          <label for="Beneficiar"></label>
           <input type="text" class="form-control" name="beneficiar" [(ngModel)]="form.beneficiar" placeholder="beneficiar"
             required #beneficiar="ngModel" style="width: 130px; height: 33px;" />
         </div>
@@ -10,14 +10,14 @@
         &nbsp; &nbsp;
     
         <div class="form-group">
-          <label for="data1"></label>
+          <label for="Dată minimă"></label>
           <input required matInput [matDatepicker]="dp1" name="data1" placeholder="Date" class="form-control"
             [(ngModel)]="form.data1" required #data1="ngModel" style="width: 130px; height: 33px;" />
           <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
           <mat-datepicker #dp1></mat-datepicker>
         </div>
         <div class="form-group">
-          <label for="data2"></label>
+          <label for="Dată maximă"></label>
           <input required matInput [matDatepicker]="dp2" name="data2" placeholder="Date2" class="form-control"
             [(ngModel)]="form.data2" required #data2="ngModel" style="width: 130px; height: 33px;" />
           <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
@@ -27,7 +27,7 @@
         &nbsp; &nbsp;
     
         <div class="form-group">
-          <label for="sumaTotala1"></label>
+          <label for="Sumă minimă"></label>
           <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
             placeholder="sumaTotala1" required #sumaTotala1="ngModel" style="width: 130px; height: 33px;" />
         </div>
@@ -35,7 +35,7 @@
         &nbsp; &nbsp;
     
         <div class="form-group">
-          <label for="sumaTotala2"></label>
+          <label for="Sumă maximă"></label>
           <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
             placeholder="sumaTotala2" required #sumaTotala2="ngModel" style="width: 130px; height: 33px;" />
         </div>
@@ -43,7 +43,7 @@
         &nbsp; &nbsp;
     
         <div class="form-group">
-          <label for="stare"></label>
+          <label for="Stare"></label>
           <!-- <input type="text" class="form-control" name="stare" [(ngModel)]="form.stare"
             placeholder="stare" required #stare="ngModel" style="width: 130px; height: 33px;" /> -->
             <div class="form-group" style="width: 130px; height: 33px;">
@@ -62,7 +62,7 @@
         &nbsp; &nbsp;
     
         <div class="form-group">
-          <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
+          <button class="btn-sm" mat-raised-button color="primary">Caută</button>
         </div>
     
         &nbsp; &nbsp;
@@ -73,10 +73,10 @@
     
         &nbsp; &nbsp;
     
-        <!-- <div class="form-group">
+        <div class="form-group">
           <input type="image" (click)="exportAsXLSX()" title="Export to XLS" src="/assets/images/excel.PNG"
             style="border-width:0px;">
-        </div> -->
+        </div>
       </form>
     
     
@@ -84,7 +84,7 @@
     
     <div class="excel">
         <button mat-raised-button style="float: left" (click)="addModal()">
-          <mat-icon>add</mat-icon>Create
+          <mat-icon>add</mat-icon>Adaugă
         </button>
       </div>
 
@@ -104,7 +104,7 @@
             </ng-container>
 
             <ng-container matColumnDef="data">
-                <th mat-header-cell *matHeaderCellDef> Data</th>
+                <th mat-header-cell *matHeaderCellDef> Dată</th>
                 <td mat-cell *matCellDef="let element"> {{element.data}} </td>
                 <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
@@ -117,7 +117,7 @@
             </ng-container>
 
             <ng-container matColumnDef="number">
-                <th mat-header-cell *matHeaderCellDef> Number</th>
+                <th mat-header-cell *matHeaderCellDef> Număr</th>
                 <td mat-cell *matCellDef="let element"> {{element.number}} </td>
                 <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
@@ -130,19 +130,19 @@
 
 
             <ng-container matColumnDef="sumaTotala">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTotala </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sumă totală </th>
                 <td mat-cell *matCellDef="let element"> {{element.sumaTotala}} </td>
                 <td mat-footer-cell *matFooterCellDef> {{getTotalCheltuieli()}} </td>
             </ng-container>
 
             <ng-container matColumnDef="sumaTotala_Achitata">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> sumaTotala_Achitata </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Suma totală achitată </th>
                 <td mat-cell *matCellDef="let element"> {{element.sumaTotala_Achitata}} </td>
                 <td mat-footer-cell *matFooterCellDef> {{getTotalCheltuieli_Achitata()}} </td>
             </ng-container>
 
             <ng-container matColumnDef="rest">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> rest </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Rest de plată </th>
                 <td mat-cell *matCellDef="let element"> {{element.rest}} </td>
                 <td mat-footer-cell *matFooterCellDef> {{getCheltuieli_Rest()}} </td>
             </ng-container>
@@ -173,7 +173,7 @@
 
 
             <ng-container matColumnDef="by_added">
-                <th mat-header-cell *matHeaderCellDef>Adaugat de</th>
+                <th mat-header-cell *matHeaderCellDef>Adăugat de</th>
                 <td mat-cell *matCellDef="let element"> {{element.by_added}} </td>
                 <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
@@ -181,7 +181,7 @@
 
 
             <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> action </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Acțiuni </th>
                 <td mat-cell *matCellDef="let element">
 
                     <div class="btn-group" dropdown>
@@ -199,16 +199,18 @@
                         <div class="row">
                             <div class="col-md-12 school-options-dropdown text-right">
                                 <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-                                    <a class="dropdown-item rounded-top" routerLinkActive="active"> <span
-                                            class="fa fa-eye me-2"></span> View Details</a>
+                                    <a class="dropdown-item rounded-top"
+                                    (click) = "view(element)"
+                                    routerLinkActive="active"> <span
+                                            class="fa fa-eye me-2"></span> Vezi detalii</a>
 
 
                                     <a class="dropdown-item" (click)="updateModal(element)" routerLinkActive="active">
-                                        <span class="fa fa-edit me-2"></span> Edit</a>
+                                        <span class="fa fa-edit me-2"></span> Modifică</a>
 
                                     <a class="dropdown-item text-danger rounded-bottom"
                                         (click)="deleteModal(element.id)" routerLinkActive="active"><span
-                                            class="fa fa-trash me-2"></span> Remove</a>
+                                            class="fa fa-trash me-2"></span> Șterge</a>
                                 </div>
                             </div>
                         </div>
@@ -234,22 +236,7 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
 
-    <div class="form-group">
-      <label for="data">Data</label>
-      <input required matInput [matDatepicker]="dp3" name="data" [(ngModel)]="form.data" required minlength="1" class = "form-control" 
-          maxlength="50" #data="ngModel" />
-          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-          <mat-datepicker #dp3></mat-datepicker>
-      <div class="alert-danger" *ngIf="f.submitted && data.invalid">
-          <div *ngIf="data.errors.required">Data is required</div>
-          <div *ngIf="data.errors.minlength">
-              Data must be at least 1 characters
-          </div>
-          <div *ngIf="data.errors.maxlength">
-              Data must be at most 50 characters
-          </div>
-      </div>
-  </div>
+
 
 
 

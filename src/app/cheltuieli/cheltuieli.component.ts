@@ -11,6 +11,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDeleteCheltuieliComponent } from '../modal-delete-cheltuieli/modal-delete-cheltuieli.component';
 import { ModalUpdateCheltuieliComponent } from '../modal-update-cheltuieli/modal-update-cheltuieli.component';
 import { ModalAddCheltuieliComponent } from '../modal-add-cheltuieli/modal-add-cheltuieli.component';
+import { ExcelService } from '../services/excel.service';
+import { ViewCheltuieliComponent } from '../view-cheltuieli/view-cheltuieli.component';
 import { MAT_DATE_FORMATS, DateAdapter,MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import * as _moment from 'moment';
@@ -81,10 +83,14 @@ export class CheltuieliComponent implements OnInit {
   ];
 
 
-  constructor(private cheltuieliService : CheltuieliService, private token: TokenStorageService, private router: ActivatedRoute, public modalService: NgbModal) { }
+  constructor(private cheltuieliService : CheltuieliService, private token: TokenStorageService, private router: ActivatedRoute, public modalService: NgbModal, private excelService: ExcelService) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  exportAsXLSX(): void {
+    this.excelService.exportAsExcelFile(this.rows, 'cheltuieli_data');
+  }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
@@ -151,6 +157,19 @@ export class CheltuieliComponent implements OnInit {
     });
   }
 
+  view(j) {
+    console.log(j);
+    const modalRef = this.modalService.open(ViewCheltuieliComponent);
+    // const modalRef = this.view.call(ViewIncasariComponent);
+    modalRef.componentInstance.j = j;
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+
 
     filtrare(f: NgForm) {
     this.cheltuieliService.Filtrare(f.value.beneficiar, f.value.data1, f.value.data2, f.value.sumaTotala1, f.value.sumaTotala2, f.value.stare).subscribe((res) => {
@@ -161,6 +180,8 @@ export class CheltuieliComponent implements OnInit {
 
     })
   }
+
+  
 
 }
 

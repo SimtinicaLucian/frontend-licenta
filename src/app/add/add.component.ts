@@ -167,9 +167,21 @@ public chartOptions: Partial<ChartOptions>;
 public chartOptions2: Partial<ChartOptions2>;
 
 
-  months: Month[] = [
-    {value: '01', viewValue: '01'}
-  ];
+months: Month[] = [
+  {value: '01', viewValue: 'Ianuarie'},
+  {value: '02', viewValue: 'Februarie'},
+  {value: '03', viewValue: 'Martie'},
+  {value: '04', viewValue: 'Aprilie'},
+  {value: '05', viewValue: 'Mai'},
+  {value: '06', viewValue: 'Iunie'},
+  {value: '07', viewValue: 'Iulie'},
+  {value: '08', viewValue: 'August'},
+  {value: '09', viewValue: 'Septembrie'},
+  {value: '10', viewValue: 'Octombrie'},
+  {value: '11', viewValue: 'Noiembrie'},
+  {value: '12', viewValue: 'Decembrie'}
+  
+];
 
   years: Year[] = [
     {value: '2021', viewValue: '2021'},
@@ -260,7 +272,7 @@ public chartOptions2: Partial<ChartOptions2>;
   }
 
   searchByMonthAndYear(e: NgForm) {
-    this.alimService.getDatesAfterMonthAndYear(e.value.month1, e.value.year1).subscribe((res) => {
+    this.alimService.getDatesAfterMonthAndYear(e.value.month, e.value.year).subscribe((res) => {
       this.rows = res;
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
