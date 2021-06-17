@@ -69,6 +69,11 @@ import { ModalAddCheltuieliComponent } from './modal-add-cheltuieli/modal-add-ch
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 import { ViewCheltuieliComponent } from './view-cheltuieli/view-cheltuieli.component';
 import { ListItemsComponent } from './list-items/list-items.component';
+import { SalariuComponent } from './salariu/salariu.component';
+import { ModalAddSalariuComponent } from './modal-add-salariu/modal-add-salariu.component';
+import { ModalDeleteSalariuComponent } from './modal-delete-salariu/modal-delete-salariu.component';
+import { ModalUpdateSalariuComponent } from './modal-update-salariu/modal-update-salariu.component';
+import { ViewSalariuComponent } from './view-salariu/view-salariu.component';
 
 
 
@@ -120,6 +125,11 @@ import { ListItemsComponent } from './list-items/list-items.component';
     PasswordRecoveryComponent,
     ViewCheltuieliComponent,
     ListItemsComponent,
+    SalariuComponent,
+    ModalAddSalariuComponent,
+    ModalDeleteSalariuComponent,
+    ModalUpdateSalariuComponent,
+    ViewSalariuComponent,
 
 
 

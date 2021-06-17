@@ -110,8 +110,10 @@ export class AddincasareComponent implements OnInit {
   SoldTotal:any;
   Count_Incasari_Intarziate: any;
   Count_Cheltuieli_Intarziate: any;
+  Count_Salariu_Intarziate: any;
   Incasari_Intarziate_RestDeIncasat: any;
   Cheltuieli_Intarziate_RestDeAchitat: any;
+  Salariu_Intarziate_RestDeAchitat: any;
 
 
   cifra_Afaceri: any;
@@ -173,6 +175,11 @@ export class AddincasareComponent implements OnInit {
       this.Count_Cheltuieli_Intarziate = res
     ))
 
+
+    this.statisticsService.Salariu_CountIntarziate().subscribe((res =>
+      this.Count_Salariu_Intarziate = res
+    ))
+
     this.statisticsService.Incasari_Intarziate_Rest_DeIncasat().subscribe((res =>
       this.Incasari_Intarziate_RestDeIncasat = res
     ))
@@ -180,6 +187,15 @@ export class AddincasareComponent implements OnInit {
     this.statisticsService.Cheltuieli_Intarziate_Rest_DeAchitat().subscribe((res =>
       this.Cheltuieli_Intarziate_RestDeAchitat = res
     ))
+
+    this.statisticsService.Salariu_Intarziate_Rest_DeAchitat().subscribe((res =>
+      this.Salariu_Intarziate_RestDeAchitat = res
+    ))
+
+
+
+
+    
 
 
   }

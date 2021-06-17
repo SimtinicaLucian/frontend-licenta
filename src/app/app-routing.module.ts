@@ -16,6 +16,8 @@ import { ViewIncasariComponent } from './view-incasari/view-incasari.component';
 import { CheltuieliComponent } from './cheltuieli/cheltuieli.component';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 import { ViewCheltuieliComponent } from './view-cheltuieli/view-cheltuieli.component';
+import { SalariuComponent } from './salariu/salariu.component';
+
 
 
 
@@ -36,6 +38,7 @@ const routes: Routes = [
   { path: 'view_cheltuieli', component: ViewCheltuieliComponent},
   { path: 'cheltuieli', component: CheltuieliComponent},
   { path: 'schimbare', component: PasswordRecoveryComponent},
+  { path: 'salariu', component: SalariuComponent},
   { path: '**', redirectTo: '' }
 ];
 

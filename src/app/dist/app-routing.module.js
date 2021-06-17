@@ -25,6 +25,7 @@ var view_incasari_component_1 = require("./view-incasari/view-incasari.component
 var cheltuieli_component_1 = require("./cheltuieli/cheltuieli.component");
 var password_recovery_component_1 = require("./password-recovery/password-recovery.component");
 var view_cheltuieli_component_1 = require("./view-cheltuieli/view-cheltuieli.component");
+var salariu_component_1 = require("./salariu/salariu.component");
 var routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: home_component_1.HomeComponent },
@@ -42,6 +43,7 @@ var routes = [
     { path: 'view_cheltuieli', component: view_cheltuieli_component_1.ViewCheltuieliComponent },
     { path: 'cheltuieli', component: cheltuieli_component_1.CheltuieliComponent },
     { path: 'schimbare', component: password_recovery_component_1.PasswordRecoveryComponent },
+    { path: 'salariu', component: salariu_component_1.SalariuComponent },
     { path: '**', redirectTo: '' }
 ];
 var AppRoutingModule = /** @class */ (function () {

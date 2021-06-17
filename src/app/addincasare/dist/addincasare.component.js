@@ -86,11 +86,17 @@ var AddincasareComponent = /** @class */ (function () {
         this.statisticsService.Cheltuieli_CountIntarziate().subscribe((function (res) {
             return _this.Count_Cheltuieli_Intarziate = res;
         }));
+        this.statisticsService.Salariu_CountIntarziate().subscribe((function (res) {
+            return _this.Count_Salariu_Intarziate = res;
+        }));
         this.statisticsService.Incasari_Intarziate_Rest_DeIncasat().subscribe((function (res) {
             return _this.Incasari_Intarziate_RestDeIncasat = res;
         }));
         this.statisticsService.Cheltuieli_Intarziate_Rest_DeAchitat().subscribe((function (res) {
             return _this.Cheltuieli_Intarziate_RestDeAchitat = res;
+        }));
+        this.statisticsService.Salariu_Intarziate_Rest_DeAchitat().subscribe((function (res) {
+            return _this.Salariu_Intarziate_RestDeAchitat = res;
         }));
     };
     AddincasareComponent.prototype.register = function (f) {

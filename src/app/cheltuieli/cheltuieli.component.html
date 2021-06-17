@@ -1,5 +1,5 @@
 
-
+<div *ngIf="currentUser; else loggedOut">
 &nbsp; &nbsp;
 &nbsp; &nbsp;
 <form f="form" (ngSubmit)="filtrare_Luna_An(f)" #f="ngForm" novalidate class="form-inline">
@@ -293,3 +293,7 @@
 
 </div>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<ng-template #loggedOut>
+  Este necesară conectarea !
+</ng-template>

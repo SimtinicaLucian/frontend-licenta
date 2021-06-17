@@ -1,0 +1,76 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalCenterTitle">Vizualizare date</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form name="form" (ngSubmit)="searchID(j)" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="data"><b>Data: </b> </label>
+            {{j.data}}
+        </div>
+
+
+        <div class="form-group">
+            <label for="nume"><b>Nume: </b> </label>
+            {{j.nume}}
+        </div>
+
+        <div class="form-group">
+            <label for="number"><b>Număr: </b> </label>
+            {{j.number}}
+        </div>
+
+
+        <div class="form-group">
+            <label for="functie"><b>Funcție: </b> </label>
+            {{j.functie}}
+        </div>
+
+        <div class="form-group">
+            <label for="detalii"><b>Detalii: </b> </label>
+            {{j.detalii}}
+        </div>
+
+        <div class="form-group">
+            <label for="salariu_brut"><b>Salariul brut: </b> </label>
+            {{j.salariu_brut}}
+        </div>
+
+        <div class="form-group">
+            <label for="salariu_net"><b>Salariul net: </b> </label>
+            {{j.salariu_net}}
+        </div>
+
+        <div class="form-group">
+            <label for="salariu_net_achitat"><b>Salariul net achitat: </b> </label>
+            {{j.salariu_net_achitat}}
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="rest"><b>Rest de încasat: </b> </label>
+            {{j.rest}}
+        </div>
+
+        <div class="form-group">
+            <label for="by_added"><b>Adăugat de: </b> </label>
+            {{j.by_added}}
+        </div>
+
+        <div class="form-group">
+            <label for="stare"><b>Stare: </b> </label>
+            {{j.stare}}
+        </div>
+
+        <div class="form-group">
+            <label for="data_Scadenta"><b>Dată scadență: </b> </label>
+            {{j.data_Scadenta}}
+        </div>
+
+
+</form>
+</div>

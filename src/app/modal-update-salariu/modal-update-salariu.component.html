@@ -1,0 +1,130 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalCenterTitle">Actualizarea salariu</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="updateSalariu(j, f)" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="data">Data</label>
+            <input type="text" class="form-control" name="data" [(ngModel)]="j.data" required #data="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && data.invalid">
+                <div *ngIf="data.errors.required">Introducerea datei este obligatorie !</div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="nume">Nume</label>
+            <input type="text" class="form-control" name="nume" [(ngModel)]="j.nume" required
+                minlength="1" maxlength="35" #beneficiar="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && beneficiar.invalid">
+                <div *ngIf="beneficiar.errors.required">Introducerea numelui este obligatorie !</div>
+                <div *ngIf="beneficiar.errors.minlength">
+                    Numele trebuie să fie compus din minim 1 caracter !
+                </div>
+                <div *ngIf="beneficiar.errors.maxlength">
+                    Numele trebuie să fie compus din maxim 35 caractere !
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="number">Număr</label>
+            <input type="text" class="form-control" name="number" [(ngModel)]="j.number" required minlength="1"
+                maxlength="15" #number="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && number.invalid">
+                <div *ngIf="number.errors.required">Introducerea numarului este obligatorie !</div>
+                <div *ngIf="number.errors.minlength">
+                    Numărul trebuie să fie compus din minim 1 caracter !
+                </div>
+                <div *ngIf="number.errors.maxlength">
+                    Numărul trebuie să fie compus din maxim 15 caractere !
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="functie">Funcție</label>
+            <input type="text" class="form-control" name="functie" [(ngModel)]="j.functie" required minlength="1"
+                maxlength="15" #functie="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && functie.invalid">
+                <div *ngIf="functie.errors.required">Introducerea funcției este obligatorie !</div>
+                <div *ngIf="functie.errors.minlength">
+                    Funcția trebuie să fie compusă din minim 1 caracter !
+                </div>
+                <div *ngIf="functie.errors.maxlength">
+                    Funcția trebuie să fie compusă din maxim 15 caractere !
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="detalii">Detalii</label>
+            <input type="text" class="form-control" name="detalii" [(ngModel)]="j.detalii" required minlength="1"
+                maxlength="35" #detalii="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && detalii.invalid">
+                <div *ngIf="detalii.errors.required">Introducerea detaliilor este obligatorie !</div>
+                <div *ngIf="detalii.errors.minlength">
+                    Detaliile trebuie să fie compus din minim 1 caracter !
+                </div>
+                <div *ngIf="detalii.errors.maxlength">
+                    Detaliile trebuie să fie compus din maxim 35 caractere !
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="salariu_brut">Salariul brut</label>
+            <input type="number" class="form-control" name="salariu_brut" [(ngModel)]="j.salariu_brut" required
+                 #salariu_brut="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && salariu_brut.invalid">
+                <div *ngIf="salariu_brut.errors.required">Introducerea salariului brut este obligatorie !</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="salariu_net_achitat">Salariul net achitat</label>
+            <input type="number" class="form-control" name="salariu_net_achitat" [(ngModel)]="j.salariu_net_achitat"
+                required #salariu_net_achitat="ngModel" />
+                <div class="alert-danger" *ngIf="f.submitted && salariu_net_achitat.invalid">
+                    <div *ngIf="salariu_net_achitat.errors.required">Introducerea salariului net achitat este obligatorie !</div>
+                </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="data_Scadenta">Dată scadență</label>
+            <input type="text" class="form-control" name="data_Scadenta" [(ngModel)]="j.data_Scadenta" required
+                #data_Scadenta="ngModel" />
+
+                <div class="alert-danger" *ngIf="f.submitted && data_Scadenta.invalid">
+                    <div *ngIf="data_Scadenta.errors.required">Introducerea datei scadente este obligatorie !</div>
+                </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <div class="form-group"> 
+                <button  class="btn-sm btn-secondary"  mat-raised-button aria-label="Close"  (click)="close()">Close</button>
+                &nbsp;
+                <button  class="btn-sm btn-success"  mat-raised-button>Modificați</button>
+            </div> 
+        </div> 
+
+
+        <div class="alert alert-warning" *ngIf="f.submitted && isaddFailed">
+            Modificare eșuată !<br />{{ errorMessage }}
+         </div>
+     </form>
+ 
+     <div class="alert alert-success" *ngIf="isSuccessful">
+         Salariul a fost modificat cu succes !
+     </div>
+ </div>
