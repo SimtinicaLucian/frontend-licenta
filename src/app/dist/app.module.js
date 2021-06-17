@@ -54,7 +54,7 @@ var core_4 = require("@ngx-progressbar/core");
 var ngx_alerts_1 = require("ngx-alerts");
 var dropdown_1 = require("ngx-bootstrap/dropdown");
 var common_2 = require("@angular/common");
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+var angular_fontawesome_1 = require("@fortawesome/angular-fontawesome");
 var board_admin_component_1 = require("./board-admin/board-admin.component");
 var test_component_1 = require("./test/test.component");
 var modal_delete_user_component_1 = require("./modal-delete-user/modal-delete-user.component");
@@ -66,6 +66,8 @@ var cheltuieli_component_1 = require("./cheltuieli/cheltuieli.component");
 var modal_delete_cheltuieli_component_1 = require("./modal-delete-cheltuieli/modal-delete-cheltuieli.component");
 var modal_update_cheltuieli_component_1 = require("./modal-update-cheltuieli/modal-update-cheltuieli.component");
 var modal_add_cheltuieli_component_1 = require("./modal-add-cheltuieli/modal-add-cheltuieli.component");
+var password_recovery_component_1 = require("./password-recovery/password-recovery.component");
+var view_cheltuieli_component_1 = require("./view-cheltuieli/view-cheltuieli.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -95,6 +97,8 @@ var AppModule = /** @class */ (function () {
                 modal_delete_cheltuieli_component_1.ModalDeleteCheltuieliComponent,
                 modal_update_cheltuieli_component_1.ModalUpdateCheltuieliComponent,
                 modal_add_cheltuieli_component_1.ModalAddCheltuieliComponent,
+                password_recovery_component_1.PasswordRecoveryComponent,
+                view_cheltuieli_component_1.ViewCheltuieliComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [
@@ -127,7 +131,7 @@ var AppModule = /** @class */ (function () {
                 core_4.NgProgressModule,
                 animations_1.BrowserAnimationsModule,
                 platform_browser_1.BrowserModule,
-                //  FontAwesomeModule,
+                angular_fontawesome_1.FontAwesomeModule,
                 dropdown_1.BsDropdownModule.forRoot(),
                 // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
                 ngx_alerts_1.AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),

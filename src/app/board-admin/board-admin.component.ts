@@ -11,6 +11,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ActivatedRoute } from '@angular/router';
 
+
+
+
+
 @Component({
   selector: 'app-board-admin',
   templateUrl: './board-admin.component.html',
@@ -19,12 +23,15 @@ import { ActivatedRoute } from '@angular/router';
 export class BoardAdminComponent implements OnInit {
   public rowses: any;
   form: any = {};
-  displayedColumns: string[] = ['id', 'username', 'email', 'password', 'roles', 'delete', 'update'];
+  displayedColumns: string[] = ['id', 'username', 'email', 'roles', 'delete', 'update'];
   values: Periodic[];
   dataSource: MatTableDataSource<Periodic>;
   roles: any;
   name: string;
   
+
+
+
 
   constructor(private userService: UserService, private incasariService : IncasariService, private router: ActivatedRoute, private adminService : AdminService,
     public modalService: NgbModal) { }

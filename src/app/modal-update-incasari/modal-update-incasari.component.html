@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Actualizarea datelor</h4>
+    <h5 class="modal-title" id="exampleModalCenterTitle">Actualizarea datelor</h5>
     <button type="button" class="close" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -54,16 +54,9 @@
 
         <div class="form-group">
             <label for="data">Data</label>
-            <input type="text" class="form-control" name="data" [(ngModel)]="j.data" required minlength="1"
-                maxlength="50" #data="ngModel" />
+            <input type="text" class="form-control" name="data" [(ngModel)]="j.data" required  #data="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && data.invalid">
-                <div *ngIf="data.errors.required">Data is required</div>
-                <div *ngIf="data.errors.minlength">
-                    Data must be at least 1 characters
-                </div>
-                <div *ngIf="data.errors.maxlength">
-                    Data must be at most 50 characters
-                </div>
+                <div *ngIf="data.errors.required">Introducerea datei este obligatorie !</div>
             </div>
         </div>
 
@@ -71,14 +64,14 @@
         <div class="form-group">
             <label for="furnizor">Furnizor</label>
             <input type="text" class="form-control" name="furnizor" [(ngModel)]="j.furnizor" required minlength="1"
-                maxlength="50" #furnizor="ngModel" />
+                maxlength="35" #furnizor="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && furnizor.invalid">
-                <div *ngIf="furnizor.errors.required">Furnizor is required</div>
+                <div *ngIf="furnizor.errors.required">Introducerea furnizorului este obligatorie !</div>
                 <div *ngIf="furnizor.errors.minlength">
-                    Furnizor must be at least 1 characters
+                    Furnizorul trebuie să fie compus din minim 1 caracter !
                 </div>
                 <div *ngIf="furnizor.errors.maxlength">
-                    Furnizor must be at most 50 characters
+                    Furnizorul trebuie să fie compus din maxim 35 caractere !
                 </div>
             </div>
         </div>
@@ -86,14 +79,14 @@
         <div class="form-group">
             <label for="number">Number</label>
             <input type="text" class="form-control" name="number" [(ngModel)]="j.number" required minlength="1"
-                maxlength="50" #number="ngModel" />
+                maxlength="15" #number="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && number.invalid">
-                <div *ngIf="number.errors.required">Number is required</div>
+                <div *ngIf="number.errors.required">Introducerea numarului este obligatorie !</div>
                 <div *ngIf="number.errors.minlength">
-                    Number must be at least 1 characters
+                    Numărul trebuie să fie compus din minim 1 caracter !
                 </div>
                 <div *ngIf="number.errors.maxlength">
-                    Number must be at most 50 characters
+                    Numărul trebuie să fie compus din maxim 15 caractere !
                 </div>
             </div>
         </div>
@@ -102,14 +95,14 @@
         <div class="form-group">
             <label for="detalii">Detalii</label>
             <input type="text" class="form-control" name="detalii" [(ngModel)]="j.detalii" required minlength="1"
-                maxlength="50" #detalii="ngModel" />
+                maxlength="20" #detalii="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && detalii.invalid">
-                <div *ngIf="detalii.errors.required">Detalii is required</div>
+                <div *ngIf="detalii.errors.required">Introducerea detaliilor este obligatorie !</div>
                 <div *ngIf="detalii.errors.minlength">
-                    Detalii must be at least 1 characters
+                    Detaliile trebuie să fie compus din minim 1 caracter !
                 </div>
                 <div *ngIf="detalii.errors.maxlength">
-                    Detalii must be at most 50 characters
+                    Detaliile trebuie să fie compus din maxim 20 caractere !
                 </div>
             </div>
         </div>
@@ -117,15 +110,9 @@
         <div class="form-group">
             <label for="sumaTotala">sumaTotala</label>
             <input type="number" class="form-control" name="sumaTotala" [(ngModel)]="j.sumaTotala" required
-                minlength="2" maxlength="50" #sumaTotala="ngModel" />
+                 #sumaTotala="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && sumaTotala.invalid">
-                <div *ngIf="sumaTotala.errors.required">sumaTotala is required</div>
-                <div *ngIf="sumaTotala.errors.minlength">
-                    sumaTotala must be at least 1 characters
-                </div>
-                <div *ngIf="sumaTotala.errors.maxlength">
-                    sumaTotala must be at most 50 characters
-                </div>
+                <div *ngIf="sumaTotala.errors.required">Introducerea sumei totale este obligatorie !</div>
             </div>
         </div>
 
@@ -134,60 +121,40 @@
             <input type="number" class="form-control" name="sumaTotala_Incasata" [(ngModel)]="j.sumaTotala_Incasata" required
                 minlength="2" maxlength="50" #sumaTotala_Incasata="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && sumaTotala_Incasata.invalid">
-                <div *ngIf="sumaTotala_Incasata.errors.required">sumaTotala_Incasata is required</div>
-                <div *ngIf="sumaTotala_Incasata.errors.minlength">
-                    sumaTotala_Incasata must be at least 1 characters
-                </div>
-                <div *ngIf="sumaTotala_Incasata.errors.maxlength">
-                    sumaTotala_Incasata must be at most 50 characters
-                </div>
+                <div *ngIf="sumaTotala_Incasata.errors.required">Introducerea sumei totale încasate este obligatorie !</div>
             </div>
         </div>
 
+
         <!-- <div class="form-group">
-            <label for="sumaFaraTVA">sumaFaraTVA</label>
-            <input type="number" class="form-control" name="sumaFaraTVA" [(ngModel)]="j.sumaFaraTVA" required
-                minlength="2" maxlength="50" #sumaFaraTVA="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && sumaFaraTVA.invalid">
-                <div *ngIf="sumaFaraTVA.errors.required">sumaFaraTVA is required</div>
-                <div *ngIf="sumaFaraTVA.errors.minlength">
-                    sumaFaraTVA must be at least 1 characters
+            <label for="cota_TVA">Cotă TVA %</label>
+            <input type="number" class="form-control" name="cota_TVA" [(ngModel)]="j.cota_TVA" required
+                minlength="1" maxlength="50" #cota_TVA="ngModel" />
+            <div class="alert-danger" *ngIf="f.submitted && cota_TVA.invalid">
+                <div *ngIf="cota_TVA.errors.required">cota_TVA is required</div>
+                <div *ngIf="cota_TVA.errors.minlength">
+                    cota_TVA must be at least 1 characters
                 </div>
-                <div *ngIf="sumaFaraTVA.errors.maxlength">
-                    sumaFaraTVA must be at most 50 characters
+                <div *ngIf="cota_TVA.errors.maxlength">
+                    cota_TVA must be at most 50 characters
                 </div>
             </div>
         </div> -->
 
-        <!-- <div class="form-group">
-            <label for="sumaTVA">sumaTVA</label>
-            <input type="number" class="form-control" name="sumaTVA" [(ngModel)]="j.sumaTVA" required minlength="2"
-                maxlength="50" #sumaTVA="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && sumaTVA.invalid">
-                <div *ngIf="sumaTVA.errors.required">sumaTVA is required</div>
-                <div *ngIf="sumaTVA.errors.minlength">
-                    sumaTVA must be at least 1 characters
-                </div>
-                <div *ngIf="sumaTVA.errors.maxlength">
-                    sumaTVA must be at most 50 characters
-                </div>
-            </div>
-        </div> -->
 
-        <!-- <div class="form-group">
-            <label for="stare">stare</label>
-            <input type="text" class="form-control" name="stare" [(ngModel)]="j.stare" required minlength="2"
-                maxlength="50" #stare="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && stare.invalid">
-                <div *ngIf="stare.errors.required">stare is required</div>
-                <div *ngIf="stare.errors.minlength">
-                    stare must be at least 1 characters
+        <div class="form-group">
+            <label for="Cotă TVA">Cotă TVA</label>
+                <mat-select  class="form-control" id="cota_TVA" name="cota_TVA" [(ngModel)]="j.cota_TVA" required #cota_TVA="ngModel" >
+                  <mat-option *ngFor="let TVA of cotaTVAList" [value]="TVA.value">
+                    {{TVA.viewValue}}
+                  </mat-option>
+                </mat-select>
+
+                <div class="alert-danger" *ngIf="f.submitted && cota_TVA.invalid">
+                    <div *ngIf="cota_TVA.errors.required">Introducerea cotei TVA este obligatorie !</div>
                 </div>
-                <div *ngIf="stare.errors.maxlength">
-                    stare must be at most 50 characters
-                </div>
-            </div>
-        </div> -->
+  
+          </div>
 
 
 
@@ -195,19 +162,26 @@
             <label for="data_Scadenta">data_Scadenta</label>
             <input type="text" class="form-control" name="data_Scadenta" [(ngModel)]="j.data_Scadenta" required
                  #data_Scadenta="ngModel" />
+
+                 <div class="alert-danger" *ngIf="f.submitted && data_Scadenta.invalid">
+                    <div *ngIf="data_Scadenta.errors.required">Introducerea datei scadențe este obligatorie !</div>
+                </div>
         </div>
 
 
 
-
+        <div class="modal-footer">
         <div class="form-group"> 
-            <button  class="btn btn-secondary" aria-label="Close"  (click)="close()">Close</button>
+            <button  class="btn-sm btn-secondary"  mat-raised-button aria-label="Close"  (click)="close()">Close</button>
             &nbsp;
-            <button  class="btn btn-primary">Update data</button>
+            <button  class="btn-sm btn-success"  mat-raised-button>Modificați</button>
         </div> 
+    </div> 
+
+
 
         <div class="alert alert-warning" *ngIf="f.submitted && isaddFailed">
-            Update failed!<br />{{ errorMessage }}
+           Modificare ușuată!<br />{{ errorMessage }}
         </div>
     </form>
 

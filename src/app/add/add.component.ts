@@ -141,7 +141,7 @@ export class AddComponent implements OnInit {
 
   form: any = {};
   // displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'rest', 'sumaFaraTVA', 'sumaFaraTVA_Incasata' , 'sumaTVA', 'sumaTVA_Incasata', 'by_added', 'stare', 'delete', 'update'];
-   displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'rest', 'by_added', 'stare', 'action'];
+   displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'cota_TVA', 'rest', 'by_added', 'stare', 'action'];
   values: PeriodicElement[];
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
@@ -526,6 +526,7 @@ export interface PeriodicElement {
   sumaTotala_Incasata: number;
   sumaFaraTVA_Incasata: number;
   sumaTVA_Incasata: number;
+  cota_TVA: number;
   rest: number;
   by_added: string;
   stare: string;

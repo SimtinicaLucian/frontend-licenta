@@ -905,7 +905,7 @@ export class IncasariService {
         const user = this.tokenStorageService.getUser();
         this.username = user.username;
 
-        return this.httpClient.post<any>(`${this.basePath}/api/user/mail/test`,
+        return this.httpClient.post<any>(`${this.basePath}/api/user/mail/contact`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

@@ -24,6 +24,15 @@
                       <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3"
                       maxlength="20" #username="ngModel" placeholder="Introduceți numele de utilizator" />
                     </div>
+                    <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+                      <div *ngIf="username.errors.required">Numele de utilizator este obligatoriu!</div>
+                      <div *ngIf="username.errors.minlength">
+                        Numele de utilizator trebuie să aibă cel puțin 3 caractere!
+                      </div>
+                      <div *ngIf="username.errors.maxlength">
+                        Numele de utilizator trebuie să aibă cel mult 20 de caractere!
+                      </div>
+                    </div>
                   </div>
 
 
@@ -38,12 +47,19 @@
                       <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
                       minlength="6" #password="ngModel" placeholder="Introduceți parola" />
                     </div>
+                    <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                      <div *ngIf="password.errors.required">Parola este obligatorie!</div>
+                      <div *ngIf="password.errors.minlength">
+                        Parola trebuie sa aibă cel puțin 6 caractere!
+                      </div>
+                    </div>
+                  
                   </div>
 
 
 
                   <div class="text-center">
-                    <button type = "submit" class="btn btn-blue text-center" [disabled]="f.invalid">Conectează-te</button>
+                    <button type = "submit" class="btn btn-blue text-center">Conectează-te</button>
                   </div>
                   <div class = "text-center">
                   <div class="row px-3 mb-4">
@@ -54,7 +70,7 @@
 
                   <div class="form-group">
                     <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                      Login failed: {{ errorMessage }}
+                      Autentificare eșuată: {{ errorMessage }}
                     </div>
                   </div>
 

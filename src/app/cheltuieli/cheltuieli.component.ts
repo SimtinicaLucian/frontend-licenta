@@ -42,6 +42,16 @@ interface Stare {
   viewValue: string;
 }
 
+interface Month {
+  value: string;
+  viewValue: string;
+}
+
+interface Year {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-cheltuieli',
   templateUrl: './cheltuieli.component.html',
@@ -66,13 +76,32 @@ export class CheltuieliComponent implements OnInit {
 
 
   form: any = {};
-  displayedColumns: string[] = ['id', 'data', 'beneficiar', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Achitata', 'rest', 'by_added', 'stare', 'action'];
+  displayedColumns: string[] = ['id', 'data', 'beneficiar', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Achitata', 'cota_TVA', 'rest', 'by_added', 'stare', 'action'];
   values: PeriodicElement[];
   dataSource: MatTableDataSource<PeriodicElement>;
   currentUser: any;
   rows: any;
 
-
+  months: Month[] = [
+    {value: '01', viewValue: 'Ianuarie'},
+    {value: '02', viewValue: 'Februarie'},
+    {value: '03', viewValue: 'Martie'},
+    {value: '04', viewValue: 'Aprilie'},
+    {value: '05', viewValue: 'Mai'},
+    {value: '06', viewValue: 'Iunie'},
+    {value: '07', viewValue: 'Iulie'},
+    {value: '08', viewValue: 'August'},
+    {value: '09', viewValue: 'Septembrie'},
+    {value: '10', viewValue: 'Octombrie'},
+    {value: '11', viewValue: 'Noiembrie'},
+    {value: '12', viewValue: 'Decembrie'}
+    
+  ];
+  
+    years: Year[] = [
+      {value: '2021', viewValue: '2021'},
+      {value: '2020', viewValue: '2020'}
+    ];
 
     stares: Stare[] = [
     {value: 'achitata', viewValue: 'achitata'},
@@ -171,13 +200,33 @@ export class CheltuieliComponent implements OnInit {
   }
 
 
-    filtrare(f: NgForm) {
-    this.cheltuieliService.Filtrare(f.value.beneficiar, f.value.data1, f.value.data2, f.value.sumaTotala1, f.value.sumaTotala2, f.value.stare).subscribe((res) => {
+    filtrare(h: NgForm) {
+      this.cheltuieliService.getData(h.value.beneficiar, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2, h.value.stare).subscribe((res) => {
+        this.rows = res;
+        this.dataSource = new MatTableDataSource(this.rows)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+    })
+  }
+
+
+  // searchByFurnizorAndDateAndSum(h: NgForm) {
+  //   this.cheltuieliService.getData(h.value.beneficiar, h.value.data1, h.value.data2, h.value.sumaTotala1, h.value.sumaTotala2, h.value.stare).subscribe((res) => {
+  //     this.rows = res;
+  //     this.dataSource = new MatTableDataSource(this.rows)
+  //     this.dataSource.paginator = this.paginator;
+  //     this.dataSource.sort = this.sort;
+
+  //   })
+  // }
+
+  filtrare_Luna_An(f: NgForm) {
+    this.cheltuieliService.getDatesAfterMonthAndYear(f.value.month, f.value.year).subscribe((res) => {
       this.rows = res;
       this.dataSource = new MatTableDataSource(this.rows)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
     })
   }
 
@@ -198,7 +247,10 @@ export interface PeriodicElement {
   sumaFaraTVA_Achitata: number;
   sumaTVA_Achitata: number;
   rest: number;
+  cota_TVA: number;
   by_added: string;
   stare: string;
   action: any;
 }
+
+

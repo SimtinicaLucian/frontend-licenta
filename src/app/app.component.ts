@@ -24,6 +24,7 @@ export class AppComponent {
   username: string;
   title = 'AdCost';
   currentUser: any;
+  selectedItem = 'home';
 
 
   constructor(private tokenStorageService: TokenStorageService, private progress: NgProgress,

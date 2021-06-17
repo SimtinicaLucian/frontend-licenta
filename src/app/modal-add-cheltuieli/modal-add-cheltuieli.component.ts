@@ -29,6 +29,12 @@ export const MY_FORMATS = {
   },
 };
 
+
+interface cota_TVA {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-modal-add-cheltuieli',
   templateUrl: './modal-add-cheltuieli.component.html',
@@ -42,6 +48,8 @@ export const MY_FORMATS = {
 
 
 
+
+
 export class ModalAddCheltuieliComponent implements OnInit {
   form: any = {};
   currentUser: any;
@@ -51,6 +59,12 @@ export class ModalAddCheltuieliComponent implements OnInit {
   isaddFailed = false;
   errorMessage = '';
 
+  
+  cotaTVAList: cota_TVA[] = [
+    {value: '19', viewValue: '19%'},
+    {value: '9', viewValue: '9%'},
+    {value: '5', viewValue: '5%'}
+  ];
 
   constructor(private cheltuieliService : CheltuieliService, public activeModal: NgbActiveModal, private token: TokenStorageService, private userService: UserService,
     public progressBar: ProgressBarService,

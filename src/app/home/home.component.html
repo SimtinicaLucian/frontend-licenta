@@ -40,70 +40,74 @@
     <div class="row">
       <!--  -->
       <div class="col-md-6">
-        <form f="form" class="contact-form" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>
+        <form f="form" class="contact-form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
 
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <i class="material-icons">mail</i>
                 </span>
               </div>
-              <input type="text" class="form-control" name="mailSubject" [(ngModel)]="form.mailSubject"
-                placeholder="Subiect" required #mailSubject="ngModel" />
+              <input type="text" class="form-control" name="mailSubject" [(ngModel)]="form.mailSubject" required minlength="3"
+              maxlength="50"placeholder="Introduceți subiectul" required #mailSubject="ngModel" />
+              </div>
               <div class="alert-danger" *ngIf="f.submitted && mailSubject.invalid">
-                <div *ngIf="mailSubject.errors.required">Subject is required</div>
+                <div *ngIf="mailSubject.errors.required">Subiectul este obligatoriu</div>
                 <div *ngIf="mailSubject.errors.minlength">
-                  Subject must be at least 1 characters
+                  Subiectul trebuie să conțină minim 3 caractere!
                 </div>
                 <div *ngIf="mailSubject.errors.maxlength">
-                  Subject must be at most 50 characters
+                  Subiectul trebuie să conțină maxim 50 caractere!
                 </div>
               </div>
+         
+          </div>
+
+
+
+          <div class="form-group bmd-form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="material-icons">mail</i>
+                </span>
+              </div>
+              <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
+    #email="ngModel" placeholder="Introduceți adresa de email" />
+            </div>
+          
+
+          <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">E-mailul este obligatoriu!</div>
+            <div *ngIf="email.errors.email">
+              E-mailul trebuie să fie o adresă de e-mail validă! 
             </div>
           </div>
+        </div>
 
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">
-                  <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                  <i class="material-icons">mail</i>
                 </span>
               </div>
-              <input type="email" class="form-control" name="from" [(ngModel)]="form.from" placeholder="Email" required
-                #from="ngModel" />
-              <div class="alert-danger" *ngIf="f.submitted && from.invalid">
-                <div *ngIf="from.errors.required">Mail is required</div>
-                <div *ngIf="from.errors.minlength">
-                  Mail must be at least 1 characters
-                </div>
-                <div *ngIf="from.errors.maxlength">
-                  Mail must be at most 50 characters
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fa fa-envelope-square" aria-hidden="true"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" name="mailContent" rows="4" [(ngModel)]="form.mailContent"
+              <input type="text" class="form-control" name="mailContent" rows="4" [(ngModel)]="form.mailContent" required minlength="1"
+              maxlength="1000"
                 placeholder="Mesaj" required #mailContent="ngModel" />
+              </div>
               <div class="alert-danger" *ngIf="f.submitted && mailContent.invalid">
-                <div *ngIf="mailContent.errors.required">Message is required</div>
+                <div *ngIf="mailContent.errors.required">Mesajul este obligatoriu!</div>
                 <div *ngIf="mailContent.errors.minlength">
-                  Message must be at least 1 characters
+                  Mesajul trebuie să conțină minim 1 caracter!
                 </div>
                 <div *ngIf="mailContent.errors.maxlength">
-                  Message must be at most 50 characters
+                  Mesajul trebuie să conțină maxim 1000 caractere!
                 </div>
               </div>
             </div>
-          </div>
+         
 
           <!-- <div class="form-group">
               <textarea class="form-control" rows="4" placeholder="Your Message" [(ngModel)]="form.mailContent" placeholder="Message" required
@@ -111,7 +115,7 @@
             </div> -->
           <!-- <button type="submit" class="btn btn-primary"> Trimiteti</button> -->
 
-          <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid"> Trimiteti </button>
+          <button type="submit" class="btn btn-primary btn-sm"> Trimiteti </button>
 
           <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
         </form>

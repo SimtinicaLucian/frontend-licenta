@@ -6,6 +6,12 @@ import { NgForm } from '@angular/forms';
 import { AlertService } from "ngx-alerts";
 import { ProgressBarService } from '../services/progress-bar.service';
 
+
+interface cota_TVA {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-modal-update-incasari',
   templateUrl: './modal-update-incasari.component.html',
@@ -19,6 +25,12 @@ export class ModalUpdateIncasariComponent implements OnInit {
   isSuccessful = false;
   isaddFailed = false;
   errorMessage = '';
+
+  cotaTVAList: cota_TVA[] = [
+    {value: '19', viewValue: '19%'},
+    {value: '9', viewValue: '9%'},
+    {value: '5', viewValue: '5%'}
+  ];
 
   constructor(public activeModal: NgbActiveModal, private incasariService: IncasariService,
     public progressBar: ProgressBarService,

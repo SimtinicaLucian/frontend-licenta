@@ -6,6 +6,11 @@ import { AdminService } from '../services/api/admin.service';
 import { NgForm } from '@angular/forms';
 
 
+interface Role {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-modal-update-user',
   templateUrl: './modal-update-user.component.html',
@@ -19,6 +24,12 @@ export class ModalUpdateUserComponent implements OnInit {
   errorMessage = '';
   selected = '3';
 
+
+  roles: Role[] = [
+    {value: '1', viewValue: 'USER'},
+    {value: '2', viewValue: 'MODERATOR'},
+    {value: '3', viewValue: 'ADMIN'}
+  ];
   constructor(public activeModal: NgbActiveModal, public adminService: AdminService,
     public progressBar: ProgressBarService,
     private alertService: AlertService) { }

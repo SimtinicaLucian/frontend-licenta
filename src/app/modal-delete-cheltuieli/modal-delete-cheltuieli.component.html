@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Delete</h4>
+  <h5 class="modal-title" id="exampleModalCenterTitle">Eliminare factură</h5>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,24 +8,32 @@
   <div class="modal-body">
     <form #j="ngForm" (ngSubmit)="deleteCheltuieli(j)" #j="ngForm" novalidate>
        
+      <!-- <ngb-alert class="mt-3 mb-0" type="info" [dismissible]="false">
+        You must provide the icon for the button. This allows you
+        to choose an icon that matches your application's style.
+        In this example, the icon is set via a CSS class.
+      </ngb-alert> -->
+      <p class="mb-4"><i>  &nbsp; &nbsp; &nbsp;Sunteți sigur că doriți să ștergeți această factură?</i> </p>
 
 
+      <div class="modal-footer">
+  
 
-        <!-- <div class="modal-footer"> -->
-        <div class="form-group"> 
-          &nbsp; &nbsp;
-            <button  class="btn btn-secondary" aria-label="Close" (click)="activeModal.dismiss('Cross click')">Close</button>
-            &nbsp;
-            <button  class="btn btn-primary">Delete</button>
+            <button  class="btn-sm btn-secondary"  mat-raised-button aria-label="Close" (click)="activeModal.dismiss('Cross click')"> Nu!</button>
+
+            <button   class="btn-sm btn-danger"  mat-raised-button>Da, sunt sigur!</button>
           </div>
+    
+          
     </form>
 
+
     <div class="alert alert-success" *ngIf="isSuccessful">
-      Your invoice has been successfully deleted! 
+      Factura dumneavoastră a fost ștearsă cu succes !
   </div>
+</div>
 
     <!-- <a class="button" href="/add">
         <button type="button" class="btn btn-outline-danger">Inapoi</button>
       </a> -->
 
-</div>

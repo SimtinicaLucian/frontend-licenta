@@ -35,6 +35,8 @@
             
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js",
+ 
+
 
               
               "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js"

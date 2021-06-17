@@ -1,243 +1,295 @@
 
 
-    <form f="form" (ngSubmit)="filtrare(f)" #f="ngForm" novalidate class="form-inline">
-        <div class="form-group">
-          <label for="Beneficiar"></label>
-          <input type="text" class="form-control" name="beneficiar" [(ngModel)]="form.beneficiar" placeholder="beneficiar"
-            required #beneficiar="ngModel" style="width: 130px; height: 33px;" />
-        </div>
-    
-        &nbsp; &nbsp;
-    
-        <div class="form-group">
-          <label for="Dată minimă"></label>
-          <input required matInput [matDatepicker]="dp1" name="data1" placeholder="Date" class="form-control"
-            [(ngModel)]="form.data1" required #data1="ngModel" style="width: 130px; height: 33px;" />
-          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-          <mat-datepicker #dp1></mat-datepicker>
-        </div>
-        <div class="form-group">
-          <label for="Dată maximă"></label>
-          <input required matInput [matDatepicker]="dp2" name="data2" placeholder="Date2" class="form-control"
-            [(ngModel)]="form.data2" required #data2="ngModel" style="width: 130px; height: 33px;" />
-          <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
-          <mat-datepicker #dp2></mat-datepicker>
-        </div>
-    
-        &nbsp; &nbsp;
-    
-        <div class="form-group">
-          <label for="Sumă minimă"></label>
-          <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
-            placeholder="sumaTotala1" required #sumaTotala1="ngModel" style="width: 130px; height: 33px;" />
-        </div>
-    
-        &nbsp; &nbsp;
-    
-        <div class="form-group">
-          <label for="Sumă maximă"></label>
-          <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
-            placeholder="sumaTotala2" required #sumaTotala2="ngModel" style="width: 130px; height: 33px;" />
-        </div>
-    
-        &nbsp; &nbsp;
-    
-        <div class="form-group">
-          <label for="Stare"></label>
-          <!-- <input type="text" class="form-control" name="stare" [(ngModel)]="form.stare"
-            placeholder="stare" required #stare="ngModel" style="width: 130px; height: 33px;" /> -->
-            <div class="form-group" style="width: 130px; height: 33px;">
-              <mat-form-field appearance="fill"  style="width: 130px; height: 33px;">
-                <mat-label>stare</mat-label>
-              <mat-select  id="stare" name="stare" [(ngModel)]="form.stare" required #stare="ngModel" >
-                <mat-option>Stare</mat-option>
-                <mat-option *ngFor="let stare of stares" [value]="stare.value">
-                  {{stare.viewValue}}
+&nbsp; &nbsp;
+&nbsp; &nbsp;
+<form f="form" (ngSubmit)="filtrare_Luna_An(f)" #f="ngForm" novalidate class="form-inline">
+  <div class="form-group">
+    <label for="year"></label>
+    <div class="form-group" style="width: 130px; height: 33px;">
+      <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+        <mat-label>Lună</mat-label>
+        <mat-select id="month" name="month" [(ngModel)]="form.month" required #month="ngModel">
+            <mat-option>month</mat-option>
+            <mat-option *ngFor="let month of months" [value]="month.value">
+                {{month.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    </div>
+  </div>
+
+  &nbsp; &nbsp;
+
+  <div class="form-group">
+    <label for="year" ></label>
+    <div class="form-group" style="width: 130px; height: 33px;">
+      <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+            <mat-label>An </mat-label>
+            <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
+                <mat-option>year</mat-option>
+                <mat-option *ngFor="let year of years" [value]="year.value">
+                    {{year.viewValue}}
                 </mat-option>
-              </mat-select>
-              </mat-form-field>
-              </div>
-        </div>
-    
-        &nbsp; &nbsp;
-    
-        <div class="form-group">
-          <button class="btn-sm" mat-raised-button color="primary">Caută</button>
-        </div>
-    
-        &nbsp; &nbsp;
-    
-        <div class="form-group">
-          <button type="reset" class="btn-sm" mat-raised-button>Reset</button>
-        </div>
-    
-        &nbsp; &nbsp;
-    
-        <div class="form-group">
-          <input type="image" (click)="exportAsXLSX()" title="Export to XLS" src="/assets/images/excel.PNG"
-            style="border-width:0px;">
-        </div>
-      </form>
-    
-    
-    
-    
-    <div class="excel">
-        <button mat-raised-button style="float: left" (click)="addModal()">
-          <mat-icon>add</mat-icon>Adaugă
-        </button>
-      </div>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
 
-      <div class="excel">
-        <button tye="reset" mat-raised-button style="float: right" (click)="reset()">
-          <mat-icon>refresh</mat-icon>Refresh
-        </button>
-      </div>
+  &nbsp; &nbsp;
 
-    <div class="mat-elevation-z8">
+  <div class="form-group">
+    <button class="btn-sm" mat-raised-button color="primary">Caută</button>
+  </div>
 
-        <table mat-table [dataSource]="dataSource" matSort>
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
+  &nbsp; &nbsp;
 
-            <ng-container matColumnDef="data">
-                <th mat-header-cell *matHeaderCellDef> Dată</th>
-                <td mat-cell *matCellDef="let element"> {{element.data}} </td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="beneficiar">
-                <th mat-header-cell *matHeaderCellDef> Beneficiar</th>
-                <td mat-cell *matCellDef="let element"> {{element.beneficiar}} </td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-
-            <ng-container matColumnDef="number">
-                <th mat-header-cell *matHeaderCellDef> Număr</th>
-                <td mat-cell *matCellDef="let element"> {{element.number}} </td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-
-            <ng-container matColumnDef="detalii">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalii </th>
-                <td mat-cell *matCellDef="let element"> {{element.detalii}} </td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="sumaTotala">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sumă totală </th>
-                <td mat-cell *matCellDef="let element"> {{element.sumaTotala}} </td>
-                <td mat-footer-cell *matFooterCellDef> {{getTotalCheltuieli()}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="sumaTotala_Achitata">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Suma totală achitată </th>
-                <td mat-cell *matCellDef="let element"> {{element.sumaTotala_Achitata}} </td>
-                <td mat-footer-cell *matFooterCellDef> {{getTotalCheltuieli_Achitata()}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="rest">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Rest de plată </th>
-                <td mat-cell *matCellDef="let element"> {{element.rest}} </td>
-                <td mat-footer-cell *matFooterCellDef> {{getCheltuieli_Rest()}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="stare">
-                <th mat-header-cell *matHeaderCellDef>Stare</th>
-                <!-- <td mat-cell *matCellDef="let element"> {{element.stare}}  -->
-                <td mat-cell *matCellDef="let element">
-                    <div *ngIf="element.stare == 'achitata'">
-                        <p style="color:green;"><b> <i class="fa fa-check"></i>{{element.stare}}</b></p>
-                    </div>
-
-                    <div *ngIf="element.stare == 'partial achitata'">
-                        <p style="color:blue;"><b> <i class="fa fa-retweet"></i> {{element.stare}}</b></p>
-                    </div>
-
-                    <div *ngIf="element.stare == 'neachitata'">
-                        <p style="color:red;"><b> <i class="fa fa-times"></i> {{element.stare}}</b></p>
-                    </div>
-
-                    <div *ngIf="element.stare == 'intarziata'">
-                        <p style="color:red;"><b> <i class="fa fa-clock-o"></i> {{element.stare}}</b></p>
-                    </div>
-
-                </td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="by_added">
-                <th mat-header-cell *matHeaderCellDef>Adăugat de</th>
-                <td mat-cell *matCellDef="let element"> {{element.by_added}} </td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
+  <div class="form-group">
+    <button type="reset" class="btn-sm" mat-raised-button>Șterge filtrele</button>
+  </div>
+</form>
 
 
 
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Acțiuni </th>
-                <td mat-cell *matCellDef="let element">
-
-                    <div class="btn-group" dropdown>
-                        <a class="nav-link " dropdownToggle>
-
-                            <button class="btn btn-link text-dark  m-0 p-0" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <span class="icon icon-sm">
-                                    <span class="fa fa-ellipsis-h icon-dark"></span>
-                                </span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-
-                        </a>
-                        <div class="row">
-                            <div class="col-md-12 school-options-dropdown text-right">
-                                <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-                                    <a class="dropdown-item rounded-top"
-                                    (click) = "view(element)"
-                                    routerLinkActive="active"> <span
-                                            class="fa fa-eye me-2"></span> Vezi detalii</a>
 
 
-                                    <a class="dropdown-item" (click)="updateModal(element)" routerLinkActive="active">
-                                        <span class="fa fa-edit me-2"></span> Modifică</a>
+<form h="form" (ngSubmit)="filtrare(h)" #h="ngForm" novalidate class="form-inline">
+    <div class="form-group">
+      <label for="beneficiar"></label>
+      <input type="text" class="form-control" name="beneficiar" [(ngModel)]="form.beneficiar" placeholder="Beneficiar"
+        required #beneficiar="ngModel" style="width: 130px; height: 33px;" />
+    </div>
 
-                                    <a class="dropdown-item text-danger rounded-bottom"
-                                        (click)="deleteModal(element.id)" routerLinkActive="active"><span
-                                            class="fa fa-trash me-2"></span> Șterge</a>
-                                </div>
+    &nbsp; &nbsp;
+
+    <div class="form-group">
+      <label for="Dată minimă"></label>
+      <input required matInput [matDatepicker]="dp1" name="data1" placeholder="Dată minimă" class="form-control"
+        [(ngModel)]="form.data1" required #data1="ngModel" style="width: 130px; height: 33px;" />
+      <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+      <mat-datepicker #dp1></mat-datepicker>
+    </div>
+    <div class="form-group">
+      <label for="Dată maximă"></label>
+      <input required matInput [matDatepicker]="dp2" name="data2" placeholder="Dată maximă" class="form-control"
+        [(ngModel)]="form.data2" required #data2="ngModel" style="width: 130px; height: 33px;" />
+      <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+      <mat-datepicker #dp2></mat-datepicker>
+    </div>
+
+    &nbsp; &nbsp;
+
+    <div class="form-group">
+      <label for="Sumă minimă"></label>
+      <input type="number" class="form-control" name="sumaTotala1" [(ngModel)]="form.sumaTotala1"
+        placeholder="Sumă minimă" required #sumaTotala1="ngModel" style="width: 130px; height: 33px;" />
+    </div>
+
+    &nbsp; &nbsp;
+
+    <div class="form-group">
+      <label for="Sumă maximă"></label>
+      <input type="number" class="form-control" name="sumaTotala2" [(ngModel)]="form.sumaTotala2"
+        placeholder="Sumă minimă" required #sumaTotala2="ngModel" style="width: 130px; height: 33px" />
+    </div>
+
+    &nbsp; &nbsp;
+
+    <div class="form-group">
+      <label for="Stare"></label>
+        <div class="form-group" >
+          <mat-form-field appearance="outline"  style = "width: 130px;  height: 40.5px; font-size: 9.5px"  >
+            <mat-label>Toate</mat-label>
+          <mat-select  id="stare" name="stare" [(ngModel)]="form.stare" required #stare="ngModel" >
+            <mat-option>Stare</mat-option>
+            <mat-option *ngFor="let stare of stares" [value]="stare.value">
+              {{stare.viewValue}}
+            </mat-option>
+          </mat-select>
+          </mat-form-field>
+          </div>
+    </div>
+
+    &nbsp; &nbsp;
+
+
+      
+
+    <div class="form-group">
+      <button class="btn-sm" mat-raised-button color="primary">Caută</button>
+    </div>
+
+    &nbsp; &nbsp;
+
+    <div class="form-group">
+      <button type="reset" class="btn-sm" mat-raised-button>Șterge filtrele</button>
+    </div>
+
+    &nbsp; &nbsp;
+
+    <div class="form-group">
+      <input type="image" (click)="exportAsXLSX()" title="Export to XLS" src="/assets/images/excel.PNG"
+        style="border-width:0px;">
+    </div>
+  </form>
+
+
+
+
+<div class="excel">
+    <button mat-raised-button style="float: left" (click)="addModal()">
+      <mat-icon>add</mat-icon>Adaugă
+    </button>
+  </div>
+
+  <div class="excel">
+    <button tye="reset" mat-raised-button style="float: right" (click)="reset()">
+      <mat-icon>refresh</mat-icon>Refresh
+    </button>
+  </div>
+
+<div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="data">
+            <th mat-header-cell *matHeaderCellDef> Dată</th>
+            <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="beneficiar">
+            <th mat-header-cell *matHeaderCellDef> Beneficiar</th>
+            <td mat-cell *matCellDef="let element"> {{element.beneficiar}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> Număr</th>
+            <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="detalii">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Detalii </th>
+            <td mat-cell *matCellDef="let element"> {{element.detalii}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="sumaTotala">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Sumă totală </th>
+            <td mat-cell *matCellDef="let element"> {{element.sumaTotala}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{getTotalCheltuieli()}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sumaTotala_Achitata">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Suma totală achitată </th>
+            <td mat-cell *matCellDef="let element"> {{element.sumaTotala_Achitata}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{getTotalCheltuieli_Achitata()}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cota_TVA">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cotă TVA % </th>
+          <td mat-cell *matCellDef="let element"> {{element.cota_TVA}} % </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+      </ng-container>
+
+        <ng-container matColumnDef="rest">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Rest de plată </th>
+            <td mat-cell *matCellDef="let element"> {{element.rest}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{getCheltuieli_Rest()}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="stare">
+            <th mat-header-cell *matHeaderCellDef>Stare</th>
+            <!-- <td mat-cell *matCellDef="let element"> {{element.stare}}  -->
+            <td mat-cell *matCellDef="let element">
+                <div *ngIf="element.stare == 'achitata'">
+                    <p style="color:green;"><b> <i class="fa fa-check"></i>{{element.stare}}</b></p>
+                </div>
+
+                <div *ngIf="element.stare == 'partial achitata'">
+                    <p style="color:blue;"><b> <i class="fa fa-retweet"></i> {{element.stare}}</b></p>
+                </div>
+
+                <div *ngIf="element.stare == 'neachitata'">
+                    <p style="color:red;"><b> <i class="fa fa-times"></i> {{element.stare}}</b></p>
+                </div>
+
+                <div *ngIf="element.stare == 'intarziata'">
+                    <p style="color:red;"><b> <i class="fa fa-clock-o"></i> {{element.stare}}</b></p>
+                </div>
+
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="by_added">
+            <th mat-header-cell *matHeaderCellDef>Adăugat de</th>
+            <td mat-cell *matCellDef="let element"> {{element.by_added}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Acțiuni </th>
+            <td mat-cell *matCellDef="let element">
+
+                <div class="btn-group" dropdown>
+                    <a class="nav-link " dropdownToggle>
+
+                        <button class="btn btn-link text-dark  m-0 p-0" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <span class="icon icon-sm">
+                                <span class="fa fa-ellipsis-h icon-dark"></span>
+                            </span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+
+                    </a>
+                    <div class="row">
+                        <div class="col-md-12 school-options-dropdown text-right">
+                            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                                <a class="dropdown-item rounded-top"
+                                (click) = "view(element)"
+                                routerLinkActive="active"> <span
+                                        class="fa fa-eye me-2"></span> Vezi detalii</a>
+
+
+                                <a class="dropdown-item" (click)="updateModal(element)" routerLinkActive="active">
+                                    <span class="fa fa-edit me-2"></span> Modifică</a>
+
+                                <a class="dropdown-item text-danger rounded-bottom"
+                                    (click)="deleteModal(element.id)" routerLinkActive="active"><span
+                                        class="fa fa-trash me-2"></span> Șterge</a>
                             </div>
                         </div>
-
                     </div>
 
-
-                    <!-- <button class="btn btn-sm btn-outline-primary" mat-raised-button (click)="updateModal(element)">
-          <mat-icon>update</mat-icon>Update
-        </button> -->
-                </td>
-                <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
+                </div>
 
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
-        </table>
+                <!-- <button class="btn btn-sm btn-outline-primary" mat-raised-button (click)="updateModal(element)">
+      <mat-icon>update</mat-icon>Update
+    </button> -->
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
 
 
-    </div>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+    </table>
 
 
-
-
-
-
-
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

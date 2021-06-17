@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Adaugati</h4>
+    <h5 class="modal-title" id="exampleModalCenterTitle">Adăugare factură</h5>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -59,31 +59,37 @@
 
         <div class="form-group">
             <label for="data">Dată</label>
-            <input type="text" class="form-control" name="data" [(ngModel)]="form.data" required minlength="1"
-                maxlength="50" #data="ngModel" />
+            <input type="text" class="form-control" name="data" [(ngModel)]="form.data" required #data="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && data.invalid">
-                <div *ngIf="data.errors.required">Data is required</div>
-                <div *ngIf="data.errors.minlength">
-                    Data must be at least 1 characters
-                </div>
-                <div *ngIf="data.errors.maxlength">
-                    Data must be at most 50 characters
-                </div>
+                <div *ngIf="data.errors.required">Introducerea datei este obligatorie !</div>
             </div>
         </div>
+
+
+        <!-- <div class = "form-group">
+            <label for="data">Data</label>
+        <mat-form-field>
+            <input required matInput [matDatepicker]="picker" name="data" [(ngModel)]="form.data" required #data="ngModel"/>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        </div> -->
+
+
+
 
 
         <div class="form-group">
             <label for="furnizor">Furnizor</label>
             <input type="text" class="form-control" name="furnizor" [(ngModel)]="form.furnizor" required minlength="1"
-                maxlength="50" #furnizor="ngModel" />
+                maxlength="35" #furnizor="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && furnizor.invalid">
-                <div *ngIf="furnizor.errors.required">Furnizor is required</div>
+                <div *ngIf="furnizor.errors.required">Introducerea furnizorului este obligatorie !</div>
                 <div *ngIf="furnizor.errors.minlength">
-                    Furnizor must be at least 1 characters
+                    Furnizorul trebuie să fie compus din minim 1 caracter !
                 </div>
                 <div *ngIf="furnizor.errors.maxlength">
-                    Furnizor must be at most 50 characters
+                    Furnizorul trebuie să fie compus din maxim 35 caractere !
                 </div>
             </div>
         </div>
@@ -91,14 +97,14 @@
         <div class="form-group">
             <label for="number">Număr</label>
             <input type="text" class="form-control" name="number" [(ngModel)]="form.number" required minlength="1"
-                maxlength="50" #number="ngModel" />
+                maxlength="15" #number="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && number.invalid">
-                <div *ngIf="number.errors.required">Number is required</div>
+                <div *ngIf="number.errors.required">Introducerea numarului este obligatorie !</div>
                 <div *ngIf="number.errors.minlength">
-                    Number must be at least 1 characters
+                    Numărul trebuie să fie compus din minim 1 caracter !
                 </div>
                 <div *ngIf="number.errors.maxlength">
-                    Number must be at most 50 characters
+                    Numărul trebuie să fie compus din maxim 15 caractere !
                 </div>
             </div>
         </div>
@@ -107,14 +113,14 @@
         <div class="form-group">
             <label for="detalii">Detalii</label>
             <input type="text" class="form-control" name="detalii" [(ngModel)]="form.detalii" required minlength="1"
-                maxlength="50" #detalii="ngModel" />
+                maxlength="20" #detalii="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && detalii.invalid">
-                <div *ngIf="detalii.errors.required">Detalii is required</div>
+                <div *ngIf="detalii.errors.required">Introducerea detaliilor este obligatorie !</div>
                 <div *ngIf="detalii.errors.minlength">
-                    Detalii must be at least 1 characters
+                    Detaliile trebuie să fie compus din minim 1 caracter !
                 </div>
                 <div *ngIf="detalii.errors.maxlength">
-                    Detalii must be at most 50 characters
+                    Numărul trebuie să fie compus din maxim 20 caractere !
                 </div>
             </div>
         </div>
@@ -122,32 +128,45 @@
         <div class="form-group">
             <label for="sumaTotala">Sumă totală</label>
             <input type="number" class="form-control" name="sumaTotala" [(ngModel)]="form.sumaTotala" required
-                minlength="2" maxlength="50" #sumaTotala="ngModel" />
+                #sumaTotala="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && sumaTotala.invalid">
-                <div *ngIf="sumaTotala.errors.required">sumaTotala is required</div>
-                <div *ngIf="sumaTotala.errors.minlength">
-                    sumaTotala must be at least 1 characters
-                </div>
-                <div *ngIf="sumaTotala.errors.maxlength">
-                    sumaTotala must be at most 50 characters
-                </div>
+                <div *ngIf="sumaTotala.errors.required">Introducerea sumei totale este obligatorie !</div>
+
             </div>
         </div>
 
         <div class="form-group">
             <label for="sumaTotala_Incasata">Sumă totală încasată</label>
             <input type="number" class="form-control" name="sumaTotala_Incasata" [(ngModel)]="form.sumaTotala_Incasata" required
-                minlength="0" maxlength="50" #sumaTotala_Incasata="ngModel" />
+                 #sumaTotala_Incasata="ngModel" />
             <div class="alert-danger" *ngIf="f.submitted && sumaTotala_Incasata.invalid">
-                <div *ngIf="sumaTotala_Incasata.errors.required">sumaTotala_Incasata is required</div>
-                <div *ngIf="sumaTotala_Incasata.errors.minlength">
-                    sumaTotala_Incasata must be at least 1 characters
-                </div>
-                <div *ngIf="sumaTotala_Incasata.errors.maxlength">
-                    sumaTotala_Incasata must be at most 50 characters
-                </div>
+                <div *ngIf="sumaTotala_Incasata.errors.required">Introducerea sumei totale încasate este obligatorie !</div>
             </div>
         </div>
+
+
+
+        
+        <!-- <div class="form-group">
+            <label for="cota_TVA">Cotă TVA %</label>
+            <input type="text" class="form-control" name="cota_TVA" [(ngModel)]="form.cota_TVA" required
+                 #cota_TVA="ngModel" />
+        </div> -->
+
+
+        <div class="form-group">
+            <label for="Cotă TVA">Cotă TVA</label>
+                <mat-select  class="form-control" id="cota_TVA" name="cota_TVA" [(ngModel)]="form.cota_TVA" required #cota_TVA="ngModel" >
+                  <mat-option *ngFor="let TVA of cotaTVAList" [value]="TVA.value">
+                    {{TVA.viewValue}}
+                  </mat-option>
+                </mat-select>
+
+                <div class="alert-danger" *ngIf="f.submitted && sumaTotala_Incasata.invalid">
+                    <div *ngIf="sumaTotala_Incasata.errors.required">Introducerea cotei TVA este obligatorie !</div>
+                </div>
+  
+          </div>
 
 
 
@@ -155,6 +174,10 @@
             <label for="data_Scadenta">Dată scadență</label>
             <input type="text" class="form-control" name="data_Scadenta" [(ngModel)]="form.data_Scadenta" required
                  #data_Scadenta="ngModel" />
+
+                 <div class="alert-danger" *ngIf="f.submitted && sumaTotala_Incasata.invalid">
+                    <div *ngIf="sumaTotala_Incasata.errors.required">Introducerea datei scadențe este obligatorie !</div>
+                </div>
         </div>
 
         <!-- <div class="form-group">
@@ -204,13 +227,15 @@
         </div> -->
 
 
-
+        <div class="modal-footer">
         <div class="form-group">
-            <button class="btn btn btn-outline-secondary" aria-label="Close"
+            <button class="btn-sm btn-secondary"  mat-raised-button aria-label="Close"
                 (click)="activeModal.dismiss('Cross click')">Close</button>
             &nbsp;
-            <button class="btn btn btn-outline-success">Adăugați</button>
+            <button class="btn-sm btn-success"  mat-raised-button>Adăugați</button>
         </div> 
+    </div> 
+
 
         <div class="alert alert-warning" *ngIf="f.submitted && isaddFailed">
             Adăugare eșuată<br />{{ errorMessage }}

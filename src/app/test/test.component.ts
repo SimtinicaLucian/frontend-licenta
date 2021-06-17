@@ -12,6 +12,7 @@ import { CheltuieliService } from '../services/api/cheltuieli.service';
 import { NgForm } from '@angular/forms';
 import { SelectorMatcher } from '@angular/compiler';
 import { StatisticsService } from '../services/api/statistics.service';
+import * as CanvasJS from 'src/assets/canvasjs.min.js';
 
 import * as _moment from 'moment';
 
@@ -25,6 +26,7 @@ import {
   ApexDataLabels,
   ApexLegend
 } from "ng-apexcharts";
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 const moment = _rollupMoment || _moment;
@@ -150,6 +152,7 @@ export class TestComponent {
 
   form: any = {};
 
+  public SoldTotal:any;
   selectedValue: any;
 
   public totalSumPerYear_Incasari: any;
@@ -221,313 +224,80 @@ export class TestComponent {
 
   ngOnInit() {
 
-    this.chartOptions = {
-      series: [],
-      chart: {
-        width: 380,
-        type: "pie"
-      },
-      labels: [],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
+
+      }
+
+
+      Sold() {
+        this.statisticsService.Cheltuieli_CountIntarziate().subscribe((res) => {
+          this.SoldTotal = res;
+          console.log("Total incasari pe luna si an: " + this.SoldTotal);
+    
+
+        console.log("SUUUS: " + this.SoldTotal);
+          let chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            exportEnabled: true,
+            title: {
+              text: "Basic Column Chart in Angular"
             },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    }
-
-    // this.statisticsService.calculareSumaTotalaCuTVA_Incasari().subscribe(res => {
-    //   this.totalSumCuTVA_Incasari = res;
-    //   console.log(this.totalSumCuTVA_Incasari);
-
-    //   this.statisticsService.calculareSumaTotalaFaraTVA_Incasari().subscribe(ress => {
-    //     this.totalSumFaraTVA_Incasari = ress;
-    //     console.log(this.totalSumFaraTVA_Incasari)
-
-
-    //   this.statisticsService.calculareSumaTotalaTVA_Incasari().subscribe(ress => {
-    //     this.totalSumTVA_Incasari = ress;
-    //     console.log(this.totalSumTVA_Incasari)
-
-
-
-
-    //       this.chartOptions = {
-    //         series: [this.totalSumCuTVA_Incasari, this.totalSumFaraTVA_Incasari, this.totalSumTVA_Incasari],
-    //         chart: {
-    //           width: 380,
-    //           type: "pie"
-    //         },
-    //         labels: ["Total cu TVA", "Total fara TVA", "Total TVA"],
-    //         responsive: [
-    //           {
-    //             breakpoint: 480,
-    //             options: {
-    //               chart: {
-    //                 width: 200
-    //               },
-    //               legend: {
-    //                 position: "bottom"
-    //               }
-    //             }
-    //           }
-    //         ]
-    //       };
-    //     })
-    //   })
-    // })
+            data: [{
+              type: "pie",
+              indexLabel: "{name} - #percent%",
+              dataPoints: [
+                { y: this.SoldTotal, label: "Apple" },
+                { y: 55, label: "Mango" },
+                { y: 50, label: "Orange" },
+                { y: 65, label: "Banana" },
+                { y: 95, label: "Pineapple" },
+                { y: 68, label: "Pears" },
+                { y: 28, label: "Grapes" },
+                { y: 34, label: "Lychee" },
+                { y: 14, label: "Jackfruit" }
+              ]
+            }]
+          });
+            
+          chart.render();
+        })
+      }
 
 
 
 
-
-
-
-
-
-
-    //   this.statisticsService.calculareSumaTotalaCuTVA_Incasari().subscribe((res: any) => {
-    //     this.totalSumCuTVA_Incasari = res;
-    //     console.log(this.totalSumCuTVA_Incasari);
-
-    //     this.statisticsService.calculareSumaTotalaCuTVA_Cheltuieli().subscribe((res: any) => {
-    //       this.totalSumCuTVA_Cheltuieli = res;
-    //       console.log(this.totalSumCuTVA_Cheltuieli);
-
-
-
-    //       this.chartOptions1 = {
-    //         series: [this.totalSumCuTVA_Incasari, this.totalSumCuTVA_Cheltuieli],
-    //         chart: {
-    //           width: 380,
-    //           type: "pie"
-    //         },
-    //         labels: ["Total Incasari", "Total Cheltuieli"],
-    //         responsive: [
-    //           {
-    //             breakpoint: 480,
-    //             options: {
-    //               chart: {
-    //                 width: 200
-    //               },
-    //               legend: {
-    //                 position: "bottom"
-    //               }
-    //             }
-    //           }
-    //         ]
-    //       };
-    //     })
-    //   })
-
-
-    // }
-
-
-    // culculareSumaTotalaCuTVAData1Data2(f: NgForm) {
-    //   this.statisticsService.calculareSumaTotalaCuTVADataMinDataMax_Incasari(f.value.data1, f.value.data2).subscribe((res) => {
-    //     this.totalSumCuTVA_DataMinDataMax_Incasari = res;
-    //     console.log("res: " + res);
-
-    //     this.statisticsService.calculareSumaTotalaCuTVADataMinDataMax_Cheltuieli(f.value.data1, f.value.data2).subscribe((res) => {
-    //       this.totalSumCuTVA_DataMinDataMax_Cheltuieli = res;
-    //       console.log("res: " + res);
-
-
-
-    //     this.chartOptions2 = {
-    //       series: [this.totalSumCuTVA_DataMinDataMax_Incasari, this.totalSumCuTVA_DataMinDataMax_Cheltuieli],
-    //       chart: {
-    //         width: 380,
-    //         type: "pie"
-    //       },
-    //       labels: ["Total Incasari", "Total Cheltuieli"],
-    //       responsive: [
-    //         {
-    //           breakpoint: 480,
-    //           options: {
-    //             chart: {
-    //               width: 200
-    //             },
-    //             legend: {
-    //               position: "bottom"
-    //             }
-    //           }
-    //         }
-    //       ]
-    //     };
-    //   })
-    // })
-
-    // }
-
-
-    // calculareSumaTotalaCuTVAMonthYear(g: NgForm) {
-
-    //   this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(g.value.month, g.value.year).subscribe((res) => {
-    //     this.totalSumCuTVA_MonthAndYear_Incasari = res;
-    //     console.log("res: " + res);
-
-    //     this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Cheltuieli(g.value.month, g.value.year).subscribe((res) => {
-    //       this.totalSumCuTVA_MonthAndYear_Cheltuieli = res;
-    //       console.log("res: " + res);
-
-
-    //     this.chartOptions3 = {
-    //       series: [this.totalSumCuTVA_MonthAndYear_Incasari, this.totalSumCuTVA_MonthAndYear_Cheltuieli],
-    //       chart: {
-    //         width: 380,
-    //         type: "pie"
-    //       },
-    //       labels: ["Total Incasari Month Year", "Total Cheltuieli Month Year"],
-    //       responsive: [
-    //         {
-    //           breakpoint: 480,
-    //           options: {
-    //             chart: {
-    //               width: 200
-    //             },
-    //             legend: {
-    //               position: "bottom"
-    //             }
-    //           }
-    //         }
-    //       ]
-    //     };
-    //   })
-    // })
-    // }
-
-
-
-    // calculareSumaTotalaCuTVAPerYear(f: NgForm) {
-
-    //   this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe((res) => {
-    //     this.totalSumCuTVA_MonthAndYear_Incasari = res;
-    //     console.log("res: " + res);
-
-    //     this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(f.value.year).subscribe((res) => {
-    //       this.totalSumCuTVA_MonthAndYear_Cheltuieli = res;
-    //       console.log("res: " + res);
-
-
-    //     this.chartOptions4 = {
-    //       series: [this.totalSumCuTVA_MonthAndYear_Incasari, this.totalSumCuTVA_MonthAndYear_Cheltuieli],
-    //       chart: {
-    //         width: 380,
-    //         type: "pie"
-    //       },
-    //       labels: ["Total Incasari Per Year", "Total Cheltuieli Per Year"],
-    //       responsive: [
-    //         {
-    //           breakpoint: 480,
-    //           options: {
-    //             chart: {
-    //               width: 200
-    //             },
-    //             legend: {
-    //               position: "bottom"
-    //             }
-    //           }
-    //         }
-    //       ]
-    //     };
-    //   })
-    // })
-  }
-
-  //   getVal(year): any{
-  //     this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(year).map(res => {
-  //         return res;
-  //     })
-  //   }
-
-  //   getVal2(year): any{
-  //     this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(year).map(res => {
-  //         return res;
-  //     })
-  //   }
-
-  //   calculareSumaTotalaCuTVAPerYear(f: NgForm) {
-  //     let val1 = this.getVal(f.value.year);
-  //     let val2 = this.getVal2(f.value.year);
-  //     this.chartOptions.series = [val1, val2];
-  // }
-
-
-
-  calculareSumaTotalaCuTVAPerYear(f: NgForm) {
-    this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe((res) => {
-      this.totalSumPerYear_Incasari = res;
-      console.log("Total incasari pe an:" + this.totalSumPerYear_Incasari);
-    })
-    this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(f.value.year).subscribe((res) => {
-      this.totalSumPerYear_Cheltuieli = res;
-      console.log("Total cheltuieli pe an:" + this.totalSumPerYear_Cheltuieli);
-      this.chartOptions.series = [this.totalSumPerYear_Incasari, this.totalSumPerYear_Cheltuieli] 
-      this.chartOptions.labels = ["Total incasari/an", "Total cheltuieli/an"]
-    })
-    console.log("hai sus 1" , this.chartOptions.series);
-    // this.chartOptions.series = [this.totalSumPerYear_Incasari, this.totalSumPerYear_Cheltuieli] 
-    console.log("hai sus 2" , this.chartOptions.series);
+      Calculare(f: NgForm) {
+        this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe((res) => {
+          this.totalSumPerYear_Incasari = res;
+          console.log("Total incasari pe an:" + this.totalSumPerYear_Incasari);
+        })
+        this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(f.value.year).subscribe((res) => {
+          this.totalSumPerYear_Cheltuieli = res;
     
-    
+
+        console.log("SUUUS: " + this.SoldTotal);
+        let chart = new CanvasJS.Chart("chartContainer", {
+          theme: "light2",
+          animationEnabled: true,
+          exportEnabled: true,
+          title:{
+            text: "Monthly Expense"
+          },
+          data: [{
+            type: "pie",
+            showInLegend: true,
+            toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+            indexLabel: "{name} - #percent%",
+            dataPoints: [
+              { y: this.totalSumPerYear_Incasari, name: "Food" },
+              { y: this.totalSumPerYear_Cheltuieli , name: "Insurance" }
+            ]
+          }]
+        });
+            
+          chart.render();
+        })
+      }
+
+
+
   }
-
-  // sold(){
-  //   this.statisticsService.sold().subscribe((res) => {
-  //     this.soldm = res;
-  //     console.log(this.soldm);
-  //   })
-  // }
-
-
-  calculareSumaTotalaCuTVAMonthYear(f: NgForm) {
-    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(f.value.month, f.value.year).subscribe((res) => {
-      this.totalSumCuTVA_MonthAndYear_Incasari = res;
-      console.log("Total incasari pe luna si an: " + res);
-    })
-    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Cheltuieli(f.value.month, f.value.year).subscribe((res) => {
-      this.totalSumCuTVA_MonthAndYear_Cheltuieli = res;
-      console.log("Total cheltuieli pe luna si an: " + res);
-      this.chartOptions1.series = [this.totalSumCuTVA_MonthAndYear_Incasari, this.totalSumCuTVA_MonthAndYear_Cheltuieli] 
-      this.chartOptions1.labels = ["Total incasari/luna si an", "Total cheltuieli/luna si an"]
-    })
-    console.log("hai sus 1" , this.chartOptions.series);
-    // this.chartOptions.series = [this.totalSumPerYear_Incasari, this.totalSumPerYear_Cheltuieli] 
-    console.log("hai sus 2" , this.chartOptions.series);
-  }
-
-
-  calculareSumaTotalaCuTVADataMinDataMax(f: NgForm){
-    this.statisticsService.calculareSumaTotalaCuTVADataMinDataMax_Incasari(f.value.data1, f.value.data2).subscribe((res) => {
-      this.totalSumDataMinDatax_Incasari = res;
-      console.log("Total incasari dataMin-dataMax:" + res);
-    })
-    this.statisticsService.calculareSumaTotalaCuTVADataMinDataMax_Cheltuieli(f.value.data1, f.value.data2).subscribe((res) => {
-      this.totalSumDataMinDatax_Cheltuieli = res;
-      console.log("Total cheltuieli dataMin-dataMax:" + res);
-      this.chartOptions.series = [this.totalSumDataMinDatax_Incasari, this.totalSumDataMinDatax_Cheltuieli] 
-      this.chartOptions.labels = ["Total incasari/dataMindataMax", "Total cheltuieli/dataMindataMax"]
-    })
-  }
-
-
-}
-
-
-
-
-// search3(f: NgForm) {
-//   this.alimService.getSumaTotalaBetweenDate(f.value.firstDate, f.value.lastDate).subscribe((res) => {
-//     this.between = res;
-//     console.log("res: " + res);
-//   })
-// }

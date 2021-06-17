@@ -18,6 +18,11 @@ var ModalUpdateIncasariComponent = /** @class */ (function () {
         this.isSuccessful = false;
         this.isaddFailed = false;
         this.errorMessage = '';
+        this.cotaTVAList = [
+            { value: '19', viewValue: '19%' },
+            { value: '9', viewValue: '9%' },
+            { value: '5', viewValue: '5%' }
+        ];
     }
     ModalUpdateIncasariComponent.prototype.ngOnInit = function () {
     };

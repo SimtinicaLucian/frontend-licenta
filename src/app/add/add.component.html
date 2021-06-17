@@ -120,7 +120,7 @@
     &nbsp; &nbsp;
 
     <div class="form-group">
-      <button type="reset" class="btn-sm" mat-raised-button>Reset</button>
+      <button type="reset" class="btn-sm" mat-raised-button>Șterge filtrele</button>
     </div>
 
     &nbsp; &nbsp;
@@ -219,6 +219,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Sumă totala încasată </th>
         <td mat-cell *matCellDef="let element"> {{element.sumaTotala_Incasata}} </td>
         <td mat-footer-cell *matFooterCellDef> {{getTotalCostTotal_Incasata()}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cota_TVA">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cotă TVA %</th>
+        <td mat-cell *matCellDef="let element"> {{element.cota_TVA}} % </td>
+        <td mat-footer-cell *matFooterCellDef>  </td>
       </ng-container>
 
       <ng-container matColumnDef="rest">

@@ -6,8 +6,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.ModalContentComponent = void 0;
+exports.ModalContentComponent = exports.MY_FORMATS = void 0;
 var core_1 = require("@angular/core");
+var _moment = require("moment");
+var moment_1 = require("moment");
+var core_2 = require("@angular/material/core");
+var material_moment_adapter_1 = require("@angular/material-moment-adapter");
+var moment = moment_1["default"] || _moment;
+exports.MY_FORMATS = {
+    parse: {
+        dateInput: 'LL'
+    },
+    display: {
+        dateInput: 'YYYY.MM.DD',
+        monthYearLabel: 'YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'YYYY'
+    }
+};
 var ModalContentComponent = /** @class */ (function () {
     function ModalContentComponent(activeModal, alimService, token, userService, progressBar, alertService) {
         this.activeModal = activeModal;
@@ -21,6 +37,11 @@ var ModalContentComponent = /** @class */ (function () {
         this.isSuccessful = false;
         this.isaddFailed = false;
         this.errorMessage = '';
+        this.cotaTVAList = [
+            { value: '19', viewValue: '19%' },
+            { value: '9', viewValue: '9%' },
+            { value: '5', viewValue: '5%' }
+        ];
     }
     ModalContentComponent.prototype.ngOnInit = function () {
         this.currentUser = this.token.getUser();
@@ -72,7 +93,12 @@ var ModalContentComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'app-modal-content',
             templateUrl: './modal-content.component.html',
-            styleUrls: ['./modal-content.component.scss']
+            styleUrls: ['./modal-content.component.scss'],
+            providers: [
+                { provide: core_2.DateAdapter, useClass: material_moment_adapter_1.MomentDateAdapter, deps: [core_2.MAT_DATE_LOCALE] },
+                { provide: core_2.MAT_DATE_FORMATS, useValue: exports.MY_FORMATS },
+            ],
+            encapsulation: core_1.ViewEncapsulation.None
         })
     ], ModalContentComponent);
     return ModalContentComponent;

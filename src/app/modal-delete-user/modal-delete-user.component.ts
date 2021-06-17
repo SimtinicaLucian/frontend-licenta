@@ -38,7 +38,7 @@ export class ModalDeleteUserComponent implements OnInit {
       this.progressBar.completeLoading();
       this.getUsers()
       this.isSuccessful = true;
-      // window.location.reload();
+      window.location.reload();
     },
       err => {
         this.progressBar.setError();

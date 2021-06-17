@@ -57,7 +57,7 @@ var AddComponent = /** @class */ (function () {
         };
         this.form = {};
         // displayedColumns: string[] = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'rest', 'sumaFaraTVA', 'sumaFaraTVA_Incasata' , 'sumaTVA', 'sumaTVA_Incasata', 'by_added', 'stare', 'delete', 'update'];
-        this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'rest', 'by_added', 'stare', 'action'];
+        this.displayedColumns = ['id', 'data', 'furnizor', 'number', 'detalii', 'sumaTotala', 'sumaTotala_Incasata', 'cota_TVA', 'rest', 'by_added', 'stare', 'action'];
         this.sorted = false;
         this.toppings = new forms_1.FormControl();
         this.months = [

@@ -16,31 +16,31 @@
                   <div class="description">
                     <h4 class="info-title">Marketing</h4>
                     <p class="description">
-                      We've created the marketing campaign of the website. It was a very interesting collaboration.
+                     
                     </p>
                   </div>
                 </div>
 
                 <div class="info info-horizontal">
                   <div class="icon icon-primary">
-                    <i class="material-icons">code</i>
+                    <i class="material-icons">bar_chart</i>
                   </div>
                   <div class="description">
-                    <h4 class="info-title">Fully Coded in HTML5</h4>
+                    <h4 class="info-title">Statistică</h4>
                     <p class="description">
-                      We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                      
                     </p>
                   </div>
                 </div>
 
                 <div class="info info-horizontal">
                   <div class="icon icon-info">
-                    <i class="material-icons">group</i>
+                    <i class="material-icons">lock</i>
                   </div>
                   <div class="description">
-                    <h4 class="info-title">Built Audience</h4>
+                    <h4 class="info-title">Securitate</h4>
                     <p class="description">
-                      There is also a Fully Customizable CMS Admin Dashboard for this product.
+                   
                     </p>
                   </div>
                 </div>
@@ -60,7 +60,19 @@
                       <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3"
                       maxlength="20" #username="ngModel" placeholder="Introduceți numele de utilizator" />
                     </div>
+                 
+
+                  <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+                    <div *ngIf="username.errors.required">Numele de utilizator este obligatoriu!</div>
+                    <div *ngIf="username.errors.minlength">
+                      Numele de utilizator trebuie să aibă cel puțin 3 caractere!
+                    </div>
+                    <div *ngIf="username.errors.maxlength">
+                      Numele de utilizator trebuie să aibă cel mult 20 de caractere!
+                    </div>
                   </div>
+                </div>
+
 
                   <div class="form-group bmd-form-group">
                     <div class="input-group">
@@ -72,7 +84,15 @@
                       <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
             #email="ngModel" placeholder="Introduceți adresa de email" />
                     </div>
+                  
+
+                  <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+                    <div *ngIf="email.errors.required">E-mailul este obligatoriu!</div>
+                    <div *ngIf="email.errors.email">
+                      E-mailul trebuie să fie o adresă de e-mail validă! 
+                    </div>
                   </div>
+                </div>
 
                   <div class="form-group bmd-form-group">
                     <div class="input-group">
@@ -84,15 +104,22 @@
                       <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
                       minlength="6" #password="ngModel" placeholder="Introduceți parola" />
                     </div>
+
+                    <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                      <div *ngIf="password.errors.required">Parola este obligatorie!</div>
+                      <div *ngIf="password.errors.minlength">
+                        Parola trebuie sa aibă cel puțin 6 caractere!
+                      </div>
+                    </div>
                   </div>
 
   
                   <div class="text-center">
-                    <button type = "submit" class="btn btn-blue text-center" [disabled]="f.invalid">Înscrie-te</button>
+                    <button type = "submit" class="btn btn-blue text-center">Înscrie-te</button>
                   </div>
         
                   <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-                    Signup failed!<br />{{ errorMessage }}
+                    Inregistrarea a esuat!<br />{{ errorMessage }}
                   </div>
                 </form>
                 <div class="row mb-4 px-3"> <small class="font-weight-bold">Înapoi la autentificare! <a href="/login"

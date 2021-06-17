@@ -5,6 +5,11 @@ import { AlertService } from "ngx-alerts";
 import { ProgressBarService } from '../services/progress-bar.service';
 import { CheltuieliService } from '../services/api/cheltuieli.service';
 
+interface cota_TVA {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-modal-update-cheltuieli',
   templateUrl: './modal-update-cheltuieli.component.html',
@@ -18,6 +23,12 @@ export class ModalUpdateCheltuieliComponent implements OnInit {
   isSuccessful = false;
   isaddFailed = false;
   errorMessage = '';
+
+  cotaTVAList: cota_TVA[] = [
+    {value: '19', viewValue: '19%'},
+    {value: '9', viewValue: '9%'},
+    {value: '5', viewValue: '5%'}
+  ];
 
   constructor(private cheltuieliService: CheltuieliService, public progressBar: ProgressBarService,
     private alertService: AlertService, public activeModal: NgbActiveModal) { }
