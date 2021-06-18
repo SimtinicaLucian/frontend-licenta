@@ -157,7 +157,7 @@ export class TestComponent {
 
   public totalSumPerYear_Incasari: any;
   public totalSumPerYear_Cheltuieli: any;
-  
+  public totalSalariuNet_Salariu: any;
 
   public totalSumDataMinDatax_Incasari: any;
   public totalSumDataMinDatax_Cheltuieli: any;
@@ -272,6 +272,12 @@ export class TestComponent {
         })
         this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(f.value.year).subscribe((res) => {
           this.totalSumPerYear_Cheltuieli = res;
+        })
+          this.statisticsService.calculareSalariuNetTotalPerYear_Salariu(f.value.year).subscribe((res) => {
+            this.totalSalariuNet_Salariu = res;
+  
+
+
     
 
         console.log("SUUUS: " + this.SoldTotal);
@@ -280,7 +286,7 @@ export class TestComponent {
           animationEnabled: true,
           exportEnabled: true,
           title:{
-            text: "Monthly Expense"
+            text: "Statistică anuală"
           },
           data: [{
             type: "pie",
@@ -288,8 +294,9 @@ export class TestComponent {
             toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
             indexLabel: "{name} - #percent%",
             dataPoints: [
-              { y: this.totalSumPerYear_Incasari, name: "Food" },
-              { y: this.totalSumPerYear_Cheltuieli , name: "Insurance" }
+              { y: this.totalSumPerYear_Incasari, name: "Încasări" },
+              { y: this.totalSumPerYear_Cheltuieli , name: "Cheltuieli" },
+              { y: this.totalSalariuNet_Salariu , name: "Salariu" }
             ]
           }]
         });

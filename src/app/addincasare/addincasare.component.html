@@ -328,11 +328,9 @@
         <div class="form-group" style="width: 130px; height: 33px;">
             <label for="college">Select: </label>
             <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" name="college_name" required >
-                <mat-option value="Profit_lunar">Profit_lunar</mat-option>
-                <mat-option value="Profit_anual">Profit_anual</mat-option>
-                <mat-option value="Profit_Total">Profit_Total</mat-option>
-                <mat-option value="cifraAfaceri">cifraAfaceri_Anual</mat-option>
-                <mat-option value="BugetulDeStat_TVA">Bugetul de stat TVA</mat-option>
+                <mat-option value="Profit_lunar">Profit lunar</mat-option>
+                <mat-option value="Profit_anual">Profit anual</mat-option>
+                <mat-option value="cifraAfaceri">Cifra de afaceri lunar </mat-option>
 
 
             </mat-select>
@@ -347,9 +345,9 @@
                         <label for="year"></label>
                         <div class="form-group" style="width: 130px; height: 33px;">
                             <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
-                                <mat-label>year</mat-label>
+                                <mat-label>anul</mat-label>
                                 <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
-                                    <mat-option>year</mat-option>
+                                    <mat-option>anul</mat-option>
                                     <mat-option *ngFor="let year of years" [value]="year.value">
                                         {{year.viewValue}}
                                     </mat-option>
@@ -407,9 +405,9 @@
                         <label for="year"></label>
                         <div class="form-group" style="width: 130px; height: 33px;">
                         <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
-                            <mat-label>month</mat-label>
+                            <mat-label>luna</mat-label>
                             <mat-select id="month" name="month" [(ngModel)]="form.month" required #month="ngModel">
-                                <mat-option>month</mat-option>
+                                <mat-option>luna</mat-option>
                                 <mat-option *ngFor="let month of months" [value]="month.value">
                                     {{month.viewValue}}
                                 </mat-option>
@@ -420,9 +418,9 @@
                         <label for="year"></label>
                         <div class="form-group" style="width: 130px; height: 33px;">
                             <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
-                                <mat-label>year</mat-label>
+                                <mat-label>anul</mat-label>
                                 <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
-                                    <mat-option>year</mat-option>
+                                    <mat-option>anul</mat-option>
                                     <mat-option *ngFor="let year of years" [value]="year.value">
                                         {{year.viewValue}}
                                     </mat-option>
@@ -474,9 +472,9 @@
                         <label for="year"></label>
                         <div class="form-group" style="width: 130px; height: 33px;">
                             <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
-                                <mat-label>year</mat-label>
+                                <mat-label>anul</mat-label>
                                 <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
-                                    <mat-option>year</mat-option>
+                                    <mat-option>anul</mat-option>
                                     <mat-option *ngFor="let year of years" [value]="year.value">
                                         {{year.viewValue}}
                                     </mat-option>
@@ -541,78 +539,6 @@
             </mat-select>
         </div>
 
-        <div class="form-group" *ngIf="selectedValue1">
-            <div class="form-group" *ngIf="selectedValue1 == 'TVA la factura'">
-
-                <form f="form" (ngSubmit)="BugetulDeStat_TVA(f)" #f="ngForm" novalidate class="form-inline">
-                    <div class="form-group">
-                        <label for="year"></label>
-                        <div class="form-group" style="width: 130px; height: 33px;">
-                        <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
-                            <mat-label>month</mat-label>
-                            <mat-select id="month" name="month" [(ngModel)]="form.month" required #month="ngModel">
-                                <mat-option>month</mat-option>
-                                <mat-option *ngFor="let month of months" [value]="month.value">
-                                    {{month.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        </div>
-
-                        <label for="year"></label>
-                        <div class="form-group" style="width: 130px; height: 33px;">
-                            <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
-                                <mat-label>year</mat-label>
-                                <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
-                                    <mat-option>year</mat-option>
-                                    <mat-option *ngFor="let year of years" [value]="year.value">
-                                        {{year.viewValue}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-
-                        </div>
-                    </div>
-
-
-                    &nbsp; &nbsp;
-
-                    <div class="form-group">
-                        <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
-                    </div>
-
-
-
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header card-header-success card-header-icon">
-                                <div class="card-icon">
-                                    <i class="material-icons">info_outline</i>
-                                </div>
-                                <p class="card-category"> Bugetul_DeStat_TVA</p>
-                                <h3 class="card-title">{{Bugetul_DeStat_TVA}}
-                                    <small>RON</small>
-                                </h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-danger">warning</i>
-                                    <i class="material-icons">date_range</i> Last 24 Hours
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
-
-
-
-                </div>
-                </div>
-            </div>
-
-
-        </div>
 
 
 
