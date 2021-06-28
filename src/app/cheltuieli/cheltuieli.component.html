@@ -68,6 +68,7 @@
       <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
       <mat-datepicker #dp1></mat-datepicker>
     </div>
+    &nbsp; &nbsp;
     <div class="form-group">
       <label for="Dată maximă"></label>
       <input required matInput [matDatepicker]="dp2" name="data2" placeholder="Dată maximă" class="form-control"
@@ -97,8 +98,8 @@
     <div class="form-group">
       <label for="Stare"></label>
         <div class="form-group" >
-          <mat-form-field appearance="outline"  style = "width: 130px;  height: 40.5px; font-size: 9.5px"  >
-            <mat-label>Toate</mat-label>
+          <mat-form-field appearance="fill"  style="width: 130px; height: 33px"  >
+            <mat-label>Stare</mat-label>
           <mat-select  id="stare" name="stare" [(ngModel)]="form.stare" required #stare="ngModel" >
             <mat-option>Stare</mat-option>
             <mat-option *ngFor="let stare of stares" [value]="stare.value">
@@ -108,6 +109,11 @@
           </mat-form-field>
           </div>
     </div>
+
+
+
+    
+
 
     &nbsp; &nbsp;
 

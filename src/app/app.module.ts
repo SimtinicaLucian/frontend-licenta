@@ -41,6 +41,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatDividerModule } from '@angular/material/divider';
+
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '../app/helpers/auth.interceptor';
 import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
@@ -74,6 +77,11 @@ import { ModalAddSalariuComponent } from './modal-add-salariu/modal-add-salariu.
 import { ModalDeleteSalariuComponent } from './modal-delete-salariu/modal-delete-salariu.component';
 import { ModalUpdateSalariuComponent } from './modal-update-salariu/modal-update-salariu.component';
 import { ViewSalariuComponent } from './view-salariu/view-salariu.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
+
 
 
 
@@ -179,6 +187,10 @@ import { ViewSalariuComponent } from './view-salariu/view-salariu.component';
     AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
     NgApexchartsModule,
     HighchartsChartModule,
+    FlexLayoutModule,
+    MatDividerModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule
 
    
 

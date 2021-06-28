@@ -45,6 +45,8 @@ var list_1 = require("@angular/material/list");
 var login_component_1 = require("./login/login.component");
 var register_component_1 = require("./register/register.component");
 var profile_component_1 = require("./profile/profile.component");
+var flex_layout_1 = require("@angular/flex-layout");
+var divider_1 = require("@angular/material/divider");
 var http_1 = require("@angular/common/http");
 var auth_interceptor_1 = require("../app/helpers/auth.interceptor");
 var password_forgot_component_1 = require("./password-forgot/password-forgot.component");
@@ -68,6 +70,14 @@ var modal_update_cheltuieli_component_1 = require("./modal-update-cheltuieli/mod
 var modal_add_cheltuieli_component_1 = require("./modal-add-cheltuieli/modal-add-cheltuieli.component");
 var password_recovery_component_1 = require("./password-recovery/password-recovery.component");
 var view_cheltuieli_component_1 = require("./view-cheltuieli/view-cheltuieli.component");
+var list_items_component_1 = require("./list-items/list-items.component");
+var salariu_component_1 = require("./salariu/salariu.component");
+var modal_add_salariu_component_1 = require("./modal-add-salariu/modal-add-salariu.component");
+var modal_delete_salariu_component_1 = require("./modal-delete-salariu/modal-delete-salariu.component");
+var modal_update_salariu_component_1 = require("./modal-update-salariu/modal-update-salariu.component");
+var view_salariu_component_1 = require("./view-salariu/view-salariu.component");
+var slide_toggle_1 = require("@angular/material/slide-toggle");
+var button_toggle_1 = require("@angular/material/button-toggle");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -99,6 +109,12 @@ var AppModule = /** @class */ (function () {
                 modal_add_cheltuieli_component_1.ModalAddCheltuieliComponent,
                 password_recovery_component_1.PasswordRecoveryComponent,
                 view_cheltuieli_component_1.ViewCheltuieliComponent,
+                list_items_component_1.ListItemsComponent,
+                salariu_component_1.SalariuComponent,
+                modal_add_salariu_component_1.ModalAddSalariuComponent,
+                modal_delete_salariu_component_1.ModalDeleteSalariuComponent,
+                modal_update_salariu_component_1.ModalUpdateSalariuComponent,
+                view_salariu_component_1.ViewSalariuComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [
@@ -137,6 +153,10 @@ var AppModule = /** @class */ (function () {
                 ngx_alerts_1.AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
                 ng_apexcharts_1.NgApexchartsModule,
                 highcharts_angular_1.HighchartsChartModule,
+                flex_layout_1.FlexLayoutModule,
+                divider_1.MatDividerModule,
+                slide_toggle_1.MatSlideToggleModule,
+                button_toggle_1.MatButtonToggleModule
             ],
             entryComponents: [app_component_1.AppComponent],
             // providers: [ExcelService, MatDatepickerModule, DatePipe,

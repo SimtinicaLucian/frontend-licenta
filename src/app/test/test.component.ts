@@ -162,6 +162,11 @@ export class TestComponent {
   public totalSumDataMinDatax_Incasari: any;
   public totalSumDataMinDatax_Cheltuieli: any;
 
+  public totalSum_Incasari: any;
+  public totalSum_Cheltuieli: any;
+  public salariuNet_Total: any;
+
+
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public chartOptions1: Partial<ChartOptions>;
@@ -177,90 +182,88 @@ export class TestComponent {
     private cheltuieliService: CheltuieliService, private statisticsService: StatisticsService) {
 
 
-    this.chartOptions = {
-      series: [],
-      chart: {
-        width: 380,
-        type: "pie"
-      },
-      labels: [],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    }
 
-    this.chartOptions1 = {
-      series: [],
-      chart: {
-        width: 380,
-        type: "pie"
-      },
-      labels: [],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    }
+
+
   }
 
   ngOnInit() {
+
+    this.statisticsService.calculareSumaTotalaCuTVA_Incasari().subscribe((res) => {
+      this.totalSum_Incasari = res;
+      console.log("Total incasari pe an:" + this.totalSumPerYear_Incasari);
+    })
+    this.statisticsService.calculareSumaTotalaCuTVA_Cheltuieli().subscribe((res) => {
+      this.totalSum_Cheltuieli = res;
+    })
+      this.statisticsService.calculareSalariuNet_Total().subscribe((res) => {
+        this.salariuNet_Total = res;
+
+
+
+        let chart = new CanvasJS.Chart("chartContainer", {
+          theme: "light2",
+          animationEnabled: true,
+          exportEnabled: true,
+          title:{
+            text: "Statistică totală"
+          },
+          data: [{
+            type: "pie",
+            showInLegend: true,
+            toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+            indexLabel: "{name} - #percent%",
+            dataPoints: [
+              { y: this.totalSum_Incasari, name: "Încasări" },
+              { y: this.totalSum_Cheltuieli , name: "Cheltuieli" },
+              { y: this.salariuNet_Total , name: "Salarii" }
+            ]
+          }]
+        });
+            
+          chart.render();
+        })
 
 
       }
 
 
       Sold() {
-        this.statisticsService.Cheltuieli_CountIntarziate().subscribe((res) => {
-          this.SoldTotal = res;
-          console.log("Total incasari pe luna si an: " + this.SoldTotal);
+        this.statisticsService.calculareSumaTotalaCuTVA_Incasari().subscribe((res) => {
+          this.totalSum_Incasari = res;
+          console.log("Total incasari pe an:" + this.totalSumPerYear_Incasari);
+        })
+        this.statisticsService.calculareSumaTotalaCuTVA_Cheltuieli().subscribe((res) => {
+          this.totalSum_Cheltuieli = res;
+        })
+          this.statisticsService.calculareSalariuNet_Total().subscribe((res) => {
+            this.salariuNet_Total = res;
     
 
-        console.log("SUUUS: " + this.SoldTotal);
-          let chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            exportEnabled: true,
-            title: {
-              text: "Basic Column Chart in Angular"
-            },
-            data: [{
-              type: "pie",
-              indexLabel: "{name} - #percent%",
-              dataPoints: [
-                { y: this.SoldTotal, label: "Apple" },
-                { y: 55, label: "Mango" },
-                { y: 50, label: "Orange" },
-                { y: 65, label: "Banana" },
-                { y: 95, label: "Pineapple" },
-                { y: 68, label: "Pears" },
-                { y: 28, label: "Grapes" },
-                { y: 34, label: "Lychee" },
-                { y: 14, label: "Jackfruit" }
-              ]
-            }]
-          });
-            
-          chart.render();
-        })
-      }
+   
+            let chart = new CanvasJS.Chart("chartContainer", {
+              theme: "light2",
+              animationEnabled: true,
+              exportEnabled: true,
+              title:{
+                text: "Statistică totală"
+              },
+              data: [{
+                type: "pie",
+                showInLegend: true,
+                toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+                indexLabel: "{name} - #percent%",
+                dataPoints: [
+                  { y: this.totalSum_Incasari, name: "Încasări" },
+                  { y: this.totalSum_Cheltuieli , name: "Cheltuieli" },
+                  { y: this.salariuNet_Total , name: "Salarii" }
+                ]
+              }]
+            });
+                
+              chart.render();
+            })
+          }
 
 
 

@@ -47,6 +47,11 @@
     <div class="form-group">
       <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
     </div>
+
+    &nbsp; &nbsp;
+    <div class="form-group">
+      <button type="reset" class="btn-sm" mat-raised-button>Șterge filtrele</button>
+    </div>
   </form>
 
 
@@ -59,7 +64,7 @@
         required #furnizor="ngModel" style="width: 130px; height: 33px;" />
     </div>
 
-    &nbsp; &nbsp;
+    &nbsp; 
 
     <div class="form-group">
       <label for="data1"></label>
@@ -67,6 +72,9 @@
         [(ngModel)]="form.data1" required #data1="ngModel" style="width: 130px; height: 33px;" />
       <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
       <mat-datepicker #dp1></mat-datepicker>
+
+      &nbsp; 
+      
     </div>
     <div class="form-group">
       <label for="data2"></label>
@@ -479,21 +487,7 @@
 
 
 
-      <form f="form" (ngSubmit)="calculareSumaTotalaCuTVAPerYear(f)" #f="ngForm" novalidate class="form-inline">
-        <div class="form-group">
-          <label for="college">Select:</label>
-          <mat-select class="form-control" id="year" name="year" [(ngModel)]="form.year" required
-          #year="ngModel" >
-          <mat-option *ngFor="let year of years" [value]="year.value" >
-            {{year.viewValue}}
-          </mat-option>
-        </mat-select>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Add </button>
 
-        </div>
-      </div>
-      </form>
     </div>
     
 
@@ -503,7 +497,7 @@
 
   </div>
 
-  {{totalSum}}
+
 
 
 

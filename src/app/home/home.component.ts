@@ -32,13 +32,13 @@ export class HomeComponent implements OnInit {
 
   
   onSubmit(f:NgForm) {
-    this.alertService.info('Working on sending email');
+    this.alertService.info('Se lucrează la trimiterea e-mailului ');
     this.progressBar.startLoading();
 
     this.incasariService.send(f.value).subscribe(
       data => {
         this.progressBar.setSuccess();
-        this.alertService.success('Your message has been send');
+        this.alertService.success('Mesajul a fost trimis cu succes');
         console.log('Check email to change password');
         this.progressBar.completeLoading();
         location.reload();

@@ -14,6 +14,13 @@ import { ModalContentComponent } from '../modal-content/modal-content.component'
 import { Incasari } from '../api/model/incasari';
 import {CheltuieliService} from '../services/api/cheltuieli.service';
 import { StatisticsService } from '../services/api/statistics.service';
+import * as CanvasJS from 'src/assets/canvasjs.min.js';
+import { ChartComponent } from "ng-apexcharts";
+import {
+  ApexNonAxisChartSeries,
+  ApexResponsive,
+  ApexChart
+} from "ng-apexcharts";
 
 interface year {
   value: string;
@@ -25,6 +32,12 @@ interface month{
   viewValue: string;
 }
 
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+};
 
 @Component({
   selector: 'app-addincasare',
@@ -125,8 +138,21 @@ export class AddincasareComponent implements OnInit {
   selectedValue: any;
   selectedValue1: any;
 
+  public totalSum_Incasari: any;
+  public totalSum_Cheltuieli: any;
+  public salariuNet_Total: any;
+
+  public totalSum_Incasari_year: any;
+  public totalSum_Cheltuieli_year: any;
+  public salariuNet_Total_year: any;
+
+  public totalSum_Incasari_month_year: any;
+  public totalSum_Cheltuieli_month_year: any;
+  public salariuNet_Total_month_year: any;
 
 
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
 
 
   constructor(public modalService: NgbModal, private formBuilder: FormBuilder, private alimService: IncasariService, public router: Router, private excelService:ExcelService, private cheltuieliService : CheltuieliService,
@@ -139,6 +165,7 @@ export class AddincasareComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
 
   
   private regForm: any;
@@ -194,7 +221,40 @@ export class AddincasareComponent implements OnInit {
 
 
 
+    this.statisticsService.calculareSumaTotalaCuTVA_Incasari().subscribe((res) => {
+      this.totalSum_Incasari = res;
 
+    })
+    this.statisticsService.calculareSumaTotalaCuTVA_Cheltuieli().subscribe((res) => {
+      this.totalSum_Cheltuieli = res;
+    })
+      this.statisticsService.calculareSalariuNet_Total().subscribe((res) => {
+        this.salariuNet_Total = res;
+
+
+
+        let chart = new CanvasJS.Chart("chartContainer", {
+          theme: "light2",
+          animationEnabled: true,
+          exportEnabled: true,
+          title:{
+            text: "Statistică totală"
+          },
+          data: [{
+            type: "pie",
+            showInLegend: true,
+            toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+            indexLabel: "{name} - #percent%",
+            dataPoints: [
+              { y: this.totalSum_Incasari, name: "Încasări" },
+              { y: this.totalSum_Cheltuieli , name: "Cheltuieli" },
+              { y: this.salariuNet_Total , name: "Salarii" }
+            ]
+          }]
+        });
+            
+          chart.render();
+        })
     
 
 
@@ -427,6 +487,86 @@ export class AddincasareComponent implements OnInit {
     }
   }
 
+
+
+  Calculare(f: NgForm) {
+    this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe((res) => {
+      this.totalSum_Incasari_year = res;
+     
+    })
+    this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(f.value.year).subscribe((res) => {
+      this.totalSum_Cheltuieli_year = res;
+    })
+      this.statisticsService.calculareSalariuNetTotalPerYear_Salariu(f.value.year).subscribe((res) => {
+        this.salariuNet_Total_year = res;
+
+
+
+
+
+    console.log("SUUUS: " + this.SoldTotal);
+    let chart = new CanvasJS.Chart("chartContainer", {
+      theme: "light2",
+      animationEnabled: true,
+      exportEnabled: true,
+      title:{
+        text: "Statistică anuală"
+      },
+      data: [{
+        type: "pie",
+        showInLegend: true,
+        toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+        indexLabel: "{name} - #percent%",
+        dataPoints: [
+          { y: this.totalSum_Incasari_year, name: "Încasări" },
+          { y: this.totalSum_Cheltuieli_year , name: "Cheltuieli" },
+          { y: this.salariuNet_Total_year , name: "Salariu" }
+        ]
+      }]
+    });
+        
+      chart.render();
+    })
+  }
+
+  Calculare_MonthAndYear(f: NgForm) {
+    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(f.value.month, f.value.year).subscribe((res) => {
+      this.totalSum_Incasari_month_year = res;
+     
+    })
+    this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Cheltuieli(f.value.month, f.value.year).subscribe((res) => {
+      this.totalSum_Cheltuieli_month_year = res;
+    })
+      this.statisticsService.calculareSalariuNetTotalMonthAndYear_Salariu(f.value.month, f.value.year).subscribe((res) => {
+        this.salariuNet_Total_month_year = res;
+
+
+      
+
+    console.log("SUUUS: " + this.SoldTotal);
+    let chart = new CanvasJS.Chart("chartContainer", {
+      theme: "light2",
+      animationEnabled: true,
+      exportEnabled: true,
+      title:{
+        text: "Statistică lunară"
+      },
+      data: [{
+        type: "pie",
+        showInLegend: true,
+        toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+        indexLabel: "{name} - #percent%",
+        dataPoints: [
+          { y: this.totalSum_Incasari_month_year, name: "Încasări" },
+          { y: this.totalSum_Cheltuieli_month_year , name: "Cheltuieli" },
+          { y: this.salariuNet_Total_month_year , name: "Salariu" }
+        ]
+      }]
+    });
+        
+      chart.render();
+    })
+  }
 
 
 

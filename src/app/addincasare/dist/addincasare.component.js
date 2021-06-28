@@ -15,6 +15,7 @@ require("rxjs/Rx");
 var core_1 = require("@angular/core");
 var modal_content_component_1 = require("../modal-content/modal-content.component");
 var incasari_1 = require("../api/model/incasari");
+var CanvasJS = require("src/assets/canvasjs.min.js");
 var AddincasareComponent = /** @class */ (function () {
     function AddincasareComponent(modalService, formBuilder, alimService, router, excelService, cheltuieliService, statisticsService) {
         this.modalService = modalService;
@@ -98,6 +99,35 @@ var AddincasareComponent = /** @class */ (function () {
         this.statisticsService.Salariu_Intarziate_Rest_DeAchitat().subscribe((function (res) {
             return _this.Salariu_Intarziate_RestDeAchitat = res;
         }));
+        this.statisticsService.calculareSumaTotalaCuTVA_Incasari().subscribe(function (res) {
+            _this.totalSum_Incasari = res;
+        });
+        this.statisticsService.calculareSumaTotalaCuTVA_Cheltuieli().subscribe(function (res) {
+            _this.totalSum_Cheltuieli = res;
+        });
+        this.statisticsService.calculareSalariuNet_Total().subscribe(function (res) {
+            _this.salariuNet_Total = res;
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2",
+                animationEnabled: true,
+                exportEnabled: true,
+                title: {
+                    text: "Statistică totală"
+                },
+                data: [{
+                        type: "pie",
+                        showInLegend: true,
+                        toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+                        indexLabel: "{name} - #percent%",
+                        dataPoints: [
+                            { y: _this.totalSum_Incasari, name: "Încasări" },
+                            { y: _this.totalSum_Cheltuieli, name: "Cheltuieli" },
+                            { y: _this.salariuNet_Total, name: "Salarii" }
+                        ]
+                    }]
+            });
+            chart.render();
+        });
     };
     AddincasareComponent.prototype.register = function (f) {
         this.alimService.add(f.value).subscribe(function () { });
@@ -290,6 +320,72 @@ var AddincasareComponent = /** @class */ (function () {
             this.ngOnInit();
         }
     };
+    AddincasareComponent.prototype.Calculare = function (f) {
+        var _this = this;
+        this.statisticsService.calculareSumaTotalaCuTVAPerYear_Incasari(f.value.year).subscribe(function (res) {
+            _this.totalSum_Incasari_year = res;
+        });
+        this.statisticsService.calculareSumaTotalaCuTVAPerYear_Cheltuieli(f.value.year).subscribe(function (res) {
+            _this.totalSum_Cheltuieli_year = res;
+        });
+        this.statisticsService.calculareSalariuNetTotalPerYear_Salariu(f.value.year).subscribe(function (res) {
+            _this.salariuNet_Total_year = res;
+            console.log("SUUUS: " + _this.SoldTotal);
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2",
+                animationEnabled: true,
+                exportEnabled: true,
+                title: {
+                    text: "Statistică anuală"
+                },
+                data: [{
+                        type: "pie",
+                        showInLegend: true,
+                        toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+                        indexLabel: "{name} - #percent%",
+                        dataPoints: [
+                            { y: _this.totalSum_Incasari_year, name: "Încasări" },
+                            { y: _this.totalSum_Cheltuieli_year, name: "Cheltuieli" },
+                            { y: _this.salariuNet_Total_year, name: "Salariu" }
+                        ]
+                    }]
+            });
+            chart.render();
+        });
+    };
+    AddincasareComponent.prototype.Calculare_MonthAndYear = function (f) {
+        var _this = this;
+        this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Incasari(f.value.month, f.value.year).subscribe(function (res) {
+            _this.totalSum_Incasari_month_year = res;
+        });
+        this.statisticsService.calculareSumaTotalaCuTVAMonthAndYear_Cheltuieli(f.value.month, f.value.year).subscribe(function (res) {
+            _this.totalSum_Cheltuieli_month_year = res;
+        });
+        this.statisticsService.calculareSalariuNetTotalMonthAndYear_Salariu(f.value.month, f.value.year).subscribe(function (res) {
+            _this.salariuNet_Total_month_year = res;
+            console.log("SUUUS: " + _this.SoldTotal);
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2",
+                animationEnabled: true,
+                exportEnabled: true,
+                title: {
+                    text: "Statistică lunară"
+                },
+                data: [{
+                        type: "pie",
+                        showInLegend: true,
+                        toolTipContent: "<b>{name}</b>: RON {y} (#percent%)",
+                        indexLabel: "{name} - #percent%",
+                        dataPoints: [
+                            { y: _this.totalSum_Incasari_month_year, name: "Încasări" },
+                            { y: _this.totalSum_Cheltuieli_month_year, name: "Cheltuieli" },
+                            { y: _this.salariuNet_Total_month_year, name: "Salariu" }
+                        ]
+                    }]
+            });
+            chart.render();
+        });
+    };
     AddincasareComponent.prototype.getTotalCostTotal = function () {
         return this.rows.map(function (t) { return t.sumaTotala; }).reduce(function (acc, value) { return acc + value; }, 0);
     };
@@ -329,6 +425,9 @@ var AddincasareComponent = /** @class */ (function () {
             // location.reload();
         });
     };
+    __decorate([
+        core_1.ViewChild("chart")
+    ], AddincasareComponent.prototype, "chart");
     __decorate([
         core_1.ViewChild(paginator_1.MatPaginator)
     ], AddincasareComponent.prototype, "paginator");

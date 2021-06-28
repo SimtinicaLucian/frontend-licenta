@@ -22,9 +22,15 @@
 
 <div class="row home-main-row">
   <div class="col-md-6 mt-4 pt-5 pl-5">
-    <h3>Time Tracker</h3>
-    <p>Our money tracking app will save you time and money</p>
-    <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="btn btn-info">Creați cont <i class="fa fa-user-plus"></i></a>
+    <div class="col-lg-10 col-md-10 col-sm-12">
+      <h1 class="blue-header header-color"><i>UniConta</i></h1>
+      <hr class="max-width-50" align="left">
+      <p class="testimonial-1"><i>  Rezolvi tot ce ține de facturi, chitanțe, salarii precum si de gestiunea banilor, rapoarte, grafice.</i></p>
+      <div class="text-center">
+          <a href="/register" class="btn btn-primary btn-lg btn-header btn-iframe-facturare sqare-btn exp-creare-cont" style="width: min(90%, 300px);" data-tracking_label="incearca gratuit 30 de zile">Creează cont</a>
+      </div>
+  </div>
+    <!-- <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="btn btn-info">Creează cont <i class="fa fa-user-plus"></i></a> -->
   </div>
   <div class="col-md-6 mt-4 home-image-wrapper">
     <img src="assets/images/computer.png" alt="">
@@ -73,14 +79,14 @@
                   <i class="material-icons">mail</i>
                 </span>
               </div>
-              <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
-    #email="ngModel" placeholder="Introduceți adresa de email" />
+              <input type="email" class="form-control" name="from" [(ngModel)]="form.from" required email
+    #from="ngModel" placeholder="Introduceți adresa de email" />
             </div>
           
 
-          <div class="alert-danger" *ngIf="f.submitted && email.invalid">
-            <div *ngIf="email.errors.required">E-mailul este obligatoriu!</div>
-            <div *ngIf="email.errors.email">
+          <div class="alert-danger" *ngIf="f.submitted && from.invalid">
+            <div *ngIf="from.errors.required">E-mailul este obligatoriu!</div>
+            <div *ngIf="from.errors.from">
               E-mailul trebuie să fie o adresă de e-mail validă! 
             </div>
           </div>

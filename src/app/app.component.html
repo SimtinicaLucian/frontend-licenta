@@ -33,7 +33,43 @@
         <a class="navbar-brand" href="#"> <img src="/assets/images/accounting.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+
+          <li class="navbar-toggler-icon" *ngIf="isLoggedIn" dropdown>
+            <a class="btn-group dropleft" dropdownToggle>
+              <span class="navbar-toggler-icon"></span>
+            </a>
+            <div class="row">
+              <div class="col-md-12 school-options-dropdown text-center">
+                <div class="dropdown-menu" *dropdownMenu>
+                  <a class="dropdown-item" [routerLink]="['home']" routerLinkActive="active"> Acasa</a>
+                  <a class="dropdown-item" href="#contact" routerLinkActive="active"> Contact</a>
+                  <a class="dropdown-item" [routerLink]="['add']" routerLinkActive="active"> Incasari</a>
+                  <a class="dropdown-item" [routerLink]="['cheltuieli']" routerLinkActive="active"> Cheltuieli</a>
+                  <a class="dropdown-item" [routerLink]="['salariu']" routerLinkActive="active"> Salarii</a>
+                  <a class="dropdown-item" [routerLink]="['addincasare']" routerLinkActive="active"> Dashboard</a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+
+
+
+          <li class="navbar-toggler-icon" *ngIf="!isLoggedIn" dropdown>
+            <a dropdownToggle>
+              <span class="navbar-toggler-icon"></span>
+            </a>
+            <div class="row">
+              <div class="col-md-12 school-options-dropdown text-right">
+                <div class="dropdown-menu" *dropdownMenu>
+                  <a class="dropdown-item" [routerLink]="['home']" routerLinkActive="active"> Acasa</a>
+                  <a class="dropdown-item" href="#contact" routerLinkActive="active"> Contact</a>
+                  <a class="dropdown-item" [routerLink]="['login']" routerLinkActive="active"> Conectează-te</a>
+                  <a class="dropdown-item" [routerLink]="['register']" routerLinkActive="active"> Înscrie-te</a>
+                </div>
+              </div>
+            </div>
+          </li>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -52,7 +88,7 @@
 
 
               <div class="row">
-                <div class="col-md-12 school-options-dropdown text-center">
+                <div class="col-md-12 school-options-dropdown text-left">
                   <div class="dropdown-menu" *dropdownMenu>
                     <a class="dropdown-item" [routerLink]="['add']" routerLinkActive="active"> Incasari</a>
                     <a class="dropdown-item" [routerLink]="['cheltuieli']" routerLinkActive="active"> Cheltuieli</a>
@@ -138,6 +174,8 @@
                   Contul meu</a>
                 <a class="dropdown-item" [routerLink]="['schimbare']" routerLinkActive="active"><i
                     class="fa fa-envelope"></i> Schimbare parolă</a>
+                <a class="dropdown-item" [routerLink]="['admin']" routerLinkActive="active"><i
+                    class="fa fa-user-lock"></i> Administrare conturi</a>
                 <a class="dropdown-item" (click)="logout();"><i class="fa fa-sign-out"></i> Deloghează-te</a>
               </div>
             </li>

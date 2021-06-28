@@ -132,6 +132,44 @@ export class StatisticsService {
     }
 
 
+        /**
+* F
+* M
+* @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+* @param reportProgress flag to report request and response progress.
+*/
+public calculareSalariuNet_Total(observe?: 'body', reportProgress?: boolean): Observable<Number>;
+public calculareSalariuNet_Total(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+public calculareSalariuNet_Total(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+public calculareSalariuNet_Total(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+        'application/json'
+    ];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+        headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+    // to determine the Content-Type header
+    const consumes: string[] = [
+    ];
+
+    return this.httpClient.get<Number>(`${this.basePath}/salariu/salariuNet_Total`,
+        {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        }
+    );
+}
+
+    
+
+
 
     /**
 * F
@@ -713,6 +751,60 @@ export class StatisticsService {
             }
         );
     }
+
+
+        /**
+  * Get user by user name
+  * 
+  * @param month The name that needs to be fetched. Use user1 for testing. 
+  * @param year 
+  * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+  * @param reportProgress flag to report request and response progress.
+  */
+         public calculareSalariuNetTotalMonthAndYear_Salariu(month: string, year?: string, observe?: 'body', reportProgress?: boolean): Observable<Number>;
+         public calculareSalariuNetTotalMonthAndYear_Salariu(month: string, year?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Number>>;
+         public calculareSalariuNetTotalMonthAndYear_Salariu(month: string, year?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Number>>;
+         public calculareSalariuNetTotalMonthAndYear_Salariu(month: string, year?: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+     
+             if (month === null || month === undefined) {
+                 throw new Error('Month is null');
+             }
+     
+     
+             let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
+             if (month !== undefined && month !== null) {
+                 queryParameters = queryParameters.set('month', <any>month);
+             }
+             if (year !== undefined && year !== null) {
+                 queryParameters = queryParameters.set('year', <any>year);
+             }
+     
+             let headers = this.defaultHeaders;
+     
+             // to determine the Accept header
+             let httpHeaderAccepts: string[] = [
+                 'application/xml',
+                 'application/json'
+             ];
+             const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+             if (httpHeaderAcceptSelected != undefined) {
+                 headers = headers.set('Accept', httpHeaderAcceptSelected);
+             }
+     
+             // to determine the Content-Type header
+             const consumes: string[] = [
+             ];
+     
+             return this.httpClient.get<Number>(`${this.basePath}/salariu/calculareSalariuNetTotalMonthAndYear`,
+                 {
+                     params: queryParameters,
+                     withCredentials: this.configuration.withCredentials,
+                     headers: headers,
+                     observe: observe,
+                     reportProgress: reportProgress
+                 }
+             );
+         }
 
 
 

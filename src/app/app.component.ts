@@ -53,6 +53,15 @@ export class AppComponent {
     }
   }
 
+ myFunction() {
+     const x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+
   logout() {
     this.tokenStorageService.signOut();
     window.location.reload();

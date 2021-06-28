@@ -326,7 +326,7 @@
 
 
         <div class="form-group" style="width: 130px; height: 33px;">
-            <label for="college">Select: </label>
+            <label for="college"><b><i>Selectare raport:</i></b> </label>
             <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" name="college_name" required >
                 <mat-option value="Profit_lunar">Profit lunar</mat-option>
                 <mat-option value="Profit_anual">Profit anual</mat-option>
@@ -369,7 +369,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">cifra_Afaceri
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Cifră afaceri
                                         </h5>
                                         <span
                                             class="h2 font-weight-bold mb-0">{{cifra_Afaceri}}</span><small>
@@ -444,7 +444,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">Profit_lunar
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Profitul lunar
                                         </h5>
                                         <span
                                             class="h2 font-weight-bold mb-0">{{profit_Lunar}}</span><small>
@@ -498,7 +498,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">profit_Anual
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Profitul anual
                                         </h5>
                                         <span
                                             class="h2 font-weight-bold mb-0">{{profit_Anual}}</span><small>
@@ -526,20 +526,107 @@
 
 
         
-        <div class="form-group" *ngIf="selectedValue">
-            <div class="form-group" *ngIf="selectedValue == 'BugetulDeStat_TVA'">
 
-        <div class="form-group" style="width: 130px; height: 33px;">
-            <label for="college">Select: </label>
-            <mat-select class="form-control" id="college" [(ngModel)]="selectedValue1" name="college_name" required >
-                <mat-option value="TVA la factura">TVA la factura</mat-option>
+        &nbsp; &nbsp; &nbsp; &nbsp;
 
 
 
-            </mat-select>
-        </div>
 
-
-
+        <div id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
 
         <!-- ------------------------- -->
+
+
+        <div class="form-group" style="width: 130px; height: 33px;">
+            <label for="college"><b><i>Selectare grafic:</i></b> </label>
+            <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" name="college_name" required>
+              <mat-option value="statistics">Raport anual</mat-option>
+              <mat-option value="statistics_lunar">Raport lunar</mat-option>
+            </mat-select>
+          </div>
+    
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <div class="form-group" *ngIf="selectedValue">
+            <div class="form-group" *ngIf="selectedValue == 'statistics'">
+          
+              <form f="form" (ngSubmit)="Calculare(f)" #f="ngForm" novalidate class="form-inline">
+                <div class="form-group">
+                  <label for="year"></label>
+                  <div class="form-group" style="width: 130px; height: 33px;">
+                      <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+                          <mat-label>anul</mat-label>
+                          <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
+                              <mat-option>anul</mat-option>
+                              <mat-option *ngFor="let year of years" [value]="year.value">
+                                  {{year.viewValue}}
+                              </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                  </div>
+              </div>
+          
+          
+                &nbsp; &nbsp;
+          
+          
+                <div class="form-group">
+                  <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
+                </div>
+          
+                <div id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
+    
+                
+              </form>
+            </div>
+
+
+            
+            <div class="form-group" *ngIf="selectedValue == 'statistics_lunar'">
+          
+                <form f="form" (ngSubmit)="Calculare_MonthAndYear(f)" #f="ngForm" novalidate class="form-inline">
+                  <div class="form-group">
+
+                    <label for="month"></label>
+                    <div class="form-group" style="width: 130px; height: 33px;">
+                    <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+                        <mat-label>luna</mat-label>
+                        <mat-select id="month" name="month" [(ngModel)]="form.month" required #month="ngModel">
+                            <mat-option>luna</mat-option>
+                            <mat-option *ngFor="let month of months" [value]="month.value">
+                                {{month.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    </div>
+
+
+
+                    <label for="year"></label>
+                    <div class="form-group" style="width: 130px; height: 33px;">
+                        <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+                            <mat-label>anul</mat-label>
+                            <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
+                                <mat-option>anul</mat-option>
+                                <mat-option *ngFor="let year of years" [value]="year.value">
+                                    {{year.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            
+            
+                  &nbsp; &nbsp;
+            
+            
+                  <div class="form-group">
+                    <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
+                  </div>
+            
+                  <div id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
+      
+                  
+                </form>
+              </div>
+          
+          </div>

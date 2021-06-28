@@ -1,15 +1,5 @@
 
-
-<form f="form" (ngSubmit)="Sold()" #f="ngForm" novalidate class="form-inline">
-<div id="chartContainer" style="height: 370px; width: 100%;">
-
-</div>
-
-<div class="form-group">
-    <button class="btn-sm" mat-raised-button color="primary">Cauta</button>
-</div>
-</form>
-
+      <div id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
 
 
 
@@ -23,29 +13,30 @@
     <div class="form-group" style="width: 130px; height: 33px;">
         <label for="college">Select: </label>
         <mat-select class="form-control" id="college" [(ngModel)]="selectedValue" name="college_name" required>
-          <mat-option value="cifraAfaceri">cifraAfaceri_Anual</mat-option>
+          <mat-option value="statistics">Raport anual</mat-option>
           <mat-option value="Profit_lunar">Profit_lunar</mat-option>
-      
         </mat-select>
       </div>
+
+      &nbsp; &nbsp; &nbsp; &nbsp;
       <div class="form-group" *ngIf="selectedValue">
-        <div class="form-group" *ngIf="selectedValue == 'cifraAfaceri'">
+        <div class="form-group" *ngIf="selectedValue == 'statistics'">
       
           <form f="form" (ngSubmit)="Calculare(f)" #f="ngForm" novalidate class="form-inline">
             <div class="form-group">
               <label for="year"></label>
               <div class="form-group" style="width: 130px; height: 33px;">
-                <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
-                  <mat-label>year</mat-label>
-                  <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
-                    <mat-option>year</mat-option>
-                    <mat-option *ngFor="let year of years" [value]="year.value">
-                      {{year.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
+                  <mat-form-field appearance="fill" style="width: 130px; height: 33px;">
+                      <mat-label>anul</mat-label>
+                      <mat-select id="year" name="year" [(ngModel)]="form.year" required #year="ngModel">
+                          <mat-option>anul</mat-option>
+                          <mat-option *ngFor="let year of years" [value]="year.value">
+                              {{year.viewValue}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
               </div>
-            </div>
+          </div>
       
       
             &nbsp; &nbsp;
